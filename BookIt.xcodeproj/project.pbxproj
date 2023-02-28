@@ -58,16 +58,48 @@
 		99AB0DCB29AD95B300B096BB /* BookIt */ = {
 			isa = PBXGroup;
 			children = (
+				99AB0DE629AD95DA00B096BB /* Support Files */,
+				99AB0DE529AD95D200B096BB /* Controllers */,
+				99AB0DE429AD95CD00B096BB /* Views */,
+				99AB0DE329AD95C300B096BB /* Models */,
 				99AB0DCC29AD95B300B096BB /* AppDelegate.swift */,
 				99AB0DCE29AD95B300B096BB /* SceneDelegate.swift */,
-				99AB0DD029AD95B300B096BB /* ViewController.swift */,
-				99AB0DD229AD95B300B096BB /* Main.storyboard */,
 				99AB0DD829AD95B600B096BB /* Assets.xcassets */,
 				99AB0DDA29AD95B600B096BB /* LaunchScreen.storyboard */,
 				99AB0DDD29AD95B600B096BB /* Info.plist */,
-				99AB0DD529AD95B300B096BB /* BookIt.xcdatamodeld */,
 			);
 			path = BookIt;
+			sourceTree = "<group>";
+		};
+		99AB0DE329AD95C300B096BB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				99AB0DD529AD95B300B096BB /* BookIt.xcdatamodeld */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		99AB0DE429AD95CD00B096BB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				99AB0DD229AD95B300B096BB /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		99AB0DE529AD95D200B096BB /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				99AB0DD029AD95B300B096BB /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		99AB0DE629AD95DA00B096BB /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Support Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
