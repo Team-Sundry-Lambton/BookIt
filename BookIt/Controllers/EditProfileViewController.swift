@@ -65,14 +65,21 @@ class EditProfileViewController: UIViewController {
             if let user = loginUser{
                 isVendor = user.isVendor
             }
+            var picData : Data?
+            do {
+                if let path = imagePath {
+                    picData = try Data(contentsOf: path as URL)
+                }
+                } catch {
+                    print("Unable to load data: \(error)")
+                }
+            
             if (isVendor){
                 let vendor = Vendor(context: context)
                 vendor.firstName = firstNameTxt.text
                 vendor.lastName = lastNameTxt.text
                 vendor.email = emailTxt.text
-                if let path = imagePath {
-                    vendor.picture = path
-                }
+                vendor.picture = picData
                 vendor.contactNumber = phoneNumberTxt.text
                 vendor.bannerURL = nil
             }else{
@@ -80,9 +87,7 @@ class EditProfileViewController: UIViewController {
                 client.firstName = firstNameTxt.text
                 client.lastName = lastNameTxt.text
                 client.email = emailTxt.text
-                if let path = imagePath {
-                    client.picture = path
-                }
+                client.picture = picData
                 client.contactNumber = phoneNumberTxt.text
                 client.isPremium = false
             }

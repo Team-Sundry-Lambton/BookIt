@@ -1,12 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="21G72" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Address" representedClassName="Address" syncable="YES" codeGenerationType="class">
+        <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="clientAddress" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Client" inverseName="address" inverseEntity="Client"/>
+        <relationship name="vendorAddress" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Vendor" inverseName="address" inverseEntity="Vendor"/>
+    </entity>
+    <entity name="Category" representedClassName="Category" syncable="YES" codeGenerationType="class">
+        <attribute name="image" optional="YES" attributeType="Binary"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="Client" representedClassName="Client" syncable="YES" codeGenerationType="class">
         <attribute name="contactNumber" optional="YES" attributeType="String"/>
         <attribute name="email" optional="YES" attributeType="String"/>
         <attribute name="firstName" optional="YES" attributeType="String"/>
         <attribute name="isPremium" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String"/>
-        <attribute name="picture" optional="YES" attributeType="URI"/>
+        <attribute name="picture" optional="YES" attributeType="Binary"/>
+        <relationship name="address" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Address" inverseName="clientAddress" inverseEntity="Address"/>
+    </entity>
+    <entity name="Service" representedClassName="Service" syncable="YES" codeGenerationType="class">
+        <attribute name="availability" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="duration" optional="YES" attributeType="String"/>
+        <attribute name="equipment" optional="YES" attributeType="String"/>
+        <attribute name="location" optional="YES" attributeType="String"/>
+        <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="serviceDescription" optional="YES" attributeType="String"/>
+        <attribute name="serviceName" optional="YES" attributeType="String"/>
+        <attribute name="skillSet" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Vendor" representedClassName="Vendor" syncable="YES" codeGenerationType="class">
         <attribute name="bannerURL" optional="YES" attributeType="String"/>
@@ -14,6 +36,7 @@
         <attribute name="email" optional="YES" attributeType="String"/>
         <attribute name="firstName" optional="YES" attributeType="String"/>
         <attribute name="lastName" optional="YES" attributeType="String"/>
-        <attribute name="picture" optional="YES" attributeType="URI"/>
+        <attribute name="picture" optional="YES" attributeType="Binary"/>
+        <relationship name="address" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Address" inverseName="vendorAddress" inverseEntity="Address"/>
     </entity>
 </model>
