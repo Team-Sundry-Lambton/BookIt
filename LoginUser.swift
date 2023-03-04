@@ -12,7 +12,6 @@ struct LoginUser{
     var lastName : String
     var email : String
     var contactNumber : String
-    var gender : String?
     var picture : URL?
     var isVendor : Bool
     

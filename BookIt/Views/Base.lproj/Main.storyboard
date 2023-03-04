@@ -181,7 +181,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain"/>
                                                 <connections>
-                                                    <action selector="appleLogin" destination="BYZ-38-t0r" eventType="touchUpInside" id="88p-1X-LT3"/>
+                                                    <action selector="appleLoginWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NQ3-Az-rDm"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -200,7 +200,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pld-Wm-Rd4">
-                                <rect key="frame" x="109" y="788" width="175" height="25"/>
+                                <rect key="frame" x="109" y="791" width="175" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="Sqz-2Y-Bgm"/>
                                 </constraints>
@@ -216,7 +216,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="GeZ-GO-6C9" firstAttribute="centerY" secondItem="EIM-Wp-SzZ" secondAttribute="centerY" constant="20" id="7Ut-Ob-VfM"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Pld-Wm-Rd4" secondAttribute="bottom" constant="5" id="AvU-yH-jSe"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Pld-Wm-Rd4" secondAttribute="bottom" constant="2" id="AvU-yH-jSe"/>
                             <constraint firstItem="xIX-ck-4TI" firstAttribute="top" secondItem="GeZ-GO-6C9" secondAttribute="bottom" constant="20" id="BBo-yg-8lT"/>
                             <constraint firstItem="KAE-uM-qSv" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="GWm-OC-ccq"/>
                             <constraint firstItem="Pld-Wm-Rd4" firstAttribute="centerX" secondItem="EIM-Wp-SzZ" secondAttribute="centerX" id="Liv-Yf-PHP"/>
@@ -241,10 +241,10 @@
             </objects>
             <point key="canvasLocation" x="-54.198473282442748" y="3.5211267605633805"/>
         </scene>
-        <!--Sign Up View Controller-->
+        <!--Edit Profile View Controller-->
         <scene sceneID="xxe-PA-uNv">
             <objects>
-                <viewController storyboardIdentifier="SignUpViewController" id="oqv-dr-nCJ" customClass="SignUpViewController" customModule="BookIt" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpViewController" id="oqv-dr-nCJ" customClass="EditProfileViewController" customModule="BookIt" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DkP-bD-NpF">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

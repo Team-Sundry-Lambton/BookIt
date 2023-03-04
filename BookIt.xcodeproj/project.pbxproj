@@ -18,10 +18,11 @@
 		BB9BB52E29AE7CAF0004244E /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = BB9BB52D29AE7CAF0004244E /* FacebookLogin */; };
 		BB9BB53029AE7CAF0004244E /* FacebookShare in Frameworks */ = {isa = PBXBuildFile; productRef = BB9BB52F29AE7CAF0004244E /* FacebookShare */; };
 		BB9BB53529AE9B290004244E /* LoginUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9BB53429AE9B290004244E /* LoginUser.swift */; };
-		BB9BB53729AEA05E0004244E /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9BB53629AEA05E0004244E /* SignUpViewController.swift */; };
+		BB9BB53729AEA05E0004244E /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9BB53629AEA05E0004244E /* EditProfileViewController.swift */; };
 		BB9BB53929AEBDE90004244E /* DashBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9BB53829AEBDE90004244E /* DashBoardViewController.swift */; };
 		BBE7432A29B3A6E50087DC74 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = BBE7432929B3A6E50087DC74 /* GoogleSignIn */; };
 		BBE7432C29B3A6E50087DC74 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BBE7432B29B3A6E50087DC74 /* GoogleSignInSwift */; };
+		BBE7433429B3DDB00087DC74 /* MediaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7433329B3DDB00087DC74 /* MediaManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,8 +37,9 @@
 		99AB0DDD29AD95B600B096BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB9BB53129AE7F900004244E /* BookIt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BookIt.entitlements; sourceTree = "<group>"; };
 		BB9BB53429AE9B290004244E /* LoginUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUser.swift; sourceTree = SOURCE_ROOT; };
-		BB9BB53629AEA05E0004244E /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		BB9BB53629AEA05E0004244E /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		BB9BB53829AEBDE90004244E /* DashBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardViewController.swift; sourceTree = "<group>"; };
+		BBE7433329B3DDB00087DC74 /* MediaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 		99AB0DCB29AD95B300B096BB /* BookIt */ = {
 			isa = PBXGroup;
 			children = (
+				BBE7433229B3DD950087DC74 /* ManagerFiles */,
 				BB9BB53129AE7F900004244E /* BookIt.entitlements */,
 				99AB0DE629AD95DA00B096BB /* Support Files */,
 				99AB0DE529AD95D200B096BB /* Controllers */,
@@ -109,7 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				99AB0DD029AD95B300B096BB /* ViewController.swift */,
-				BB9BB53629AEA05E0004244E /* SignUpViewController.swift */,
+				BB9BB53629AEA05E0004244E /* EditProfileViewController.swift */,
 				BB9BB53829AEBDE90004244E /* DashBoardViewController.swift */,
 			);
 			path = Controllers;
@@ -121,6 +124,14 @@
 				BB9BB53429AE9B290004244E /* LoginUser.swift */,
 			);
 			path = "Support Files";
+			sourceTree = "<group>";
+		};
+		BBE7433229B3DD950087DC74 /* ManagerFiles */ = {
+			isa = PBXGroup;
+			children = (
+				BBE7433329B3DDB00087DC74 /* MediaManager.swift */,
+			);
+			path = ManagerFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,8 +216,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBE7433429B3DDB00087DC74 /* MediaManager.swift in Sources */,
 				BB9BB53529AE9B290004244E /* LoginUser.swift in Sources */,
-				BB9BB53729AEA05E0004244E /* SignUpViewController.swift in Sources */,
+				BB9BB53729AEA05E0004244E /* EditProfileViewController.swift in Sources */,
 				99AB0DD129AD95B300B096BB /* ViewController.swift in Sources */,
 				BB9BB53929AEBDE90004244E /* DashBoardViewController.swift in Sources */,
 				99AB0DCD29AD95B300B096BB /* AppDelegate.swift in Sources */,

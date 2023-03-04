@@ -9,10 +9,14 @@ import UIKit
 import FacebookLogin
 import CoreData
 import GoogleSignIn
+import AuthenticationServices
 
 class ViewController: UIViewController {
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var isVendor = false
+    
+    @IBOutlet weak var appleLoginBtn: ASAuthorizationAppleIDButton!
     @IBOutlet weak var vendorStatus: UISwitch!{
         didSet{
             vendorStatus.onTintColor = UIColor(red: 61/255.0, green: 99/255.0, blue: 157/255.0, alpha: 0.7)
@@ -23,6 +27,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        appleLoginBtn.addTarget(self, action: #selector(handleLogInWithAppleID), for: .touchUpInside)
         // Do any additional setup after loading the view.
     }
 
@@ -40,10 +45,13 @@ class ViewController: UIViewController {
             isVendor = true
         }
     }
-    @IBAction func appleLogin() {
-    }
+
     @IBAction func googleLogin(sender: Any) {
         getGoogleUser()
+    }
+    
+    @IBAction func appleLogin(sender: Any) {
+        handleLogInWithAppleID()
     }
     
 //    @IBAction func signOut(sender: Any) {
@@ -55,54 +63,6 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
       
     }
-}
-
-extension ViewController{
-    func fetchFacebookFields(){
-        
-          LoginManager().logIn(permissions: ["email","public_profile"], from: nil) {
-              (result, error) -> Void in
-              if let error = error {
-                  print(error.localizedDescription)
-                  return
-              }
-              guard let result = result else { return }
-              if result.isCancelled { return }
-              else {
-                  
-                  GraphRequest(graphPath: "me", parameters: ["fields" : "first_name, last_name, email, birthday, gender, hometown"]).start() {
-                      (connection, result, error) in
-                      if let error = error {
-                          print(error.localizedDescription)
-                          return
-                      }
-                      if
-                          let fields = result as? [String:Any],
-                          let userID = fields["id"] as? String,
-                          let firstName = fields["first_name"] as? String,
-                          let lastName = fields["last_name"] as? String,
-                          let email = fields["email"] as? String
-
-                      {
-                          let facebookProfileUrl = "http://graph.facebook.com/\(userID)/picture?type=large"
-                          print("firstName -> \(firstName)")
-                          print("lastName -> \(lastName)")
-                          print("email -> \(email)")
-                          print("facebookProfileUrl -> \(facebookProfileUrl)")
-                        
-                          var loginUser = LoginUser(firstName: firstName, lastName: lastName, email: email, contactNumber: "",isVendor: self.isVendor)
-                          loginUser.gender = ""
-                          if let url = URL(string: facebookProfileUrl) {
-                              loginUser.picture = url
-                          }
-                                                
-                          self.checkUserAvailablility(user: loginUser)
-                          
-                      }
-                  }
-              }
-          }
-      }
     
     func checkUserAvailablility(user : LoginUser){
         if (checkUserInDB(user: user)){
@@ -110,13 +70,17 @@ extension ViewController{
             
         }else{
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SignUpViewController") as! SignUpViewController
+            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SignUpViewController") as! EditProfileViewController
             nextViewController.loginUser = user
             self.present(nextViewController, animated:true, completion:nil)
         }
     }
     
     func loadDashBoard(user : LoginUser?){
+        
+        let defaults = UserDefaults.standard
+        defaults.set(true, forKey: "UserLogin")
+        
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "DashBoardViewController") as! DashBoardViewController
         nextViewController.loginUser = user
@@ -145,6 +109,55 @@ extension ViewController{
     }
 }
 
+// MARK: - Facebook Login
+extension ViewController{
+    func fetchFacebookFields(){
+        
+        LoginManager().logIn(permissions: ["email","public_profile"], from: nil) {
+            (result, error) -> Void in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            guard let result = result else { return }
+            if result.isCancelled { return }
+            else {
+                
+                GraphRequest(graphPath: "me", parameters: ["fields" : "first_name, last_name, email, birthday, gender, hometown"]).start() {
+                    (connection, result, error) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                        return
+                    }
+                    if
+                        let fields = result as? [String:Any],
+                        let userID = fields["id"] as? String,
+                        let firstName = fields["first_name"] as? String,
+                        let lastName = fields["last_name"] as? String,
+                        let email = fields["email"] as? String
+                            
+                    {
+                        let facebookProfileUrl = "http://graph.facebook.com/\(userID)/picture?type=large"
+                        print("firstName -> \(firstName)")
+                        print("lastName -> \(lastName)")
+                        print("email -> \(email)")
+                        print("facebookProfileUrl -> \(facebookProfileUrl)")
+                        
+                        var loginUser = LoginUser(firstName: firstName, lastName: lastName, email: email, contactNumber: "",isVendor: self.isVendor)
+                        if let url = URL(string: facebookProfileUrl) {
+                            loginUser.picture = url
+                        }
+                        
+                        self.checkUserAvailablility(user: loginUser)
+                        
+                    }
+                }
+            }
+        }
+    }
+}
+
+// MARK: - Google Login
 extension ViewController{
     
     func getGoogleUser(){
@@ -163,9 +176,43 @@ extension ViewController{
             let profilePicUrl = user.profile?.imageURL(withDimension: 320) ?? nil
             
             var loginUser = LoginUser(firstName: givenName, lastName: familyName, email: emailAddress, contactNumber: "",isVendor: self.isVendor)
-            loginUser.gender = ""
             loginUser.picture = profilePicUrl
             self.checkUserAvailablility(user: loginUser)
+        }
+    }
+}
+
+// MARK: - Apple Login
+extension ViewController: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
+    
+     func handleLogInWithAppleID() {
+         let request = ASAuthorizationAppleIDProvider().createRequest()
+        request.requestedScopes = [.fullName, .email,]
+         
+         let controller = ASAuthorizationController(authorizationRequests: [request])
+         
+         controller.delegate = self
+         controller.presentationContextProvider = self
+         
+         controller.performRequests()
+     }
+    
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+             return self.view.window!
+      }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        switch authorization.credential {
+        case let appleIDCredential as ASAuthorizationAppleIDCredential:
+            let lastName = appleIDCredential.fullName?.familyName ?? ""
+            let email = appleIDCredential.email ?? ""
+            let firstName = appleIDCredential.fullName?.givenName ?? ""
+            var loginUser = LoginUser(firstName: firstName, lastName: lastName, email: email, contactNumber: "",isVendor: self.isVendor)
+            loginUser.picture = nil
+            self.checkUserAvailablility(user: loginUser)
+            break
+        default:
+            break
         }
     }
 }

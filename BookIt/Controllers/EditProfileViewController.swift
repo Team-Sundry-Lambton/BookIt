@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class SignUpViewController: UIViewController {
+class EditProfileViewController: UIViewController {
 
     var loginUser : LoginUser?
     
@@ -32,7 +32,6 @@ class SignUpViewController: UIViewController {
             lastNameTxt.text = user.lastName
             emailTxt.text = user.email
             phoneNumberTxt.text = user.contactNumber
-            genderTxt.text = user.gender
            
             if let path = user.picture{
                 imagePath = path
@@ -87,8 +86,9 @@ class SignUpViewController: UIViewController {
                 client.contactNumber = phoneNumberTxt.text
                 client.isPremium = false
             }
-            
+            var loginUser = LoginUser(firstName: firstNameTxt.text ?? "", lastName: lastNameTxt.text ?? "", email: emailTxt.text ?? "", contactNumber: phoneNumberTxt.text ?? "",isVendor: isVendor)
             saveUser()
+            loadDashBoard(user: loginUser)
         }
         
     }
@@ -101,6 +101,17 @@ class SignUpViewController: UIViewController {
         }
     }
     
+    func loadDashBoard(user : LoginUser?){
+        
+        let defaults = UserDefaults.standard
+        defaults.set(true, forKey: "UserLogin")
+        
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "DashBoardViewController") as! DashBoardViewController
+        nextViewController.loginUser = user
+        self.present(nextViewController, animated:true, completion:nil)
+    }
+    
     func displayAlert(message: String, title : String){
         // create the alert
           let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
@@ -110,6 +121,22 @@ class SignUpViewController: UIViewController {
 
           // show the alert
           self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func addProfileFic() {
+        MediaManager.shared.pickMediaFile(self) { [weak self] mediaObject in
+            guard let strongSelf = self else {
+                return
+            }
+            
+            if let object = mediaObject {
+                self?.imageView.image = object.image
+                
+                if let url = URL(string: object.filePath) {
+                    self?.imagePath = url
+                }
+            }
+        }
     }
     
     /*
