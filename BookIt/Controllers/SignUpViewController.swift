@@ -20,7 +20,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var firstNameTxt: UITextField!
     @IBOutlet weak var lblData: UILabel!
     
-    var imagePath = ""
+    var imagePath : URL?
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -36,9 +36,7 @@ class SignUpViewController: UIViewController {
            
             if let path = user.picture{
                 imagePath = path
-                guard let url = URL(string: path) else { return }
-             
-                imageView.load(url: url)
+                imageView.load(url: path)
             }
         }
         // Do any additional setup after loading the view.
@@ -64,13 +62,31 @@ class SignUpViewController: UIViewController {
         }
         else
         {
-            let client = Client(context: context)
-            client.firstName = firstNameTxt.text
-            client.lastName = lastNameTxt.text
-            client.gender = genderTxt.text
-            client.email = emailTxt.text
-            client.picture = imagePath
-            client.contactNumber = phoneNumberTxt.text
+            var isVendor = false
+            if let user = loginUser{
+                isVendor = user.isVendor
+            }
+            if (isVendor){
+                let vendor = Vendor(context: context)
+                vendor.firstName = firstNameTxt.text
+                vendor.lastName = lastNameTxt.text
+                vendor.email = emailTxt.text
+                if let path = imagePath {
+                    vendor.picture = path
+                }
+                vendor.contactNumber = phoneNumberTxt.text
+                vendor.bannerURL = nil
+            }else{
+                let client = Client(context: context)
+                client.firstName = firstNameTxt.text
+                client.lastName = lastNameTxt.text
+                client.email = emailTxt.text
+                if let path = imagePath {
+                    client.picture = path
+                }
+                client.contactNumber = phoneNumberTxt.text
+                client.isPremium = false
+            }
             
             saveUser()
         }

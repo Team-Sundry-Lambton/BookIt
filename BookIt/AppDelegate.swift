@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 import FacebookCore
+import GoogleSignIn
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +21,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     application,
                     didFinishLaunchingWithOptions: launchOptions
                 )
+        
+        GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
+           if error != nil || user == nil {
+             // Show the app's signed-out state.
+           } else {
+             // Show the app's signed-in state.
+           }
+         }
 
         return true
     }
@@ -29,12 +38,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             open url: URL,
             options: [UIApplication.OpenURLOptionsKey : Any] = [:]
         ) -> Bool {
-            ApplicationDelegate.shared.application(
+            var handled: Bool
+            
+            handled = ApplicationDelegate.shared.application(
                 app,
                 open: url,
                 sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
                 annotation: options[UIApplication.OpenURLOptionsKey.annotation]
             )
+            if handled {
+              return true
+            }
+            
+            handled = GIDSignIn.sharedInstance.handle(url)
+            if handled {
+              return true
+            }
+            
+            return false
         } 
 
     // MARK: UISceneSession Lifecycle

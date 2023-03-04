@@ -4,8 +4,16 @@
         <attribute name="contactNumber" optional="YES" attributeType="String"/>
         <attribute name="email" optional="YES" attributeType="String"/>
         <attribute name="firstName" optional="YES" attributeType="String"/>
-        <attribute name="gender" optional="YES" attributeType="String"/>
+        <attribute name="isPremium" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String"/>
-        <attribute name="picture" optional="YES" attributeType="String"/>
+        <attribute name="picture" optional="YES" attributeType="URI"/>
+    </entity>
+    <entity name="Vendor" representedClassName="Vendor" syncable="YES" codeGenerationType="class">
+        <attribute name="bannerURL" optional="YES" attributeType="String"/>
+        <attribute name="contactNumber" optional="YES" attributeType="String"/>
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="firstName" optional="YES" attributeType="String"/>
+        <attribute name="lastName" optional="YES" attributeType="String"/>
+        <attribute name="picture" optional="YES" attributeType="URI"/>
     </entity>
 </model>

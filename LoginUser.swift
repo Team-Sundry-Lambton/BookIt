@@ -13,6 +13,7 @@ struct LoginUser{
     var email : String
     var contactNumber : String
     var gender : String?
-    var picture : String?
+    var picture : URL?
+    var isVendor : Bool
     
 }
