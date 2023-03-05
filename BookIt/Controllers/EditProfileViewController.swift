@@ -89,7 +89,7 @@ class EditProfileViewController: UIViewController {
                 client.contactNumber = phoneNumberTxt.text
                 client.isPremium = false
             }
-            var loginUser = LoginUser(firstName: firstNameTxt.text ?? "", lastName: lastNameTxt.text ?? "", email: emailTxt.text ?? "", contactNumber: phoneNumberTxt.text ?? "",isVendor: isVendor)
+            let loginUser = LoginUser(firstName: firstNameTxt.text ?? "", lastName: lastNameTxt.text ?? "", email: emailTxt.text ?? "", contactNumber: phoneNumberTxt.text ?? "",isVendor: isVendor)
             saveUser()
             loadDashBoard(user: loginUser)
         }
@@ -110,9 +110,10 @@ class EditProfileViewController: UIViewController {
         UserDefaultsManager.shared.setIsVendor(status: isVendor)
         
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "DashBoardViewController") as! DashBoardViewController
-        nextViewController.loginUser = user
-        self.present(nextViewController, animated:true, completion:nil)
+        if let nextViewController = storyBoard.instantiateViewController(withIdentifier: "DashBoardViewController") as? DashBoardViewController {
+            nextViewController.loginUser = user
+            self.present(nextViewController, animated:true, completion:nil)
+        }
     }
     
     func displayAlert(message: String, title : String){

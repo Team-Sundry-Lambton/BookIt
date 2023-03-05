@@ -21,9 +21,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var appleLoginBtn: ASAuthorizationAppleIDButton!
     @IBOutlet weak var vendorStatus: UISwitch!{
         didSet{
-            vendorStatus.onTintColor = UIColor(red: 61/255.0, green: 99/255.0, blue: 157/255.0, alpha: 0.7)
-            vendorStatus.tintColor = UIColor(red: 61/255.0, green: 99/255.0, blue: 157/255.0, alpha: 0.7)
-            vendorStatus.subviews[0].subviews[0].backgroundColor = UIColor(red: 61/255.0, green: 99/255.0, blue: 157/255.0, alpha: 0.7)
+            vendorStatus.onTintColor = UIColor.switchBackgroundColor
+            vendorStatus.tintColor = UIColor.switchBackgroundColor
+            vendorStatus.subviews[0].subviews[0].backgroundColor = UIColor.switchBackgroundColor
         }
     }
     
@@ -33,7 +33,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    @IBAction func continuGuest() {
+    @IBAction func continueGuest() {
         loadDashBoard(user: nil)
     }
     @IBAction func facebookLogin(_ sender: Any) {
@@ -76,9 +76,10 @@ class ViewController: UIViewController {
             
         }else{
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SignUpViewController") as! EditProfileViewController
-            nextViewController.loginUser = user
-            self.present(nextViewController, animated:true, completion:nil)
+            if let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SignUpViewController") as? EditProfileViewController {
+                nextViewController.loginUser = user
+                self.present(nextViewController , animated:true, completion:nil)
+            }
         }
     }
     
@@ -91,9 +92,10 @@ class ViewController: UIViewController {
         }
         
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "DashBoardViewController") as! DashBoardViewController
-        nextViewController.loginUser = user
-        self.present(nextViewController, animated:true, completion:nil)
+        if let nextViewController = storyBoard.instantiateViewController(withIdentifier: "DashBoardViewController") as? DashBoardViewController {
+            nextViewController.loginUser = user
+            self.present(nextViewController, animated:true, completion:nil)
+        }
     }
     
     func checkUserInDB(user : LoginUser) -> Bool{
@@ -101,8 +103,6 @@ class ViewController: UIViewController {
         var entityName = "Client"
         if (isVendor){
             entityName = "Vendor"
-        }else{
-            entityName = "Client"
         }
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: entityName)
         fetchRequest.predicate = NSPredicate(format: "email = %@ && contactNumber = %@", user.email, user.contactNumber)
@@ -178,7 +178,6 @@ extension ViewController{
 
             let emailAddress = user.profile?.email ?? ""
 
-            let fullName = user.profile?.name ?? ""
             let givenName = user.profile?.givenName ?? ""
             let familyName = user.profile?.familyName ?? ""
 
@@ -231,35 +230,20 @@ extension ViewController {
     func bioMetricVerification(){
         biometricIDAuth.canEvaluate { (canEvaluate, _, canEvaluateError) in
             guard canEvaluate else {
-                alert(title: "Error",
-                      message: canEvaluateError?.localizedDescription ?? "Face ID/Touch ID may not be configured",
-                      okActionTitle: "OK")
+                UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message: canEvaluateError?.localizedDescription ?? "Face ID/Touch ID may not be configured", okActionTitle: "OK", view: self)
                 return
             }
             
             biometricIDAuth.evaluate { [weak self] (success, error) in
                 guard success else {
-                    self?.alert(title: "Error",
-                                message: error?.localizedDescription ?? "Face ID/Touch ID may not be configured",
-                                okActionTitle: "OK")
+                    UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message: canEvaluateError?.localizedDescription ?? "Face ID/Touch ID may not be configured", okActionTitle: "OK", view: self ?? ViewController())
                     return
                 }
                 
               let loginUser =  UserDefaultsManager.shared.getUserData()
                 self?.loadDashBoard(user: loginUser)
-                self?.alert(title: "Success",
-                            message: "You have a free pass, now",
-                            okActionTitle: "Yay!")
+                UIAlertViewExtention.shared.showBasicAlertView(title: "Success", message:  "You have a free pass, now", okActionTitle: "OK", view: self ?? ViewController())
             }
         }
-    }
-    
-    func alert(title: String, message: String, okActionTitle: String) {
-        let alertView = UIAlertController(title: title,
-                                          message: message,
-                                          preferredStyle: .alert)
-        let okAction = UIAlertAction(title: okActionTitle, style: .default)
-        alertView.addAction(okAction)
-        present(alertView, animated: true)
     }
 }
