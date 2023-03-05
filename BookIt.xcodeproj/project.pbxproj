@@ -14,6 +14,19 @@
 		99AB0DD729AD95B300B096BB /* BookIt.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 99AB0DD529AD95B300B096BB /* BookIt.xcdatamodeld */; };
 		99AB0DD929AD95B600B096BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99AB0DD829AD95B600B096BB /* Assets.xcassets */; };
 		99AB0DDC29AD95B600B096BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99AB0DDA29AD95B600B096BB /* LaunchScreen.storyboard */; };
+		BB9BB52C29AE7CAF0004244E /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = BB9BB52B29AE7CAF0004244E /* FacebookCore */; };
+		BB9BB52E29AE7CAF0004244E /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = BB9BB52D29AE7CAF0004244E /* FacebookLogin */; };
+		BB9BB53029AE7CAF0004244E /* FacebookShare in Frameworks */ = {isa = PBXBuildFile; productRef = BB9BB52F29AE7CAF0004244E /* FacebookShare */; };
+		BB9BB53529AE9B290004244E /* LoginUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9BB53429AE9B290004244E /* LoginUser.swift */; };
+		BB9BB53729AEA05E0004244E /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9BB53629AEA05E0004244E /* EditProfileViewController.swift */; };
+		BB9BB53929AEBDE90004244E /* DashBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9BB53829AEBDE90004244E /* DashBoardViewController.swift */; };
+		BBE7432A29B3A6E50087DC74 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = BBE7432929B3A6E50087DC74 /* GoogleSignIn */; };
+		BBE7432C29B3A6E50087DC74 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BBE7432B29B3A6E50087DC74 /* GoogleSignInSwift */; };
+		BBE7433429B3DDB00087DC74 /* MediaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7433329B3DDB00087DC74 /* MediaManager.swift */; };
+		BBE7433629B41D440087DC74 /* BiometricIDAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7433529B41D440087DC74 /* BiometricIDAuth.swift */; };
+		BBE7433829B41EE60087DC74 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7433729B41EE60087DC74 /* UserDefaultsManager.swift */; };
+		BBEC1C4829B5595E00B58D41 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEC1C4729B5595E00B58D41 /* UIColorExtension.swift */; };
+		BBEC1C4A29B55A6800B58D41 /* UIAlertViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEC1C4929B55A6800B58D41 /* UIAlertViewExtention.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +39,15 @@
 		99AB0DD829AD95B600B096BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		99AB0DDB29AD95B600B096BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		99AB0DDD29AD95B600B096BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BB9BB53129AE7F900004244E /* BookIt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BookIt.entitlements; sourceTree = "<group>"; };
+		BB9BB53429AE9B290004244E /* LoginUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginUser.swift; path = BookIt/Models/LoginUser.swift; sourceTree = SOURCE_ROOT; };
+		BB9BB53629AEA05E0004244E /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		BB9BB53829AEBDE90004244E /* DashBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardViewController.swift; sourceTree = "<group>"; };
+		BBE7433329B3DDB00087DC74 /* MediaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaManager.swift; sourceTree = "<group>"; };
+		BBE7433529B41D440087DC74 /* BiometricIDAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BiometricIDAuth.swift; path = BookIt/ManagerFiles/BiometricIDAuth.swift; sourceTree = SOURCE_ROOT; };
+		BBE7433729B41EE60087DC74 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserDefaultsManager.swift; path = BookIt/ManagerFiles/UserDefaultsManager.swift; sourceTree = SOURCE_ROOT; };
+		BBEC1C4729B5595E00B58D41 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIColorExtension.swift; path = BookIt/ManagerFiles/UIColorExtension.swift; sourceTree = SOURCE_ROOT; };
+		BBEC1C4929B55A6800B58D41 /* UIAlertViewExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIAlertViewExtention.swift; path = BookIt/ManagerFiles/UIAlertViewExtention.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +55,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBE7432C29B3A6E50087DC74 /* GoogleSignInSwift in Frameworks */,
+				BB9BB52E29AE7CAF0004244E /* FacebookLogin in Frameworks */,
+				BBE7432A29B3A6E50087DC74 /* GoogleSignIn in Frameworks */,
+				BB9BB52C29AE7CAF0004244E /* FacebookCore in Frameworks */,
+				BB9BB53029AE7CAF0004244E /* FacebookShare in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +85,8 @@
 		99AB0DCB29AD95B300B096BB /* BookIt */ = {
 			isa = PBXGroup;
 			children = (
+				BBE7433229B3DD950087DC74 /* ManagerFiles */,
+				BB9BB53129AE7F900004244E /* BookIt.entitlements */,
 				99AB0DE629AD95DA00B096BB /* Support Files */,
 				99AB0DE529AD95D200B096BB /* Controllers */,
 				99AB0DE429AD95CD00B096BB /* Views */,
@@ -74,6 +103,7 @@
 		99AB0DE329AD95C300B096BB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				BB9BB53429AE9B290004244E /* LoginUser.swift */,
 				99AB0DD529AD95B300B096BB /* BookIt.xcdatamodeld */,
 			);
 			path = Models;
@@ -91,6 +121,8 @@
 			isa = PBXGroup;
 			children = (
 				99AB0DD029AD95B300B096BB /* ViewController.swift */,
+				BB9BB53629AEA05E0004244E /* EditProfileViewController.swift */,
+				BB9BB53829AEBDE90004244E /* DashBoardViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -98,8 +130,20 @@
 		99AB0DE629AD95DA00B096BB /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
+				BBE7433529B41D440087DC74 /* BiometricIDAuth.swift */,
+				BBE7433729B41EE60087DC74 /* UserDefaultsManager.swift */,
+				BBEC1C4729B5595E00B58D41 /* UIColorExtension.swift */,
+				BBEC1C4929B55A6800B58D41 /* UIAlertViewExtention.swift */,
 			);
 			path = "Support Files";
+			sourceTree = "<group>";
+		};
+		BBE7433229B3DD950087DC74 /* ManagerFiles */ = {
+			isa = PBXGroup;
+			children = (
+				BBE7433329B3DDB00087DC74 /* MediaManager.swift */,
+			);
+			path = ManagerFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,6 +162,13 @@
 			dependencies = (
 			);
 			name = BookIt;
+			packageProductDependencies = (
+				BB9BB52B29AE7CAF0004244E /* FacebookCore */,
+				BB9BB52D29AE7CAF0004244E /* FacebookLogin */,
+				BB9BB52F29AE7CAF0004244E /* FacebookShare */,
+				BBE7432929B3A6E50087DC74 /* GoogleSignIn */,
+				BBE7432B29B3A6E50087DC74 /* GoogleSignInSwift */,
+			);
 			productName = BookIt;
 			productReference = 99AB0DC929AD95B300B096BB /* BookIt.app */;
 			productType = "com.apple.product-type.application";
@@ -146,6 +197,10 @@
 				Base,
 			);
 			mainGroup = 99AB0DC029AD95B300B096BB;
+			packageReferences = (
+				BB9BB52A29AE7CAF0004244E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+				BBE7432829B3A6E50087DC74 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+			);
 			productRefGroup = 99AB0DCA29AD95B300B096BB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -173,10 +228,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBE7433429B3DDB00087DC74 /* MediaManager.swift in Sources */,
+				BB9BB53529AE9B290004244E /* LoginUser.swift in Sources */,
+				BB9BB53729AEA05E0004244E /* EditProfileViewController.swift in Sources */,
 				99AB0DD129AD95B300B096BB /* ViewController.swift in Sources */,
+				BBEC1C4A29B55A6800B58D41 /* UIAlertViewExtention.swift in Sources */,
+				BB9BB53929AEBDE90004244E /* DashBoardViewController.swift in Sources */,
 				99AB0DCD29AD95B300B096BB /* AppDelegate.swift in Sources */,
+				BBE7433829B41EE60087DC74 /* UserDefaultsManager.swift in Sources */,
 				99AB0DCF29AD95B300B096BB /* SceneDelegate.swift in Sources */,
+				BBEC1C4829B5595E00B58D41 /* UIColorExtension.swift in Sources */,
 				99AB0DD729AD95B300B096BB /* BookIt.xcdatamodeld in Sources */,
+				BBE7433629B41D440087DC74 /* BiometricIDAuth.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +384,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BookIt/BookIt.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -348,6 +412,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BookIt/BookIt.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -392,6 +457,53 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BB9BB52A29AE7CAF0004244E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+		BBE7432829B3A6E50087DC74 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BB9BB52B29AE7CAF0004244E /* FacebookCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BB9BB52A29AE7CAF0004244E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookCore;
+		};
+		BB9BB52D29AE7CAF0004244E /* FacebookLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BB9BB52A29AE7CAF0004244E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookLogin;
+		};
+		BB9BB52F29AE7CAF0004244E /* FacebookShare */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BB9BB52A29AE7CAF0004244E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookShare;
+		};
+		BBE7432929B3A6E50087DC74 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBE7432829B3A6E50087DC74 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		BBE7432B29B3A6E50087DC74 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBE7432829B3A6E50087DC74 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		99AB0DD529AD95B300B096BB /* BookIt.xcdatamodeld */ = {
