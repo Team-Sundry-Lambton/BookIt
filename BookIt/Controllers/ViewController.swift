@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var isVendor = false
+    private let biometricIDAuth = BiometricIDAuth()
+    
     
     @IBOutlet weak var appleLoginBtn: ASAuthorizationAppleIDButton!
     @IBOutlet weak var vendorStatus: UISwitch!{
@@ -61,7 +63,11 @@ class ViewController: UIViewController {
 //    }
     
     override func viewWillAppear(_ animated: Bool) {
-      
+        if ( UserDefaultsManager.shared.getUserLogin()){
+            if (  UserDefaultsManager.shared.getFaceIdEnable()){
+                bioMetricVerification()
+            }
+        }
     }
     
     func checkUserAvailablility(user : LoginUser){
@@ -77,9 +83,12 @@ class ViewController: UIViewController {
     }
     
     func loadDashBoard(user : LoginUser?){
-        
-        let defaults = UserDefaults.standard
-        defaults.set(true, forKey: "UserLogin")
+
+        UserDefaultsManager.shared.setUserLogin(status: true)
+        UserDefaultsManager.shared.setIsVendor(status: isVendor)
+        if let loginUser = user {
+            UserDefaultsManager.shared.saveUserData(user: loginUser)
+        }
         
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "DashBoardViewController") as! DashBoardViewController
@@ -214,5 +223,43 @@ extension ViewController: ASAuthorizationControllerDelegate, ASAuthorizationCont
         default:
             break
         }
+    }
+}
+
+
+extension ViewController {
+    func bioMetricVerification(){
+        biometricIDAuth.canEvaluate { (canEvaluate, _, canEvaluateError) in
+            guard canEvaluate else {
+                alert(title: "Error",
+                      message: canEvaluateError?.localizedDescription ?? "Face ID/Touch ID may not be configured",
+                      okActionTitle: "OK")
+                return
+            }
+            
+            biometricIDAuth.evaluate { [weak self] (success, error) in
+                guard success else {
+                    self?.alert(title: "Error",
+                                message: error?.localizedDescription ?? "Face ID/Touch ID may not be configured",
+                                okActionTitle: "OK")
+                    return
+                }
+                
+              let loginUser =  UserDefaultsManager.shared.getUserData()
+                self?.loadDashBoard(user: loginUser)
+                self?.alert(title: "Success",
+                            message: "You have a free pass, now",
+                            okActionTitle: "Yay!")
+            }
+        }
+    }
+    
+    func alert(title: String, message: String, okActionTitle: String) {
+        let alertView = UIAlertController(title: title,
+                                          message: message,
+                                          preferredStyle: .alert)
+        let okAction = UIAlertAction(title: okActionTitle, style: .default)
+        alertView.addAction(okAction)
+        present(alertView, animated: true)
     }
 }

@@ -23,6 +23,7 @@ class EditProfileViewController: UIViewController {
     var imagePath : URL?
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var isVendor = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +33,7 @@ class EditProfileViewController: UIViewController {
             lastNameTxt.text = user.lastName
             emailTxt.text = user.email
             phoneNumberTxt.text = user.contactNumber
-           
+            isVendor = user.isVendor
             if let path = user.picture{
                 imagePath = path
                 imageView.load(url: path)
@@ -61,10 +62,7 @@ class EditProfileViewController: UIViewController {
         }
         else
         {
-            var isVendor = false
-            if let user = loginUser{
-                isVendor = user.isVendor
-            }
+            
             var picData : Data?
             do {
                 if let path = imagePath {
@@ -108,8 +106,8 @@ class EditProfileViewController: UIViewController {
     
     func loadDashBoard(user : LoginUser?){
         
-        let defaults = UserDefaults.standard
-        defaults.set(true, forKey: "UserLogin")
+        UserDefaultsManager.shared.setUserLogin(status: true)
+        UserDefaultsManager.shared.setIsVendor(status: isVendor)
         
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "DashBoardViewController") as! DashBoardViewController
