@@ -44,6 +44,16 @@ class EditProfileViewController: UIViewController {
             let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
             self.navigationItem.backBarButtonItem = backBarButtonItem
             self.navigationItem.setHidesBackButton(false, animated: true)
+            let user =  UserDefaultsManager.shared.getUserData()
+            firstNameTxt.text = user.firstName
+            lastNameTxt.text = user.lastName
+            emailTxt.text = user.email
+            phoneNumberTxt.text = user.contactNumber
+            isVendor = user.isVendor
+            if let path = user.picture{
+                imagePath = path
+                imageView.load(url: path)
+            }
         }
         // Do any additional setup after loading the view.
     }
@@ -84,6 +94,8 @@ class EditProfileViewController: UIViewController {
             if (checkUserInDB(user: loginUser)){
                 deleteUser(user: loginUser)
                 saveUser()
+                UserDefaultsManager.shared.saveUserData(user: loginUser)
+
                 UIAlertViewExtention.shared.showBasicAlertView(title: "Success",message: "User updated successfully.", okActionTitle: "OK", view: self)
                 
             }else{
@@ -177,7 +189,9 @@ class EditProfileViewController: UIViewController {
 //            self.navigationController?.pushViewController(nextViewController, animated: true)
 ////            self.present(nextViewController, animated:true, completion:nil)
 //        }
-        
+        if let loginUser = user {
+            UserDefaultsManager.shared.saveUserData(user: loginUser)
+        }
         
         if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DashBoardViewController") as? DashBoardViewController {
             if let navigator = navigationController {
