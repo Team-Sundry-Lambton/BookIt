@@ -75,10 +75,18 @@ class ViewController: UIViewController {
             loadDashBoard(user: user)
             
         }else{
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            if let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SignUpViewController") as? EditProfileViewController {
-                nextViewController.loginUser = user
-                self.present(nextViewController , animated:true, completion:nil)
+//            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//            if let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SignUpViewController") as? EditProfileViewController {
+//                nextViewController.loginUser = user
+//                self.navigationController?.pushViewController(nextViewController, animated: true)
+////                self.present(nextViewController , animated:true, completion:nil)
+//            }
+            
+            if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EditProfileViewController") as? EditProfileViewController {
+                if let navigator = navigationController {
+                    viewController.loginUser = user
+                    navigator.pushViewController(viewController, animated: true)
+                }
             }
         }
     }
@@ -90,11 +98,19 @@ class ViewController: UIViewController {
         if let loginUser = user {
             UserDefaultsManager.shared.saveUserData(user: loginUser)
         }
+//
+//        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//        if let nextViewController = storyBoard.instantiateViewController(withIdentifier: "DashBoardViewController") as? DashBoardViewController {
+//            nextViewController.loginUser = user
+//            self.navigationController?.pushViewController(nextViewController, animated: true)
+////            self.present(nextViewController, animated:true, completion:nil)
+//        }
         
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        if let nextViewController = storyBoard.instantiateViewController(withIdentifier: "DashBoardViewController") as? DashBoardViewController {
-            nextViewController.loginUser = user
-            self.present(nextViewController, animated:true, completion:nil)
+        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DashBoardViewController") as? DashBoardViewController {
+            if let navigator = navigationController {
+                viewController.loginUser = user
+                navigator.pushViewController(viewController, animated: true)
+            }
         }
     }
     
@@ -105,7 +121,7 @@ class ViewController: UIViewController {
             entityName = "Vendor"
         }
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: entityName)
-        fetchRequest.predicate = NSPredicate(format: "email = %@ && contactNumber = %@", user.email, user.contactNumber)
+        fetchRequest.predicate = NSPredicate(format: "email = %@ ", user.email)
         do {
             let user = try context.fetch(fetchRequest)
             if user.count == 1 {
