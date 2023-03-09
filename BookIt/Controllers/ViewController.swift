@@ -93,10 +93,13 @@ class ViewController: UIViewController {
     
     func loadDashBoard(user : LoginUser?){
 
-        UserDefaultsManager.shared.setUserLogin(status: true)
         UserDefaultsManager.shared.setIsVendor(status: isVendor)
         if let loginUser = user {
+            UserDefaultsManager.shared.setUserLogin(status: true)
             UserDefaultsManager.shared.saveUserData(user: loginUser)
+        }else{
+            UserDefaultsManager.shared.removeUserLogin()
+            UserDefaultsManager.shared.removeUserData()
         }
 //
 //        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)

@@ -29,12 +29,20 @@ class UserDefaultsManager : NSObject{
         return LoginUser(firstName: "", lastName: "", email: "", contactNumber: "", isVendor: false)
     }
     
+    func removeUserData() {
+        defaults.removeObject(forKey: "UserObject")
+    }
+    
     func setUserLogin(status : Bool){
         defaults.set(status, forKey: "UserLogin")
     }
     
     func getUserLogin() -> Bool{
         return defaults.bool(forKey: "UserLogin")
+    }
+    
+    func removeUserLogin() {
+        defaults.removeObject(forKey: "UserLogin")
     }
     
     func setIsVendor(status : Bool){

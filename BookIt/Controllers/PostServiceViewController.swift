@@ -211,7 +211,12 @@ class PostServiceViewController: UIViewController {
             }
             locationLbl.text = locationTextField.text
             let user =  UserDefaultsManager.shared.getUserData()
-            nameLbl.text = user.firstName + " " + user.lastName
+            if user.firstName != "" {
+                nameLbl.isHidden = false
+                nameLbl.text = user.firstName + " " + user.lastName
+            }else{
+                nameLbl.isHidden = true
+            }
             
             if let imageData = mediaList[0].image {
                 self.serviceImage.image = UIImage(data: imageData)

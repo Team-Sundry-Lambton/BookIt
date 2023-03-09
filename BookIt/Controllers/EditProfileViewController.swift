@@ -22,7 +22,7 @@ class EditProfileViewController: UIViewController {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var isVendor = false
-    
+    var newUser = false
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,6 +30,7 @@ class EditProfileViewController: UIViewController {
         addBorder()
         
         if let user = loginUser{
+            newUser = true
             self.navigationItem.setHidesBackButton(true, animated: true)
             firstNameTxt.text = user.firstName
             lastNameTxt.text = user.lastName
@@ -41,6 +42,7 @@ class EditProfileViewController: UIViewController {
                 imageView.load(url: path)
             }
         }else{
+            newUser = false
             let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
             self.navigationItem.backBarButtonItem = backBarButtonItem
             self.navigationItem.setHidesBackButton(false, animated: true)
@@ -132,7 +134,15 @@ class EditProfileViewController: UIViewController {
                 }
            
                 saveUser()
-                loadDashBoard(user: loginUser)
+                if newUser {
+                    loadDashBoard(user: loginUser)
+                }else{
+                    if let navigator = self.navigationController {
+                        navigator.popViewController(animated: true)
+                    }else{
+                        self.dismiss(animated: true)
+                    }
+                }
             }
         }
     }
