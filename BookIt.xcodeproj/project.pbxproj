@@ -24,7 +24,6 @@
 		BBA6357129BA62EC00702A62 /* ClientCategoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA6357029BA62EC00702A62 /* ClientCategoryListViewController.swift */; };
 		BBA6357329BA630000702A62 /* ClientProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA6357229BA630000702A62 /* ClientProfileViewController.swift */; };
 		BBA6357529BA631700702A62 /* ClientBookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA6357429BA631600702A62 /* ClientBookingViewController.swift */; };
-		BB9BB53929AEBDE90004244E /* DashBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9BB53829AEBDE90004244E /* DashBoardViewController.swift */; };
 		BBA6356429B92E2800702A62 /* BorderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA6356329B92E2700702A62 /* BorderTextView.swift */; };
 		BBA6356629B92E5900702A62 /* BorderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA6356529B92E5900702A62 /* BorderTextField.swift */; };
 		BBA6356829B96A9100702A62 /* VendorDashBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBA6356729B96A9100702A62 /* VendorDashBoard.storyboard */; };
@@ -60,7 +59,6 @@
 		BBA6357029BA62EC00702A62 /* ClientCategoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientCategoryListViewController.swift; sourceTree = "<group>"; };
 		BBA6357229BA630000702A62 /* ClientProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientProfileViewController.swift; sourceTree = "<group>"; };
 		BBA6357429BA631600702A62 /* ClientBookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientBookingViewController.swift; sourceTree = "<group>"; };
-		BB9BB53829AEBDE90004244E /* DashBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardViewController.swift; sourceTree = "<group>"; };
 		BBA6356329B92E2700702A62 /* BorderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BorderTextView.swift; path = BookIt/Cells/BorderTextView.swift; sourceTree = SOURCE_ROOT; };
 		BBA6356529B92E5900702A62 /* BorderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BorderTextField.swift; path = BookIt/Cells/BorderTextField.swift; sourceTree = SOURCE_ROOT; };
 		BBA6356729B96A9100702A62 /* VendorDashBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VendorDashBoard.storyboard; sourceTree = "<group>"; };
@@ -153,7 +151,6 @@
 				BBA6356D29BA62B800702A62 /* Client */,
 				99AB0DD029AD95B300B096BB /* ViewController.swift */,
 				BB9BB53629AEA05E0004244E /* EditProfileViewController.swift */,
-				BB9BB53829AEBDE90004244E /* DashBoardViewController.swift */,
 				BBB6671229B8F68400C73DF5 /* PostServiceViewController.swift */,
 				BBA6356929B96AB500702A62 /* VendorDashBoardViewController.swift */,
 			);
@@ -294,7 +291,6 @@
 				BBA6356A29B96AB500702A62 /* VendorDashBoardViewController.swift in Sources */,
 				BBEC1C4A29B55A6800B58D41 /* UIAlertViewExtention.swift in Sources */,
 				BBA6356429B92E2800702A62 /* BorderTextView.swift in Sources */,
-				BB9BB53929AEBDE90004244E /* DashBoardViewController.swift in Sources */,
 				BBA6356629B92E5900702A62 /* BorderTextField.swift in Sources */,
 				99AB0DCD29AD95B300B096BB /* AppDelegate.swift in Sources */,
 				BBA6357529BA631700702A62 /* ClientBookingViewController.swift in Sources */,
