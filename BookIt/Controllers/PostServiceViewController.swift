@@ -207,7 +207,7 @@ class PostServiceViewController: UIViewController {
             titleLbl.text = titleTextField.text
             descriptionLbl.text = descriptionTextView.text
             if let price = priceTextField.text, let type = priceTypeTextField.text {
-                pricetLbl.text = price + type
+                pricetLbl.text = "$ " + price + " / " + type
             }
             locationLbl.text = locationTextField.text
             let user =  UserDefaultsManager.shared.getUserData()
@@ -228,7 +228,7 @@ class PostServiceViewController: UIViewController {
             equipmentCheckboxImageView.image = #imageLiteral(resourceName: "CheckBox")
             isEquipmentNeed = false
         }else{
-            equipmentCheckboxImageView.image = #imageLiteral(resourceName: "SelectLocationIcon")
+            equipmentCheckboxImageView.image = #imageLiteral(resourceName: "CheckBoxFill")
             isEquipmentNeed = true
         }
     }
