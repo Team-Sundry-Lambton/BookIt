@@ -24,6 +24,15 @@
 		BBA6357129BA62EC00702A62 /* ClientCategoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA6357029BA62EC00702A62 /* ClientCategoryListViewController.swift */; };
 		BBA6357329BA630000702A62 /* ClientProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA6357229BA630000702A62 /* ClientProfileViewController.swift */; };
 		BBA6357529BA631700702A62 /* ClientBookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA6357429BA631600702A62 /* ClientBookingViewController.swift */; };
+		BB9BB53929AEBDE90004244E /* DashBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9BB53829AEBDE90004244E /* DashBoardViewController.swift */; };
+		BBA6356429B92E2800702A62 /* BorderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA6356329B92E2700702A62 /* BorderTextView.swift */; };
+		BBA6356629B92E5900702A62 /* BorderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA6356529B92E5900702A62 /* BorderTextField.swift */; };
+		BBA6356829B96A9100702A62 /* VendorDashBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBA6356729B96A9100702A62 /* VendorDashBoard.storyboard */; };
+		BBA6356A29B96AB500702A62 /* VendorDashBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA6356929B96AB500702A62 /* VendorDashBoardViewController.swift */; };
+		BBB6671129B8F66800C73DF5 /* PostService.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBB6671029B8F66800C73DF5 /* PostService.storyboard */; };
+		BBB6671329B8F68400C73DF5 /* PostServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB6671229B8F68400C73DF5 /* PostServiceViewController.swift */; };
+		BBB6671729B9048900C73DF5 /* MediaFileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB6671529B9048900C73DF5 /* MediaFileCell.swift */; };
+		BBB6671829B9048900C73DF5 /* MediaFileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB6671629B9048900C73DF5 /* MediaFileCell.xib */; };
 		BBE7432A29B3A6E50087DC74 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = BBE7432929B3A6E50087DC74 /* GoogleSignIn */; };
 		BBE7432C29B3A6E50087DC74 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BBE7432B29B3A6E50087DC74 /* GoogleSignInSwift */; };
 		BBE7433429B3DDB00087DC74 /* MediaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7433329B3DDB00087DC74 /* MediaManager.swift */; };
@@ -51,6 +60,15 @@
 		BBA6357029BA62EC00702A62 /* ClientCategoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientCategoryListViewController.swift; sourceTree = "<group>"; };
 		BBA6357229BA630000702A62 /* ClientProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientProfileViewController.swift; sourceTree = "<group>"; };
 		BBA6357429BA631600702A62 /* ClientBookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientBookingViewController.swift; sourceTree = "<group>"; };
+		BB9BB53829AEBDE90004244E /* DashBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardViewController.swift; sourceTree = "<group>"; };
+		BBA6356329B92E2700702A62 /* BorderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BorderTextView.swift; path = BookIt/Cells/BorderTextView.swift; sourceTree = SOURCE_ROOT; };
+		BBA6356529B92E5900702A62 /* BorderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BorderTextField.swift; path = BookIt/Cells/BorderTextField.swift; sourceTree = SOURCE_ROOT; };
+		BBA6356729B96A9100702A62 /* VendorDashBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VendorDashBoard.storyboard; sourceTree = "<group>"; };
+		BBA6356929B96AB500702A62 /* VendorDashBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorDashBoardViewController.swift; sourceTree = "<group>"; };
+		BBB6671029B8F66800C73DF5 /* PostService.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PostService.storyboard; sourceTree = "<group>"; };
+		BBB6671229B8F68400C73DF5 /* PostServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostServiceViewController.swift; sourceTree = "<group>"; };
+		BBB6671529B9048900C73DF5 /* MediaFileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaFileCell.swift; sourceTree = "<group>"; };
+		BBB6671629B9048900C73DF5 /* MediaFileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MediaFileCell.xib; sourceTree = "<group>"; };
 		BBE7433329B3DDB00087DC74 /* MediaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaManager.swift; sourceTree = "<group>"; };
 		BBE7433529B41D440087DC74 /* BiometricIDAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BiometricIDAuth.swift; path = BookIt/ManagerFiles/BiometricIDAuth.swift; sourceTree = SOURCE_ROOT; };
 		BBE7433729B41EE60087DC74 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserDefaultsManager.swift; path = BookIt/ManagerFiles/UserDefaultsManager.swift; sourceTree = SOURCE_ROOT; };
@@ -93,6 +111,7 @@
 		99AB0DCB29AD95B300B096BB /* BookIt */ = {
 			isa = PBXGroup;
 			children = (
+				BBB6671429B9046A00C73DF5 /* Cells */,
 				BBE7433229B3DD950087DC74 /* ManagerFiles */,
 				BB9BB53129AE7F900004244E /* BookIt.entitlements */,
 				99AB0DE629AD95DA00B096BB /* Support Files */,
@@ -122,6 +141,8 @@
 			children = (
 				99AB0DD229AD95B300B096BB /* Main.storyboard */,
 				BBA6356B29BA510500702A62 /* ClientDashBoard.storyboard */,
+				BBB6671029B8F66800C73DF5 /* PostService.storyboard */,
+				BBA6356729B96A9100702A62 /* VendorDashBoard.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -132,6 +153,9 @@
 				BBA6356D29BA62B800702A62 /* Client */,
 				99AB0DD029AD95B300B096BB /* ViewController.swift */,
 				BB9BB53629AEA05E0004244E /* EditProfileViewController.swift */,
+				BB9BB53829AEBDE90004244E /* DashBoardViewController.swift */,
+				BBB6671229B8F68400C73DF5 /* PostServiceViewController.swift */,
+				BBA6356929B96AB500702A62 /* VendorDashBoardViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -143,6 +167,8 @@
 				BBE7433729B41EE60087DC74 /* UserDefaultsManager.swift */,
 				BBEC1C4729B5595E00B58D41 /* UIColorExtension.swift */,
 				BBEC1C4929B55A6800B58D41 /* UIAlertViewExtention.swift */,
+				BBA6356329B92E2700702A62 /* BorderTextView.swift */,
+				BBA6356529B92E5900702A62 /* BorderTextField.swift */,
 			);
 			path = "Support Files";
 			sourceTree = "<group>";
@@ -156,6 +182,13 @@
 				BBA6357429BA631600702A62 /* ClientBookingViewController.swift */,
 			);
 			path = Client;
+		BBB6671429B9046A00C73DF5 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				BBB6671529B9048900C73DF5 /* MediaFileCell.swift */,
+				BBB6671629B9048900C73DF5 /* MediaFileCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		BBE7433229B3DD950087DC74 /* ManagerFiles */ = {
@@ -236,6 +269,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBA6356C29BA510500702A62 /* ClientDashBoard.storyboard in Resources */,
+				BBB6671129B8F66800C73DF5 /* PostService.storyboard in Resources */,
+				BBA6356829B96A9100702A62 /* VendorDashBoard.storyboard in Resources */,
+				BBB6671829B9048900C73DF5 /* MediaFileCell.xib in Resources */,
 				99AB0DDC29AD95B600B096BB /* LaunchScreen.storyboard in Resources */,
 				99AB0DD929AD95B600B096BB /* Assets.xcassets in Resources */,
 				99AB0DD429AD95B300B096BB /* Main.storyboard in Resources */,
@@ -255,15 +291,21 @@
 				BBA6357129BA62EC00702A62 /* ClientCategoryListViewController.swift in Sources */,
 				BB9BB53729AEA05E0004244E /* EditProfileViewController.swift in Sources */,
 				99AB0DD129AD95B300B096BB /* ViewController.swift in Sources */,
+				BBA6356A29B96AB500702A62 /* VendorDashBoardViewController.swift in Sources */,
 				BBEC1C4A29B55A6800B58D41 /* UIAlertViewExtention.swift in Sources */,
+				BBA6356429B92E2800702A62 /* BorderTextView.swift in Sources */,
+				BB9BB53929AEBDE90004244E /* DashBoardViewController.swift in Sources */,
+				BBA6356629B92E5900702A62 /* BorderTextField.swift in Sources */,
 				99AB0DCD29AD95B300B096BB /* AppDelegate.swift in Sources */,
 				BBA6357529BA631700702A62 /* ClientBookingViewController.swift in Sources */,
 				BBE7433829B41EE60087DC74 /* UserDefaultsManager.swift in Sources */,
 				99AB0DCF29AD95B300B096BB /* SceneDelegate.swift in Sources */,
 				BBA6357329BA630000702A62 /* ClientProfileViewController.swift in Sources */,
 				BBEC1C4829B5595E00B58D41 /* UIColorExtension.swift in Sources */,
+				BBB6671729B9048900C73DF5 /* MediaFileCell.swift in Sources */,
 				99AB0DD729AD95B300B096BB /* BookIt.xcdatamodeld in Sources */,
 				BBE7433629B41D440087DC74 /* BiometricIDAuth.swift in Sources */,
+				BBB6671329B8F68400C73DF5 /* PostServiceViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

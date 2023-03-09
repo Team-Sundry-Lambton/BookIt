@@ -106,6 +106,17 @@ class ViewController: UIViewController {
 ////            self.present(nextViewController, animated:true, completion:nil)
 //        }
         
+
+        if (isVendor){
+            if let viewController = UIStoryboard(name: "VendorDashBoard", bundle: nil).instantiateViewController(withIdentifier: "VendorDashBoardViewController") as? VendorDashBoardViewController {
+                if let navigator = navigationController {
+                    viewController.loginUser = user
+                    navigator.pushViewController(viewController, animated: true)
+                }
+            }
+        }
+        else{
+
         let storyboard = UIStoryboard(name: "ClientDashBoard", bundle: nil)
                 let mainTabBarController = storyboard.instantiateViewController(identifier: "ClientTabBarController")
                 mainTabBarController.modalPresentationStyle = .fullScreen
@@ -113,7 +124,14 @@ class ViewController: UIViewController {
         
         if let navigator = navigationController {
 //            viewController.loginUser = user
-            navigator.pushViewController(mainTabBarController, animated: true)
+           navigator.pushViewController(mainTabBarController, animated: true)
+        }
+            // if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DashBoardViewController") as? DashBoardViewController {
+            //     if let navigator = navigationController {
+            //         viewController.loginUser = user
+            //         navigator.pushViewController(viewController, animated: true)
+            //     }
+            // }
         }
         
 //        if let viewController = UIStoryboard(name: "ClientDashBoard", bundle: nil).instantiateViewController(withIdentifier: "ClientTabBarController") as? ClientDashBoardViewController {

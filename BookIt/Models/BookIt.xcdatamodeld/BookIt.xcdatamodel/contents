@@ -10,6 +10,7 @@
     <entity name="Category" representedClassName="Category" syncable="YES" codeGenerationType="class">
         <attribute name="image" optional="YES" attributeType="Binary"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="services" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Service" inverseName="parent_Category" inverseEntity="Service"/>
     </entity>
     <entity name="Client" representedClassName="Client" syncable="YES" codeGenerationType="class">
         <attribute name="contactNumber" optional="YES" attributeType="String"/>
@@ -20,15 +21,23 @@
         <attribute name="picture" optional="YES" attributeType="Binary"/>
         <relationship name="address" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Address" inverseName="clientAddress" inverseEntity="Address"/>
     </entity>
+    <entity name="MediaFile" representedClassName="MediaFile" syncable="YES" codeGenerationType="class">
+        <attribute name="image" optional="YES" attributeType="Binary"/>
+        <attribute name="path" optional="YES" attributeType="String"/>
+        <relationship name="parent_Service" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Service" inverseName="medias" inverseEntity="Service"/>
+    </entity>
     <entity name="Service" representedClassName="Service" syncable="YES" codeGenerationType="class">
         <attribute name="availability" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="duration" optional="YES" attributeType="String"/>
-        <attribute name="equipment" optional="YES" attributeType="String"/>
-        <attribute name="location" optional="YES" attributeType="String"/>
-        <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="cancelPolicy" optional="YES" attributeType="String"/>
+        <attribute name="equipment" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="price" optional="YES" attributeType="String"/>
+        <attribute name="priceType" optional="YES" attributeType="String"/>
+        <attribute name="serviceArea" optional="YES" attributeType="String"/>
         <attribute name="serviceDescription" optional="YES" attributeType="String"/>
-        <attribute name="serviceName" optional="YES" attributeType="String"/>
+        <attribute name="serviceTitle" optional="YES" attributeType="String"/>
         <attribute name="skillSet" optional="YES" attributeType="String"/>
+        <relationship name="medias" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MediaFile" inverseName="parent_Service" inverseEntity="MediaFile"/>
+        <relationship name="parent_Category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="services" inverseEntity="Category"/>
     </entity>
     <entity name="Vendor" representedClassName="Vendor" syncable="YES" codeGenerationType="class">
         <attribute name="bannerURL" optional="YES" attributeType="String"/>

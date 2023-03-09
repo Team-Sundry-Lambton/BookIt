@@ -105,8 +105,12 @@ class EditProfileViewController: UIViewController {
                     if let path = imagePath {
                         picData = try Data(contentsOf: path as URL)
                     }
+                    
                 } catch {
                     print("Unable to load data: \(error)")
+                }
+                if picData == nil {
+                    picData = imageView.image?.pngData()
                 }
                 
                 if (isVendor){
@@ -193,7 +197,18 @@ class EditProfileViewController: UIViewController {
             UserDefaultsManager.shared.saveUserData(user: loginUser)
         }
         
-        let storyboard = UIStoryboard(name: "ClientDashBoard", bundle: nil)
+ 
+        if (isVendor){
+            if let viewController = UIStoryboard(name: "VendorDashBoard", bundle: nil).instantiateViewController(withIdentifier: "VendorDashBoardViewController") as? VendorDashBoardViewController {
+                if let navigator = navigationController {
+                    viewController.loginUser = user
+                    navigator.pushViewController(viewController, animated: true)
+                }
+            }
+        }
+        else{
+
+       let storyboard = UIStoryboard(name: "ClientDashBoard", bundle: nil)
                 let mainTabBarController = storyboard.instantiateViewController(identifier: "ClientTabBarController")
                 mainTabBarController.modalPresentationStyle = .fullScreen
     
@@ -202,17 +217,19 @@ class EditProfileViewController: UIViewController {
 //            viewController.loginUser = user
             navigator.pushViewController(mainTabBarController, animated: true)
         }
+
+            // if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DashBoardViewController") as? DashBoardViewController {
+            //     if let navigator = navigationController {
+            //         viewController.loginUser = user
+            //         navigator.pushViewController(viewController, animated: true)
+            //     }
+            // }
+        }
         
-//        if let viewController = UIStoryboard(name: "ClientDashBoard", bundle: nil).instantiateViewController(withIdentifier: "ClientDashBoardViewController") as? ClientDashBoardViewController {
-//            if let navigator = navigationController {
-//                viewController.loginUser = user
-//                navigator.pushViewController(viewController, animated: true)
-//            }
-//        }
     }
     
     private func addProfilePic() {
-        MediaManager.shared.pickMediaFile(self) { [weak self] mediaObject in
+        MediaManager.shared.pickMediaFile(title: "Choose Profile Picture",self) { [weak self] mediaObject in
             guard let strongSelf = self else {
                 return
             }
@@ -220,7 +237,7 @@ class EditProfileViewController: UIViewController {
             if let object = mediaObject {
                 self?.imageView.image = object.image
                 
-                if let url = URL(string: object.filePath) {
+                if let url = URL(string: object.fileName) {
                     self?.imagePath = url
                 }
             }
