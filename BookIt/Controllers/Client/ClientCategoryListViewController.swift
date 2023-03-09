@@ -1,17 +1,17 @@
 //
-//  DashBoardViewController.swift
+//  ClientCategoryListViewController.swift
 //  BookIt
 //
-//  Created by Malsha Parani on 2023-02-28.
+//  Created by Malsha Parani on 2023-03-09.
 //
 
 import UIKit
 
-class DashBoardViewController: UIViewController {
-    var loginUser : LoginUser?
+class ClientCategoryListViewController: UIViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.setHidesBackButton(true, animated: true)
+
         // Do any additional setup after loading the view.
     }
     

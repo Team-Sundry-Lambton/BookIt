@@ -106,12 +106,22 @@ class ViewController: UIViewController {
 ////            self.present(nextViewController, animated:true, completion:nil)
 //        }
         
-        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DashBoardViewController") as? DashBoardViewController {
-            if let navigator = navigationController {
-                viewController.loginUser = user
-                navigator.pushViewController(viewController, animated: true)
-            }
+        let storyboard = UIStoryboard(name: "ClientDashBoard", bundle: nil)
+                let mainTabBarController = storyboard.instantiateViewController(identifier: "ClientTabBarController")
+                mainTabBarController.modalPresentationStyle = .fullScreen
+    
+        
+        if let navigator = navigationController {
+//            viewController.loginUser = user
+            navigator.pushViewController(mainTabBarController, animated: true)
         }
+        
+//        if let viewController = UIStoryboard(name: "ClientDashBoard", bundle: nil).instantiateViewController(withIdentifier: "ClientTabBarController") as? ClientDashBoardViewController {
+//            if let navigator = navigationController {
+//                viewController.loginUser = user
+//                navigator.pushViewController(viewController, animated: true)
+//            }
+//        }
     }
     
     func checkUserInDB(user : LoginUser) -> Bool{
