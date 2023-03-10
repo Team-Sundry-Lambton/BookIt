@@ -96,7 +96,11 @@ class ViewController: UIViewController {
         UserDefaultsManager.shared.setUserLogin(status: true)
         UserDefaultsManager.shared.setIsVendor(status: isVendor)
         if let loginUser = user {
+            UserDefaultsManager.shared.setUserLogin(status: true)
             UserDefaultsManager.shared.saveUserData(user: loginUser)
+        }else{
+            UserDefaultsManager.shared.removeUserLogin()
+            UserDefaultsManager.shared.removeUserData()
         }
 //
 //        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
@@ -105,15 +109,24 @@ class ViewController: UIViewController {
 //            self.navigationController?.pushViewController(nextViewController, animated: true)
 ////            self.present(nextViewController, animated:true, completion:nil)
 //        }
-        
-        let storyboard = UIStoryboard(name: "ClientDashBoard", bundle: nil)
-                let mainTabBarController = storyboard.instantiateViewController(identifier: "ClientTabBarController")
-                mainTabBarController.modalPresentationStyle = .fullScreen
-    
-        
-        if let navigator = navigationController {
-//            viewController.loginUser = user
-            navigator.pushViewController(mainTabBarController, animated: true)
+        if (isVendor){
+            if let viewController = UIStoryboard(name: "VendorDashBoard", bundle: nil).instantiateViewController(withIdentifier: "VendorDashBoardViewController") as? VendorDashBoardViewController {
+                if let navigator = navigationController {
+                    viewController.loginUser = user
+                    navigator.pushViewController(viewController, animated: true)
+                }
+            }
+        }
+        else{
+            let storyboard = UIStoryboard(name: "ClientDashBoard", bundle: nil)
+            let mainTabBarController = storyboard.instantiateViewController(identifier: "ClientTabBarController")
+            mainTabBarController.modalPresentationStyle = .fullScreen
+            
+            
+            if let navigator = navigationController {
+                //            viewController.loginUser = user
+                navigator.pushViewController(mainTabBarController, animated: true)
+            }
         }
         
 //        if let viewController = UIStoryboard(name: "ClientDashBoard", bundle: nil).instantiateViewController(withIdentifier: "ClientTabBarController") as? ClientDashBoardViewController {
