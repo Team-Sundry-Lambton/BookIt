@@ -39,10 +39,11 @@ class MediaManager: NSObject, UIImagePickerControllerDelegate, UINavigationContr
         alert.addAction(cancelAction)
     }
     
-    func pickMediaFile(_ viewController: UIViewController, _ callback: @escaping ((MediaReturnObject?) -> ())) {
+    func pickMediaFile(title : String ,_ viewController: UIViewController, _ callback: @escaping ((MediaReturnObject?) -> ())) {
         pickMediaCallback = callback;
         self.viewController = viewController;
 
+        alert.title = title
         alert.popoverPresentationController?.sourceView = self.viewController?.view
 
         viewController.present(alert, animated: true, completion: nil)
@@ -82,7 +83,7 @@ class MediaManager: NSObject, UIImagePickerControllerDelegate, UINavigationContr
         }
         
        let imagePath = generateFilePath()
-        let object  = MediaReturnObject( image: image, filePath: imagePath)
+        let object  = MediaReturnObject( image: image, fileName: imagePath)
         pickMediaCallback?(object)
     
     }
@@ -90,7 +91,7 @@ class MediaManager: NSObject, UIImagePickerControllerDelegate, UINavigationContr
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let imagePath = generateFilePath()
         let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-        let object  = MediaReturnObject( image: image, filePath: imagePath)
+        let object  = MediaReturnObject( image: image, fileName: imagePath)
         pickMediaCallback?(object)
         picker.dismiss(animated: true, completion: nil)
         
@@ -107,5 +108,5 @@ class MediaManager: NSObject, UIImagePickerControllerDelegate, UINavigationContr
 
 struct MediaReturnObject{
     var image : UIImage?
-    var filePath : String
+    var fileName : String
 }
