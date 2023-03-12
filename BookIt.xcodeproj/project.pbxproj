@@ -22,6 +22,7 @@
 		BB0FF27629BAA79200E26A71 /* VendorDashBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0FF27529BAA79200E26A71 /* VendorDashBoardViewController.swift */; };
 		BB0FF27829BAAB4400E26A71 /* VendorDashBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB0FF27729BAAB4400E26A71 /* VendorDashBoard.storyboard */; };
 		BB0FF27A29BAAB5F00E26A71 /* PostService.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB0FF27929BAAB5F00E26A71 /* PostService.storyboard */; };
+		BB95083429BD950300C02D9E /* ServiceSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB95083329BD950300C02D9E /* ServiceSearchTableViewController.swift */; };
 		BB9BB52C29AE7CAF0004244E /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = BB9BB52B29AE7CAF0004244E /* FacebookCore */; };
 		BB9BB52E29AE7CAF0004244E /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = BB9BB52D29AE7CAF0004244E /* FacebookLogin */; };
 		BB9BB53029AE7CAF0004244E /* FacebookShare in Frameworks */ = {isa = PBXBuildFile; productRef = BB9BB52F29AE7CAF0004244E /* FacebookShare */; };
@@ -65,6 +66,7 @@
 		BB0FF27529BAA79200E26A71 /* VendorDashBoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VendorDashBoardViewController.swift; sourceTree = "<group>"; };
 		BB0FF27729BAAB4400E26A71 /* VendorDashBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = VendorDashBoard.storyboard; sourceTree = "<group>"; };
 		BB0FF27929BAAB5F00E26A71 /* PostService.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PostService.storyboard; sourceTree = "<group>"; };
+		BB95083329BD950300C02D9E /* ServiceSearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceSearchTableViewController.swift; sourceTree = "<group>"; };
 		BB9BB53129AE7F900004244E /* BookIt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BookIt.entitlements; sourceTree = "<group>"; };
 		BB9BB53429AE9B290004244E /* LoginUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginUser.swift; path = BookIt/Models/LoginUser.swift; sourceTree = SOURCE_ROOT; };
 		BB9BB53629AEA05E0004244E /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				BBA6357029BA62EC00702A62 /* ClientCategoryListViewController.swift */,
 				BBA6357229BA630000702A62 /* ClientProfileViewController.swift */,
 				BBA6357429BA631600702A62 /* ClientBookingViewController.swift */,
+				BB95083329BD950300C02D9E /* ServiceSearchTableViewController.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBA6356F29BA62D700702A62 /* ClientHomeViewController.swift in Sources */,
+				BB95083429BD950300C02D9E /* ServiceSearchTableViewController.swift in Sources */,
 				BBE7433429B3DDB00087DC74 /* MediaManager.swift in Sources */,
 				BB0FF27229BAA75800E26A71 /* MediaFileCell.swift in Sources */,
 				BB9BB53529AE9B290004244E /* LoginUser.swift in Sources */,

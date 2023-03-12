@@ -43,38 +43,37 @@ class ClientHomeViewController: UIViewController {
         super.viewDidLoad()
         initUI()
         setTimer()
-        navigationBarAppearance()
+        tabBarAppearance()
         getUserLocation()
         
        
         // Do any additional setup after loading the view.
     }
-    
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.navigationBar.isHidden = true
     }
     
-    func navigationBarAppearance(){
-        navigationController?.navigationBar.tintColor = UIColor.black
-        if var textAttributes = navigationController?.navigationBar.titleTextAttributes {
-            textAttributes[NSAttributedString.Key.foregroundColor] = UIColor.black
-            navigationController?.navigationBar.titleTextAttributes = textAttributes
-        }
-        self.title = "Home"
-        if (UserDefaultsManager.shared.getUserLogin()){
-            self.tabBarController?.navigationItem.hidesBackButton = true
-        }
-        let standardAppearance = UINavigationBarAppearance()
-
-        // Title font color
-        standardAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-
-        // prevent Nav Bar color change on scroll view push behind NavBar
-        standardAppearance.configureWithOpaqueBackground()
-        standardAppearance.backgroundColor = UIColor.white
-
-        self.navigationController?.navigationBar.standardAppearance = standardAppearance
-        self.navigationController?.navigationBar.scrollEdgeAppearance = standardAppearance
+    func tabBarAppearance(){
+//        navigationController?.navigationBar.tintColor = UIColor.black
+//        if var textAttributes = navigationController?.navigationBar.titleTextAttributes {
+//            textAttributes[NSAttributedString.Key.foregroundColor] = UIColor.black
+//            navigationController?.navigationBar.titleTextAttributes = textAttributes
+//        }
+//        self.title = "Home"
+//        if (UserDefaultsManager.shared.getUserLogin()){
+//            self.tabBarController?.navigationItem.hidesBackButton = true
+//        }
+//        let standardAppearance = UINavigationBarAppearance()
+//
+//        // Title font color
+//        standardAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+//
+//        // prevent Nav Bar color change on scroll view push behind NavBar
+//        standardAppearance.configureWithOpaqueBackground()
+//        standardAppearance.backgroundColor = UIColor.white
+//
+//        self.navigationController?.navigationBar.standardAppearance = standardAppearance
+//        self.navigationController?.navigationBar.scrollEdgeAppearance = standardAppearance
         
         let tabbarAppearance = UITabBarAppearance()
         tabbarAppearance.configureWithOpaqueBackground()
@@ -119,8 +118,7 @@ class ClientHomeViewController: UIViewController {
     @IBAction func allCategoryList() {
         self.tabBarController?.selectedIndex = 1;
     }
-    @IBAction func notificationClick() {
-    }
+ 
     @IBAction func locationChanged() {
     }
     //MARK: - Banner Functions
@@ -173,7 +171,7 @@ extension ClientHomeViewController: UITableViewDelegate, UITableViewDataSource {
         if tableView == bannerTableView {
             return mySections.count
         }else{
-            return 5//serviceList.count
+            return 1
         }
     }
     
@@ -187,7 +185,7 @@ extension ClientHomeViewController: UITableViewDelegate, UITableViewDataSource {
             }
         }else
         {
-            return 1
+            return serviceList.count
         }
     }
     
@@ -225,7 +223,7 @@ extension ClientHomeViewController: UITableViewDelegate, UITableViewDataSource {
         if tableView == bannerTableView {
             switch mySections[indexPath.section] {
             case .banner:
-                return 200
+                return 240
             case .others:
                 return tableView.estimatedRowHeight
             }
@@ -337,10 +335,10 @@ extension ClientHomeViewController :UICollectionViewDataSource, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if (collectionView == self.categoryCollectioView){
-            return 5
+            return 4
         }
         else{
-            return 5//vendorList.count
+            return vendorList.count
         }
     }
     
@@ -394,7 +392,8 @@ extension ClientHomeViewController {
     /// load Category from core data
     func loadCategories() {
         let request: NSFetchRequest<Category> = Category.fetchRequest()
-        
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        request.fetchLimit = 5
         do {
             categoryList = try context.fetch(request)
         } catch {
@@ -403,9 +402,15 @@ extension ClientHomeViewController {
     }
     
     func loadNewVendors(){
-        let request: NSFetchRequest<Vendor> = Vendor.fetchRequest()
-        
+        let request: NSFetchRequest<Vendor> = Vendor.fetchRequest()      
+//        request.sortDescriptors = [NSSortDescriptor(key: "firstName", ascending: false)]
+//        request.fetchLimit = 5
+//        request.returnsObjectsAsFaults = false
         do {
+            let allElementsCount = try context.count(for: request)
+               request.fetchLimit = 5
+               request.fetchOffset = allElementsCount - 5
+               request.returnsObjectsAsFaults = false
             vendorList = try context.fetch(request)
         } catch {
             print("Error loading Vendor \(error.localizedDescription)")
@@ -414,11 +419,22 @@ extension ClientHomeViewController {
     
     func loadServices(){
         let request: NSFetchRequest<Service> = Service.fetchRequest()
-        
+        request.sortDescriptors = [NSSortDescriptor(key: "serviceTitle", ascending: true)]
+        request.fetchLimit = 5
         do {
             serviceList = try context.fetch(request)
         } catch {
             print("Error loading Service \(error.localizedDescription)")
+        }
+    }
+}
+
+extension ClientHomeViewController : UISearchBarDelegate{
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        if let viewController = UIStoryboard(name: "ClientDashBoard", bundle: nil).instantiateViewController(withIdentifier: "ServiceSearchTableViewController") as? ServiceSearchTableViewController {
+            if let navigator = navigationController {
+                navigator.pushViewController(viewController, animated: true)
+            }
         }
     }
 }

@@ -18,7 +18,7 @@ class BannerTableViewCell: UITableViewCell {
         var bannerView = [UIImageView]()
         for i in 0...9 {
             let imageView = UIImageView(image: UIImage(named: "\(i)"))
-            imageView.frame = CGRect(x: fullSize.width * CGFloat(i), y: 0, width: fullSize.width, height: 200)
+            imageView.frame = CGRect(x: fullSize.width * CGFloat(i), y: 0, width: fullSize.width, height: 240)
             bannerView.append(imageView)
             print(bannerView[i].frame)
         }
@@ -29,7 +29,7 @@ class BannerTableViewCell: UITableViewCell {
     
     lazy var myScrollView: UIScrollView = {
         let sv = UIScrollView()
-        sv.contentSize = CGSize(width: Int(fullSize.width) * bannerViews.count, height: 200)
+        sv.contentSize = CGSize(width: Int(fullSize.width) * bannerViews.count, height: 240)
         sv.isPagingEnabled = true
         sv.showsHorizontalScrollIndicator = false
         sv.showsVerticalScrollIndicator = false
