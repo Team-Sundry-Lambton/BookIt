@@ -5,7 +5,7 @@
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="clientAddress" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Client" inverseName="address" inverseEntity="Client"/>
-        <relationship name="vendorAddress" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Vendor" inverseName="address" inverseEntity="Vendor"/>
+        <relationship name="parentService" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Service" inverseName="address" inverseEntity="Service"/>
     </entity>
     <entity name="Category" representedClassName="Category" syncable="YES" codeGenerationType="class">
         <attribute name="image" optional="YES" attributeType="Binary"/>
@@ -32,10 +32,11 @@
         <attribute name="equipment" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="price" optional="YES" attributeType="String"/>
         <attribute name="priceType" optional="YES" attributeType="String"/>
-        <attribute name="serviceArea" optional="YES" attributeType="String"/>
         <attribute name="serviceDescription" optional="YES" attributeType="String"/>
+        <attribute name="serviceStatus" optional="YES" attributeType="String"/>
         <attribute name="serviceTitle" optional="YES" attributeType="String"/>
         <attribute name="skillSet" optional="YES" attributeType="String"/>
+        <relationship name="address" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Address" inverseName="parentService" inverseEntity="Address"/>
         <relationship name="medias" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MediaFile" inverseName="parent_Service" inverseEntity="MediaFile"/>
         <relationship name="parent_Category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="services" inverseEntity="Category"/>
     </entity>
@@ -46,6 +47,6 @@
         <attribute name="firstName" optional="YES" attributeType="String"/>
         <attribute name="lastName" optional="YES" attributeType="String"/>
         <attribute name="picture" optional="YES" attributeType="Binary"/>
-        <relationship name="address" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Address" inverseName="vendorAddress" inverseEntity="Address"/>
+        <relationship name="address" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Address"/>
     </entity>
 </model>

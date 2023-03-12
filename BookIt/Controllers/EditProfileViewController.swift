@@ -93,60 +93,70 @@ class EditProfileViewController: UIViewController {
         else
         {
             let loginUser = LoginUser(firstName: firstNameTxt.text ?? "", lastName: lastNameTxt.text ?? "", email: emailTxt.text ?? "", contactNumber: phoneNumberTxt.text ?? "",isVendor: isVendor)
-            if (checkUserInDB(user: loginUser)){
-                deleteUser(user: loginUser)
-                saveUser()
-                UserDefaultsManager.shared.saveUserData(user: loginUser)
-
-                UIAlertViewExtention.shared.showBasicAlertView(title: "Success",message: "User updated successfully.", okActionTitle: "OK", view: self)
+            if (UserDefaultsManager.shared.getUserLogin()){
                 
-            }else{
-                
-                var picData : Data?
-                do {
-                    if let path = imagePath {
-                        picData = try Data(contentsOf: path as URL)
-                    }
+                if (checkUserInDB(user: loginUser)){
+                    deleteUser(user: loginUser)
+                    setUserObject()
+                    saveUser()
+                    UserDefaultsManager.shared.saveUserData(user: loginUser)
                     
-                } catch {
-                    print("Unable to load data: \(error)")
-                }
-                if picData == nil {
-                    picData = imageView.image?.pngData()
-                }
-                
-                if (isVendor){
-                    let vendor = Vendor(context: context)
-                    vendor.firstName = firstNameTxt.text
-                    vendor.lastName = lastNameTxt.text
-                    vendor.email = emailTxt.text
-                    vendor.picture = picData
-                    vendor.contactNumber = phoneNumberTxt.text
-                    vendor.bannerURL = nil
+                    UIAlertViewExtention.shared.showBasicAlertView(title: "Success",message: "User updated successfully.", okActionTitle: "OK", view: self)
+                    
                 }else{
-                    let client = Client(context: context)
-                    client.firstName = firstNameTxt.text
-                    client.lastName = lastNameTxt.text
-                    client.email = emailTxt.text
-                    client.picture = picData
-                    client.contactNumber = phoneNumberTxt.text
-                    client.isPremium = false
-                }
-           
-                saveUser()
-                if newUser {
-                    loadDashBoard(user: loginUser)
-                }else{
-                    if let navigator = self.navigationController {
-                        navigator.popViewController(animated: true)
+                    
+                    setUserObject()
+                    saveUser()
+                    if newUser {
+                        loadDashBoard(user: loginUser)
                     }else{
-                        self.dismiss(animated: true)
+                        if let navigator = self.navigationController {
+                            navigator.popViewController(animated: true)
+                        }else{
+                            self.dismiss(animated: true)
+                        }
                     }
                 }
+            }else{
+                UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Please regiter first to continue. Please go to profile tab for register", okActionTitle: "OK", view: self)
             }
         }
     }
     
+    func setUserObject(){
+        var picData : Data?
+        do {
+            if let path = imagePath {
+                picData = try Data(contentsOf: path as URL)
+            }
+            
+        } catch {
+            print("Unable to load data: \(error)")
+        }
+        if picData == nil {
+            picData = imageView.image?.pngData()
+        }
+        
+        if (isVendor){
+            let vendor = Vendor(context: context)
+            vendor.firstName = firstNameTxt.text
+            vendor.lastName = lastNameTxt.text
+            vendor.email = emailTxt.text
+            vendor.picture = picData
+            vendor.contactNumber = phoneNumberTxt.text
+            vendor.bannerURL = nil
+        }else{
+            let client = Client(context: context)
+            client.firstName = firstNameTxt.text
+            client.lastName = lastNameTxt.text
+            client.email = emailTxt.text
+            client.picture = picData
+            client.contactNumber = phoneNumberTxt.text
+            client.isPremium = false
+        }
+    }
+    
+    //MARK: - Core data interaction methods
     func checkUserInDB(user : LoginUser) -> Bool{
         var success = false
         var entityName = "Client"

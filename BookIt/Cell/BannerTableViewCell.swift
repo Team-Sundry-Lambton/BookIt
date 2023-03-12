@@ -16,7 +16,7 @@ class BannerTableViewCell: UITableViewCell {
     let fullSize = UIScreen.main.bounds
     var bannerViews: [UIImageView] {
         var bannerView = [UIImageView]()
-        for i in 0...9 {
+        for i in 0...5 {
             let imageView = UIImageView(image: UIImage(named: "\(i)"))
             imageView.frame = CGRect(x: fullSize.width * CGFloat(i), y: 0, width: fullSize.width, height: 240)
             bannerView.append(imageView)

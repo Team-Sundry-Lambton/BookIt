@@ -60,6 +60,7 @@ class PostServiceViewController: UIViewController {
     var selectedCategory: Category?
     var categoryList = [Category]()
     var mediaList = [MediaFile]()
+    var selectedLocation: Address?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     let categoryPicker = UIPickerView()
@@ -229,7 +230,7 @@ class PostServiceViewController: UIViewController {
             saveService()
             
         }else{
-            UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Please regiter first to post a service", okActionTitle: "OK", view: self)
+            UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Please regiter first to post a service. Please go to profile tab for register", okActionTitle: "OK", view: self)
         }
     }
     
@@ -299,10 +300,14 @@ class PostServiceViewController: UIViewController {
         }
         
         service.cancelPolicy = cancelPolicyTextField.text
-        service.serviceArea = locationTextField.text
+        
+        selectedLocation?.parentService = service
+        
+
         service.price = priceTextField.text
         service.priceType = priceTypeTextField.text
         service.equipment = isEquipmentNeed
+        service.serviceStatus = "new"
         
         for  media in self.mediaList {
             let mediaFile = MediaFile(context: context)
@@ -506,3 +511,14 @@ extension PostServiceViewController: UIPickerViewDelegate, UIPickerViewDataSourc
         self.view.endEditing(true)
     }
 }
+
+//MARK: - MapViewDelegate
+//extension PostServiceViewController: MapViewDelegate {
+//    func setTaskLocation(place : PlaceObject){
+//        selectedLocation = Address(context: context)
+//        selectedLocation?.latitude = place.coordinate.latitude
+//        selectedLocation?.longitude = place.coordinate.longitude
+//        selectedLocation?.address = place.title
+//        
+//    }
+//}

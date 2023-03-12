@@ -23,6 +23,8 @@
 		BB0FF27829BAAB4400E26A71 /* VendorDashBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB0FF27729BAAB4400E26A71 /* VendorDashBoard.storyboard */; };
 		BB0FF27A29BAAB5F00E26A71 /* PostService.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB0FF27929BAAB5F00E26A71 /* PostService.storyboard */; };
 		BB95083429BD950300C02D9E /* ServiceSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB95083329BD950300C02D9E /* ServiceSearchTableViewController.swift */; };
+		BB95083629BE2B6500C02D9E /* ConfirmLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB95083529BE2B6500C02D9E /* ConfirmLocationViewController.swift */; };
+		BB95083829BE4A6E00C02D9E /* PlaceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB95083729BE4A6E00C02D9E /* PlaceObject.swift */; };
 		BB9BB52C29AE7CAF0004244E /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = BB9BB52B29AE7CAF0004244E /* FacebookCore */; };
 		BB9BB52E29AE7CAF0004244E /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = BB9BB52D29AE7CAF0004244E /* FacebookLogin */; };
 		BB9BB53029AE7CAF0004244E /* FacebookShare in Frameworks */ = {isa = PBXBuildFile; productRef = BB9BB52F29AE7CAF0004244E /* FacebookShare */; };
@@ -67,6 +69,8 @@
 		BB0FF27729BAAB4400E26A71 /* VendorDashBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = VendorDashBoard.storyboard; sourceTree = "<group>"; };
 		BB0FF27929BAAB5F00E26A71 /* PostService.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PostService.storyboard; sourceTree = "<group>"; };
 		BB95083329BD950300C02D9E /* ServiceSearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceSearchTableViewController.swift; sourceTree = "<group>"; };
+		BB95083529BE2B6500C02D9E /* ConfirmLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmLocationViewController.swift; sourceTree = "<group>"; };
+		BB95083729BE4A6E00C02D9E /* PlaceObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceObject.swift; sourceTree = "<group>"; };
 		BB9BB53129AE7F900004244E /* BookIt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BookIt.entitlements; sourceTree = "<group>"; };
 		BB9BB53429AE9B290004244E /* LoginUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginUser.swift; path = BookIt/Models/LoginUser.swift; sourceTree = SOURCE_ROOT; };
 		BB9BB53629AEA05E0004244E /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
@@ -144,6 +148,7 @@
 			children = (
 				BB9BB53429AE9B290004244E /* LoginUser.swift */,
 				99AB0DD529AD95B300B096BB /* BookIt.xcdatamodeld */,
+				BB95083729BE4A6E00C02D9E /* PlaceObject.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -206,6 +211,7 @@
 				BBA6357229BA630000702A62 /* ClientProfileViewController.swift */,
 				BBA6357429BA631600702A62 /* ClientBookingViewController.swift */,
 				BB95083329BD950300C02D9E /* ServiceSearchTableViewController.swift */,
+				BB95083529BE2B6500C02D9E /* ConfirmLocationViewController.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -313,6 +319,7 @@
 				BB0FF27229BAA75800E26A71 /* MediaFileCell.swift in Sources */,
 				BB9BB53529AE9B290004244E /* LoginUser.swift in Sources */,
 				BB0FF26B29BAA73800E26A71 /* BorderTextView.swift in Sources */,
+				BB95083829BE4A6E00C02D9E /* PlaceObject.swift in Sources */,
 				BBA6357129BA62EC00702A62 /* ClientCategoryListViewController.swift in Sources */,
 				BB9BB53729AEA05E0004244E /* EditProfileViewController.swift in Sources */,
 				99AB0DD129AD95B300B096BB /* ViewController.swift in Sources */,
@@ -325,6 +332,7 @@
 				BBE7433829B41EE60087DC74 /* UserDefaultsManager.swift in Sources */,
 				BBE832B629BD3B4300C58BF1 /* CategoryListCollectionViewCell.swift in Sources */,
 				99AB0DCF29AD95B300B096BB /* SceneDelegate.swift in Sources */,
+				BB95083629BE2B6500C02D9E /* ConfirmLocationViewController.swift in Sources */,
 				BBE832AC29BD20C600C58BF1 /* BannerTableViewCell.swift in Sources */,
 				BB0FF27629BAA79200E26A71 /* VendorDashBoardViewController.swift in Sources */,
 				BBA6357329BA630000702A62 /* ClientProfileViewController.swift in Sources */,

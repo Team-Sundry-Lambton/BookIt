@@ -37,6 +37,7 @@ class ClientHomeViewController: UIViewController {
     var categoryList = [Category]()
     var vendorList = [Vendor]()
     var serviceList = [Service]()
+    var currentAddress : PlaceObject?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
@@ -82,6 +83,7 @@ class ClientHomeViewController: UIViewController {
         self.tabBarController?.tabBar.scrollEdgeAppearance = tabbarAppearance
         self.tabBarController?.tabBar.standardAppearance = tabbarAppearance
     }
+    
     func initUI(){
         
         categoryCollectioView.register(CategoryListCollectionViewCell.self, forCellWithReuseIdentifier: "CategoryListCollectionViewCell")
@@ -120,7 +122,22 @@ class ClientHomeViewController: UIViewController {
     }
  
     @IBAction func locationChanged() {
+        presentModal()
     }
+    
+    private func presentModal() {
+        
+        if let viewController = UIStoryboard(name: "ClientDashBoard", bundle: nil).instantiateViewController(withIdentifier: "ConfirmLocationViewController") as? ConfirmLocationViewController {
+                viewController.modalPresentationStyle = .pageSheet
+                viewController.currentAddress = currentAddress
+                if let sheet = viewController.sheetPresentationController {
+                    sheet.prefersGrabberVisible = true
+                    sheet.detents = [.medium()]
+                }
+                present(viewController, animated: true, completion: nil)
+        }
+    }
+    
     //MARK: - Banner Functions
     func setLayouts() {
 //        tableView.snp.makeConstraints { (make) in
@@ -234,6 +251,7 @@ extension ClientHomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == serviceListTableView {
+            //Redirect to service detail page
         }
     }
     
@@ -321,6 +339,7 @@ extension ClientHomeViewController:  CLLocationManagerDelegate{
                             addressString = addressString + pm.postalCode! + " "
                         }
 
+                        self.currentAddress = PlaceObject(title: addressString , subtitle: "", coordinate: CLLocationCoordinate2DMake(latitude , longitude ))
                         self.addressLbl.text = addressString;
                         print(addressString)
                   }
@@ -378,12 +397,11 @@ extension ClientHomeViewController :UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
         if(collectionView == self.categoryCollectioView){
-            
+            //Redirect to Service List Page
         }else{
-            
+            //Redirect to Vendor Service List Page
         }
-    }
-    
+    }    
 }
 
 //MARK: - Core data interaction methods
