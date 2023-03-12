@@ -9,4 +9,5 @@ import UIKit
 
 extension UIColor {
     static let switchBackgroundColor = UIColor(red: 61/255.0, green: 99/255.0, blue: 157/255.0, alpha: 0.7)
+    static let appThemeColor = UIColor(red: 61/255.0, green: 99/255.0, blue: 157/255.0, alpha: 1)
 }

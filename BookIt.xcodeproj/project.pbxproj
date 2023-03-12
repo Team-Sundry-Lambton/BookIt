@@ -37,6 +37,12 @@
 		BBE7433429B3DDB00087DC74 /* MediaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7433329B3DDB00087DC74 /* MediaManager.swift */; };
 		BBE7433629B41D440087DC74 /* BiometricIDAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7433529B41D440087DC74 /* BiometricIDAuth.swift */; };
 		BBE7433829B41EE60087DC74 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7433729B41EE60087DC74 /* UserDefaultsManager.swift */; };
+		BBE832AC29BD20C600C58BF1 /* BannerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE832AB29BD20C600C58BF1 /* BannerTableViewCell.swift */; };
+		BBE832B429BD245800C58BF1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BBE832B329BD245800C58BF1 /* SnapKit */; };
+		BBE832B629BD3B4300C58BF1 /* CategoryListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE832B529BD3B4300C58BF1 /* CategoryListCollectionViewCell.swift */; };
+		BBE832B829BD3B5700C58BF1 /* NewVendorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE832B729BD3B5700C58BF1 /* NewVendorCollectionViewCell.swift */; };
+		BBE832BB29BD3B7300C58BF1 /* ServiceDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE832B929BD3B7300C58BF1 /* ServiceDetailTableViewCell.swift */; };
+		BBE832BC29BD3B7300C58BF1 /* ServiceDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBE832BA29BD3B7300C58BF1 /* ServiceDetailTableViewCell.xib */; };
 		BBEC1C4829B5595E00B58D41 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEC1C4729B5595E00B58D41 /* UIColorExtension.swift */; };
 		BBEC1C4A29B55A6800B58D41 /* UIAlertViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEC1C4929B55A6800B58D41 /* UIAlertViewExtention.swift */; };
 /* End PBXBuildFile section */
@@ -70,6 +76,11 @@
 		BBE7433329B3DDB00087DC74 /* MediaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaManager.swift; sourceTree = "<group>"; };
 		BBE7433529B41D440087DC74 /* BiometricIDAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BiometricIDAuth.swift; path = BookIt/ManagerFiles/BiometricIDAuth.swift; sourceTree = SOURCE_ROOT; };
 		BBE7433729B41EE60087DC74 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserDefaultsManager.swift; path = BookIt/ManagerFiles/UserDefaultsManager.swift; sourceTree = SOURCE_ROOT; };
+		BBE832AB29BD20C600C58BF1 /* BannerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerTableViewCell.swift; sourceTree = "<group>"; };
+		BBE832B529BD3B4300C58BF1 /* CategoryListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListCollectionViewCell.swift; sourceTree = "<group>"; };
+		BBE832B729BD3B5700C58BF1 /* NewVendorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVendorCollectionViewCell.swift; sourceTree = "<group>"; };
+		BBE832B929BD3B7300C58BF1 /* ServiceDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailTableViewCell.swift; sourceTree = "<group>"; };
+		BBE832BA29BD3B7300C58BF1 /* ServiceDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServiceDetailTableViewCell.xib; sourceTree = "<group>"; };
 		BBEC1C4729B5595E00B58D41 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIColorExtension.swift; path = BookIt/ManagerFiles/UIColorExtension.swift; sourceTree = SOURCE_ROOT; };
 		BBEC1C4929B55A6800B58D41 /* UIAlertViewExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIAlertViewExtention.swift; path = BookIt/ManagerFiles/UIAlertViewExtention.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -82,6 +93,7 @@
 				BBE7432C29B3A6E50087DC74 /* GoogleSignInSwift in Frameworks */,
 				BB9BB52E29AE7CAF0004244E /* FacebookLogin in Frameworks */,
 				BBE7432A29B3A6E50087DC74 /* GoogleSignIn in Frameworks */,
+				BBE832B429BD245800C58BF1 /* SnapKit in Frameworks */,
 				BB9BB52C29AE7CAF0004244E /* FacebookCore in Frameworks */,
 				BB9BB53029AE7CAF0004244E /* FacebookShare in Frameworks */,
 			);
@@ -175,6 +187,11 @@
 			children = (
 				BB0FF27029BAA75800E26A71 /* MediaFileCell.swift */,
 				BB0FF26F29BAA75800E26A71 /* MediaFileCell.xib */,
+				BBE832AB29BD20C600C58BF1 /* BannerTableViewCell.swift */,
+				BBE832B529BD3B4300C58BF1 /* CategoryListCollectionViewCell.swift */,
+				BBE832B729BD3B5700C58BF1 /* NewVendorCollectionViewCell.swift */,
+				BBE832B929BD3B7300C58BF1 /* ServiceDetailTableViewCell.swift */,
+				BBE832BA29BD3B7300C58BF1 /* ServiceDetailTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -220,6 +237,7 @@
 				BB9BB52F29AE7CAF0004244E /* FacebookShare */,
 				BBE7432929B3A6E50087DC74 /* GoogleSignIn */,
 				BBE7432B29B3A6E50087DC74 /* GoogleSignInSwift */,
+				BBE832B329BD245800C58BF1 /* SnapKit */,
 			);
 			productName = BookIt;
 			productReference = 99AB0DC929AD95B300B096BB /* BookIt.app */;
@@ -252,6 +270,7 @@
 			packageReferences = (
 				BB9BB52A29AE7CAF0004244E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 				BBE7432829B3A6E50087DC74 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				BBE832B229BD245800C58BF1 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 99AB0DCA29AD95B300B096BB /* Products */;
 			projectDirPath = "";
@@ -273,6 +292,7 @@
 				BB0FF27A29BAAB5F00E26A71 /* PostService.storyboard in Resources */,
 				99AB0DDC29AD95B600B096BB /* LaunchScreen.storyboard in Resources */,
 				99AB0DD929AD95B600B096BB /* Assets.xcassets in Resources */,
+				BBE832BC29BD3B7300C58BF1 /* ServiceDetailTableViewCell.xib in Resources */,
 				99AB0DD429AD95B300B096BB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,15 +312,19 @@
 				BBA6357129BA62EC00702A62 /* ClientCategoryListViewController.swift in Sources */,
 				BB9BB53729AEA05E0004244E /* EditProfileViewController.swift in Sources */,
 				99AB0DD129AD95B300B096BB /* ViewController.swift in Sources */,
+				BBE832B829BD3B5700C58BF1 /* NewVendorCollectionViewCell.swift in Sources */,
 				BBEC1C4A29B55A6800B58D41 /* UIAlertViewExtention.swift in Sources */,
 				BB0FF27429BAA78900E26A71 /* PostServiceViewController.swift in Sources */,
 				BB0FF26A29BAA73800E26A71 /* BorderTextField.swift in Sources */,
 				99AB0DCD29AD95B300B096BB /* AppDelegate.swift in Sources */,
 				BBA6357529BA631700702A62 /* ClientBookingViewController.swift in Sources */,
 				BBE7433829B41EE60087DC74 /* UserDefaultsManager.swift in Sources */,
+				BBE832B629BD3B4300C58BF1 /* CategoryListCollectionViewCell.swift in Sources */,
 				99AB0DCF29AD95B300B096BB /* SceneDelegate.swift in Sources */,
+				BBE832AC29BD20C600C58BF1 /* BannerTableViewCell.swift in Sources */,
 				BB0FF27629BAA79200E26A71 /* VendorDashBoardViewController.swift in Sources */,
 				BBA6357329BA630000702A62 /* ClientProfileViewController.swift in Sources */,
+				BBE832BB29BD3B7300C58BF1 /* ServiceDetailTableViewCell.swift in Sources */,
 				BBEC1C4829B5595E00B58D41 /* UIColorExtension.swift in Sources */,
 				99AB0DD729AD95B300B096BB /* BookIt.xcdatamodeld in Sources */,
 				BBE7433629B41D440087DC74 /* BiometricIDAuth.swift in Sources */,
@@ -539,6 +563,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		BBE832B229BD245800C58BF1 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -566,6 +598,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BBE7432829B3A6E50087DC74 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
+		};
+		BBE832B329BD245800C58BF1 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBE832B229BD245800C58BF1 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 

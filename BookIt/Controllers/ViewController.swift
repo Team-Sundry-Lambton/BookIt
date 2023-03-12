@@ -33,6 +33,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+
     @IBAction func continueGuest() {
         loadDashBoard(user: nil)
     }
@@ -63,6 +64,7 @@ class ViewController: UIViewController {
 //    }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
         if ( UserDefaultsManager.shared.getUserLogin()){
             if (  UserDefaultsManager.shared.getFaceIdEnable()){
                 bioMetricVerification()
@@ -70,6 +72,9 @@ class ViewController: UIViewController {
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+     
+    }
     func checkUserAvailablility(user : LoginUser){
         if (checkUserInDB(user: user)){
             loadDashBoard(user: user)

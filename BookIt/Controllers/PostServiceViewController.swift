@@ -225,7 +225,12 @@ class PostServiceViewController: UIViewController {
     }
     
     @IBAction func confirmBttonAction(_ sender: Any) {
-        saveService()
+        if (UserDefaultsManager.shared.getUserLogin()){
+            saveService()
+            
+        }else{
+            UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Please regiter first to post a service", okActionTitle: "OK", view: self)
+        }
     }
     
     @IBAction func equipmentBttonAction(_ sender: Any) {

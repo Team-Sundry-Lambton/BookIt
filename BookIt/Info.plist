@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Allow Location</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Allow Location</string>
 	<key>GIDServerClientID</key>
 	<string>326161084198-0ia7at1vn4qoqpjc75uhu1kibcaqing7.apps.googleusercontent.com</string>
 	<key>GIDClientID</key>
