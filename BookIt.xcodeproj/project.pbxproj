@@ -35,6 +35,9 @@
 		BBA6357129BA62EC00702A62 /* ClientCategoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA6357029BA62EC00702A62 /* ClientCategoryListViewController.swift */; };
 		BBA6357329BA630000702A62 /* ClientProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA6357229BA630000702A62 /* ClientProfileViewController.swift */; };
 		BBA6357529BA631700702A62 /* ClientBookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA6357429BA631600702A62 /* ClientBookingViewController.swift */; };
+		BBC9F83929BFC70900985AAA /* MapView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBC9F83829BFC70900985AAA /* MapView.storyboard */; };
+		BBC9F83C29BFC74900985AAA /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC9F83B29BFC74900985AAA /* MapViewController.swift */; };
+		BBC9F83E29BFC75A00985AAA /* LocationSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC9F83D29BFC75A00985AAA /* LocationSearchTableViewController.swift */; };
 		BBE7432A29B3A6E50087DC74 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = BBE7432929B3A6E50087DC74 /* GoogleSignIn */; };
 		BBE7432C29B3A6E50087DC74 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BBE7432B29B3A6E50087DC74 /* GoogleSignInSwift */; };
 		BBE7433429B3DDB00087DC74 /* MediaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7433329B3DDB00087DC74 /* MediaManager.swift */; };
@@ -79,6 +82,9 @@
 		BBA6357029BA62EC00702A62 /* ClientCategoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientCategoryListViewController.swift; sourceTree = "<group>"; };
 		BBA6357229BA630000702A62 /* ClientProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientProfileViewController.swift; sourceTree = "<group>"; };
 		BBA6357429BA631600702A62 /* ClientBookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientBookingViewController.swift; sourceTree = "<group>"; };
+		BBC9F83829BFC70900985AAA /* MapView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MapView.storyboard; sourceTree = "<group>"; };
+		BBC9F83B29BFC74900985AAA /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		BBC9F83D29BFC75A00985AAA /* LocationSearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTableViewController.swift; sourceTree = "<group>"; };
 		BBE7433329B3DDB00087DC74 /* MediaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaManager.swift; sourceTree = "<group>"; };
 		BBE7433529B41D440087DC74 /* BiometricIDAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BiometricIDAuth.swift; path = BookIt/ManagerFiles/BiometricIDAuth.swift; sourceTree = SOURCE_ROOT; };
 		BBE7433729B41EE60087DC74 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserDefaultsManager.swift; path = BookIt/ManagerFiles/UserDefaultsManager.swift; sourceTree = SOURCE_ROOT; };
@@ -160,6 +166,7 @@
 				BB0FF27929BAAB5F00E26A71 /* PostService.storyboard */,
 				99AB0DD229AD95B300B096BB /* Main.storyboard */,
 				BBA6356B29BA510500702A62 /* ClientDashBoard.storyboard */,
+				BBC9F83829BFC70900985AAA /* MapView.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -167,6 +174,7 @@
 		99AB0DE529AD95D200B096BB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				BBC9F83A29BFC73400985AAA /* MapView */,
 				BB0FF27529BAA79200E26A71 /* VendorDashBoardViewController.swift */,
 				BB0FF27329BAA78900E26A71 /* PostServiceViewController.swift */,
 				BBA6356D29BA62B800702A62 /* Client */,
@@ -214,6 +222,15 @@
 				BB95083529BE2B6500C02D9E /* ConfirmLocationViewController.swift */,
 			);
 			path = Client;
+			sourceTree = "<group>";
+		};
+		BBC9F83A29BFC73400985AAA /* MapView */ = {
+			isa = PBXGroup;
+			children = (
+				BBC9F83B29BFC74900985AAA /* MapViewController.swift */,
+				BBC9F83D29BFC75A00985AAA /* LocationSearchTableViewController.swift */,
+			);
+			path = MapView;
 			sourceTree = "<group>";
 		};
 		BBE7433229B3DD950087DC74 /* ManagerFiles */ = {
@@ -300,6 +317,7 @@
 				BBA6356C29BA510500702A62 /* ClientDashBoard.storyboard in Resources */,
 				BB0FF27A29BAAB5F00E26A71 /* PostService.storyboard in Resources */,
 				99AB0DDC29AD95B600B096BB /* LaunchScreen.storyboard in Resources */,
+				BBC9F83929BFC70900985AAA /* MapView.storyboard in Resources */,
 				99AB0DD929AD95B600B096BB /* Assets.xcassets in Resources */,
 				BBE832BC29BD3B7300C58BF1 /* ServiceDetailTableViewCell.xib in Resources */,
 				99AB0DD429AD95B300B096BB /* Main.storyboard in Resources */,
@@ -322,6 +340,7 @@
 				BB95083829BE4A6E00C02D9E /* PlaceObject.swift in Sources */,
 				BBA6357129BA62EC00702A62 /* ClientCategoryListViewController.swift in Sources */,
 				BB9BB53729AEA05E0004244E /* EditProfileViewController.swift in Sources */,
+				BBC9F83E29BFC75A00985AAA /* LocationSearchTableViewController.swift in Sources */,
 				99AB0DD129AD95B300B096BB /* ViewController.swift in Sources */,
 				BBE832B829BD3B5700C58BF1 /* NewVendorCollectionViewCell.swift in Sources */,
 				BBEC1C4A29B55A6800B58D41 /* UIAlertViewExtention.swift in Sources */,
@@ -340,6 +359,7 @@
 				BBEC1C4829B5595E00B58D41 /* UIColorExtension.swift in Sources */,
 				99AB0DD729AD95B300B096BB /* BookIt.xcdatamodeld in Sources */,
 				BBE7433629B41D440087DC74 /* BiometricIDAuth.swift in Sources */,
+				BBC9F83C29BFC74900985AAA /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -93,8 +93,7 @@ class EditProfileViewController: UIViewController {
         else
         {
             let loginUser = LoginUser(firstName: firstNameTxt.text ?? "", lastName: lastNameTxt.text ?? "", email: emailTxt.text ?? "", contactNumber: phoneNumberTxt.text ?? "",isVendor: isVendor)
-            if (UserDefaultsManager.shared.getUserLogin()){
-                
+            
                 if (checkUserInDB(user: loginUser)){
                     deleteUser(user: loginUser)
                     setUserObject()
@@ -104,22 +103,18 @@ class EditProfileViewController: UIViewController {
                     UIAlertViewExtention.shared.showBasicAlertView(title: "Success",message: "User updated successfully.", okActionTitle: "OK", view: self)
                     
                 }else{
-                    
-                    setUserObject()
-                    saveUser()
-                    if newUser {
-                        loadDashBoard(user: loginUser)
-                    }else{
-                        if let navigator = self.navigationController {
-                            navigator.popViewController(animated: true)
+                        setUserObject()
+                        saveUser()
+                        if newUser {
+                            loadDashBoard(user: loginUser)
                         }else{
-                            self.dismiss(animated: true)
+                            if let navigator = self.navigationController {
+                                navigator.popViewController(animated: true)
+                            }else{
+                                self.dismiss(animated: true)
+                            }
                         }
-                    }
                 }
-            }else{
-                UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Please regiter first to continue. Please go to profile tab for register", okActionTitle: "OK", view: self)
-            }
         }
     }
     

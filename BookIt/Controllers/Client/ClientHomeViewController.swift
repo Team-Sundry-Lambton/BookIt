@@ -130,6 +130,7 @@ class ClientHomeViewController: UIViewController {
         if let viewController = UIStoryboard(name: "ClientDashBoard", bundle: nil).instantiateViewController(withIdentifier: "ConfirmLocationViewController") as? ConfirmLocationViewController {
                 viewController.modalPresentationStyle = .pageSheet
                 viewController.currentAddress = currentAddress
+                viewController.delegate = self
                 if let sheet = viewController.sheetPresentationController {
                     sheet.prefersGrabberVisible = true
                     sheet.detents = [.medium()]
@@ -457,10 +458,37 @@ extension ClientHomeViewController : UISearchBarDelegate{
     }
 }
 
+extension ClientHomeViewController{
+
+}
+
 //MARK: Secntion Enum
 
 extension ClientHomeViewController {
     enum TableSections {
         case banner, others
+    }
+}
+
+
+// MARK: - MapViewDelegate
+extension ClientHomeViewController: MapViewDelegate {
+    func openSelectedLocation() {
+        openMapView()
+    }
+    
+    private func openMapView() {
+        let mapViewController:MapViewController = UIStoryboard(name: "MapView", bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as? MapViewController ?? MapViewController()
+        if let navigator = navigationController {
+            mapViewController.delegate = self
+            mapViewController.selectLocation = true
+            navigator.pushViewController(mapViewController, animated: true)
+        }
+    }
+    
+    func setServiceLocation(place : PlaceObject){        
+        self.currentAddress = place
+        self.addressLbl.text = place.title;
+        presentModal()
     }
 }

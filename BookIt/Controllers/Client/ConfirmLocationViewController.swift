@@ -13,10 +13,13 @@ class ConfirmLocationViewController: UIViewController {
     @IBOutlet weak var addressLbl: UILabel!
     @IBOutlet weak var editBtn: UIButton!
     @IBOutlet weak var confirmBtn: UIButton!
+    var selectedLocation: Address?
+    weak var delegate: ClientHomeViewController!
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var currentAddress : PlaceObject?
     var client : Client?
+    var openMap = false
     override func viewDidLoad() {
         super.viewDidLoad()
         getClient()
@@ -25,6 +28,12 @@ class ConfirmLocationViewController: UIViewController {
             addressLbl.text = address.title
         }
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if openMap {
+            delegate?.openSelectedLocation()
+        }
     }
     
     func uiViewsDesign() {
@@ -38,8 +47,9 @@ class ConfirmLocationViewController: UIViewController {
         confirmBtn.layer.cornerRadius = editBtn.frame.height / 2
     }
     @IBAction func editLocation() {
-        if (UserDefaultsManager.shared.getUserLogin()){
-            
+        if (UserDefaultsManager.shared.getUserLogin()){            
+            openMap = true
+            self.dismiss(animated: true)
         }else{
             UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Please regiter first to continue. Please go to profile tab for register", okActionTitle: "OK", view: self)
         }
@@ -138,4 +148,27 @@ class ConfirmLocationViewController: UIViewController {
     }
     */
 
+}
+// MARK: - MapViewDelegate
+extension ConfirmLocationViewController: MapViewDelegate {
+    
+    private func openMapView() {
+        let mapViewController:MapViewController = UIStoryboard(name: "MapView", bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as? MapViewController ?? MapViewController()
+        mapViewController.delegate = self
+        mapViewController.selectLocation = true
+        let navController = UINavigationController(rootViewController: mapViewController) //Add navigation controller
+            navController.modalPresentationStyle = .fullScreen
+        self.present(navController, animated: true, completion: nil)
+        
+
+   //        navigationController?.pushViewController(navController, animated: true)
+    }
+    
+    func setServiceLocation(place : PlaceObject){
+        selectedLocation = Address(context: context)
+        selectedLocation?.latitude = place.coordinate.latitude
+        selectedLocation?.longitude = place.coordinate.longitude
+        selectedLocation?.address = place.title
+        addressLbl.text = place.title
+    }
 }

@@ -100,7 +100,12 @@ class PostServiceViewController: UIViewController {
         categoryTypeTextField.inputView = categoryPicker
         priceTypeTextField.inputView = priceTypePicker
         // Do any additional setup after loading the view.
-        
+        locationTextField.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.tintColor = UIColor.black
+        self.navigationController?.navigationBar.isHidden = false
     }
     
     func uiViewsDesign() {
@@ -242,6 +247,10 @@ class PostServiceViewController: UIViewController {
             equipmentCheckboxImageView.image = #imageLiteral(resourceName: "CheckBoxFill")
             isEquipmentNeed = true
         }
+    }
+    
+    @IBAction func editLocation() {
+        openMapView()
     }
     
     //MARK: - Media Logic
@@ -455,15 +464,10 @@ extension PostServiceViewController : UITextFieldDelegate{
     }
     
 //    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-//        if textField == categoryTypeTextField{
-//            categoryPicker.isHidden = false
-//            return true
-//        }else if textField == priceTypeTextField{
-//            priceTypePicker.isHidden = false
-//            return true
-//        }else{
-//            return true
+//        if textField == locationTextField{
+//            openMapView()
 //        }
+//        return true
 //     }
     
 //    func textFieldDidEndEditing(_ textField: UITextField) {
@@ -512,13 +516,23 @@ extension PostServiceViewController: UIPickerViewDelegate, UIPickerViewDataSourc
     }
 }
 
-//MARK: - MapViewDelegate
-//extension PostServiceViewController: MapViewDelegate {
-//    func setTaskLocation(place : PlaceObject){
-//        selectedLocation = Address(context: context)
-//        selectedLocation?.latitude = place.coordinate.latitude
-//        selectedLocation?.longitude = place.coordinate.longitude
-//        selectedLocation?.address = place.title
-//        
-//    }
-//}
+// MARK: - MapViewDelegate
+extension PostServiceViewController: MapViewDelegate {
+    
+    private func openMapView() {
+        let mapViewController:MapViewController = UIStoryboard(name: "MapView", bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as? MapViewController ?? MapViewController()
+        if let navigator = navigationController {
+            mapViewController.delegate = self
+            mapViewController.selectLocation = true
+            navigator.pushViewController(mapViewController, animated: true)
+        }
+    }
+    
+    func setServiceLocation(place : PlaceObject){
+        selectedLocation = Address(context: context)
+        selectedLocation?.latitude = place.coordinate.latitude
+        selectedLocation?.longitude = place.coordinate.longitude
+        selectedLocation?.address = place.title
+        locationTextField.text = place.title
+    }
+}
