@@ -214,12 +214,21 @@ class EditProfileViewController: UIViewController {
         
  
         if (isVendor){
-            if let viewController = UIStoryboard(name: "VendorDashBoard", bundle: nil).instantiateViewController(withIdentifier: "VendorDashBoardViewController") as? VendorDashBoardViewController {
-                if let navigator = navigationController {
-                    viewController.loginUser = user
-                    navigator.pushViewController(viewController, animated: true)
-                }
+            let storyboard = UIStoryboard(name: "VendorDashBoard", bundle: nil)
+            let mainTabBarController = storyboard.instantiateViewController(identifier: "VendorTabBarController")
+            mainTabBarController.modalPresentationStyle = .fullScreen
+            
+            
+            if let navigator = navigationController {
+                //            viewController.loginUser = user
+                navigator.pushViewController(mainTabBarController, animated: true)
             }
+//            if let viewController = UIStoryboard(name: "VendorDashBoard", bundle: nil).instantiateViewController(withIdentifier: "VendorDashBoardViewController") as? VendorDashBoardViewController {
+//                if let navigator = navigationController {
+//                    viewController.loginUser = user
+//                    navigator.pushViewController(viewController, animated: true)
+//                }
+//            }
         }
         else{
 

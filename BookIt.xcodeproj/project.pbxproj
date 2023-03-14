@@ -18,10 +18,12 @@
 		BB0FF26B29BAA73800E26A71 /* BorderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0FF26929BAA73800E26A71 /* BorderTextView.swift */; };
 		BB0FF27129BAA75800E26A71 /* MediaFileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB0FF26F29BAA75800E26A71 /* MediaFileCell.xib */; };
 		BB0FF27229BAA75800E26A71 /* MediaFileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0FF27029BAA75800E26A71 /* MediaFileCell.swift */; };
-		BB0FF27429BAA78900E26A71 /* PostServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0FF27329BAA78900E26A71 /* PostServiceViewController.swift */; };
-		BB0FF27629BAA79200E26A71 /* VendorDashBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0FF27529BAA79200E26A71 /* VendorDashBoardViewController.swift */; };
 		BB0FF27829BAAB4400E26A71 /* VendorDashBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB0FF27729BAAB4400E26A71 /* VendorDashBoard.storyboard */; };
 		BB0FF27A29BAAB5F00E26A71 /* PostService.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB0FF27929BAAB5F00E26A71 /* PostService.storyboard */; };
+		BB7A1DCF29C0C870003CB894 /* VendorHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7A1DCE29C0C870003CB894 /* VendorHomeViewController.swift */; };
+		BB7A1DD129C0C87E003CB894 /* VendorProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7A1DD029C0C87E003CB894 /* VendorProfileViewController.swift */; };
+		BB7A1DD329C0C88D003CB894 /* VendorServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7A1DD229C0C88D003CB894 /* VendorServicesViewController.swift */; };
+		BB7A1DD729C0C8CA003CB894 /* PostServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7A1DD529C0C8CA003CB894 /* PostServiceViewController.swift */; };
 		BB95083429BD950300C02D9E /* ServiceSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB95083329BD950300C02D9E /* ServiceSearchTableViewController.swift */; };
 		BB95083629BE2B6500C02D9E /* ConfirmLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB95083529BE2B6500C02D9E /* ConfirmLocationViewController.swift */; };
 		BB95083829BE4A6E00C02D9E /* PlaceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB95083729BE4A6E00C02D9E /* PlaceObject.swift */; };
@@ -67,10 +69,12 @@
 		BB0FF26929BAA73800E26A71 /* BorderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderTextView.swift; sourceTree = "<group>"; };
 		BB0FF26F29BAA75800E26A71 /* MediaFileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MediaFileCell.xib; sourceTree = "<group>"; };
 		BB0FF27029BAA75800E26A71 /* MediaFileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaFileCell.swift; sourceTree = "<group>"; };
-		BB0FF27329BAA78900E26A71 /* PostServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostServiceViewController.swift; sourceTree = "<group>"; };
-		BB0FF27529BAA79200E26A71 /* VendorDashBoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VendorDashBoardViewController.swift; sourceTree = "<group>"; };
 		BB0FF27729BAAB4400E26A71 /* VendorDashBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = VendorDashBoard.storyboard; sourceTree = "<group>"; };
 		BB0FF27929BAAB5F00E26A71 /* PostService.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PostService.storyboard; sourceTree = "<group>"; };
+		BB7A1DCE29C0C870003CB894 /* VendorHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorHomeViewController.swift; sourceTree = "<group>"; };
+		BB7A1DD029C0C87E003CB894 /* VendorProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorProfileViewController.swift; sourceTree = "<group>"; };
+		BB7A1DD229C0C88D003CB894 /* VendorServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorServicesViewController.swift; sourceTree = "<group>"; };
+		BB7A1DD529C0C8CA003CB894 /* PostServiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostServiceViewController.swift; path = ../../../../../.Trash/PostServiceViewController.swift; sourceTree = "<group>"; };
 		BB95083329BD950300C02D9E /* ServiceSearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceSearchTableViewController.swift; sourceTree = "<group>"; };
 		BB95083529BE2B6500C02D9E /* ConfirmLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmLocationViewController.swift; sourceTree = "<group>"; };
 		BB95083729BE4A6E00C02D9E /* PlaceObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceObject.swift; sourceTree = "<group>"; };
@@ -174,9 +178,9 @@
 		99AB0DE529AD95D200B096BB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				BB7A1DD529C0C8CA003CB894 /* PostServiceViewController.swift */,
+				BB7A1DCD29C0C7EB003CB894 /* Vendor */,
 				BBC9F83A29BFC73400985AAA /* MapView */,
-				BB0FF27529BAA79200E26A71 /* VendorDashBoardViewController.swift */,
-				BB0FF27329BAA78900E26A71 /* PostServiceViewController.swift */,
 				BBA6356D29BA62B800702A62 /* Client */,
 				99AB0DD029AD95B300B096BB /* ViewController.swift */,
 				BB9BB53629AEA05E0004244E /* EditProfileViewController.swift */,
@@ -209,6 +213,16 @@
 				BBE832BA29BD3B7300C58BF1 /* ServiceDetailTableViewCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		BB7A1DCD29C0C7EB003CB894 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				BB7A1DCE29C0C870003CB894 /* VendorHomeViewController.swift */,
+				BB7A1DD029C0C87E003CB894 /* VendorProfileViewController.swift */,
+				BB7A1DD229C0C88D003CB894 /* VendorServicesViewController.swift */,
+			);
+			path = Vendor;
 			sourceTree = "<group>";
 		};
 		BBA6356D29BA62B800702A62 /* Client */ = {
@@ -332,8 +346,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBA6356F29BA62D700702A62 /* ClientHomeViewController.swift in Sources */,
+				BB7A1DD129C0C87E003CB894 /* VendorProfileViewController.swift in Sources */,
 				BB95083429BD950300C02D9E /* ServiceSearchTableViewController.swift in Sources */,
 				BBE7433429B3DDB00087DC74 /* MediaManager.swift in Sources */,
+				BB7A1DCF29C0C870003CB894 /* VendorHomeViewController.swift in Sources */,
 				BB0FF27229BAA75800E26A71 /* MediaFileCell.swift in Sources */,
 				BB9BB53529AE9B290004244E /* LoginUser.swift in Sources */,
 				BB0FF26B29BAA73800E26A71 /* BorderTextView.swift in Sources */,
@@ -344,8 +360,9 @@
 				99AB0DD129AD95B300B096BB /* ViewController.swift in Sources */,
 				BBE832B829BD3B5700C58BF1 /* NewVendorCollectionViewCell.swift in Sources */,
 				BBEC1C4A29B55A6800B58D41 /* UIAlertViewExtention.swift in Sources */,
-				BB0FF27429BAA78900E26A71 /* PostServiceViewController.swift in Sources */,
+				BB7A1DD729C0C8CA003CB894 /* PostServiceViewController.swift in Sources */,
 				BB0FF26A29BAA73800E26A71 /* BorderTextField.swift in Sources */,
+				BB7A1DD329C0C88D003CB894 /* VendorServicesViewController.swift in Sources */,
 				99AB0DCD29AD95B300B096BB /* AppDelegate.swift in Sources */,
 				BBA6357529BA631700702A62 /* ClientBookingViewController.swift in Sources */,
 				BBE7433829B41EE60087DC74 /* UserDefaultsManager.swift in Sources */,
@@ -353,7 +370,6 @@
 				99AB0DCF29AD95B300B096BB /* SceneDelegate.swift in Sources */,
 				BB95083629BE2B6500C02D9E /* ConfirmLocationViewController.swift in Sources */,
 				BBE832AC29BD20C600C58BF1 /* BannerTableViewCell.swift in Sources */,
-				BB0FF27629BAA79200E26A71 /* VendorDashBoardViewController.swift in Sources */,
 				BBA6357329BA630000702A62 /* ClientProfileViewController.swift in Sources */,
 				BBE832BB29BD3B7300C58BF1 /* ServiceDetailTableViewCell.swift in Sources */,
 				BBEC1C4829B5595E00B58D41 /* UIColorExtension.swift in Sources */,
