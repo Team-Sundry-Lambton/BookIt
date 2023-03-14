@@ -22,6 +22,9 @@
 		BB0FF27629BAA79200E26A71 /* VendorDashBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0FF27529BAA79200E26A71 /* VendorDashBoardViewController.swift */; };
 		BB0FF27829BAAB4400E26A71 /* VendorDashBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB0FF27729BAAB4400E26A71 /* VendorDashBoard.storyboard */; };
 		BB0FF27A29BAAB5F00E26A71 /* PostService.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB0FF27929BAAB5F00E26A71 /* PostService.storyboard */; };
+		BB95083429BD950300C02D9E /* ServiceSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB95083329BD950300C02D9E /* ServiceSearchTableViewController.swift */; };
+		BB95083629BE2B6500C02D9E /* ConfirmLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB95083529BE2B6500C02D9E /* ConfirmLocationViewController.swift */; };
+		BB95083829BE4A6E00C02D9E /* PlaceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB95083729BE4A6E00C02D9E /* PlaceObject.swift */; };
 		BB9BB52C29AE7CAF0004244E /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = BB9BB52B29AE7CAF0004244E /* FacebookCore */; };
 		BB9BB52E29AE7CAF0004244E /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = BB9BB52D29AE7CAF0004244E /* FacebookLogin */; };
 		BB9BB53029AE7CAF0004244E /* FacebookShare in Frameworks */ = {isa = PBXBuildFile; productRef = BB9BB52F29AE7CAF0004244E /* FacebookShare */; };
@@ -32,11 +35,20 @@
 		BBA6357129BA62EC00702A62 /* ClientCategoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA6357029BA62EC00702A62 /* ClientCategoryListViewController.swift */; };
 		BBA6357329BA630000702A62 /* ClientProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA6357229BA630000702A62 /* ClientProfileViewController.swift */; };
 		BBA6357529BA631700702A62 /* ClientBookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA6357429BA631600702A62 /* ClientBookingViewController.swift */; };
+		BBC9F83929BFC70900985AAA /* MapView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBC9F83829BFC70900985AAA /* MapView.storyboard */; };
+		BBC9F83C29BFC74900985AAA /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC9F83B29BFC74900985AAA /* MapViewController.swift */; };
+		BBC9F83E29BFC75A00985AAA /* LocationSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC9F83D29BFC75A00985AAA /* LocationSearchTableViewController.swift */; };
 		BBE7432A29B3A6E50087DC74 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = BBE7432929B3A6E50087DC74 /* GoogleSignIn */; };
 		BBE7432C29B3A6E50087DC74 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BBE7432B29B3A6E50087DC74 /* GoogleSignInSwift */; };
 		BBE7433429B3DDB00087DC74 /* MediaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7433329B3DDB00087DC74 /* MediaManager.swift */; };
 		BBE7433629B41D440087DC74 /* BiometricIDAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7433529B41D440087DC74 /* BiometricIDAuth.swift */; };
 		BBE7433829B41EE60087DC74 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7433729B41EE60087DC74 /* UserDefaultsManager.swift */; };
+		BBE832AC29BD20C600C58BF1 /* BannerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE832AB29BD20C600C58BF1 /* BannerTableViewCell.swift */; };
+		BBE832B429BD245800C58BF1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BBE832B329BD245800C58BF1 /* SnapKit */; };
+		BBE832B629BD3B4300C58BF1 /* CategoryListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE832B529BD3B4300C58BF1 /* CategoryListCollectionViewCell.swift */; };
+		BBE832B829BD3B5700C58BF1 /* NewVendorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE832B729BD3B5700C58BF1 /* NewVendorCollectionViewCell.swift */; };
+		BBE832BB29BD3B7300C58BF1 /* ServiceDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE832B929BD3B7300C58BF1 /* ServiceDetailTableViewCell.swift */; };
+		BBE832BC29BD3B7300C58BF1 /* ServiceDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBE832BA29BD3B7300C58BF1 /* ServiceDetailTableViewCell.xib */; };
 		BBEC1C4829B5595E00B58D41 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEC1C4729B5595E00B58D41 /* UIColorExtension.swift */; };
 		BBEC1C4A29B55A6800B58D41 /* UIAlertViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEC1C4929B55A6800B58D41 /* UIAlertViewExtention.swift */; };
 /* End PBXBuildFile section */
@@ -59,6 +71,9 @@
 		BB0FF27529BAA79200E26A71 /* VendorDashBoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VendorDashBoardViewController.swift; sourceTree = "<group>"; };
 		BB0FF27729BAAB4400E26A71 /* VendorDashBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = VendorDashBoard.storyboard; sourceTree = "<group>"; };
 		BB0FF27929BAAB5F00E26A71 /* PostService.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PostService.storyboard; sourceTree = "<group>"; };
+		BB95083329BD950300C02D9E /* ServiceSearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceSearchTableViewController.swift; sourceTree = "<group>"; };
+		BB95083529BE2B6500C02D9E /* ConfirmLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmLocationViewController.swift; sourceTree = "<group>"; };
+		BB95083729BE4A6E00C02D9E /* PlaceObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceObject.swift; sourceTree = "<group>"; };
 		BB9BB53129AE7F900004244E /* BookIt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BookIt.entitlements; sourceTree = "<group>"; };
 		BB9BB53429AE9B290004244E /* LoginUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginUser.swift; path = BookIt/Models/LoginUser.swift; sourceTree = SOURCE_ROOT; };
 		BB9BB53629AEA05E0004244E /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
@@ -67,9 +82,17 @@
 		BBA6357029BA62EC00702A62 /* ClientCategoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientCategoryListViewController.swift; sourceTree = "<group>"; };
 		BBA6357229BA630000702A62 /* ClientProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientProfileViewController.swift; sourceTree = "<group>"; };
 		BBA6357429BA631600702A62 /* ClientBookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientBookingViewController.swift; sourceTree = "<group>"; };
+		BBC9F83829BFC70900985AAA /* MapView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MapView.storyboard; sourceTree = "<group>"; };
+		BBC9F83B29BFC74900985AAA /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		BBC9F83D29BFC75A00985AAA /* LocationSearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTableViewController.swift; sourceTree = "<group>"; };
 		BBE7433329B3DDB00087DC74 /* MediaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaManager.swift; sourceTree = "<group>"; };
 		BBE7433529B41D440087DC74 /* BiometricIDAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BiometricIDAuth.swift; path = BookIt/ManagerFiles/BiometricIDAuth.swift; sourceTree = SOURCE_ROOT; };
 		BBE7433729B41EE60087DC74 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserDefaultsManager.swift; path = BookIt/ManagerFiles/UserDefaultsManager.swift; sourceTree = SOURCE_ROOT; };
+		BBE832AB29BD20C600C58BF1 /* BannerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerTableViewCell.swift; sourceTree = "<group>"; };
+		BBE832B529BD3B4300C58BF1 /* CategoryListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListCollectionViewCell.swift; sourceTree = "<group>"; };
+		BBE832B729BD3B5700C58BF1 /* NewVendorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVendorCollectionViewCell.swift; sourceTree = "<group>"; };
+		BBE832B929BD3B7300C58BF1 /* ServiceDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailTableViewCell.swift; sourceTree = "<group>"; };
+		BBE832BA29BD3B7300C58BF1 /* ServiceDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServiceDetailTableViewCell.xib; sourceTree = "<group>"; };
 		BBEC1C4729B5595E00B58D41 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIColorExtension.swift; path = BookIt/ManagerFiles/UIColorExtension.swift; sourceTree = SOURCE_ROOT; };
 		BBEC1C4929B55A6800B58D41 /* UIAlertViewExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIAlertViewExtention.swift; path = BookIt/ManagerFiles/UIAlertViewExtention.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -82,6 +105,7 @@
 				BBE7432C29B3A6E50087DC74 /* GoogleSignInSwift in Frameworks */,
 				BB9BB52E29AE7CAF0004244E /* FacebookLogin in Frameworks */,
 				BBE7432A29B3A6E50087DC74 /* GoogleSignIn in Frameworks */,
+				BBE832B429BD245800C58BF1 /* SnapKit in Frameworks */,
 				BB9BB52C29AE7CAF0004244E /* FacebookCore in Frameworks */,
 				BB9BB53029AE7CAF0004244E /* FacebookShare in Frameworks */,
 			);
@@ -130,6 +154,7 @@
 			children = (
 				BB9BB53429AE9B290004244E /* LoginUser.swift */,
 				99AB0DD529AD95B300B096BB /* BookIt.xcdatamodeld */,
+				BB95083729BE4A6E00C02D9E /* PlaceObject.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -141,6 +166,7 @@
 				BB0FF27929BAAB5F00E26A71 /* PostService.storyboard */,
 				99AB0DD229AD95B300B096BB /* Main.storyboard */,
 				BBA6356B29BA510500702A62 /* ClientDashBoard.storyboard */,
+				BBC9F83829BFC70900985AAA /* MapView.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -148,6 +174,7 @@
 		99AB0DE529AD95D200B096BB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				BBC9F83A29BFC73400985AAA /* MapView */,
 				BB0FF27529BAA79200E26A71 /* VendorDashBoardViewController.swift */,
 				BB0FF27329BAA78900E26A71 /* PostServiceViewController.swift */,
 				BBA6356D29BA62B800702A62 /* Client */,
@@ -175,6 +202,11 @@
 			children = (
 				BB0FF27029BAA75800E26A71 /* MediaFileCell.swift */,
 				BB0FF26F29BAA75800E26A71 /* MediaFileCell.xib */,
+				BBE832AB29BD20C600C58BF1 /* BannerTableViewCell.swift */,
+				BBE832B529BD3B4300C58BF1 /* CategoryListCollectionViewCell.swift */,
+				BBE832B729BD3B5700C58BF1 /* NewVendorCollectionViewCell.swift */,
+				BBE832B929BD3B7300C58BF1 /* ServiceDetailTableViewCell.swift */,
+				BBE832BA29BD3B7300C58BF1 /* ServiceDetailTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -186,8 +218,19 @@
 				BBA6357029BA62EC00702A62 /* ClientCategoryListViewController.swift */,
 				BBA6357229BA630000702A62 /* ClientProfileViewController.swift */,
 				BBA6357429BA631600702A62 /* ClientBookingViewController.swift */,
+				BB95083329BD950300C02D9E /* ServiceSearchTableViewController.swift */,
+				BB95083529BE2B6500C02D9E /* ConfirmLocationViewController.swift */,
 			);
 			path = Client;
+			sourceTree = "<group>";
+		};
+		BBC9F83A29BFC73400985AAA /* MapView */ = {
+			isa = PBXGroup;
+			children = (
+				BBC9F83B29BFC74900985AAA /* MapViewController.swift */,
+				BBC9F83D29BFC75A00985AAA /* LocationSearchTableViewController.swift */,
+			);
+			path = MapView;
 			sourceTree = "<group>";
 		};
 		BBE7433229B3DD950087DC74 /* ManagerFiles */ = {
@@ -220,6 +263,7 @@
 				BB9BB52F29AE7CAF0004244E /* FacebookShare */,
 				BBE7432929B3A6E50087DC74 /* GoogleSignIn */,
 				BBE7432B29B3A6E50087DC74 /* GoogleSignInSwift */,
+				BBE832B329BD245800C58BF1 /* SnapKit */,
 			);
 			productName = BookIt;
 			productReference = 99AB0DC929AD95B300B096BB /* BookIt.app */;
@@ -252,6 +296,7 @@
 			packageReferences = (
 				BB9BB52A29AE7CAF0004244E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 				BBE7432829B3A6E50087DC74 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				BBE832B229BD245800C58BF1 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 99AB0DCA29AD95B300B096BB /* Products */;
 			projectDirPath = "";
@@ -272,7 +317,9 @@
 				BBA6356C29BA510500702A62 /* ClientDashBoard.storyboard in Resources */,
 				BB0FF27A29BAAB5F00E26A71 /* PostService.storyboard in Resources */,
 				99AB0DDC29AD95B600B096BB /* LaunchScreen.storyboard in Resources */,
+				BBC9F83929BFC70900985AAA /* MapView.storyboard in Resources */,
 				99AB0DD929AD95B600B096BB /* Assets.xcassets in Resources */,
+				BBE832BC29BD3B7300C58BF1 /* ServiceDetailTableViewCell.xib in Resources */,
 				99AB0DD429AD95B300B096BB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,25 +332,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBA6356F29BA62D700702A62 /* ClientHomeViewController.swift in Sources */,
+				BB95083429BD950300C02D9E /* ServiceSearchTableViewController.swift in Sources */,
 				BBE7433429B3DDB00087DC74 /* MediaManager.swift in Sources */,
 				BB0FF27229BAA75800E26A71 /* MediaFileCell.swift in Sources */,
 				BB9BB53529AE9B290004244E /* LoginUser.swift in Sources */,
 				BB0FF26B29BAA73800E26A71 /* BorderTextView.swift in Sources */,
+				BB95083829BE4A6E00C02D9E /* PlaceObject.swift in Sources */,
 				BBA6357129BA62EC00702A62 /* ClientCategoryListViewController.swift in Sources */,
 				BB9BB53729AEA05E0004244E /* EditProfileViewController.swift in Sources */,
+				BBC9F83E29BFC75A00985AAA /* LocationSearchTableViewController.swift in Sources */,
 				99AB0DD129AD95B300B096BB /* ViewController.swift in Sources */,
+				BBE832B829BD3B5700C58BF1 /* NewVendorCollectionViewCell.swift in Sources */,
 				BBEC1C4A29B55A6800B58D41 /* UIAlertViewExtention.swift in Sources */,
 				BB0FF27429BAA78900E26A71 /* PostServiceViewController.swift in Sources */,
 				BB0FF26A29BAA73800E26A71 /* BorderTextField.swift in Sources */,
 				99AB0DCD29AD95B300B096BB /* AppDelegate.swift in Sources */,
 				BBA6357529BA631700702A62 /* ClientBookingViewController.swift in Sources */,
 				BBE7433829B41EE60087DC74 /* UserDefaultsManager.swift in Sources */,
+				BBE832B629BD3B4300C58BF1 /* CategoryListCollectionViewCell.swift in Sources */,
 				99AB0DCF29AD95B300B096BB /* SceneDelegate.swift in Sources */,
+				BB95083629BE2B6500C02D9E /* ConfirmLocationViewController.swift in Sources */,
+				BBE832AC29BD20C600C58BF1 /* BannerTableViewCell.swift in Sources */,
 				BB0FF27629BAA79200E26A71 /* VendorDashBoardViewController.swift in Sources */,
 				BBA6357329BA630000702A62 /* ClientProfileViewController.swift in Sources */,
+				BBE832BB29BD3B7300C58BF1 /* ServiceDetailTableViewCell.swift in Sources */,
 				BBEC1C4829B5595E00B58D41 /* UIColorExtension.swift in Sources */,
 				99AB0DD729AD95B300B096BB /* BookIt.xcdatamodeld in Sources */,
 				BBE7433629B41D440087DC74 /* BiometricIDAuth.swift in Sources */,
+				BBC9F83C29BFC74900985AAA /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,6 +509,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BookIt/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Allow Location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow Location";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -481,6 +539,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BookIt/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Allow Location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow Location";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -539,6 +599,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		BBE832B229BD245800C58BF1 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -566,6 +634,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BBE7432829B3A6E50087DC74 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
+		};
+		BBE832B329BD245800C58BF1 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBE832B229BD245800C58BF1 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 

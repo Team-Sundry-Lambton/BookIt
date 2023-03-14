@@ -60,6 +60,7 @@ class PostServiceViewController: UIViewController {
     var selectedCategory: Category?
     var categoryList = [Category]()
     var mediaList = [MediaFile]()
+    var selectedLocation: Address?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     let categoryPicker = UIPickerView()
@@ -99,7 +100,12 @@ class PostServiceViewController: UIViewController {
         categoryTypeTextField.inputView = categoryPicker
         priceTypeTextField.inputView = priceTypePicker
         // Do any additional setup after loading the view.
-        
+        locationTextField.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.tintColor = UIColor.black
+        self.navigationController?.navigationBar.isHidden = false
     }
     
     func uiViewsDesign() {
@@ -225,7 +231,12 @@ class PostServiceViewController: UIViewController {
     }
     
     @IBAction func confirmBttonAction(_ sender: Any) {
-        saveService()
+        if (UserDefaultsManager.shared.getUserLogin()){
+            saveService()
+            
+        }else{
+            UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Please regiter first to post a service. Please go to profile tab for register", okActionTitle: "OK", view: self)
+        }
     }
     
     @IBAction func equipmentBttonAction(_ sender: Any) {
@@ -236,6 +247,10 @@ class PostServiceViewController: UIViewController {
             equipmentCheckboxImageView.image = #imageLiteral(resourceName: "CheckBoxFill")
             isEquipmentNeed = true
         }
+    }
+    
+    @IBAction func editLocation() {
+        openMapView()
     }
     
     //MARK: - Media Logic
@@ -294,10 +309,14 @@ class PostServiceViewController: UIViewController {
         }
         
         service.cancelPolicy = cancelPolicyTextField.text
-        service.serviceArea = locationTextField.text
+        
+        selectedLocation?.parentService = service
+        
+
         service.price = priceTextField.text
         service.priceType = priceTypeTextField.text
         service.equipment = isEquipmentNeed
+        service.serviceStatus = "new"
         
         for  media in self.mediaList {
             let mediaFile = MediaFile(context: context)
@@ -445,15 +464,10 @@ extension PostServiceViewController : UITextFieldDelegate{
     }
     
 //    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-//        if textField == categoryTypeTextField{
-//            categoryPicker.isHidden = false
-//            return true
-//        }else if textField == priceTypeTextField{
-//            priceTypePicker.isHidden = false
-//            return true
-//        }else{
-//            return true
+//        if textField == locationTextField{
+//            openMapView()
 //        }
+//        return true
 //     }
     
 //    func textFieldDidEndEditing(_ textField: UITextField) {
@@ -499,5 +513,26 @@ extension PostServiceViewController: UIPickerViewDelegate, UIPickerViewDataSourc
             }
         }
         self.view.endEditing(true)
+    }
+}
+
+// MARK: - MapViewDelegate
+extension PostServiceViewController: MapViewDelegate {
+    
+    private func openMapView() {
+        let mapViewController:MapViewController = UIStoryboard(name: "MapView", bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as? MapViewController ?? MapViewController()
+        if let navigator = navigationController {
+            mapViewController.delegate = self
+            mapViewController.selectLocation = true
+            navigator.pushViewController(mapViewController, animated: true)
+        }
+    }
+    
+    func setServiceLocation(place : PlaceObject){
+        selectedLocation = Address(context: context)
+        selectedLocation?.latitude = place.coordinate.latitude
+        selectedLocation?.longitude = place.coordinate.longitude
+        selectedLocation?.address = place.title
+        locationTextField.text = place.title
     }
 }
