@@ -20,6 +20,13 @@ class ClientProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addBorder()
+        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
+        
         if (UserDefaultsManager.shared.getUserLogin()){
             logoutTextLbl.text = "Logout"
             let user =  UserDefaultsManager.shared.getUserData()
@@ -31,14 +38,8 @@ class ClientProfileViewController: UIViewController {
         }else{
             nameLbl.text = ""
             emailLbl.text = ""
-            logoutTextLbl.text = "Register"            
+            logoutTextLbl.text = "Register"
         }
-        addBorder()
-        // Do any additional setup after loading the view.
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = true
     }
     
     func addBorder() {

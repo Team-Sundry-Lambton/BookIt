@@ -49,26 +49,67 @@ class EditProfileViewController: UIViewController {
                 navigationController?.navigationBar.titleTextAttributes = textAttributes
             }
             self.title = "Edit Profile"
-            
+            emailTxt.isUserInteractionEnabled = false
             self.navigationController?.navigationBar.isHidden = false
             newUser = false
             let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
             self.navigationItem.backBarButtonItem = backBarButtonItem
             self.navigationItem.setHidesBackButton(false, animated: true)
             let user =  UserDefaultsManager.shared.getUserData()
-            firstNameTxt.text = user.firstName
-            lastNameTxt.text = user.lastName
-            emailTxt.text = user.email
-            phoneNumberTxt.text = user.contactNumber
-            isVendor = user.isVendor
-            if let path = user.picture{
-                imagePath = path
-                imageView.load(url: path)
+            if(user.isVendor){
+                getVendor()
+            }else{
+                getClient()
             }
+           
         }
         // Do any additional setup after loading the view.
     }
     
+    func getClient(){
+
+        let user =  UserDefaultsManager.shared.getUserData()
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Client")
+        fetchRequest.predicate = NSPredicate(format: "email = %@ ", user.email)
+        do {
+            let users = try context.fetch(fetchRequest)
+            if let user = users.first as? Client{
+                firstNameTxt.text = user.firstName
+                lastNameTxt.text = user.lastName
+                emailTxt.text = user.email
+                phoneNumberTxt.text = user.contactNumber
+                isVendor = false
+                if let imageData = user.picture {
+                    self.imageView.image = UIImage(data: imageData)
+                }
+
+            }
+        } catch {
+            print(error)
+        }
+    }
+    
+    func getVendor(){
+
+        let user =  UserDefaultsManager.shared.getUserData()
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Vendor")
+        fetchRequest.predicate = NSPredicate(format: "email = %@ ", user.email)
+        do {
+            let users = try context.fetch(fetchRequest)
+            if let user = users.first as? Vendor{
+                firstNameTxt.text = user.firstName
+                lastNameTxt.text = user.lastName
+                emailTxt.text = user.email
+                phoneNumberTxt.text = user.contactNumber
+                isVendor = true
+                if let imageData = user.picture {
+                    self.imageView.image = UIImage(data: imageData)
+                }
+            }
+        } catch {
+            print(error)
+        }
+    }
     
     func addBorder() {
         imageView.layer.borderColor = UIColor.white.cgColor
@@ -110,6 +151,11 @@ class EditProfileViewController: UIViewController {
                     UserDefaultsManager.shared.saveUserData(user: loginUser)
                     
                     UIAlertViewExtention.shared.showBasicAlertView(title: "Success",message: "User updated successfully.", okActionTitle: "OK", view: self)
+                    if let navigator = self.navigationController {
+                        navigator.popViewController(animated: true)
+                    }else{
+                        self.dismiss(animated: true)
+                    }
                     
                 }else{
                         setUserObject()

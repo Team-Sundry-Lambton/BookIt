@@ -102,7 +102,7 @@ class ViewController: UIViewController {
         UserDefaultsManager.shared.setIsVendor(status: isVendor)
         if let loginUser = user {
             UserDefaultsManager.shared.setUserLogin(status: true)
-            UserDefaultsManager.shared.saveUserData(user: loginUser)
+            setUser(user: loginUser)            
         }else{
             UserDefaultsManager.shared.removeUserLogin()
             UserDefaultsManager.shared.removeUserData()
@@ -169,7 +169,36 @@ class ViewController: UIViewController {
         }
         return success
     }
+    
+    func setUser(user : LoginUser){
+        var entityName = "Client"
+        if (isVendor){
+            entityName = "Vendor"
+        }
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: entityName)
+        fetchRequest.predicate = NSPredicate(format: "email = %@ ", user.email)
+        do {
+            let users = try context.fetch(fetchRequest)
+            if (isVendor){
+                if let user = users.first as? Vendor{
+                    
+                    let loginUser = LoginUser(firstName: user.firstName ?? "", lastName: user.lastName ?? "", email: user.email ?? "", contactNumber: user.contactNumber ?? "",isVendor: isVendor)
+                    UserDefaultsManager.shared.saveUserData(user: loginUser)
+
+                }
+            }else{
+                if let user = users.first as? Client{
+                    let loginUser = LoginUser(firstName: user.firstName ?? "", lastName: user.lastName ?? "", email: user.email ?? "", contactNumber: user.contactNumber ?? "",isVendor: isVendor)
+                    UserDefaultsManager.shared.saveUserData(user: loginUser)
+                }
+            }
+        } catch {
+            print(error)
+        }
+    }
 }
+
+
 
 // MARK: - Facebook Login
 extension ViewController{
