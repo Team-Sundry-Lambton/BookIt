@@ -31,7 +31,7 @@ class MediaFileCell: UICollectionViewCell {
         }else{
             if let object = file {
                 removeIcon.isHidden = true
-                if let imageData = object.image {
+                if let imageData = object.mediaContent {
                     self.mediaImage.image = UIImage(data: imageData)
                 }
             }

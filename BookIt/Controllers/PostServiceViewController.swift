@@ -61,6 +61,7 @@ class PostServiceViewController: UIViewController {
     var categoryList = [Category]()
     var mediaList = [MediaFile]()
     var selectedLocation: Address?
+    var vendor : Vendor?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     let categoryPicker = UIPickerView()
@@ -224,7 +225,7 @@ class PostServiceViewController: UIViewController {
                 nameLbl.isHidden = true
             }
             
-            if let imageData = mediaList[0].image {
+            if let imageData = mediaList[0].mediaContent {
                 self.serviceImage.image = UIImage(data: imageData)
             }
         }
@@ -263,7 +264,8 @@ class PostServiceViewController: UIViewController {
             if let object = mediaObject {
                 let mediaFile = MediaFile(context: strongSelf.context)
                 mediaFile.path = object.fileName
-                mediaFile.image = object.image?.pngData()
+                mediaFile.mediaContent = object.image?.pngData()
+                mediaFile.isImage = true
                 strongSelf.mediaList.append(mediaFile)
                 strongSelf.saveSingleCoreData()
                 strongSelf.mediaFileCollectionView.reloadData()
@@ -310,21 +312,38 @@ class PostServiceViewController: UIViewController {
         
         service.cancelPolicy = cancelPolicyTextField.text
         
-        selectedLocation?.parentService = service
-        
+        selectedLocation?.parentService = service        
 
         service.price = priceTextField.text
         service.priceType = priceTypeTextField.text
         service.equipment = isEquipmentNeed
         service.serviceStatus = "new"
+        getVendor()
+        service.parent_Vendor = vendor
         
         for  media in self.mediaList {
             let mediaFile = MediaFile(context: context)
             mediaFile.parent_Service = service
-            mediaFile.image = media.image
+            mediaFile.mediaContent = media.mediaContent
             mediaFile.path = media.path
+            mediaFile.isImage = media.isImage
         }
         saveAllContextCoreData()
+    }
+    
+    func getVendor(){
+
+        let user =  UserDefaultsManager.shared.getUserData()
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Vendor")
+        fetchRequest.predicate = NSPredicate(format: "email = %@ ", user.email)
+        do {
+            let users = try context.fetch(fetchRequest)
+            if let user = users.first as? Vendor{
+                vendor = user
+            }
+        } catch {
+            print(error)
+        }
     }
     
     private func deleteMediaFile(mediaFile: MediaFile) {

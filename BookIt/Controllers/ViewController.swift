@@ -102,7 +102,7 @@ class ViewController: UIViewController {
         UserDefaultsManager.shared.setIsVendor(status: isVendor)
         if let loginUser = user {
             UserDefaultsManager.shared.setUserLogin(status: true)
-            UserDefaultsManager.shared.saveUserData(user: loginUser)
+            setUser(user: loginUser)            
         }else{
             UserDefaultsManager.shared.removeUserLogin()
             UserDefaultsManager.shared.removeUserData()
@@ -169,7 +169,36 @@ class ViewController: UIViewController {
         }
         return success
     }
+    
+    func setUser(user : LoginUser){
+        var entityName = "Client"
+        if (isVendor){
+            entityName = "Vendor"
+        }
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: entityName)
+        fetchRequest.predicate = NSPredicate(format: "email = %@ ", user.email)
+        do {
+            let users = try context.fetch(fetchRequest)
+            if (isVendor){
+                if let user = users.first as? Vendor{
+                    
+                    let loginUser = LoginUser(firstName: user.firstName ?? "", lastName: user.lastName ?? "", email: user.email ?? "", contactNumber: user.contactNumber ?? "",isVendor: isVendor)
+                    UserDefaultsManager.shared.saveUserData(user: loginUser)
+
+                }
+            }else{
+                if let user = users.first as? Client{
+                    let loginUser = LoginUser(firstName: user.firstName ?? "", lastName: user.lastName ?? "", email: user.email ?? "", contactNumber: user.contactNumber ?? "",isVendor: isVendor)
+                    UserDefaultsManager.shared.saveUserData(user: loginUser)
+                }
+            }
+        } catch {
+            print(error)
+        }
+    }
 }
+
+
 
 // MARK: - Facebook Login
 extension ViewController{
@@ -283,13 +312,13 @@ extension ViewController {
     func bioMetricVerification(){
         biometricIDAuth.canEvaluate { (canEvaluate, _, canEvaluateError) in
             guard canEvaluate else {
-                UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message: canEvaluateError?.localizedDescription ?? "Face ID/Touch ID may not be configured", okActionTitle: "OK", view: self)
+//                UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message: canEvaluateError?.localizedDescription ?? "Face ID/Touch ID may not be configured", okActionTitle: "OK", view: self)
                 return
             }
             
             biometricIDAuth.evaluate { [weak self] (success, error) in
                 guard success else {
-                    UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message: canEvaluateError?.localizedDescription ?? "Face ID/Touch ID may not be configured", okActionTitle: "OK", view: self ?? ViewController())
+//                    UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message: canEvaluateError?.localizedDescription ?? "Face ID/Touch ID may not be configured", okActionTitle: "OK", view: self ?? ViewController())
                     return
                 }
                 
