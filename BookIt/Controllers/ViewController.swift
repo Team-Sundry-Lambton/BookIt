@@ -283,13 +283,13 @@ extension ViewController {
     func bioMetricVerification(){
         biometricIDAuth.canEvaluate { (canEvaluate, _, canEvaluateError) in
             guard canEvaluate else {
-                UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message: canEvaluateError?.localizedDescription ?? "Face ID/Touch ID may not be configured", okActionTitle: "OK", view: self)
+//                UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message: canEvaluateError?.localizedDescription ?? "Face ID/Touch ID may not be configured", okActionTitle: "OK", view: self)
                 return
             }
             
             biometricIDAuth.evaluate { [weak self] (success, error) in
                 guard success else {
-                    UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message: canEvaluateError?.localizedDescription ?? "Face ID/Touch ID may not be configured", okActionTitle: "OK", view: self ?? ViewController())
+//                    UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message: canEvaluateError?.localizedDescription ?? "Face ID/Touch ID may not be configured", okActionTitle: "OK", view: self ?? ViewController())
                     return
                 }
                 

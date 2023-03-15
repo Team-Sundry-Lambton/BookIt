@@ -42,6 +42,15 @@ class EditProfileViewController: UIViewController {
                 imageView.load(url: path)
             }
         }else{
+            navigationController?.navigationBar.tintColor = UIColor.white
+            
+            if var textAttributes = navigationController?.navigationBar.titleTextAttributes {
+                textAttributes[NSAttributedString.Key.foregroundColor] = UIColor.white
+                navigationController?.navigationBar.titleTextAttributes = textAttributes
+            }
+            self.title = "Edit Profile"
+            
+            self.navigationController?.navigationBar.isHidden = false
             newUser = false
             let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
             self.navigationItem.backBarButtonItem = backBarButtonItem

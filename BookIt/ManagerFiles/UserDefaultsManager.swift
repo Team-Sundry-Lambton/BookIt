@@ -50,7 +50,7 @@ class UserDefaultsManager : NSObject{
     }
     
     func getIsVendor() -> Bool{
-        return defaults.bool(forKey: "UserLogin")
+        return defaults.bool(forKey: "Vender")
     }
     
     func setFaceIdEnable(status : Bool){
@@ -59,5 +59,13 @@ class UserDefaultsManager : NSObject{
     
     func getFaceIdEnable() -> Bool{
         return defaults.bool(forKey: "EnableFaceID")
+    }
+    
+    func setNotificationEnable(status : Bool){
+        defaults.set(status, forKey: "EnableNotification")
+    }
+    
+    func getNotificationEnable() -> Bool{
+        return defaults.bool(forKey: "EnableNotification")
     }
 }
