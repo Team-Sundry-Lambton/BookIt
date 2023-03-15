@@ -225,7 +225,7 @@ class PostServiceViewController: UIViewController {
                 nameLbl.isHidden = true
             }
             
-            if let imageData = mediaList[0].image {
+            if let imageData = mediaList[0].mediaContent {
                 self.serviceImage.image = UIImage(data: imageData)
             }
         }
@@ -264,7 +264,8 @@ class PostServiceViewController: UIViewController {
             if let object = mediaObject {
                 let mediaFile = MediaFile(context: strongSelf.context)
                 mediaFile.path = object.fileName
-                mediaFile.image = object.image?.pngData()
+                mediaFile.mediaContent = object.image?.pngData()
+                mediaFile.isImage = true
                 strongSelf.mediaList.append(mediaFile)
                 strongSelf.saveSingleCoreData()
                 strongSelf.mediaFileCollectionView.reloadData()
@@ -323,8 +324,9 @@ class PostServiceViewController: UIViewController {
         for  media in self.mediaList {
             let mediaFile = MediaFile(context: context)
             mediaFile.parent_Service = service
-            mediaFile.image = media.image
+            mediaFile.mediaContent = media.mediaContent
             mediaFile.path = media.path
+            mediaFile.isImage = media.isImage
         }
         saveAllContextCoreData()
     }
