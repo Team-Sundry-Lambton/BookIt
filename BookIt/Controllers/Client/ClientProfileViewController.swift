@@ -90,12 +90,20 @@ class ClientProfileViewController: UIViewController {
     }
     
     @IBAction func logOut() {
-        UserDefaultsManager.shared.removeUserLogin()
-        UserDefaultsManager.shared.removeUserData()
         
-        if let navigator = navigationController {
-            navigator.popViewController(animated: true)
+        let alert = UIAlertController(title: "Logout", message: "Are you sure you want to logout?", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { (action) in
+            UserDefaultsManager.shared.removeUserLogin()
+            UserDefaultsManager.shared.removeUserData()
+            
+            if let navigator = self.navigationController {
+                navigator.popViewController(animated: true)
+            }
         }
+        let noAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        self.present(alert, animated: true, completion: nil)    
     }
     
     
