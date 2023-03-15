@@ -36,6 +36,15 @@ class ClientCategoryListViewController: UIViewController {
         super.viewDidLoad()
         
         // Fetch categories from Core Data
+        loadCategories()
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(UINib(nibName: "CategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CategoryCollectionViewCell")
+
+        // Do any additional setup after loading the view.
+    }
+    
+    func loadCategories() {
         let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest()
         let count = try! context.count(for: fetchRequest)
         
@@ -46,7 +55,7 @@ class ClientCategoryListViewController: UIViewController {
                 category.image = UIImage(named: categoryData["imageName"]!)?.pngData()
                 // If the image is not found, you can use a placeholder image or set the image to nil
             }
-
+            
             // Save the changes to Core Data
             try! context.save()
         }
@@ -58,13 +67,6 @@ class ClientCategoryListViewController: UIViewController {
         } catch {
             print("Error loading categories \(error.localizedDescription)")
         }
-        
-        
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.register(UINib(nibName: "CategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CategoryCollectionViewCell")
-
-        // Do any additional setup after loading the view.
     }
     
 }
