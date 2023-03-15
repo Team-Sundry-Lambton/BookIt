@@ -46,11 +46,11 @@ class UserDefaultsManager : NSObject{
     }
     
     func setIsVendor(status : Bool){
-        defaults.set(status, forKey: "Vender")
+        defaults.set(status, forKey: "Vendor")
     }
     
     func getIsVendor() -> Bool{
-        return defaults.bool(forKey: "Vender")
+        return defaults.bool(forKey: "Vendor")
     }
     
     func setFaceIdEnable(status : Bool){
