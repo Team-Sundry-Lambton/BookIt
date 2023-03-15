@@ -39,6 +39,7 @@
         <relationship name="address" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Address" inverseName="parentService" inverseEntity="Address"/>
         <relationship name="medias" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MediaFile" inverseName="parent_Service" inverseEntity="MediaFile"/>
         <relationship name="parent_Category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="services" inverseEntity="Category"/>
+        <relationship name="parent_Vendor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Vendor" inverseName="services" inverseEntity="Vendor"/>
     </entity>
     <entity name="Vendor" representedClassName="Vendor" syncable="YES" codeGenerationType="class">
         <attribute name="bannerURL" optional="YES" attributeType="String"/>
@@ -48,5 +49,6 @@
         <attribute name="lastName" optional="YES" attributeType="String"/>
         <attribute name="picture" optional="YES" attributeType="Binary"/>
         <relationship name="address" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Address"/>
+        <relationship name="services" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Service" inverseName="parent_Vendor" inverseEntity="Service"/>
     </entity>
 </model>
