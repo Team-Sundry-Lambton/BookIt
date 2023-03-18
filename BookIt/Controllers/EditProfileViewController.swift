@@ -11,6 +11,7 @@ import CoreData
 class EditProfileViewController: UIViewController {
 
     var loginUser : LoginUser?
+    weak var delegate: ViewController!
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var phoneNumberTxt: UITextField!
@@ -39,8 +40,10 @@ class EditProfileViewController: UIViewController {
             isVendor = user.isVendor
             if let path = user.picture{
                 imagePath = path
-                imageView.load(url: path)
+                imageView.downloaded(from: path)
             }
+            emailTxt.isUserInteractionEnabled = true
+            emailTxt.isEnabled = true
         }else{
             navigationController?.navigationBar.tintColor = UIColor.white
             
@@ -50,6 +53,7 @@ class EditProfileViewController: UIViewController {
             }
             self.title = "Edit Profile"
             emailTxt.isUserInteractionEnabled = false
+            emailTxt.isEnabled = false
             self.navigationController?.navigationBar.isHidden = false
             newUser = false
             let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
@@ -64,6 +68,12 @@ class EditProfileViewController: UIViewController {
            
         }
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if newUser {
+            delegate?.openDashBoard(user : loginUser)
+        }
     }
     
     func getClient(){
@@ -146,8 +156,9 @@ class EditProfileViewController: UIViewController {
             
                 if (checkUserInDB(user: loginUser)){
                     deleteUser(user: loginUser)
-                    setUserObject()
-                    saveUser()
+                    setUserObject(isEdit: true)
+
+                    
                     UserDefaultsManager.shared.saveUserData(user: loginUser)
                     
                     UIAlertViewExtention.shared.showBasicAlertView(title: "Success",message: "User updated successfully.", okActionTitle: "OK", view: self)
@@ -158,22 +169,22 @@ class EditProfileViewController: UIViewController {
                     }
                     
                 }else{
-                        setUserObject()
-                        saveUser()
-                        if newUser {
-                            loadDashBoard(user: loginUser)
-                        }else{
+                        setUserObject(isEdit: false)
+                    self.loginUser = loginUser
+//                        if newUser {
+//                            loadDashBoard(user: loginUser)
+//                        }else{
                             if let navigator = self.navigationController {
                                 navigator.popViewController(animated: true)
                             }else{
                                 self.dismiss(animated: true)
                             }
-                        }
+//                        }
                 }
         }
     }
     
-    func setUserObject(){
+    func setUserObject(isEdit : Bool){
         var picData : Data?
         do {
             if let path = imagePath {
@@ -195,6 +206,12 @@ class EditProfileViewController: UIViewController {
             vendor.picture = picData
             vendor.contactNumber = phoneNumberTxt.text
             vendor.bannerURL = nil
+            saveUser()
+            if(isEdit){
+                InitialDataDownloadManager.shared.UpdateVendorData(vendor: vendor)
+            }else{
+                InitialDataDownloadManager.shared.AddVendorData(vendor: vendor)
+            }
         }else{
             let client = Client(context: context)
             client.firstName = firstNameTxt.text
@@ -203,6 +220,12 @@ class EditProfileViewController: UIViewController {
             client.picture = picData
             client.contactNumber = phoneNumberTxt.text
             client.isPremium = false
+            saveUser()
+            if(isEdit){
+                InitialDataDownloadManager.shared.UpdateClientData(client: client)
+            }else{
+                InitialDataDownloadManager.shared.AddClientData(client: client)
+            }
         }
     }
     
@@ -217,7 +240,7 @@ class EditProfileViewController: UIViewController {
         fetchRequest.predicate = NSPredicate(format: "email = %@ ", user.email)
         do {
             let user = try context.fetch(fetchRequest)
-            if user.count == 1 {
+            if user.count >= 1 {
                 success = true
             }
         } catch {
@@ -267,8 +290,8 @@ class EditProfileViewController: UIViewController {
             UserDefaultsManager.shared.saveUserData(user: loginUser)
         }
         
- 
-        if (isVendor){
+        InitialDataDownloadManager.shared.DownloadAllData()
+   /*     if (isVendor){
             let storyboard = UIStoryboard(name: "VendorDashBoard", bundle: nil)
             let mainTabBarController = storyboard.instantiateViewController(identifier: "VendorTabBarController")
             mainTabBarController.modalPresentationStyle = .fullScreen
@@ -303,7 +326,9 @@ class EditProfileViewController: UIViewController {
             //         navigator.pushViewController(viewController, animated: true)
             //     }
             // }
-        }
+        }*/
+        
+        navigationController?.popViewController(animated: true)
         
     }
     
@@ -335,16 +360,37 @@ class EditProfileViewController: UIViewController {
 
 
 }
+//extension UIImageView {
+//    func load(url: URL) {
+//        DispatchQueue.global().async { [weak self] in
+//            if let data = try? Data(contentsOf: url) {
+//                if let image = UIImage(data: data) {
+//                    DispatchQueue.main.async {
+//                        self?.image = image
+//                    }
+//                }
+//            }
+//        }
+//    }
+//}
+
 extension UIImageView {
-    func load(url: URL) {
-        DispatchQueue.global().async { [weak self] in
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self?.image = image
-                    }
-                }
+    func downloaded(from url: URL, contentMode mode: ContentMode = .scaleAspectFit) {
+        contentMode = mode
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard
+                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                let data = data, error == nil,
+                let image = UIImage(data: data)
+                else { return }
+            DispatchQueue.main.async() { [weak self] in
+                self?.image = image
             }
-        }
+        }.resume()
+    }
+    func downloaded(from link: String, contentMode mode: ContentMode = .scaleAspectFit) {
+        guard let url = URL(string: link) else { return }
+        downloaded(from: url, contentMode: mode)
     }
 }

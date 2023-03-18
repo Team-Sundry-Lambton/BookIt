@@ -263,9 +263,8 @@ class PostServiceViewController: UIViewController {
             
             if let object = mediaObject {
                 let mediaFile = MediaFile(context: strongSelf.context)
-                mediaFile.path = object.fileName
+                mediaFile.mediaName = object.fileName
                 mediaFile.mediaContent = object.image?.pngData()
-                mediaFile.isImage = true
                 strongSelf.mediaList.append(mediaFile)
                 strongSelf.saveSingleCoreData()
                 strongSelf.mediaFileCollectionView.reloadData()
@@ -317,18 +316,22 @@ class PostServiceViewController: UIViewController {
         service.price = priceTextField.text
         service.priceType = priceTypeTextField.text
         service.equipment = isEquipmentNeed
-        service.serviceStatus = "new"
         getVendor()
         service.parent_Vendor = vendor
         
-        for  media in self.mediaList {
+        for media in self.mediaList {
             let mediaFile = MediaFile(context: context)
             mediaFile.parent_Service = service
             mediaFile.mediaContent = media.mediaContent
-            mediaFile.path = media.path
-            mediaFile.isImage = media.isImage
+            mediaFile.mediaName = media.mediaName
+        //    InitialDataDownloadManager.shared.AddMediaData(media: mediaFile)
         }
         saveAllContextCoreData()
+//        if let address = selectedLocation{
+//            InitialDataDownloadManager.shared.AddAddressData(address: address)
+//        }
+        InitialDataDownloadManager.shared.AddServiceData(service: service)
+
     }
     
     func getVendor(){
@@ -549,8 +552,8 @@ extension PostServiceViewController: MapViewDelegate {
     
     func setServiceLocation(place : PlaceObject){
         selectedLocation = Address(context: context)
-        selectedLocation?.latitude = place.coordinate.latitude
-        selectedLocation?.longitude = place.coordinate.longitude
+        selectedLocation?.addressLatitude = place.coordinate.latitude
+        selectedLocation?.addressLongitude = place.coordinate.longitude
         selectedLocation?.address = place.title
         locationTextField.text = place.title
     }

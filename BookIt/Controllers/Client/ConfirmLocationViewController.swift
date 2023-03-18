@@ -79,8 +79,8 @@ class ConfirmLocationViewController: UIViewController {
     //MARK: - Core data interaction methods
     func setLocationObject(){
         var selectedLocation = Address(context: context)
-        selectedLocation.latitude = currentAddress?.coordinate.latitude ?? 0
-        selectedLocation.longitude = currentAddress?.coordinate.longitude ?? 0
+        selectedLocation.addressLatitude = currentAddress?.coordinate.latitude ?? 0
+        selectedLocation.addressLongitude = currentAddress?.coordinate.longitude ?? 0
         selectedLocation.address = currentAddress?.title
         selectedLocation.clientAddress = client
     }
@@ -122,7 +122,7 @@ class ConfirmLocationViewController: UIViewController {
         }
         do {
             let location = try context.fetch(fetchRequest)
-            if location.count == 1 {
+            if location.count >= 1 {
                 success = true
             }
         } catch {
@@ -166,8 +166,8 @@ extension ConfirmLocationViewController: MapViewDelegate {
     
     func setServiceLocation(place : PlaceObject){
         selectedLocation = Address(context: context)
-        selectedLocation?.latitude = place.coordinate.latitude
-        selectedLocation?.longitude = place.coordinate.longitude
+        selectedLocation?.addressLatitude = place.coordinate.latitude
+        selectedLocation?.addressLongitude = place.coordinate.longitude
         selectedLocation?.address = place.title
         addressLbl.text = place.title
     }
