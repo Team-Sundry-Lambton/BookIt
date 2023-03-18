@@ -117,8 +117,8 @@ extension ClientCategoryListViewController: UICollectionViewDelegate, UICollecti
         // Handle the user's tap on the cell here
         if let viewController = UIStoryboard(name: "ClientDashBoard", bundle: nil).instantiateViewController(withIdentifier: "CategoryServiceListTableViewController") as? CategoryServiceListTableViewController {
             if let navigator = navigationController {
-                let categoryName = categories[indexPath.item].name
-                viewController.categoryName = categoryName
+                let selectedCategory = categories[indexPath.item]
+                viewController.selectedCategory = selectedCategory
                 navigator.pushViewController(viewController, animated: true)
                 
             }

@@ -15,7 +15,8 @@ class CategoryServiceListTableViewController: UITableViewController {
     let search = UISearchController(searchResultsController: nil)
     var searchText = ""
     var isFiltered = false
-    var categoryName: String?
+    var selectedCategory: Category?
+    @IBOutlet weak var emptyView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +34,13 @@ class CategoryServiceListTableViewController: UITableViewController {
         tableView.tableHeaderView = search.searchBar
         self.definesPresentationContext = true
         
+        tableView.insertSubview(emptyView, at: 1)
+        emptyView.isHidden = true
+        
         loadServices()
         customDesign()
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,15 +50,16 @@ class CategoryServiceListTableViewController: UITableViewController {
     
     func customDesign(){
         let titleLabel = UILabel()
-        titleLabel.text = categoryName
+        titleLabel.text = selectedCategory!.name
         titleLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
         titleLabel.sizeToFit()
         self.navigationItem.titleView = titleLabel
-    }
+        
+        }
     
     func loadServices(){
         let request: NSFetchRequest<Service> = Service.fetchRequest()
-        let categoryPredicate = NSPredicate(format: "parent_Category.name == %@", "Cleaning")
+        let categoryPredicate = NSPredicate(format: "parent_Category.name == %@", selectedCategory!.name!)
         let predicate = NSPredicate(format: "serviceTitle CONTAINS[cd] %@ OR serviceDescription CONTAINS[cd] %@", searchText, searchText)
         request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate,predicate])
         request.sortDescriptors = [NSSortDescriptor(key: "serviceTitle", ascending: true)]
@@ -73,7 +80,10 @@ class CategoryServiceListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return serviceList.count
+        
+        let numRows = serviceList.count // determine number of rows to display
+        emptyView.isHidden = numRows != 0
+        return numRows
     }
 
     
