@@ -16,8 +16,9 @@ class CategoryListCollectionViewCell: UICollectionViewCell {
             self.serviceName.text = title
         }
         
-        if let imageData = category.image {
-            self.serviceImage.image = UIImage(data: imageData)
+        if let imageData = category.picture {
+            self.serviceImage.downloaded(from: imageData)
+       //     self.serviceImage.image = UIImage(data: imageData)
         }
     }
 }

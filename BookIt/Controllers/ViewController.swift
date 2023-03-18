@@ -90,6 +90,7 @@ class ViewController: UIViewController {
             if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EditProfileViewController") as? EditProfileViewController {
                 if let navigator = navigationController {
                     viewController.loginUser = user
+                    viewController.delegate = self
                     navigator.pushViewController(viewController, animated: true)
                 }
             }
@@ -114,6 +115,7 @@ class ViewController: UIViewController {
 //            self.navigationController?.pushViewController(nextViewController, animated: true)
 ////            self.present(nextViewController, animated:true, completion:nil)
 //        }
+        InitialDataDownloadManager.shared.DownloadAllData()
         if (isVendor){
             let storyboard = UIStoryboard(name: "VendorDashBoard", bundle: nil)
             let mainTabBarController = storyboard.instantiateViewController(identifier: "VendorTabBarController")
@@ -161,7 +163,7 @@ class ViewController: UIViewController {
         fetchRequest.predicate = NSPredicate(format: "email = %@ ", user.email)
         do {
             let user = try context.fetch(fetchRequest)
-            if user.count == 1 {
+            if user.count >= 1 {
                 success = true
             }
         } catch {
@@ -327,5 +329,11 @@ extension ViewController {
                 UIAlertViewExtention.shared.showBasicAlertView(title: "Success", message:  "You have a free pass, now", okActionTitle: "OK", view: self ?? ViewController())
             }
         }
+    }
+}
+
+extension ViewController {
+    func openDashBoard(user : LoginUser?) {
+        self.loadDashBoard(user: user)
     }
 }
