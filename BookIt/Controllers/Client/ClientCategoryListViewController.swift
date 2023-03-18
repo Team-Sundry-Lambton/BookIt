@@ -44,6 +44,10 @@ class ClientCategoryListViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
     func loadCategories() {
         let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest()
         let count = try! context.count(for: fetchRequest)
@@ -111,7 +115,15 @@ extension ClientCategoryListViewController: UICollectionViewDelegate, UICollecti
         })
         
         // Handle the user's tap on the cell here
-        print("Cell at index path \(indexPath.row) was tapped")
+        if let viewController = UIStoryboard(name: "ClientDashBoard", bundle: nil).instantiateViewController(withIdentifier: "CategoryServiceListTableViewController") as? CategoryServiceListTableViewController {
+            if let navigator = navigationController {
+                let selectedCategory = categories[indexPath.item]
+                viewController.selectedCategory = selectedCategory
+                navigator.pushViewController(viewController, animated: true)
+                
+            }
+        }
+        
     }
 
 }
