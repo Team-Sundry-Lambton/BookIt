@@ -14,6 +14,7 @@
 		99AB0DD729AD95B300B096BB /* BookIt.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 99AB0DD529AD95B300B096BB /* BookIt.xcdatamodeld */; };
 		99AB0DD929AD95B600B096BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99AB0DD829AD95B600B096BB /* Assets.xcassets */; };
 		99AB0DDC29AD95B600B096BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99AB0DDA29AD95B600B096BB /* LaunchScreen.storyboard */; };
+		B4789BC529C528CE004020E7 /* CategoryServiceListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4789BC429C528CE004020E7 /* CategoryServiceListTableViewController.swift */; };
 		B4D56B5C29C105B9005A2C63 /* CategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4D56B5B29C105B9005A2C63 /* CategoryCollectionViewCell.xib */; };
 		B4D56B5E29C10639005A2C63 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D56B5D29C10639005A2C63 /* CategoryCollectionViewCell.swift */; };
 		BB0FF26A29BAA73800E26A71 /* BorderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0FF26829BAA73800E26A71 /* BorderTextField.swift */; };
@@ -67,6 +68,7 @@
 		99AB0DD829AD95B600B096BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		99AB0DDB29AD95B600B096BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		99AB0DDD29AD95B600B096BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B4789BC429C528CE004020E7 /* CategoryServiceListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryServiceListTableViewController.swift; sourceTree = "<group>"; };
 		B4D56B5B29C105B9005A2C63 /* CategoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCollectionViewCell.xib; sourceTree = "<group>"; };
 		B4D56B5D29C10639005A2C63 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		BB0FF26829BAA73800E26A71 /* BorderTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderTextField.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				BBA6357429BA631600702A62 /* ClientBookingViewController.swift */,
 				BB95083329BD950300C02D9E /* ServiceSearchTableViewController.swift */,
 				BB95083529BE2B6500C02D9E /* ConfirmLocationViewController.swift */,
+				B4789BC429C528CE004020E7 /* CategoryServiceListTableViewController.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 				BBA6356F29BA62D700702A62 /* ClientHomeViewController.swift in Sources */,
 				BB7A1DD129C0C87E003CB894 /* VendorProfileViewController.swift in Sources */,
 				BB95083429BD950300C02D9E /* ServiceSearchTableViewController.swift in Sources */,
+				B4789BC529C528CE004020E7 /* CategoryServiceListTableViewController.swift in Sources */,
 				BBE7433429B3DDB00087DC74 /* MediaManager.swift in Sources */,
 				BB7A1DCF29C0C870003CB894 /* VendorHomeViewController.swift in Sources */,
 				BB0FF27229BAA75800E26A71 /* MediaFileCell.swift in Sources */,
