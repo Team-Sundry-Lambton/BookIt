@@ -15,16 +15,47 @@
                     <view key="view" contentMode="scaleToFill" id="1ra-yE-N7E">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l3N-K7-4ka" customClass="CustomSegmentedControl" customModule="BookIt">
+                                <rect key="frame" x="0.0" y="59" width="393" height="42"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="Ymd-7H-V4b"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="hrv-yK-fZf">
+                                <rect key="frame" x="0.0" y="106" width="393" height="663"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="s4J-59-9zd" id="kQf-Ik-HiA"/>
+                                    <outlet property="delegate" destination="s4J-59-9zd" id="DOM-4s-oIf"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="V1c-xf-RvU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="hrv-yK-fZf" firstAttribute="trailing" secondItem="V1c-xf-RvU" secondAttribute="trailing" id="F3Q-WU-6hl"/>
+                            <constraint firstItem="l3N-K7-4ka" firstAttribute="trailing" secondItem="V1c-xf-RvU" secondAttribute="trailing" id="Mcb-WJ-PJx"/>
+                            <constraint firstItem="l3N-K7-4ka" firstAttribute="leading" secondItem="V1c-xf-RvU" secondAttribute="leading" id="Tcl-fd-cee"/>
+                            <constraint firstItem="hrv-yK-fZf" firstAttribute="bottom" secondItem="V1c-xf-RvU" secondAttribute="bottom" id="c7N-oi-ewj"/>
+                            <constraint firstItem="l3N-K7-4ka" firstAttribute="top" secondItem="V1c-xf-RvU" secondAttribute="top" id="glI-CO-czy"/>
+                            <constraint firstItem="hrv-yK-fZf" firstAttribute="leading" secondItem="V1c-xf-RvU" secondAttribute="leading" id="kYV-hU-JZn"/>
+                            <constraint firstItem="hrv-yK-fZf" firstAttribute="top" secondItem="l3N-K7-4ka" secondAttribute="bottom" constant="5" id="lHQ-2x-4JO"/>
+                            <constraint firstItem="hrv-yK-fZf" firstAttribute="top" secondItem="l3N-K7-4ka" secondAttribute="bottom" constant="5" id="wOO-jL-bRk"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="HomeTabIcon" id="qps-Tt-0s7">
                         <color key="badgeColor" red="0.23921568630000001" green="0.38823529410000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBarItem>
+                    <connections>
+                        <outlet property="interfaceSegmented" destination="l3N-K7-4ka" id="bEY-3U-d4Q"/>
+                        <outlet property="tableView" destination="hrv-yK-fZf" id="MZE-p2-Xp1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b7J-UK-pDc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1213" y="231"/>
+            <point key="canvasLocation" x="1212.9770992366412" y="230.98591549295776"/>
         </scene>
         <!--My Services-->
         <scene sceneID="8Sr-PY-kYo">
