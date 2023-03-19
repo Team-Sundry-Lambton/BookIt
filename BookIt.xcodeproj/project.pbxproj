@@ -11,6 +11,11 @@
 		995B2F7729C68C8700745992 /* ServiceStatusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 995B2F7529C68C8700745992 /* ServiceStatusTableViewCell.xib */; };
 		996588BA29C79F1400A7D796 /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996588B929C79F1400A7D796 /* CustomSegmentedControl.swift */; };
 		996588BC29C7B0E100A7D796 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996588BB29C7B0E100A7D796 /* Date+Extension.swift */; };
+		996588BE29C7B87D00A7D796 /* FilterPopup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 996588BD29C7B87D00A7D796 /* FilterPopup.storyboard */; };
+		996588C029C7BE6A00A7D796 /* GradientColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996588BF29C7BE6A00A7D796 /* GradientColorExtension.swift */; };
+		996588C229C7C01B00A7D796 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996588C129C7C01B00A7D796 /* BaseButton.swift */; };
+		996588C429C7C05400A7D796 /* BaseCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996588C329C7C05400A7D796 /* BaseCustomButton.swift */; };
+		996588C829C7D03500A7D796 /* FilterPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996588C729C7D03500A7D796 /* FilterPopupViewController.swift */; };
 		99AB0DCD29AD95B300B096BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AB0DCC29AD95B300B096BB /* AppDelegate.swift */; };
 		99AB0DCF29AD95B300B096BB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AB0DCE29AD95B300B096BB /* SceneDelegate.swift */; };
 		99AB0DD129AD95B300B096BB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AB0DD029AD95B300B096BB /* ViewController.swift */; };
@@ -67,6 +72,11 @@
 		995B2F7529C68C8700745992 /* ServiceStatusTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServiceStatusTableViewCell.xib; sourceTree = "<group>"; };
 		996588B929C79F1400A7D796 /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 		996588BB29C7B0E100A7D796 /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		996588BD29C7B87D00A7D796 /* FilterPopup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FilterPopup.storyboard; sourceTree = "<group>"; };
+		996588BF29C7BE6A00A7D796 /* GradientColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientColorExtension.swift; sourceTree = "<group>"; };
+		996588C129C7C01B00A7D796 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
+		996588C329C7C05400A7D796 /* BaseCustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCustomButton.swift; sourceTree = "<group>"; };
+		996588C729C7D03500A7D796 /* FilterPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPopupViewController.swift; sourceTree = "<group>"; };
 		99AB0DC929AD95B300B096BB /* BookIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99AB0DCC29AD95B300B096BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99AB0DCE29AD95B300B096BB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -186,6 +196,7 @@
 				BBA6356B29BA510500702A62 /* ClientDashBoard.storyboard */,
 				BBC9F83829BFC70900985AAA /* MapView.storyboard */,
 				B4D56B5B29C105B9005A2C63 /* CategoryCollectionViewCell.xib */,
+				996588BD29C7B87D00A7D796 /* FilterPopup.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -199,6 +210,7 @@
 				BBA6356D29BA62B800702A62 /* Client */,
 				99AB0DD029AD95B300B096BB /* ViewController.swift */,
 				BB9BB53629AEA05E0004244E /* EditProfileViewController.swift */,
+				996588C729C7D03500A7D796 /* FilterPopupViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -215,6 +227,9 @@
 				BBEC1C4929B55A6800B58D41 /* UIAlertViewExtention.swift */,
 				996588B929C79F1400A7D796 /* CustomSegmentedControl.swift */,
 				B4D56B5D29C10639005A2C63 /* CategoryCollectionViewCell.swift */,
+				996588BF29C7BE6A00A7D796 /* GradientColorExtension.swift */,
+				996588C129C7C01B00A7D796 /* BaseButton.swift */,
+				996588C329C7C05400A7D796 /* BaseCustomButton.swift */,
 			);
 			path = "Support Files";
 			sourceTree = "<group>";
@@ -358,6 +373,7 @@
 				BBE832BC29BD3B7300C58BF1 /* ServiceDetailTableViewCell.xib in Resources */,
 				995B2F7729C68C8700745992 /* ServiceStatusTableViewCell.xib in Resources */,
 				99AB0DD429AD95B300B096BB /* Main.storyboard in Resources */,
+				996588BE29C7B87D00A7D796 /* FilterPopup.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,15 +402,19 @@
 				99AB0DD129AD95B300B096BB /* ViewController.swift in Sources */,
 				BBE832B829BD3B5700C58BF1 /* NewVendorCollectionViewCell.swift in Sources */,
 				996588BC29C7B0E100A7D796 /* Date+Extension.swift in Sources */,
+				996588C029C7BE6A00A7D796 /* GradientColorExtension.swift in Sources */,
+				996588C829C7D03500A7D796 /* FilterPopupViewController.swift in Sources */,
 				BBEC1C4A29B55A6800B58D41 /* UIAlertViewExtention.swift in Sources */,
 				BB0FF26A29BAA73800E26A71 /* BorderTextField.swift in Sources */,
 				BB7A1DD329C0C88D003CB894 /* VendorServicesViewController.swift in Sources */,
 				99AB0DCD29AD95B300B096BB /* AppDelegate.swift in Sources */,
 				BB7A1DD929C1023B003CB894 /* PostServiceViewController.swift in Sources */,
+				996588C429C7C05400A7D796 /* BaseCustomButton.swift in Sources */,
 				BBA6357529BA631700702A62 /* ClientBookingViewController.swift in Sources */,
 				BBE7433829B41EE60087DC74 /* UserDefaultsManager.swift in Sources */,
 				BBE832B629BD3B4300C58BF1 /* CategoryListCollectionViewCell.swift in Sources */,
 				99AB0DCF29AD95B300B096BB /* SceneDelegate.swift in Sources */,
+				996588C229C7C01B00A7D796 /* BaseButton.swift in Sources */,
 				BB95083629BE2B6500C02D9E /* ConfirmLocationViewController.swift in Sources */,
 				BBE832AC29BD20C600C58BF1 /* BannerTableViewCell.swift in Sources */,
 				996588BA29C79F1400A7D796 /* CustomSegmentedControl.swift in Sources */,
