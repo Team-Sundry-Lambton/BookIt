@@ -66,6 +66,23 @@ class VendorHomeViewController: UIViewController {
     }
     
     @IBAction func filterAction(_ sender: Any) {
+        //popup filter pagesheet
+        showFilterPopup()
+    }
+    
+    private func showFilterPopup() {
+        if let viewController = UIStoryboard(name: "FilterPopup", bundle: nil).instantiateViewController(withIdentifier: "FilterPopupViewController") as? FilterPopupViewController {
+            if let sheet = viewController.sheetPresentationController {
+                // 1
+                sheet.detents = [
+                    .custom { _ in
+                        return 320
+                    }
+                ]
+
+            }
+            present(viewController, animated: true)
+        }
     }
     
     private func resetSegment() {
