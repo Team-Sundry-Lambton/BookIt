@@ -65,6 +65,9 @@ class VendorHomeViewController: UIViewController {
         }
     }
     
+    @IBAction func filterAction(_ sender: Any) {
+    }
+    
     private func resetSegment() {
         segmentSelectedIndex = 0
     }
@@ -108,6 +111,11 @@ extension VendorHomeViewController: UITableViewDelegate , UITableViewDataSource 
         }
         
         return cell ?? UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //go to service detail page.
+        print("selected" + "\(indexPath.row)")
     }
 }
 

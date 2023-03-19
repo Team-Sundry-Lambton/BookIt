@@ -38,7 +38,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0v6-3S-xox">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Avatar" translatesAutoresizingMaskIntoConstraints="NO" id="0v6-3S-xox">
                                                         <rect key="frame" x="0.0" y="36" width="54" height="54"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="54" id="FYl-JW-FVX"/>
@@ -239,6 +239,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="Avatar" width="512" height="512"/>
         <image name="SelectLocationIcon" width="18" height="19"/>
         <image name="chevron.right" catalog="system" width="97" height="128"/>
         <image name="schedule" width="13" height="12"/>
