@@ -124,7 +124,7 @@ class ViewController: UIViewController {
 //            self.navigationController?.pushViewController(nextViewController, animated: true)
 ////            self.present(nextViewController, animated:true, completion:nil)
 //        }
-        InitialDataDownloadManager.shared.DownloadAllData()
+         InitialDataDownloadManager.shared.downloadAllData()
         if (isVendor){
             let storyboard = UIStoryboard(name: "VendorDashBoard", bundle: nil)
             let mainTabBarController = storyboard.instantiateViewController(identifier: "VendorTabBarController")
@@ -171,8 +171,8 @@ class ViewController: UIViewController {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: entityName)
         fetchRequest.predicate = NSPredicate(format: "email = %@ ", user.email)
         do {
-            let user = try context.fetch(fetchRequest)
-            if user.count >= 1 {
+            let users = try context.fetch(fetchRequest)
+            if users.count >= 1 {
                 success = true
             }
         } catch {

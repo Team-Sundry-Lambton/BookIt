@@ -43,6 +43,7 @@
     <entity name="MediaFile" representedClassName="MediaFile" syncable="YES" codeGenerationType="class">
         <attribute name="mediaContent" optional="YES" attributeType="Binary"/>
         <attribute name="mediaName" optional="YES" attributeType="String"/>
+        <attribute name="mediaPath" optional="YES" attributeType="String"/>
         <relationship name="parent_Service" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Service" inverseName="medias" inverseEntity="Service"/>
     </entity>
     <entity name="Payment" representedClassName="Payment" syncable="YES" codeGenerationType="class">
