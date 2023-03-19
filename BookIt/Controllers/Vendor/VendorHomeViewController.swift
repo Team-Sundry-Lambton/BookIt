@@ -11,6 +11,8 @@ import CoreData
 class VendorHomeViewController: UIViewController {
     var loginUser : LoginUser?
     var bookingList = [Booking]()
+    var bookingListOngoing = [Booking]()
+    var bookingListHistory = [Booking]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBOutlet weak var tableView: UITableView!
@@ -36,6 +38,7 @@ class VendorHomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         loadData()
+        resetSegment()
     }
     
     private func loadData() {
@@ -51,25 +54,59 @@ class VendorHomeViewController: UIViewController {
 //        request.fetchLimit = 10
         do {
             bookingList = try context.fetch(request)
+            bookingListOngoing = bookingList.filter({
+                $0.status == "new" || $0.status == "pending" || $0.status == "inprogress"
+            })
+            bookingListHistory = bookingList.filter({
+                $0.status == "cancel" || $0.status == "completed"
+            })
         } catch {
             print("Error loading Service \(error.localizedDescription)")
         }
+    }
+    
+    private func resetSegment() {
+        segmentSelectedIndex = 0
     }
 }
 
 extension VendorHomeViewController: CustomSegmentedControlDelegate {
     func change(to index: Int) {
         segmentSelectedIndex = index
+        tableView.reloadData()
     }
 }
 
 extension VendorHomeViewController: UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        if segmentSelectedIndex == 0 && bookingListOngoing.count > 0 {
+            return bookingListOngoing.count
+        } else if segmentSelectedIndex == 1 && bookingListHistory.count > 0 {
+            return bookingListHistory.count
+        } else {
+            return 10 //dummy
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ServiceStatusTableViewCell", for: indexPath) as? ServiceStatusTableViewCell
+        
+        var booking:Booking? = nil
+        if segmentSelectedIndex == 0 && bookingListOngoing.count > 0 {
+            booking = bookingListOngoing[indexPath.row]
+        } else if segmentSelectedIndex == 1 && bookingListHistory.count > 0 {
+            booking = bookingListHistory[indexPath.row]
+        }
+        
+        if let booking = booking {
+            cell?.serviceName.text = booking.service?.serviceTitle
+            cell?.bookDateTimeLabel.text = booking.date?.dateAndTimetoString()
+            cell?.customerNameLabel.text = booking.client?.firstName
+            cell?.locationLabel.text = booking.client?.address?.address
+            cell?.priceLabel.text = booking.service?.price
+            cell?.statusLabel.text = booking.status
+        }
+        
         return cell ?? UITableViewCell()
     }
 }

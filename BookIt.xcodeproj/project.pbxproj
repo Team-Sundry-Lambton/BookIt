@@ -10,6 +10,7 @@
 		995B2F7629C68C8700745992 /* ServiceStatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995B2F7429C68C8700745992 /* ServiceStatusTableViewCell.swift */; };
 		995B2F7729C68C8700745992 /* ServiceStatusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 995B2F7529C68C8700745992 /* ServiceStatusTableViewCell.xib */; };
 		996588BA29C79F1400A7D796 /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996588B929C79F1400A7D796 /* CustomSegmentedControl.swift */; };
+		996588BC29C7B0E100A7D796 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996588BB29C7B0E100A7D796 /* Date+Extension.swift */; };
 		99AB0DCD29AD95B300B096BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AB0DCC29AD95B300B096BB /* AppDelegate.swift */; };
 		99AB0DCF29AD95B300B096BB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AB0DCE29AD95B300B096BB /* SceneDelegate.swift */; };
 		99AB0DD129AD95B300B096BB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AB0DD029AD95B300B096BB /* ViewController.swift */; };
@@ -65,6 +66,7 @@
 		995B2F7429C68C8700745992 /* ServiceStatusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceStatusTableViewCell.swift; sourceTree = "<group>"; };
 		995B2F7529C68C8700745992 /* ServiceStatusTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServiceStatusTableViewCell.xib; sourceTree = "<group>"; };
 		996588B929C79F1400A7D796 /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
+		996588BB29C7B0E100A7D796 /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		99AB0DC929AD95B300B096BB /* BookIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99AB0DCC29AD95B300B096BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99AB0DCE29AD95B300B096BB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 		99AB0DE629AD95DA00B096BB /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
+				996588BB29C7B0E100A7D796 /* Date+Extension.swift */,
 				BB0FF26829BAA73800E26A71 /* BorderTextField.swift */,
 				BB0FF26929BAA73800E26A71 /* BorderTextView.swift */,
 				BBE7433529B41D440087DC74 /* BiometricIDAuth.swift */,
@@ -382,6 +385,7 @@
 				BBC9F83E29BFC75A00985AAA /* LocationSearchTableViewController.swift in Sources */,
 				99AB0DD129AD95B300B096BB /* ViewController.swift in Sources */,
 				BBE832B829BD3B5700C58BF1 /* NewVendorCollectionViewCell.swift in Sources */,
+				996588BC29C7B0E100A7D796 /* Date+Extension.swift in Sources */,
 				BBEC1C4A29B55A6800B58D41 /* UIAlertViewExtention.swift in Sources */,
 				BB0FF26A29BAA73800E26A71 /* BorderTextField.swift in Sources */,
 				BB7A1DD329C0C88D003CB894 /* VendorServicesViewController.swift in Sources */,
