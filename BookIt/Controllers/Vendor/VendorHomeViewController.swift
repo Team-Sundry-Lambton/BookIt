@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import CoreData
 
 class VendorHomeViewController: UIViewController {
+    var loginUser : LoginUser?
+    var bookingList = [Booking]()
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -20,6 +24,8 @@ class VendorHomeViewController: UIViewController {
             interfaceSegmented.baseLineColor = #colorLiteral(red: 0.9490194917, green: 0.9490197301, blue: 0.9533253312, alpha: 1)
         }
     }
+    
+    var segmentSelectedIndex: Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,11 +33,33 @@ class VendorHomeViewController: UIViewController {
         interfaceSegmented.delegate = self
         tableView.register(UINib(nibName: "ServiceStatusTableViewCell", bundle: nil), forCellReuseIdentifier: "ServiceStatusTableViewCell")
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        loadData()
+    }
+    
+    private func loadData() {
+        loadBookingList()
+        tableView.reloadData()
+    }
+    
+    private func loadBookingList(){
+        let request: NSFetchRequest<Booking> = Booking.fetchRequest()
+        let folderPredicate = NSPredicate(format: "vendor.email=%@", loginUser?.email ?? "")
+        request.predicate = folderPredicate
+        request.sortDescriptors = [NSSortDescriptor(key: "status", ascending: true)]
+//        request.fetchLimit = 10
+        do {
+            bookingList = try context.fetch(request)
+        } catch {
+            print("Error loading Service \(error.localizedDescription)")
+        }
+    }
 }
 
 extension VendorHomeViewController: CustomSegmentedControlDelegate {
     func change(to index: Int) {
-        
+        segmentSelectedIndex = index
     }
 }
 
