@@ -60,15 +60,15 @@ class ConfirmLocationViewController: UIViewController {
         if (UserDefaultsManager.shared.getUserLogin()){
             if (checkLocationInDB(place: currentAddress)){
                 deleteLocation(place: currentAddress)
-                setLocationObject()
-                saveLocation()
+                setLocationObject(isUpdate: true)
+//                saveLocation()
                 
                 UIAlertViewExtention.shared.showBasicAlertView(title: "Success",message: "Location updated successfully.", okActionTitle: "OK", view: self)
                 
             }else{
                 
-                setLocationObject()
-                saveLocation()
+                setLocationObject(isUpdate: false)
+//                saveLocation()
                 UIAlertViewExtention.shared.showBasicAlertView(title: "Success",message: "Location save successfully.", okActionTitle: "OK", view: self)
             }
         }else{
@@ -77,12 +77,18 @@ class ConfirmLocationViewController: UIViewController {
     }
     
     //MARK: - Core data interaction methods
-    func setLocationObject(){
+    func setLocationObject(isUpdate : Bool) {
         var selectedLocation = Address(context: context)
         selectedLocation.addressLatitude = currentAddress?.coordinate.latitude ?? 0
         selectedLocation.addressLongitude = currentAddress?.coordinate.longitude ?? 0
         selectedLocation.address = currentAddress?.title
         selectedLocation.clientAddress = client
+        saveLocation()
+        if isUpdate {
+             InitialDataDownloadManager.shared.updateAddressData(addressObject: selectedLocation)
+        }else{
+            InitialDataDownloadManager.shared.addAddressData(address: selectedLocation)
+        }
     }
     
     func getClient(){
@@ -102,7 +108,7 @@ class ConfirmLocationViewController: UIViewController {
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Address")
         if let currentPlace = place{
-            fetchRequest.predicate = NSPredicate(format: "address = %@ ", currentPlace.title ?? "")
+            fetchRequest.predicate = NSPredicate(format: "clientAddress.email = %@ ",client?.email ?? "")
         }
         do {
             let location = try context.fetch(fetchRequest)
@@ -118,7 +124,7 @@ class ConfirmLocationViewController: UIViewController {
         var success = false
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Address")
         if let currentPlace = place{
-            fetchRequest.predicate = NSPredicate(format: "address = %@ ", currentPlace.title ?? "")
+            fetchRequest.predicate = NSPredicate(format: "clientAddress.email = %@ ", client?.email ?? "")
         }
         do {
             let location = try context.fetch(fetchRequest)

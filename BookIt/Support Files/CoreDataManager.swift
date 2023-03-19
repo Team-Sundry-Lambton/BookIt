@@ -55,7 +55,7 @@ class CoreDataManager : NSObject{
     
     func getService(title : String) -> Service?{
         var service : Service?
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "service")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Service")
         fetchRequest.predicate = NSPredicate(format: "serviceTitle = %@ ", title)
         do {
             let services = try context.fetch(fetchRequest)
@@ -65,6 +65,21 @@ class CoreDataManager : NSObject{
         }
         return service
     }
+    
+    func getMedia(name : String, serviceTitle : String) -> MediaFile?{
+        var media : MediaFile?
+        let fetchRequest: NSFetchRequest<MediaFile> = MediaFile.fetchRequest()
+            let folderPredicate = NSPredicate(format: "parent_Service.serviceTitle=%@ AND mediaName=%@", serviceTitle,name)
+        fetchRequest.predicate = folderPredicate
+        do {
+            let medias = try context.fetch(fetchRequest)
+            media = medias.first as? MediaFile
+        } catch {
+            print("Error loading medias \(error.localizedDescription)")
+        }
+        return media
+    }
+
     
     func deleteAllTables(){
         deleteVendors()

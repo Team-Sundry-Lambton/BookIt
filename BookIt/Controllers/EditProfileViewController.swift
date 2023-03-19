@@ -156,10 +156,11 @@ class EditProfileViewController: UIViewController {
             
                 if (checkUserInDB(user: loginUser)){
                     deleteUser(user: loginUser)
+                    UserDefaultsManager.shared.saveUserData(user: loginUser)
                     setUserObject(isEdit: true)
 
                     
-                    UserDefaultsManager.shared.saveUserData(user: loginUser)
+                 
                     
                     UIAlertViewExtention.shared.showBasicAlertView(title: "Success",message: "User updated successfully.", okActionTitle: "OK", view: self)
                     if let navigator = self.navigationController {
@@ -169,6 +170,7 @@ class EditProfileViewController: UIViewController {
                     }
                     
                 }else{
+                    UserDefaultsManager.shared.saveUserData(user: loginUser)
                         setUserObject(isEdit: false)
                     self.loginUser = loginUser
 //                        if newUser {
@@ -184,7 +186,7 @@ class EditProfileViewController: UIViewController {
         }
     }
     
-    func setUserObject(isEdit : Bool){
+    func setUserObject(isEdit : Bool) {
         var picData : Data?
         do {
             if let path = imagePath {
@@ -208,9 +210,9 @@ class EditProfileViewController: UIViewController {
             vendor.bannerURL = nil
             saveUser()
             if(isEdit){
-                InitialDataDownloadManager.shared.UpdateVendorData(vendor: vendor)
+               InitialDataDownloadManager.shared.updateVendorData(vendor: vendor)
             }else{
-                InitialDataDownloadManager.shared.AddVendorData(vendor: vendor)
+                InitialDataDownloadManager.shared.addVendorData(vendor: vendor)
             }
         }else{
             let client = Client(context: context)
@@ -222,9 +224,9 @@ class EditProfileViewController: UIViewController {
             client.isPremium = false
             saveUser()
             if(isEdit){
-                InitialDataDownloadManager.shared.UpdateClientData(client: client)
+               InitialDataDownloadManager.shared.updateClientData(client: client)
             }else{
-                InitialDataDownloadManager.shared.AddClientData(client: client)
+                InitialDataDownloadManager.shared.addClientData(client: client)
             }
         }
     }
@@ -290,7 +292,7 @@ class EditProfileViewController: UIViewController {
             UserDefaultsManager.shared.saveUserData(user: loginUser)
         }
         
-        InitialDataDownloadManager.shared.DownloadAllData()
+        InitialDataDownloadManager.shared.downloadAllData()
    /*     if (isVendor){
             let storyboard = UIStoryboard(name: "VendorDashBoard", bundle: nil)
             let mainTabBarController = storyboard.instantiateViewController(identifier: "VendorTabBarController")

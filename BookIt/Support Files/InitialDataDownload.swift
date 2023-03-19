@@ -15,22 +15,22 @@ class InitialDataDownloadManager : NSObject{
     let db = Firestore.firestore()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    func DownloadAllData(){
+    func downloadAllData(){
         
         CoreDataManager.shared.deleteAllTables()
-        GetAllCategoryData()
-        GetAllClientData()
-        GetAllVendorData()
-        GetAllServiceData()
-        GetAllAddressData()
-        GetAllMediaData()
+        getAllCategoryData()
+        getAllClientData()
+        getAllVendorData()
+        getAllServiceData()
+        getAllAddressData()
+        getAllMediaData()
         
-        GetAllBookingData()
-        GetAllPaymentData()
-        GetAllVendorReviewData()
+        getAllBookingData()
+        getAllPaymentData()
+        getAllVendorReviewData()
     }
     
-    func GetAllCategoryData(){
+    func getAllCategoryData(){
         db.collection("categories").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -48,7 +48,7 @@ class InitialDataDownloadManager : NSObject{
         }
     }
     
-    func GetAllClientData(){
+    func getAllClientData(){
         db.collection("client").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -72,7 +72,7 @@ class InitialDataDownloadManager : NSObject{
         }
     }
     
-    func GetAllVendorData(){
+    func getAllVendorData(){
         db.collection("vendor").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -96,7 +96,7 @@ class InitialDataDownloadManager : NSObject{
         }
     }
     
-    func GetAllServiceData(){
+    func getAllServiceData(){
         db.collection("service").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -111,22 +111,30 @@ class InitialDataDownloadManager : NSObject{
                     service.price =  data["price"] as? String ?? ""
                     service.priceType =  data["priceType"]  as? String ?? ""
                     service.equipment = data["equipment"]  as? Bool ?? false
-                    let parentCategory = data["parentCategory"]  as? String ?? ""
-                    let parentVendor = data["parentVendor"]  as? String ?? ""
-                    let vendor = CoreDataManager.shared.getVendor(email: parentVendor)
-                    service.parent_Vendor = vendor
+//                    let parentCategory = data["parentCategory"]  as? String ?? ""
+//                    let parentVendor = data["parentVendor"]  as? String ?? ""
+
+                    if let parentVendor = data["parentVendor"]  as? String {
+                        if parentVendor != "" {
+                            let vendor = CoreDataManager.shared.getVendor(email: parentVendor)
+                            service.parent_Vendor = vendor
+                        }
+                    }
                     
-                    let category = CoreDataManager.shared.getCategory(name: parentCategory)
-                    service.parent_Category = category
+                        if let parentCategory = data["parentCategory"]  as? String {
+                            if parentCategory != "" {
+                                let category = CoreDataManager.shared.getCategory(name: parentCategory)
+                                service.parent_Category = category
+                            }
+                        }
                     
-                    self.saveData()
                     self.saveData()
                 }
             }
         }
     }
     
-    func GetAllAddressData(){
+    func getAllAddressData(){
         db.collection("address").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -138,18 +146,24 @@ class InitialDataDownloadManager : NSObject{
                     address.addressLongitude = data["longitude"] as? Double ?? 0
                     address.addressLatitude =  data["latitude"] as? Double ?? 0
                     address.address =  data["address"] as? String ?? ""
-                    
+
                     if let parentService = data["parentService"]  as? String {
-                        let service = CoreDataManager.shared.getService(title: parentService)
-                        address.parentService = service
+                        if parentService != "" {
+                            let service = CoreDataManager.shared.getService(title: parentService)
+                            address.parentService = service
+                        }
                     }
                     if let clientEmail = data["clientAddress"]  as? String {
-                        let client = CoreDataManager.shared.getClient(email: clientEmail)
-                        address.clientAddress = client
+                        if clientEmail != "" {
+                            let client = CoreDataManager.shared.getClient(email: clientEmail)
+                            address.clientAddress = client
+                        }
                     }
                     if let vendorEmail = data["vendorAddress"]  as? String {
-                        let vendor = CoreDataManager.shared.getVendor(email: vendorEmail)
-                        address.vendorAddress = vendor
+                        if vendorEmail != "" {
+                            let vendor = CoreDataManager.shared.getVendor(email: vendorEmail)
+                            address.vendorAddress = vendor
+                        }
                     }
                     self.saveData()
                 }
@@ -157,7 +171,7 @@ class InitialDataDownloadManager : NSObject{
         }
     }
     
-    func GetAllMediaData(){
+    func getAllMediaData(){
         db.collection("media").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -167,20 +181,24 @@ class InitialDataDownloadManager : NSObject{
                     let data = document.data()
                     let media = MediaFile(context: self.context)
                     media.mediaName =  data["mediaName"] as? String ?? ""
+                    media.mediaPath =  data["mediaPath"] as? String ?? ""
                     if let picture =  data["mediaContent"] as? String{
                         media.mediaContent = self.urlToData(path: picture)
                     }
                     
-                    let parentService = data["parentService"]  as? String ?? ""
-                    let service = CoreDataManager.shared.getService(title: parentService)
-                    media.parent_Service = service
+                    if let parentService = data["parentService"]  as? String {
+                        if parentService != "" {
+                            let service = CoreDataManager.shared.getService(title: parentService)
+                            media.parent_Service = service
+                        }
+                    }
                     self.saveData()
                 }
             }
         }
     }
     
-    func GetAllBookingData(){
+    func getAllBookingData(){
         db.collection("booking").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -192,7 +210,7 @@ class InitialDataDownloadManager : NSObject{
         }
     }
     
-    func GetAllPaymentData(){
+    func getAllPaymentData(){
         db.collection("payment").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -204,7 +222,7 @@ class InitialDataDownloadManager : NSObject{
         }
     }
     
-    func GetAllVendorReviewData(){
+    func getAllVendorReviewData(){
         db.collection("payment").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -216,7 +234,7 @@ class InitialDataDownloadManager : NSObject{
         }
     }
     
-    func GetAllAccountData(){
+    func getAllAccountData(){
         db.collection("account").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -231,7 +249,7 @@ class InitialDataDownloadManager : NSObject{
 
 extension InitialDataDownloadManager {
     
-    func AddClientData(client : Client){
+    func addClientData(client : Client){
         var picturePath : String?
         var picture : String?
         if let imageData = client.picture {
@@ -251,15 +269,16 @@ extension InitialDataDownloadManager {
                         print("Error adding document: \(err)")
                     } else {
                         print("Document added with ID: \(ref!.documentID)")
+                        CoreDataManager.shared.deleteClients()
+                        self.getAllClientData()
                     }
                 }
             }
         }
     }
     
-    func AddVendorData(vendor : Vendor){
+    func addVendorData(vendor : Vendor){
         
-        var picture : String?
         if let imageData = vendor.picture {
             uploadMedia(name:vendor.email ?? "", media: imageData) { url in
                 var ref: DocumentReference? = nil
@@ -276,22 +295,22 @@ extension InitialDataDownloadManager {
                         print("Error adding document: \(err)")
                     } else {
                         print("Document added with ID: \(ref!.documentID)")
+                        CoreDataManager.shared.deleteVendors()
+                        self.getAllVendorData()
                     }
                 }
             }
         }
-        
-        
     }
     
-    func AddServiceData(service : Service){
+    func addServiceData(service : Service){
         
         if let media = service.medias {
-            AddMediaData(media: media)
+            self.updateMedia(media: media)
         }
         
         if let address = service.address {
-            AddAddressData(address: address)
+            addAddressData(address: address)
         }
         
         var ref: DocumentReference? = nil
@@ -313,7 +332,7 @@ extension InitialDataDownloadManager {
         }
     }
     
-    func AddAddressData(address: Address){
+    func addAddressData(address: Address){
         var parentService : String?
         if let service = address.parentService {
             parentService = service.serviceTitle
@@ -343,14 +362,15 @@ extension InitialDataDownloadManager {
         }
     }
     
-    func AddMediaData(media : MediaFile){
-        var picture : String?
+    func addMediaData(media : MediaFile){
+
         if let imageData = media.mediaContent {
             uploadMedia(name:media.mediaName ?? "", media: imageData) { url in
                 var ref: DocumentReference? = nil
                 ref = self.db.collection("media").addDocument(data: [
                     "mediaName": media.mediaName ?? "",
                     "mediaContent": url ?? "",
+                    "mediaPath": url ?? "",
                     "parentService": media.parent_Service?.serviceTitle ?? "",
                     
                 ]) { err in
@@ -358,15 +378,16 @@ extension InitialDataDownloadManager {
                         print("Error adding document: \(err)")
                     } else {
                         print("Document added with ID: \(ref!.documentID)")
+                        let media = CoreDataManager.shared.getMedia(name: media.mediaName ?? "", serviceTitle: media.parent_Service?.serviceTitle ?? "")
+                        media?.mediaPath = url
+                        self.saveData()
                     }
                 }
             }
         }
-        
-        
     }
     
-    func AddBookingData(){
+    func addBookingData(){
         db.collection("booking").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -378,7 +399,7 @@ extension InitialDataDownloadManager {
         }
     }
     
-    func AddPaymentData(){
+    func addPaymentData(){
         db.collection("payment").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -390,7 +411,7 @@ extension InitialDataDownloadManager {
         }
     }
     
-    func AddVendorReviewData(){
+    func addVendorReviewData(){
         db.collection("payment").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -402,7 +423,7 @@ extension InitialDataDownloadManager {
         }
     }
     
-    func AddAccountData(){
+    func addAccountData(){
         db.collection("account").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -435,7 +456,7 @@ extension InitialDataDownloadManager {
 
 extension InitialDataDownloadManager{
     
-    func UpdateClientData(client : Client){
+    func updateClientData(client : Client){
         var picturePath : String?
         if let imageData = client.picture {
             uploadMedia(name:client.email ?? "", media: imageData) { url in
@@ -468,13 +489,13 @@ extension InitialDataDownloadManager{
         }
     }
     
-    func UpdateVendorData(vendor : Vendor){
+    func updateVendorData(vendor : Vendor){
         var picturePath : String?
         if let imageData = vendor.picture {
             uploadMedia(name:vendor.email ?? "", media: imageData) { url in
                 picturePath = url
                 if let email = vendor.email{
-                    self.db.collection("client")
+                    self.db.collection("vendor")
                         .whereField("email", isEqualTo: email)
                         .getDocuments() { (querySnapshot, err) in
                             if let err = err {
@@ -501,24 +522,55 @@ extension InitialDataDownloadManager{
         }
     }
     
-    func UpdateLocation(addressObject : Address){
-        
-        var parentService : String?
-        if let service = addressObject.parentService {
-            parentService = service.serviceTitle
-        }
-        var clientEmail : String?
-        if let client = addressObject.clientAddress {
-            clientEmail = client.email
-        }
-        var vendorEmail : String?
-        if let vendor = addressObject.vendorAddress {
-            vendorEmail = vendor.email
-        }
-        
+    func updateAddressData(addressObject : Address){
         if let address = addressObject.address {
+            var filterField = ""
+            var filterText = ""
+            var parentService : String?
+            if let service = addressObject.parentService {
+                parentService = service.serviceTitle
+                filterField = "parentService"
+                filterText = parentService ?? address
+            }
+            var clientEmail : String?
+            if let client = addressObject.clientAddress {
+                clientEmail = client.email
+                filterField = "clientAddress"
+                filterText = clientEmail ?? address
+            }
+            var vendorEmail : String?
+            if let vendor = addressObject.vendorAddress {
+                vendorEmail = vendor.email
+                filterField = "vendorAddress"
+                filterText = vendorEmail ?? address
+            }
+            
             db.collection("address")
-                .whereField("parentService", isEqualTo: address)
+                .whereField(filterField, isEqualTo: filterText)
+                .getDocuments() { (querySnapshot, err) in
+                    if let err = err {
+                        // Some error occured
+                    } else if querySnapshot!.documents.count != 1 {
+                        // Perhaps this is an error for you?
+                    } else {
+                        if let document = querySnapshot!.documents.first{
+                            document.reference.updateData([
+                                "longitude": addressObject.addressLongitude,
+                                "latitude": addressObject.addressLatitude,
+                                "address": address,
+                                "parentService": parentService ?? "",
+                                "clientAddress": clientEmail ?? "",
+                                "vendorAddress": vendorEmail ?? "",
+                            ])
+                        }
+                    }
+                }
+        }
+    }
+        
+        func updateMedia(media : MediaFile){
+            db.collection("media")
+                .whereField("mediaName", isEqualTo: media.mediaName)
                 .getDocuments() { (querySnapshot, err) in
                     if let err = err {
                         // Some error occured
@@ -527,16 +579,46 @@ extension InitialDataDownloadManager{
                     } else {
                             if let document = querySnapshot!.documents.first{
                                 document.reference.updateData([
-                                    "longitude": addressObject.addressLongitude,
-                                    "latitude": addressObject.addressLatitude,
-                                    "address": address,
-                                    "parentService": parentService ?? "",
-                                    "clientAddress": clientEmail ?? "",
-                                    "vendorAddress": vendorEmail ?? "",
+                                    "parentService": media.parent_Service?.serviceTitle ?? "",
                                 ])
                             }
                     }
                 }
+        }
+}
+
+extension InitialDataDownloadManager{
+    func deleteMediaData(media : MediaFile){
+        if let imagePath = media.mediaPath {
+            deleteMedia(downloadURL:imagePath) { status in
+                self.db.collection("media").whereField("mediaPath", isEqualTo: imagePath).getDocuments(){ (querySnapshot, err) in
+                        if let err = err {
+                            // Some error occured
+                        } else if querySnapshot!.documents.count != 1 {
+                            // Perhaps this is an error for you?
+                        } else {
+                                if let document = querySnapshot!.documents.first{
+                                    document.reference.delete()
+                                }
+                        }
+                    }
+                }
+            }
+        }
+    
+    func deleteMedia(downloadURL : String,completion: @escaping (_ status: Bool?) -> Void) {
+        
+        let storage = Storage.storage()
+        let url = downloadURL
+        let storageRef = storage.reference(forURL: url)
+
+        //Removes image from storage
+        storageRef.delete { error in
+            if let error = error {
+                completion(false)
+            } else {
+                completion(true)
+            }
         }
     }
 }
@@ -562,21 +644,5 @@ extension InitialDataDownloadManager {
         return nil
     }
 }
-
-
-//extension UIImage {
-//    var base64: String? {
-//        self.jpegData(compressionQuality: 1)?.base64EncodedString()
-//    }
-//}
-//
-//extension String {
-//    var imageFromBase64: UIImage? {
-//        guard let imageData = Data(base64Encoded: self, options: .ignoreUnknownCharacters) else {
-//            return nil
-//        }
-//        return UIImage(data: imageData)
-//    }
-//}
 
 
