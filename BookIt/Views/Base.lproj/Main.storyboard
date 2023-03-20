@@ -41,7 +41,7 @@
                                         <color key="textColor" red="0.41568627450980389" green="0.4392156862745098" blue="0.48627450980392156" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pc6-CA-Del">
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="pc6-CA-Del">
                                         <rect key="frame" x="78.666666666666671" y="0.0" width="51" height="31"/>
                                         <color key="tintColor" red="0.23921568630000001" green="0.38823529410000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="onTintColor" red="0.23921568627450979" green="0.38823529411764707" blue="0.61568627450980395" alpha="1" colorSpace="calibratedRGB"/>
@@ -211,6 +211,14 @@
                                     <action selector="continueGuest" destination="BYZ-38-t0r" eventType="touchUpInside" id="2QD-bJ-4xw"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="evk-kt-feR">
+                                <rect key="frame" x="0.0" y="748.66666666666663" width="134" height="34.333333333333371"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="VendorByPass"/>
+                                <connections>
+                                    <action selector="vendorByPass:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vhZ-Mz-vHR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -219,11 +227,13 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Pld-Wm-Rd4" secondAttribute="bottom" constant="2" id="AvU-yH-jSe"/>
                             <constraint firstItem="xIX-ck-4TI" firstAttribute="top" secondItem="GeZ-GO-6C9" secondAttribute="bottom" constant="20" id="BBo-yg-8lT"/>
                             <constraint firstItem="KAE-uM-qSv" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="GWm-OC-ccq"/>
+                            <constraint firstItem="evk-kt-feR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="L5a-vk-Y8d"/>
                             <constraint firstItem="Pld-Wm-Rd4" firstAttribute="centerX" secondItem="EIM-Wp-SzZ" secondAttribute="centerX" id="Liv-Yf-PHP"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="EIM-Wp-SzZ" secondAttribute="trailing" id="NGX-pa-Vt2"/>
                             <constraint firstItem="GeZ-GO-6C9" firstAttribute="centerX" secondItem="EIM-Wp-SzZ" secondAttribute="centerX" id="S0p-Io-zPd"/>
                             <constraint firstAttribute="bottom" secondItem="EIM-Wp-SzZ" secondAttribute="bottom" id="Wpb-MJ-GKv"/>
                             <constraint firstItem="nmR-4p-Joy" firstAttribute="top" secondItem="xIX-ck-4TI" secondAttribute="bottom" constant="50" id="ZcN-dZ-H9y"/>
+                            <constraint firstItem="Pld-Wm-Rd4" firstAttribute="top" secondItem="evk-kt-feR" secondAttribute="bottom" constant="8" symbolic="YES" id="h6i-5e-RYy"/>
                             <constraint firstItem="KAE-uM-qSv" firstAttribute="top" secondItem="nmR-4p-Joy" secondAttribute="bottom" constant="20" id="jNK-CE-5Gb"/>
                             <constraint firstItem="EIM-Wp-SzZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="nLn-ZV-oG3"/>
                             <constraint firstItem="xIX-ck-4TI" firstAttribute="centerX" secondItem="EIM-Wp-SzZ" secondAttribute="centerX" id="rP9-tO-LfB"/>
