@@ -22,6 +22,10 @@
 		BB0FF27229BAA75800E26A71 /* MediaFileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0FF27029BAA75800E26A71 /* MediaFileCell.swift */; };
 		BB0FF27829BAAB4400E26A71 /* VendorDashBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB0FF27729BAAB4400E26A71 /* VendorDashBoard.storyboard */; };
 		BB0FF27A29BAAB5F00E26A71 /* PostService.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB0FF27929BAAB5F00E26A71 /* PostService.storyboard */; };
+		BB7524F029C8E929004C4837 /* CategoryListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7524EE29C8E929004C4837 /* CategoryListCollectionViewCell.xib */; };
+		BB7524F329C8EC6E004C4837 /* NewVendorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7524F129C8EC6E004C4837 /* NewVendorCollectionViewCell.swift */; };
+		BB7524F429C8EC6E004C4837 /* NewVendorCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7524F229C8EC6E004C4837 /* NewVendorCollectionViewCell.xib */; };
+		BB7524F629C8EE10004C4837 /* CategoryListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7524F529C8EE10004C4837 /* CategoryListCollectionViewCell.swift */; };
 		BB7A1DCF29C0C870003CB894 /* VendorHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7A1DCE29C0C870003CB894 /* VendorHomeViewController.swift */; };
 		BB7A1DD129C0C87E003CB894 /* VendorProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7A1DD029C0C87E003CB894 /* VendorProfileViewController.swift */; };
 		BB7A1DD329C0C88D003CB894 /* VendorServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7A1DD229C0C88D003CB894 /* VendorServicesViewController.swift */; };
@@ -80,8 +84,6 @@
 		BBE7433829B41EE60087DC74 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE7433729B41EE60087DC74 /* UserDefaultsManager.swift */; };
 		BBE832AC29BD20C600C58BF1 /* BannerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE832AB29BD20C600C58BF1 /* BannerTableViewCell.swift */; };
 		BBE832B429BD245800C58BF1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BBE832B329BD245800C58BF1 /* SnapKit */; };
-		BBE832B629BD3B4300C58BF1 /* CategoryListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE832B529BD3B4300C58BF1 /* CategoryListCollectionViewCell.swift */; };
-		BBE832B829BD3B5700C58BF1 /* NewVendorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE832B729BD3B5700C58BF1 /* NewVendorCollectionViewCell.swift */; };
 		BBE832BB29BD3B7300C58BF1 /* ServiceDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE832B929BD3B7300C58BF1 /* ServiceDetailTableViewCell.swift */; };
 		BBE832BC29BD3B7300C58BF1 /* ServiceDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBE832BA29BD3B7300C58BF1 /* ServiceDetailTableViewCell.xib */; };
 		BBEC1C4829B5595E00B58D41 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEC1C4729B5595E00B58D41 /* UIColorExtension.swift */; };
@@ -106,6 +108,10 @@
 		BB0FF27029BAA75800E26A71 /* MediaFileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaFileCell.swift; sourceTree = "<group>"; };
 		BB0FF27729BAAB4400E26A71 /* VendorDashBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = VendorDashBoard.storyboard; sourceTree = "<group>"; };
 		BB0FF27929BAAB5F00E26A71 /* PostService.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PostService.storyboard; sourceTree = "<group>"; };
+		BB7524EE29C8E929004C4837 /* CategoryListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryListCollectionViewCell.xib; sourceTree = "<group>"; };
+		BB7524F129C8EC6E004C4837 /* NewVendorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVendorCollectionViewCell.swift; sourceTree = "<group>"; };
+		BB7524F229C8EC6E004C4837 /* NewVendorCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewVendorCollectionViewCell.xib; sourceTree = "<group>"; };
+		BB7524F529C8EE10004C4837 /* CategoryListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryListCollectionViewCell.swift; sourceTree = "<group>"; };
 		BB7A1DCE29C0C870003CB894 /* VendorHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorHomeViewController.swift; sourceTree = "<group>"; };
 		BB7A1DD029C0C87E003CB894 /* VendorProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorProfileViewController.swift; sourceTree = "<group>"; };
 		BB7A1DD229C0C88D003CB894 /* VendorServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorServicesViewController.swift; sourceTree = "<group>"; };
@@ -132,8 +138,6 @@
 		BBE7433529B41D440087DC74 /* BiometricIDAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BiometricIDAuth.swift; path = BookIt/ManagerFiles/BiometricIDAuth.swift; sourceTree = SOURCE_ROOT; };
 		BBE7433729B41EE60087DC74 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserDefaultsManager.swift; path = BookIt/ManagerFiles/UserDefaultsManager.swift; sourceTree = SOURCE_ROOT; };
 		BBE832AB29BD20C600C58BF1 /* BannerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerTableViewCell.swift; sourceTree = "<group>"; };
-		BBE832B529BD3B4300C58BF1 /* CategoryListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListCollectionViewCell.swift; sourceTree = "<group>"; };
-		BBE832B729BD3B5700C58BF1 /* NewVendorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVendorCollectionViewCell.swift; sourceTree = "<group>"; };
 		BBE832B929BD3B7300C58BF1 /* ServiceDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailTableViewCell.swift; sourceTree = "<group>"; };
 		BBE832BA29BD3B7300C58BF1 /* ServiceDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServiceDetailTableViewCell.xib; sourceTree = "<group>"; };
 		BBEC1C4729B5595E00B58D41 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIColorExtension.swift; path = BookIt/ManagerFiles/UIColorExtension.swift; sourceTree = SOURCE_ROOT; };
@@ -279,10 +283,12 @@
 				BB0FF27029BAA75800E26A71 /* MediaFileCell.swift */,
 				BB0FF26F29BAA75800E26A71 /* MediaFileCell.xib */,
 				BBE832AB29BD20C600C58BF1 /* BannerTableViewCell.swift */,
-				BBE832B529BD3B4300C58BF1 /* CategoryListCollectionViewCell.swift */,
-				BBE832B729BD3B5700C58BF1 /* NewVendorCollectionViewCell.swift */,
 				BBE832B929BD3B7300C58BF1 /* ServiceDetailTableViewCell.swift */,
 				BBE832BA29BD3B7300C58BF1 /* ServiceDetailTableViewCell.xib */,
+				BB7524F529C8EE10004C4837 /* CategoryListCollectionViewCell.swift */,
+				BB7524EE29C8E929004C4837 /* CategoryListCollectionViewCell.xib */,
+				BB7524F129C8EC6E004C4837 /* NewVendorCollectionViewCell.swift */,
+				BB7524F229C8EC6E004C4837 /* NewVendorCollectionViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -442,8 +448,10 @@
 				BBC9F83929BFC70900985AAA /* MapView.storyboard in Resources */,
 				B4D56B5C29C105B9005A2C63 /* CategoryCollectionViewCell.xib in Resources */,
 				99AB0DD929AD95B600B096BB /* Assets.xcassets in Resources */,
+				BB7524F029C8E929004C4837 /* CategoryListCollectionViewCell.xib in Resources */,
 				BB7A1E1429C2AFB1003CB894 /* GoogleService-Info.plist in Resources */,
 				BBE832BC29BD3B7300C58BF1 /* ServiceDetailTableViewCell.xib in Resources */,
+				BB7524F429C8EC6E004C4837 /* NewVendorCollectionViewCell.xib in Resources */,
 				99AB0DD429AD95B300B096BB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -467,9 +475,9 @@
 				BB95083829BE4A6E00C02D9E /* PlaceObject.swift in Sources */,
 				BBA6357129BA62EC00702A62 /* ClientCategoryListViewController.swift in Sources */,
 				BB9BB53729AEA05E0004244E /* EditProfileViewController.swift in Sources */,
+				BB7524F629C8EE10004C4837 /* CategoryListCollectionViewCell.swift in Sources */,
 				BBC9F83E29BFC75A00985AAA /* LocationSearchTableViewController.swift in Sources */,
 				99AB0DD129AD95B300B096BB /* ViewController.swift in Sources */,
-				BBE832B829BD3B5700C58BF1 /* NewVendorCollectionViewCell.swift in Sources */,
 				BBEC1C4A29B55A6800B58D41 /* UIAlertViewExtention.swift in Sources */,
 				BB0FF26A29BAA73800E26A71 /* BorderTextField.swift in Sources */,
 				BB7A1DD329C0C88D003CB894 /* VendorServicesViewController.swift in Sources */,
@@ -479,12 +487,12 @@
 				BBA6357529BA631700702A62 /* ClientBookingViewController.swift in Sources */,
 				BBE7433829B41EE60087DC74 /* UserDefaultsManager.swift in Sources */,
 				BB7A1E1929C3B388003CB894 /* FirestoreObjectMapping.swift in Sources */,
-				BBE832B629BD3B4300C58BF1 /* CategoryListCollectionViewCell.swift in Sources */,
 				99AB0DCF29AD95B300B096BB /* SceneDelegate.swift in Sources */,
 				BB95083629BE2B6500C02D9E /* ConfirmLocationViewController.swift in Sources */,
 				BBE832AC29BD20C600C58BF1 /* BannerTableViewCell.swift in Sources */,
 				BBA6357329BA630000702A62 /* ClientProfileViewController.swift in Sources */,
 				BBE832BB29BD3B7300C58BF1 /* ServiceDetailTableViewCell.swift in Sources */,
+				BB7524F329C8EC6E004C4837 /* NewVendorCollectionViewCell.swift in Sources */,
 				BBEC1C4829B5595E00B58D41 /* UIColorExtension.swift in Sources */,
 				99AB0DD729AD95B300B096BB /* BookIt.xcdatamodeld in Sources */,
 				BBE7433629B41D440087DC74 /* BiometricIDAuth.swift in Sources */,

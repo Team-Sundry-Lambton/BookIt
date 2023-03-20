@@ -158,30 +158,22 @@ class EditProfileViewController: UIViewController {
                     deleteUser(user: loginUser)
                     UserDefaultsManager.shared.saveUserData(user: loginUser)
                     setUserObject(isEdit: true)
-
-                    
-                 
-                    
                     UIAlertViewExtention.shared.showBasicAlertView(title: "Success",message: "User updated successfully.", okActionTitle: "OK", view: self)
                     if let navigator = self.navigationController {
                         navigator.popViewController(animated: true)
                     }else{
                         self.dismiss(animated: true)
                     }
-                    
+
                 }else{
                     UserDefaultsManager.shared.saveUserData(user: loginUser)
                         setUserObject(isEdit: false)
                     self.loginUser = loginUser
-//                        if newUser {
-//                            loadDashBoard(user: loginUser)
-//                        }else{
                             if let navigator = self.navigationController {
                                 navigator.popViewController(animated: true)
                             }else{
                                 self.dismiss(animated: true)
                             }
-//                        }
                 }
         }
     }
@@ -210,9 +202,25 @@ class EditProfileViewController: UIViewController {
             vendor.bannerURL = nil
             saveUser()
             if(isEdit){
-               InitialDataDownloadManager.shared.updateVendorData(vendor: vendor)
+                InitialDataDownloadManager.shared.updateVendorData(vendor: vendor){ status in
+                    DispatchQueue.main.async {
+                        if let status = status {
+                            if status == false {
+                                UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
+                            }
+                        }
+                    }
+                }
             }else{
-                InitialDataDownloadManager.shared.addVendorData(vendor: vendor)
+                InitialDataDownloadManager.shared.addVendorData(vendor: vendor){ status in
+                    DispatchQueue.main.async {
+                        if let status = status {
+                            if status == false {
+                                UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
+                            }
+                        }
+                    }
+                }
             }
         }else{
             let client = Client(context: context)
@@ -224,12 +232,29 @@ class EditProfileViewController: UIViewController {
             client.isPremium = false
             saveUser()
             if(isEdit){
-               InitialDataDownloadManager.shared.updateClientData(client: client)
+                InitialDataDownloadManager.shared.updateClientData(client: client){ status in
+                    DispatchQueue.main.async {
+                        if let status = status {
+                            if status == false {
+                                UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
+                            }
+                        }
+                    }
+                }
             }else{
-                InitialDataDownloadManager.shared.addClientData(client: client)
+                InitialDataDownloadManager.shared.addClientData(client: client){ status in
+                    DispatchQueue.main.async {
+                        if let status = status {
+                            if status == false {
+                                UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
+                            }
+                        }
+                    }
+                }
             }
         }
     }
+    
     
     //MARK: - Core data interaction methods
     func checkUserInDB(user : LoginUser) -> Bool{
@@ -292,46 +317,14 @@ class EditProfileViewController: UIViewController {
             UserDefaultsManager.shared.saveUserData(user: loginUser)
         }
         
-        InitialDataDownloadManager.shared.downloadAllData()
-   /*     if (isVendor){
-            let storyboard = UIStoryboard(name: "VendorDashBoard", bundle: nil)
-            let mainTabBarController = storyboard.instantiateViewController(identifier: "VendorTabBarController")
-            mainTabBarController.modalPresentationStyle = .fullScreen
-            
-            
-            if let navigator = navigationController {
-                //            viewController.loginUser = user
-                navigator.pushViewController(mainTabBarController, animated: true)
+        Task {
+            await InitialDataDownloadManager.shared.downloadAllData(){
+                DispatchQueue.main.async {
+                    self.navigationController?.popViewController(animated: true)
+                }
             }
-//            if let viewController = UIStoryboard(name: "VendorDashBoard", bundle: nil).instantiateViewController(withIdentifier: "VendorDashBoardViewController") as? VendorDashBoardViewController {
-//                if let navigator = navigationController {
-//                    viewController.loginUser = user
-//                    navigator.pushViewController(viewController, animated: true)
-//                }
-//            }
+            
         }
-        else{
-
-       let storyboard = UIStoryboard(name: "ClientDashBoard", bundle: nil)
-                let mainTabBarController = storyboard.instantiateViewController(identifier: "ClientTabBarController")
-                mainTabBarController.modalPresentationStyle = .fullScreen
-    
-        
-        if let navigator = navigationController {
-//            viewController.loginUser = user
-            navigator.pushViewController(mainTabBarController, animated: true)
-        }
-
-            // if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DashBoardViewController") as? DashBoardViewController {
-            //     if let navigator = navigationController {
-            //         viewController.loginUser = user
-            //         navigator.pushViewController(viewController, animated: true)
-            //     }
-            // }
-        }*/
-        
-        navigationController?.popViewController(animated: true)
-        
     }
     
     private func addProfilePic() {

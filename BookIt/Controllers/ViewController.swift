@@ -29,11 +29,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        appleLoginBtn.addTarget(self, action: #selector(handleLogInWithAppleID), for: .touchUpInside)
+        //        appleLoginBtn.addTarget(self, action: #selector(handleLogInWithAppleID), for: .touchUpInside)
         // Do any additional setup after loading the view.
     }
-
-
+    
+    
     @IBAction func continueGuest() {
         loadDashBoard(user: nil)
     }
@@ -48,7 +48,7 @@ class ViewController: UIViewController {
             isVendor = true
         }
     }
-
+    
     @IBAction func googleLogin(sender: Any) {
         getGoogleUser()
     }
@@ -57,11 +57,11 @@ class ViewController: UIViewController {
         handleLogInWithAppleID()
     }
     
-//    @IBAction func signOut(sender: Any) {
-//      GIDSignIn.sharedInstance.signOut()
-//    let loginManager = LoginManager()
-//    loginManager.logOut()
-//    }
+    //    @IBAction func signOut(sender: Any) {
+    //      GIDSignIn.sharedInstance.signOut()
+    //    let loginManager = LoginManager()
+    //    loginManager.logOut()
+    //    }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
@@ -73,19 +73,19 @@ class ViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-     
+        
     }
     func checkUserAvailablility(user : LoginUser){
         if (checkUserInDB(user: user)){
             loadDashBoard(user: user)
             
         }else{
-//            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-//            if let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SignUpViewController") as? EditProfileViewController {
-//                nextViewController.loginUser = user
-//                self.navigationController?.pushViewController(nextViewController, animated: true)
-////                self.present(nextViewController , animated:true, completion:nil)
-//            }
+            //            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            //            if let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SignUpViewController") as? EditProfileViewController {
+            //                nextViewController.loginUser = user
+            //                self.navigationController?.pushViewController(nextViewController, animated: true)
+            ////                self.present(nextViewController , animated:true, completion:nil)
+            //            }
             
             if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EditProfileViewController") as? EditProfileViewController {
                 if let navigator = navigationController {
@@ -98,59 +98,41 @@ class ViewController: UIViewController {
     }
     
     func loadDashBoard(user : LoginUser?){
-
+        
         UserDefaultsManager.shared.setUserLogin(status: true)
         UserDefaultsManager.shared.setIsVendor(status: isVendor)
         if let loginUser = user {
             UserDefaultsManager.shared.setUserLogin(status: true)
-            setUser(user: loginUser)            
+            setUser(user: loginUser)
         }else{
             UserDefaultsManager.shared.removeUserLogin()
             UserDefaultsManager.shared.removeUserData()
         }
-//
-//        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-//        if let nextViewController = storyBoard.instantiateViewController(withIdentifier: "DashBoardViewController") as? DashBoardViewController {
-//            nextViewController.loginUser = user
-//            self.navigationController?.pushViewController(nextViewController, animated: true)
-////            self.present(nextViewController, animated:true, completion:nil)
-//        }
-         InitialDataDownloadManager.shared.downloadAllData()
-        if (isVendor){
-            let storyboard = UIStoryboard(name: "VendorDashBoard", bundle: nil)
-            let mainTabBarController = storyboard.instantiateViewController(identifier: "VendorTabBarController")
-            mainTabBarController.modalPresentationStyle = .fullScreen
-            
-            
-            if let navigator = navigationController {
-                //            viewController.loginUser = user
-                navigator.pushViewController(mainTabBarController, animated: true)
-            }
-//            if let viewController = UIStoryboard(name: "VendorDashBoard", bundle: nil).instantiateViewController(withIdentifier: "VendorDashBoardViewController") as? VendorDashBoardViewController {
-//                if let navigator = navigationController {
-//                    viewController.loginUser = user
-//                    navigator.pushViewController(viewController, animated: true)
-//                }
-//            }
-        }
-        else{
-            let storyboard = UIStoryboard(name: "ClientDashBoard", bundle: nil)
-            let mainTabBarController = storyboard.instantiateViewController(identifier: "ClientTabBarController")
-            mainTabBarController.modalPresentationStyle = .fullScreen
-            
-            
-            if let navigator = navigationController {
-                //            viewController.loginUser = user
-                navigator.pushViewController(mainTabBarController, animated: true)
+        Task {
+            await InitialDataDownloadManager.shared.downloadAllData{
+                DispatchQueue.main.async {
+                    if (self.isVendor){
+                        let storyboard = UIStoryboard(name: "VendorDashBoard", bundle: nil)
+                        let mainTabBarController = storyboard.instantiateViewController(identifier: "VendorTabBarController")
+                        mainTabBarController.modalPresentationStyle = .fullScreen
+                        if let navigator = self.navigationController {
+                            //            viewController.loginUser = user
+                            navigator.pushViewController(mainTabBarController, animated: true)
+                        }
+                    }
+                    else{
+                        let storyboard = UIStoryboard(name: "ClientDashBoard", bundle: nil)
+                        let mainTabBarController = storyboard.instantiateViewController(identifier: "ClientTabBarController")
+                        mainTabBarController.modalPresentationStyle = .fullScreen
+                        if let navigator = self.navigationController {
+                            //            viewController.loginUser = user
+                            navigator.pushViewController(mainTabBarController, animated: true)
+                        }
+                    }
+                }
             }
         }
         
-//        if let viewController = UIStoryboard(name: "ClientDashBoard", bundle: nil).instantiateViewController(withIdentifier: "ClientTabBarController") as? ClientDashBoardViewController {
-//            if let navigator = navigationController {
-//                viewController.loginUser = user
-//                navigator.pushViewController(viewController, animated: true)
-//            }
-//        }
     }
     
     func checkUserInDB(user : LoginUser) -> Bool{
@@ -186,7 +168,7 @@ class ViewController: UIViewController {
                     
                     let loginUser = LoginUser(firstName: user.firstName ?? "", lastName: user.lastName ?? "", email: user.email ?? "", contactNumber: user.contactNumber ?? "",isVendor: isVendor)
                     UserDefaultsManager.shared.saveUserData(user: loginUser)
-
+                    
                 }
             }else{
                 if let user = users.first as? Client{
@@ -257,14 +239,14 @@ extension ViewController{
         GIDSignIn.sharedInstance.signIn(withPresenting: self) { signInResult, error in
             guard error == nil else { return }
             guard let signInResult = signInResult else { return }
-
+            
             let user = signInResult.user
-
+            
             let emailAddress = user.profile?.email ?? ""
-
+            
             let givenName = user.profile?.givenName ?? ""
             let familyName = user.profile?.familyName ?? ""
-
+            
             let profilePicUrl = user.profile?.imageURL(withDimension: 320) ?? nil
             
             var loginUser = LoginUser(firstName: givenName, lastName: familyName, email: emailAddress, contactNumber: "",isVendor: self.isVendor)
@@ -277,21 +259,21 @@ extension ViewController{
 // MARK: - Apple Login
 extension ViewController: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
     
-     func handleLogInWithAppleID() {
-         let request = ASAuthorizationAppleIDProvider().createRequest()
+    func handleLogInWithAppleID() {
+        let request = ASAuthorizationAppleIDProvider().createRequest()
         request.requestedScopes = [.fullName, .email,]
-         
-         let controller = ASAuthorizationController(authorizationRequests: [request])
-         
-         controller.delegate = self
-         controller.presentationContextProvider = self
-         
-         controller.performRequests()
-     }
+        
+        let controller = ASAuthorizationController(authorizationRequests: [request])
+        
+        controller.delegate = self
+        controller.presentationContextProvider = self
+        
+        controller.performRequests()
+    }
     
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
-             return self.view.window!
-      }
+        return self.view.window!
+    }
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         switch authorization.credential {
@@ -314,17 +296,17 @@ extension ViewController {
     func bioMetricVerification(){
         biometricIDAuth.canEvaluate { (canEvaluate, _, canEvaluateError) in
             guard canEvaluate else {
-//                UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message: canEvaluateError?.localizedDescription ?? "Face ID/Touch ID may not be configured", okActionTitle: "OK", view: self)
+                //                UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message: canEvaluateError?.localizedDescription ?? "Face ID/Touch ID may not be configured", okActionTitle: "OK", view: self)
                 return
             }
             
             biometricIDAuth.evaluate { [weak self] (success, error) in
                 guard success else {
-//                    UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message: canEvaluateError?.localizedDescription ?? "Face ID/Touch ID may not be configured", okActionTitle: "OK", view: self ?? ViewController())
+                    //                    UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message: canEvaluateError?.localizedDescription ?? "Face ID/Touch ID may not be configured", okActionTitle: "OK", view: self ?? ViewController())
                     return
                 }
                 
-              let loginUser =  UserDefaultsManager.shared.getUserData()
+                let loginUser =  UserDefaultsManager.shared.getUserData()
                 self?.loadDashBoard(user: loginUser)
                 UIAlertViewExtention.shared.showBasicAlertView(title: "Success", message:  "You have a free pass, now", okActionTitle: "OK", view: self ?? ViewController())
             }

@@ -17,7 +17,8 @@ class ServiceSearchTableViewController: UITableViewController {
     let search = UISearchController(searchResultsController: nil)
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.tableView.register(UINib(nibName: "ServiceDetailTableViewCell", bundle: nil), forCellReuseIdentifier: "ServiceDetailTableViewCell")
         
 //        search.delegate = self
 //        search.searchBar.delegate = self
