@@ -23,23 +23,13 @@ class ServiceSearchTableViewController: UITableViewController {
         
         self.tableView.register(UINib(nibName: "ServiceDetailTableViewCell", bundle: nil), forCellReuseIdentifier: "ServiceDetailTableViewCell")
         
-//        search.delegate = self
-//        search.searchBar.delegate = self
-//        self.navigationItem.searchController = search
-        
-//        self.search.searchResultsUpdater = self
           self.search.delegate = self
           self.search.searchBar.delegate = self
           self.search.hidesNavigationBarDuringPresentation = false
           self.search.searchBar.tintColor = UIColor.gray
           self.navigationItem.titleView = search.searchBar
           self.definesPresentationContext = true
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
         searchChange()
     }
 

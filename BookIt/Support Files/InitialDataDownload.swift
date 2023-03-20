@@ -103,9 +103,7 @@ class InitialDataDownloadManager : NSObject{
                 service.price =  data["price"] as? String ?? ""
                 service.priceType =  data["priceType"]  as? String ?? ""
                 service.equipment = data["equipment"]  as? Bool ?? false
-                //                    let parentCategory = data["parentCategory"]  as? String ?? ""
-                //                    let parentVendor = data["parentVendor"]  as? String ?? ""
-                
+  
                 if let parentVendor = data["parentVendor"]  as? String {
                     if parentVendor != "" {
                         if  let vendor = CoreDataManager.shared.getVendor(email: parentVendor){
@@ -229,8 +227,6 @@ class InitialDataDownloadManager : NSObject{
                         }
                     }
                 }
-                
-
                 
                 self.saveData()
             }

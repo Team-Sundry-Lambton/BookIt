@@ -30,8 +30,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        appleLoginBtn.addTarget(self, action: #selector(handleLogInWithAppleID), for: .touchUpInside)
-        // Do any additional setup after loading the view.
     }
 
 
@@ -91,13 +89,6 @@ class ViewController: UIViewController {
             loadDashBoard(user: user)
             
         }else{
-            //            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            //            if let nextViewController = storyBoard.instantiateViewController(withIdentifier: "SignUpViewController") as? EditProfileViewController {
-            //                nextViewController.loginUser = user
-            //                self.navigationController?.pushViewController(nextViewController, animated: true)
-            ////                self.present(nextViewController , animated:true, completion:nil)
-            //            }
-            
             if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EditProfileViewController") as? EditProfileViewController {
                 if let navigator = navigationController {
                     viewController.loginUser = user
@@ -157,7 +148,7 @@ class ViewController: UIViewController {
             entityName = "Vendor"
         }
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: entityName)
-        fetchRequest.predicate = NSPredicate(format: "email = %@ ", user.email)
+        fetchRequest.predicate = NSPredicate(format: "email = %@", user.email)
         do {
             let users = try context.fetch(fetchRequest)
             if users.count >= 1 {
@@ -175,7 +166,7 @@ class ViewController: UIViewController {
             entityName = "Vendor"
         }
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: entityName)
-        fetchRequest.predicate = NSPredicate(format: "email = %@ ", user.email)
+        fetchRequest.predicate = NSPredicate(format: "email = %@", user.email)
         do {
             let users = try context.fetch(fetchRequest)
             if (isVendor){
@@ -311,13 +302,11 @@ extension ViewController {
     func bioMetricVerification(){
         biometricIDAuth.canEvaluate { (canEvaluate, _, canEvaluateError) in
             guard canEvaluate else {
-                //                UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message: canEvaluateError?.localizedDescription ?? "Face ID/Touch ID may not be configured", okActionTitle: "OK", view: self)
                 return
             }
             
             biometricIDAuth.evaluate { [weak self] (success, error) in
                 guard success else {
-                    //                    UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message: canEvaluateError?.localizedDescription ?? "Face ID/Touch ID may not be configured", okActionTitle: "OK", view: self ?? ViewController())
                     return
                 }
                 

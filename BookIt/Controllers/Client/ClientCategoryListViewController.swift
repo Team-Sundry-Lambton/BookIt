@@ -91,15 +91,13 @@ extension ClientCategoryListViewController: UICollectionViewDelegate, UICollecti
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCollectionViewCell", for: indexPath) as! CategoryCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCollectionViewCell", for: indexPath) as? CategoryCollectionViewCell
         let category = categories[indexPath.item]
-        cell.categoryLabel.text = category.name
+        cell?.categoryLabel.text = category.name
         if let imageData = category.picture {
-            cell.categoryImageView.downloaded(from: imageData)
+            cell?.categoryImageView.downloaded(from: imageData)
         }
-       
-       // cell.categoryImageView.image = UIImage(data: category.picture!)
-        return cell
+        return cell ?? UICollectionViewCell()
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

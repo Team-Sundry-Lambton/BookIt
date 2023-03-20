@@ -51,7 +51,7 @@ class ClientProfileViewController: UIViewController {
 
         let user =  UserDefaultsManager.shared.getUserData()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Client")
-        fetchRequest.predicate = NSPredicate(format: "email = %@ ", user.email)
+        fetchRequest.predicate = NSPredicate(format: "email = %@", user.email)
         do {
             let users = try context.fetch(fetchRequest)
             if let user = users.first as? Client{

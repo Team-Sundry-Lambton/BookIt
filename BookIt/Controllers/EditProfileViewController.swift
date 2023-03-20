@@ -80,7 +80,7 @@ class EditProfileViewController: UIViewController {
 
         let user =  UserDefaultsManager.shared.getUserData()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Client")
-        fetchRequest.predicate = NSPredicate(format: "email = %@ ", user.email)
+        fetchRequest.predicate = NSPredicate(format: "email = %@", user.email)
         do {
             let users = try context.fetch(fetchRequest)
             if let user = users.first as? Client{
@@ -103,7 +103,7 @@ class EditProfileViewController: UIViewController {
 
         let user =  UserDefaultsManager.shared.getUserData()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Vendor")
-        fetchRequest.predicate = NSPredicate(format: "email = %@ ", user.email)
+        fetchRequest.predicate = NSPredicate(format: "email = %@", user.email)
         do {
             let users = try context.fetch(fetchRequest)
             if let user = users.first as? Vendor{
@@ -204,21 +204,13 @@ class EditProfileViewController: UIViewController {
             if(isEdit){
                 InitialDataDownloadManager.shared.updateVendorData(vendor: vendor){ status in
                     DispatchQueue.main.async {
-                        if let status = status {
-                            if status == false {
-                                UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
-                            }
-                        }
+                        self.displayErrorMessage(status: status)
                     }
                 }
             }else{
                 InitialDataDownloadManager.shared.addVendorData(vendor: vendor){ status in
                     DispatchQueue.main.async {
-                        if let status = status {
-                            if status == false {
-                                UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
-                            }
-                        }
+                        self.displayErrorMessage(status: status)
                     }
                 }
             }
@@ -234,27 +226,26 @@ class EditProfileViewController: UIViewController {
             if(isEdit){
                 InitialDataDownloadManager.shared.updateClientData(client: client){ status in
                     DispatchQueue.main.async {
-                        if let status = status {
-                            if status == false {
-                                UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
-                            }
-                        }
+                        self.displayErrorMessage(status: status)
                     }
                 }
             }else{
                 InitialDataDownloadManager.shared.addClientData(client: client){ status in
                     DispatchQueue.main.async {
-                        if let status = status {
-                            if status == false {
-                                UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
-                            }
-                        }
+                        self.displayErrorMessage(status: status)
                     }
                 }
             }
         }
     }
     
+    func displayErrorMessage(status : Bool?){
+        if let status = status {
+            if status == false {
+                UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
+            }
+        }
+    }
     
     //MARK: - Core data interaction methods
     func checkUserInDB(user : LoginUser) -> Bool{
@@ -264,7 +255,7 @@ class EditProfileViewController: UIViewController {
             entityName = "Vendor"
         }
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: entityName)
-        fetchRequest.predicate = NSPredicate(format: "email = %@ ", user.email)
+        fetchRequest.predicate = NSPredicate(format: "email = %@", user.email)
         do {
             let user = try context.fetch(fetchRequest)
             if user.count >= 1 {
@@ -291,7 +282,7 @@ class EditProfileViewController: UIViewController {
             entityName = "Vendor"
         }
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: entityName)
-        fetchRequest.predicate = NSPredicate(format: "email = %@ ", user.email)
+        fetchRequest.predicate = NSPredicate(format: "email = %@", user.email)
         do {
             let user = try context.fetch(fetchRequest)
             if let slectedUser = user.first as? NSManagedObject {
@@ -306,13 +297,7 @@ class EditProfileViewController: UIViewController {
         
         UserDefaultsManager.shared.setUserLogin(status: true)
         UserDefaultsManager.shared.setIsVendor(status: isVendor)
-        
-//        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-//        if let nextViewController = storyBoard.instantiateViewController(withIdentifier: "DashBoardViewController") as? DashBoardViewController {
-//            nextViewController.loginUser = user
-//            self.navigationController?.pushViewController(nextViewController, animated: true)
-////            self.present(nextViewController, animated:true, completion:nil)
-//        }
+
         if let loginUser = user {
             UserDefaultsManager.shared.saveUserData(user: loginUser)
         }
@@ -323,7 +308,6 @@ class EditProfileViewController: UIViewController {
                     self.navigationController?.popViewController(animated: true)
                 }
             }
-            
         }
     }
     
@@ -355,19 +339,6 @@ class EditProfileViewController: UIViewController {
 
 
 }
-//extension UIImageView {
-//    func load(url: URL) {
-//        DispatchQueue.global().async { [weak self] in
-//            if let data = try? Data(contentsOf: url) {
-//                if let image = UIImage(data: data) {
-//                    DispatchQueue.main.async {
-//                        self?.image = image
-//                    }
-//                }
-//            }
-//        }
-//    }
-//}
 
 extension UIImageView {
     func downloaded(from url: URL, contentMode mode: ContentMode = .scaleAspectFit) {

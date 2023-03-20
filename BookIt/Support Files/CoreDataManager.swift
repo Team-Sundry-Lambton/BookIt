@@ -17,7 +17,7 @@ class CoreDataManager : NSObject{
     func getClient(email : String) -> Client?{
         var client : Client?
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Client")
-        fetchRequest.predicate = NSPredicate(format: "email = %@ ", email)
+        fetchRequest.predicate = NSPredicate(format: "email = %@", email)
         do {
             let users = try context.fetch(fetchRequest)
             client = users.first as? Client
@@ -30,7 +30,7 @@ class CoreDataManager : NSObject{
     func getVendor(email : String) -> Vendor?{
         var vendor : Vendor?
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Vendor")
-        fetchRequest.predicate = NSPredicate(format: "email = %@ ", email)
+        fetchRequest.predicate = NSPredicate(format: "email = %@", email)
         do {
             let users = try context.fetch(fetchRequest)
             vendor = users.first as? Vendor

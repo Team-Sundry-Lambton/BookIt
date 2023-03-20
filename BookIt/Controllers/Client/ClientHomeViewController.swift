@@ -86,19 +86,15 @@ class ClientHomeViewController: UIViewController {
     }
     
     func initUI(){
-        
-//        categoryCollectioView.register(CategoryListCollectionViewCell.self, forCellWithReuseIdentifier: "CategoryListCollectionViewCell")
+    
         categoryCollectioView.dataSource = self
         categoryCollectioView.delegate = self
         categoryCollectioView.register(UINib(nibName: "CategoryListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CategoryListCollectionViewCell")
 
-        
-//        newVendersCollectionView.register(NewVendorCollectionViewCell.self, forCellWithReuseIdentifier: "NewVendorCollectionViewCell")
         newVendersCollectionView.dataSource = self
         newVendersCollectionView.delegate = self
         newVendersCollectionView.register(UINib(nibName: "NewVendorCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "NewVendorCollectionViewCell")
         
-//        serviceListTableView.register(ServiceDetailTableViewCell.self, forCellReuseIdentifier: "ServiceDetailTableViewCell")
         serviceListTableView.delegate = self
         serviceListTableView.dataSource = self
         serviceListTableView.register(UINib(nibName: "ServiceDetailTableViewCell", bundle: nil), forCellReuseIdentifier: "ServiceDetailTableViewCell")
@@ -308,10 +304,6 @@ extension ClientHomeViewController:  CLLocationManagerDelegate{
     
     func getAddressFromLatLon(latitude: Double, longitude : Double) {
             var center : CLLocationCoordinate2D = CLLocationCoordinate2D()
-//            let lat: Double = Double("\(pdblLatitude)")!
-//            //21.228124
-//            let lon: Double = Double("\(pdblLongitude)")!
-//            //72.833770
             let ceo: CLGeocoder = CLGeocoder()
             center.latitude = latitude
             center.longitude = longitude
@@ -458,10 +450,6 @@ extension ClientHomeViewController : UISearchBarDelegate{
             }
         }
     }
-}
-
-extension ClientHomeViewController{
-
 }
 
 //MARK: Secntion Enum
