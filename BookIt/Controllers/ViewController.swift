@@ -10,6 +10,7 @@ import FacebookLogin
 import CoreData
 import GoogleSignIn
 import AuthenticationServices
+import JGProgressHUD
 
 class ViewController: UIViewController {
     
@@ -118,9 +119,13 @@ class ViewController: UIViewController {
             UserDefaultsManager.shared.removeUserLogin()
             UserDefaultsManager.shared.removeUserData()
         }
+        let hud = JGProgressHUD()
+        hud.textLabel.text = "Downloading..."
+        hud.show(in: self.view)
         Task {
             await InitialDataDownloadManager.shared.downloadAllData{
                 DispatchQueue.main.async {
+                    hud.dismiss(animated: true)
                     if (self.isVendor){
                         let storyboard = UIStoryboard(name: "VendorDashBoard", bundle: nil)
                         let mainTabBarController = storyboard.instantiateViewController(identifier: "VendorTabBarController")

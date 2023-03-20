@@ -318,10 +318,10 @@
             filePath = "BookIt/Controllers/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "vendorStatus(sender:)"
-            landmarkType = "7">
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "ViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -781,10 +781,42 @@
             filePath = "BookIt/Controllers/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "254"
-            endingLineNumber = "254"
+            startingLineNumber = "259"
+            endingLineNumber = "259"
             landmarkName = "getGoogleUser()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F4925306-106E-4E76-A920-F141EB1E6F53 - db132f565d1fdb98"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.GIDSignInResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BookIt.ViewController.getGoogleUser() -&gt; ()"
+                  moduleName = "BookIt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Controllers/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "260"
+                  endingLineNumber = "260"
+                  offsetFromSymbolStart = "672">
+               </Location>
+               <Location
+                  uuid = "F4925306-106E-4E76-A920-F141EB1E6F53 - db132f565d1fdb98"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.GIDSignInResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BookIt.ViewController.getGoogleUser() -&gt; ()"
+                  moduleName = "BookIt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Controllers/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "260"
+                  endingLineNumber = "260"
+                  offsetFromSymbolStart = "748">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -797,9 +829,9 @@
             filePath = "BookIt/Controllers/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "286"
-            endingLineNumber = "286"
-            landmarkName = "authorizationController(controller:didCompleteWithAuthorization:)"
+            startingLineNumber = "291"
+            endingLineNumber = "291"
+            landmarkName = "presentationAnchor(for:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1793,8 +1825,8 @@
             filePath = "BookIt/Controllers/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
             landmarkName = "loadDashBoard(user:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1809,8 +1841,8 @@
             filePath = "BookIt/Controllers/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
             landmarkName = "loadDashBoard(user:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2068,22 +2100,6 @@
             startingLineNumber = "366"
             endingLineNumber = "366"
             landmarkName = "collectionView(_:numberOfItemsInSection:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "DD29C799-3624-4A64-BB5E-BAC1FE82B005"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BookIt/Controllers/Client/ClientHomeViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "400"
-            endingLineNumber = "400"
-            landmarkName = "collectionView(_:layout:sizeForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

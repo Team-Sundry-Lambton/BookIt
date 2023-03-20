@@ -36,6 +36,7 @@
 		BB7524F329C8EC6E004C4837 /* NewVendorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7524F129C8EC6E004C4837 /* NewVendorCollectionViewCell.swift */; };
 		BB7524F429C8EC6E004C4837 /* NewVendorCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7524F229C8EC6E004C4837 /* NewVendorCollectionViewCell.xib */; };
 		BB7524F629C8EE10004C4837 /* CategoryListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7524F529C8EE10004C4837 /* CategoryListCollectionViewCell.swift */; };
+		BB7524F929C908BF004C4837 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = BB7524F829C908BF004C4837 /* JGProgressHUD */; };
 		BB7A1DCF29C0C870003CB894 /* VendorHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7A1DCE29C0C870003CB894 /* VendorHomeViewController.swift */; };
 		BB7A1DD129C0C87E003CB894 /* VendorProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7A1DD029C0C87E003CB894 /* VendorProfileViewController.swift */; };
 		BB7A1DD329C0C88D003CB894 /* VendorServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7A1DD229C0C88D003CB894 /* VendorServicesViewController.swift */; };
@@ -183,6 +184,7 @@
 				BB7A1E0C29C2A4DC003CB894 /* FirebaseRemoteConfig in Frameworks */,
 				BB7A1DEC29C2A4DC003CB894 /* FirebaseAuthCombine-Community in Frameworks */,
 				BB7A1DF029C2A4DC003CB894 /* FirebaseDatabase in Frameworks */,
+				BB7524F929C908BF004C4837 /* JGProgressHUD in Frameworks */,
 				BB7A1DFC29C2A4DC003CB894 /* FirebaseFunctions in Frameworks */,
 				BB7A1E0029C2A4DC003CB894 /* FirebaseInAppMessaging-Beta in Frameworks */,
 				BBE7432A29B3A6E50087DC74 /* GoogleSignIn in Frameworks */,
@@ -421,6 +423,7 @@
 				BB7A1E0D29C2A4DC003CB894 /* FirebaseRemoteConfigSwift */,
 				BB7A1E0F29C2A4DC003CB894 /* FirebaseStorage */,
 				BB7A1E1129C2A4DC003CB894 /* FirebaseStorageCombine-Community */,
+				BB7524F829C908BF004C4837 /* JGProgressHUD */,
 			);
 			productName = BookIt;
 			productReference = 99AB0DC929AD95B300B096BB /* BookIt.app */;
@@ -455,6 +458,7 @@
 				BBE7432829B3A6E50087DC74 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				BBE832B229BD245800C58BF1 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				BB7A1DDC29C2A4DC003CB894 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				BB7524F729C908BF004C4837 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 			);
 			productRefGroup = 99AB0DCA29AD95B300B096BB /* Products */;
 			projectDirPath = "";
@@ -512,7 +516,6 @@
 				BB7524F629C8EE10004C4837 /* CategoryListCollectionViewCell.swift in Sources */,
 				BBC9F83E29BFC75A00985AAA /* LocationSearchTableViewController.swift in Sources */,
 				99AB0DD129AD95B300B096BB /* ViewController.swift in Sources */,
-				BBE832B829BD3B5700C58BF1 /* NewVendorCollectionViewCell.swift in Sources */,
 				996588BC29C7B0E100A7D796 /* Date+Extension.swift in Sources */,
 				996588C029C7BE6A00A7D796 /* GradientColorExtension.swift in Sources */,
 				996588C829C7D03500A7D796 /* FilterPopupViewController.swift in Sources */,
@@ -762,6 +765,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		BB7524F729C908BF004C4837 /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		BB7A1DDC29C2A4DC003CB894 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -797,6 +808,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		BB7524F829C908BF004C4837 /* JGProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BB7524F729C908BF004C4837 /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
+			productName = JGProgressHUD;
+		};
 		BB7A1DDD29C2A4DC003CB894 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BB7A1DDC29C2A4DC003CB894 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
