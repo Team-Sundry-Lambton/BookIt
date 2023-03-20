@@ -58,6 +58,9 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="73" height="24"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain"/>
+                                                <connections>
+                                                    <action selector="sortByAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="p9L-Fw-uNv"/>
+                                                </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="eKa-yx-9Uf">
                                                 <rect key="frame" x="0.0" y="0.0" width="73" height="24"/>
@@ -93,10 +96,13 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y4R-vY-7bx">
                                         <rect key="frame" x="0.0" y="34" width="73" height="24"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nHr-7Y-mWX">
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nHr-7Y-mWX">
                                                 <rect key="frame" x="0.0" y="0.0" width="73" height="24"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain"/>
+                                                <connections>
+                                                    <action selector="sortByAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="bFt-YG-Xf3"/>
+                                                </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="b3h-Hb-2K6">
                                                 <rect key="frame" x="0.0" y="0.0" width="73" height="24"/>
@@ -132,10 +138,13 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C6Y-BS-oKz">
                                         <rect key="frame" x="0.0" y="68" width="73" height="24"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aZt-7h-TgJ">
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aZt-7h-TgJ">
                                                 <rect key="frame" x="0.0" y="0.0" width="73" height="24"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain"/>
+                                                <connections>
+                                                    <action selector="sortByAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="R8z-gZ-OrE"/>
+                                                </connections>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="P7f-Wg-G0M">
                                                 <rect key="frame" x="0.0" y="0.0" width="73" height="24"/>
@@ -177,13 +186,19 @@
                                         <rect key="frame" x="0.0" y="0.0" width="161.66666666666666" height="45"/>
                                         <color key="tintColor" red="0.23921568630000001" green="0.38823529410000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Edit"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Cancel"/>
+                                        <connections>
+                                            <action selector="cancelAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="o41-Ad-mf3"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eE9-14-OqE" customClass="BaseCustomButton" customModule="BookIt" customModuleProvider="target">
                                         <rect key="frame" x="181.66666666666663" y="0.0" width="161.33333333333337" height="45"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Confirm"/>
+                                        <connections>
+                                            <action selector="confirmAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="HN9-x9-rGV"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -212,6 +227,11 @@
                     </view>
                     <value key="contentSizeForViewInPopover" type="size" width="375" height="320"/>
                     <size key="freeformSize" width="375" height="320"/>
+                    <connections>
+                        <outlet property="checkBoxDate" destination="GlR-SC-NOS" id="0X0-iU-V4K"/>
+                        <outlet property="checkBoxPrice" destination="8PB-3G-AJP" id="fA3-dc-90d"/>
+                        <outlet property="checkBoxTitle" destination="oMP-TU-E5h" id="03O-FZ-Ijq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
