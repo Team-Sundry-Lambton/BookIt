@@ -55,7 +55,36 @@ class CategoryServiceListTableViewController: UITableViewController {
         titleLabel.sizeToFit()
         self.navigationItem.titleView = titleLabel
         
+        // Create a filter icon image
+        let filterIcon = UIImage(named: "filterIcon")
+
+        // Create a custom bar button item with the filter icon
+        let filterButton = UIBarButtonItem(image: filterIcon, style: .plain, target: self, action: #selector(filterTapped))
+
+        // Add the custom bar button item to the right navigation item
+        navigationItem.rightBarButtonItem = filterButton
+        
         }
+    
+    @objc func filterTapped() {
+        //popup filter pagesheet
+        showFilterPopup()
+    }
+    
+    private func showFilterPopup() {
+        if let viewController = UIStoryboard(name: "FilterPopup", bundle: nil).instantiateViewController(withIdentifier: "FilterPopupViewController") as? FilterPopupViewController {
+            if let sheet = viewController.sheetPresentationController {
+                sheet.detents = [
+                    .custom { _ in
+                        return 320
+                    }
+                ]
+
+            }
+            viewController.delegate = self
+            present(viewController, animated: true)
+        }
+    }
     
     func loadServices(){
         let request: NSFetchRequest<Service> = Service.fetchRequest()
@@ -123,4 +152,10 @@ extension CategoryServiceListTableViewController: UISearchBarDelegate {
         loadServices()
     }
     
+}
+
+extension CategoryServiceListTableViewController: FilterCallBackProtocal {
+    func applySortBy(selectedSort: SortType) {
+        print("sort by" + "\(selectedSort)")
+    }
 }
