@@ -199,10 +199,10 @@
                                         <rect key="frame" x="0.0" y="544" width="393" height="75"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dfy-7A-Lhj">
-                                                <rect key="frame" x="20" y="0.66666666666662877" width="353" height="74"/>
+                                                <rect key="frame" x="20" y="4.6666666666666288" width="353" height="66"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="74" id="JwH-SV-OFp"/>
+                                                    <constraint firstAttribute="height" constant="66" id="JwH-SV-OFp"/>
                                                 </constraints>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="glF-T3-4Ki">
                                                     <size key="itemSize" width="128" height="128"/>

@@ -18,6 +18,9 @@ class ServiceSearchTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant:10.0).isActive = true
+        self.tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant:-10.0).isActive = true
+        
         self.tableView.register(UINib(nibName: "ServiceDetailTableViewCell", bundle: nil), forCellReuseIdentifier: "ServiceDetailTableViewCell")
         
 //        search.delegate = self
