@@ -85,9 +85,26 @@ class ConfirmLocationViewController: UIViewController {
         selectedLocation.clientAddress = client
         saveLocation()
         if isUpdate {
-             InitialDataDownloadManager.shared.updateAddressData(addressObject: selectedLocation)
+            InitialDataDownloadManager.shared.updateAddressData(addressObject: selectedLocation){ status in
+                DispatchQueue.main.async {
+                    if let status = status{
+                        if status == false {
+                            UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
+                        }
+                    }
+                }
+            }
         }else{
-            InitialDataDownloadManager.shared.addAddressData(address: selectedLocation)
+            InitialDataDownloadManager.shared.addAddressData(address: selectedLocation){ status in
+                DispatchQueue.main.async {
+                    if let status = status{
+                        if status == false {
+                            UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
+                        }
+                    }
+                }
+                
+            }
         }
     }
     

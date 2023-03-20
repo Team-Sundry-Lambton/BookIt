@@ -269,7 +269,12 @@ class PostServiceViewController: UIViewController {
                 mediaFile.mediaContent = object.image?.pngData()
                 mediaFile.parent_Service = self?.selectedService
                 strongSelf.mediaList.append(mediaFile)
-                InitialDataDownloadManager.shared.addMediaData(media: mediaFile)
+                InitialDataDownloadManager.shared.addMediaData(media: mediaFile){ status in
+                    if let status = status {
+                        
+                    }
+                    
+                }
                 strongSelf.saveSingleCoreData()
                 strongSelf.mediaFileCollectionView.reloadData()
             }
@@ -322,16 +327,21 @@ class PostServiceViewController: UIViewController {
             serivice.equipment = isEquipmentNeed
             getVendor()
             serivice.parent_Vendor = vendor
-            
-            //        for media in self.mediaList {
-            //            media.parent_Service = service
-            //        //    InitialDataDownloadManager.shared.AddMediaData(media: mediaFile)
-            //        }
             saveAllContextCoreData()
-            //        if let address = selectedLocation{
-            //            InitialDataDownloadManager.shared.AddAddressData(address: address)
-            //        }
-            InitialDataDownloadManager.shared.addServiceData(service: serivice)
+            Task {
+                await InitialDataDownloadManager.shared.addServiceData(service: serivice){ status in
+                    DispatchQueue.main.async {
+                        if let status = status {
+                            if status {
+                                self.saveAllContextCoreData()
+                            }else{
+                                UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
+                            }
+                        }
+                    }
+                }
+                
+            }
         }
 
     }
@@ -356,7 +366,16 @@ class PostServiceViewController: UIViewController {
         context.delete(mediaFile)
         mediaFileCollectionView.reloadData()
         
-        InitialDataDownloadManager.shared.deleteMediaData(media: mediaFile)
+        InitialDataDownloadManager.shared.deleteMediaData(media: mediaFile){ status in
+            if let status = status{
+                if status == false {
+                    DispatchQueue.main.async {
+                        self.deleteMediaFile(mediaFile: mediaFile)
+                    }
+                }
+            }
+            
+        }
     }
     
     private func saveAllContextCoreData() {

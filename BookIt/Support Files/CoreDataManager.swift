@@ -79,6 +79,34 @@ class CoreDataManager : NSObject{
         }
         return media
     }
+    
+    func getBooking(client : String, serviceTitle : String,vendor : String) -> Booking?{
+        var booking : Booking?
+        let fetchRequest: NSFetchRequest<Booking> = Booking.fetchRequest()
+            let folderPredicate = NSPredicate(format: "service.serviceTitle=%@ AND client.email=%@ AND vendor.email=%@", serviceTitle,client,vendor)
+        fetchRequest.predicate = folderPredicate
+        do {
+            let bookings = try context.fetch(fetchRequest)
+            booking = bookings.first as? Booking
+        } catch {
+            print("Error loading medias \(error.localizedDescription)")
+        }
+        return booking
+    }
+    
+    func getPayment(amount : Double, serviceTitle : String) -> Payment?{
+        var payment : Payment?
+        let fetchRequest: NSFetchRequest<Payment> = Payment.fetchRequest()
+            let folderPredicate = NSPredicate(format: "booking.service.serviceTitle=%@ AND amount=%@", serviceTitle,amount)
+        fetchRequest.predicate = folderPredicate
+        do {
+            let payments = try context.fetch(fetchRequest)
+            payment = payments.first as? Payment
+        } catch {
+            print("Error loading medias \(error.localizedDescription)")
+        }
+        return payment
+    }
 
     
     func deleteAllTables(){
