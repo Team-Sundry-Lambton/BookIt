@@ -10,12 +10,12 @@ import CoreData
 
 class ServiceDetailTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var titleLbl: UILabel?
-    @IBOutlet weak var descriptionLbl: UILabel?
-    @IBOutlet weak var pricetLbl: UILabel?
-    @IBOutlet weak var locationLbl: UILabel?
-    @IBOutlet weak var nameLbl: UILabel?
-    @IBOutlet weak var serviceImage: UIImageView?
+    @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var descriptionLbl: UILabel!
+    @IBOutlet weak var pricetLbl: UILabel!
+    @IBOutlet weak var locationLbl: UILabel!
+    @IBOutlet weak var nameLbl: UILabel!
+    @IBOutlet weak var serviceImage: UIImageView!
     
     var selectedLocation: Address?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -23,21 +23,21 @@ class ServiceDetailTableViewCell: UITableViewCell {
     func configureCell(service: Service) {
         getLocationData(serviceTitle: service.serviceTitle ?? "")
         if let title = service.serviceTitle {
-            titleLbl?.text = title
+            titleLbl.text = title
         }
         if let description = service.serviceDescription {
-            descriptionLbl?.text = description
+            descriptionLbl.text = description
         }
         if let price = service.price, let type = service.priceType {
-            pricetLbl?.text = "$ " + price + " / " + type
+            pricetLbl.text = "$ " + price + " / " + type
         }
-        locationLbl?.text =  selectedLocation?.address
+        locationLbl.text =  selectedLocation?.address
         let user =  UserDefaultsManager.shared.getUserData()
         if user.firstName != "" {
-            nameLbl?.isHidden = false
-            nameLbl?.text = user.firstName + " " + user.lastName
+            nameLbl.isHidden = false
+            nameLbl.text = user.firstName + " " + user.lastName
         }else{
-            nameLbl?.isHidden = true
+            nameLbl.isHidden = true
         }
         
 //        if let imageData = mediaList[0].image {
