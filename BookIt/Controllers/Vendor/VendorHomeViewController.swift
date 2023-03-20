@@ -73,7 +73,6 @@ class VendorHomeViewController: UIViewController {
     private func showFilterPopup() {
         if let viewController = UIStoryboard(name: "FilterPopup", bundle: nil).instantiateViewController(withIdentifier: "FilterPopupViewController") as? FilterPopupViewController {
             if let sheet = viewController.sheetPresentationController {
-                // 1
                 sheet.detents = [
                     .custom { _ in
                         return 320
@@ -81,6 +80,7 @@ class VendorHomeViewController: UIViewController {
                 ]
 
             }
+            viewController.delegate = self
             present(viewController, animated: true)
         }
     }
@@ -136,3 +136,8 @@ extension VendorHomeViewController: UITableViewDelegate , UITableViewDataSource 
     }
 }
 
+extension VendorHomeViewController: FilterCallBackProtocal {
+    func applySortBy(selectedSort: SortType) {
+        print("sort by" + "\(selectedSort)")
+    }
+}
