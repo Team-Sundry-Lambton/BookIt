@@ -17,20 +17,73 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Booking" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZxO-Ue-ESS">
-                                <rect key="frame" x="162" y="284" width="62" height="21"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="8tn-KT-b2u">
+                                <rect key="frame" x="0.0" y="163" width="393" height="628"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="bom-U8-HEJ" id="cW8-MW-IZ4"/>
+                                    <outlet property="delegate" destination="bom-U8-HEJ" id="zjS-SH-yia"/>
+                                </connections>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dfP-4v-w0r" userLabel="Header">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="88"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bookings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yav-QY-FLx">
+                                        <rect key="frame" x="159.66666666666666" y="59" width="74" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QcM-J7-7vy">
+                                        <rect key="frame" x="333" y="54.666666666666657" width="50" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="62J-be-fCE"/>
+                                            <constraint firstAttribute="width" constant="50" id="wER-XC-p3Z"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="filterIcon"/>
+                                        <connections>
+                                            <action selector="filterAction:" destination="bom-U8-HEJ" eventType="touchUpInside" id="lk2-Rv-pmb"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="QcM-J7-7vy" firstAttribute="centerY" secondItem="Yav-QY-FLx" secondAttribute="centerY" id="7jg-Dw-mC9"/>
+                                    <constraint firstAttribute="trailing" secondItem="QcM-J7-7vy" secondAttribute="trailing" constant="10" id="EwI-Gl-B8N"/>
+                                    <constraint firstItem="Yav-QY-FLx" firstAttribute="centerX" secondItem="dfP-4v-w0r" secondAttribute="centerX" id="I8D-WK-kMM"/>
+                                    <constraint firstAttribute="bottom" secondItem="Yav-QY-FLx" secondAttribute="bottom" constant="8" id="Qbu-Sw-cFd"/>
+                                    <constraint firstAttribute="height" constant="88" id="rkC-4C-xqe"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" id="Nmq-8c-0fM" customClass="CustomSegmentedControl" customModule="BookIt">
+                                <rect key="frame" x="0.0" y="96" width="393" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="eMd-RZ-M6S"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="TTY-U5-CHe"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="8tn-KT-b2u" firstAttribute="leading" secondItem="dfP-4v-w0r" secondAttribute="leading" id="0hJ-CK-N0q"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="8tn-KT-b2u" secondAttribute="bottom" constant="-22" id="RPH-NN-SHc"/>
+                            <constraint firstItem="8tn-KT-b2u" firstAttribute="trailing" secondItem="Nmq-8c-0fM" secondAttribute="trailing" id="UEK-cz-0al"/>
+                            <constraint firstItem="8tn-KT-b2u" firstAttribute="leading" secondItem="Nmq-8c-0fM" secondAttribute="leading" id="WCD-MJ-Qig"/>
+                            <constraint firstItem="Nmq-8c-0fM" firstAttribute="top" secondItem="dfP-4v-w0r" secondAttribute="bottom" constant="8" id="YE1-Tt-35T"/>
+                            <constraint firstItem="8tn-KT-b2u" firstAttribute="top" secondItem="Nmq-8c-0fM" secondAttribute="bottom" constant="25" id="ji9-kR-Ej1"/>
+                            <constraint firstItem="8tn-KT-b2u" firstAttribute="trailing" secondItem="dfP-4v-w0r" secondAttribute="trailing" id="uB0-Q8-BEi"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Bookings" image="BookingTabIcon" id="nlI-fu-tmJ">
                         <color key="badgeColor" red="0.23921568630000001" green="0.38823529410000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBarItem>
+                    <connections>
+                        <outlet property="interfaceSegmented" destination="Nmq-8c-0fM" id="VqZ-I4-t0H"/>
+                        <outlet property="tableView" destination="8tn-KT-b2u" id="v10-GE-O7f"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TpS-7E-Vhk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -847,6 +900,7 @@
         <image name="ProfileTabIcon" width="24" height="24"/>
         <image name="SelectLocationIcon" width="18" height="19"/>
         <image name="TextFieldOuterLine" width="325" height="50"/>
+        <image name="filterIcon" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
