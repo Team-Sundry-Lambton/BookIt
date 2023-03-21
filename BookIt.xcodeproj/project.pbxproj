@@ -37,6 +37,7 @@
 		BB7524F429C8EC6E004C4837 /* NewVendorCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7524F229C8EC6E004C4837 /* NewVendorCollectionViewCell.xib */; };
 		BB7524F629C8EE10004C4837 /* CategoryListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7524F529C8EE10004C4837 /* CategoryListCollectionViewCell.swift */; };
 		BB7524F929C908BF004C4837 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = BB7524F829C908BF004C4837 /* JGProgressHUD */; };
+		BB7524FC29C931F4004C4837 /* LoadingHudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7524FB29C931F4004C4837 /* LoadingHudManager.swift */; };
 		BB7A1DCF29C0C870003CB894 /* VendorHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7A1DCE29C0C870003CB894 /* VendorHomeViewController.swift */; };
 		BB7A1DD129C0C87E003CB894 /* VendorProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7A1DD029C0C87E003CB894 /* VendorProfileViewController.swift */; };
 		BB7A1DD329C0C88D003CB894 /* VendorServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7A1DD229C0C88D003CB894 /* VendorServicesViewController.swift */; };
@@ -133,6 +134,7 @@
 		BB7524F129C8EC6E004C4837 /* NewVendorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVendorCollectionViewCell.swift; sourceTree = "<group>"; };
 		BB7524F229C8EC6E004C4837 /* NewVendorCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewVendorCollectionViewCell.xib; sourceTree = "<group>"; };
 		BB7524F529C8EE10004C4837 /* CategoryListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryListCollectionViewCell.swift; sourceTree = "<group>"; };
+		BB7524FB29C931F4004C4837 /* LoadingHudManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingHudManager.swift; sourceTree = "<group>"; };
 		BB7A1DCE29C0C870003CB894 /* VendorHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorHomeViewController.swift; sourceTree = "<group>"; };
 		BB7A1DD029C0C87E003CB894 /* VendorProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorProfileViewController.swift; sourceTree = "<group>"; };
 		BB7A1DD229C0C88D003CB894 /* VendorServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorServicesViewController.swift; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 				996588C329C7C05400A7D796 /* BaseCustomButton.swift */,
 				BB7A1E1529C3AB36003CB894 /* InitialDataDownload.swift */,
 				BB7A1E1A29C3BF61003CB894 /* CoreDataManager.swift */,
+				BB7524FB29C931F4004C4837 /* LoadingHudManager.swift */,
 			);
 			path = "Support Files";
 			sourceTree = "<group>";
@@ -499,6 +502,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB7524FC29C931F4004C4837 /* LoadingHudManager.swift in Sources */,
 				B4D56B5E29C10639005A2C63 /* CategoryCollectionViewCell.swift in Sources */,
 				BBA6356F29BA62D700702A62 /* ClientHomeViewController.swift in Sources */,
 				BB7A1DD129C0C87E003CB894 /* VendorProfileViewController.swift in Sources */,

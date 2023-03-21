@@ -103,7 +103,7 @@ class InitialDataDownloadManager : NSObject{
                 service.price =  data["price"] as? String ?? ""
                 service.priceType =  data["priceType"]  as? String ?? ""
                 service.equipment = data["equipment"]  as? Bool ?? false
-  
+                service.serviceId = data["serviceId"]  as? Int16 ?? -1
                 if let parentVendor = data["parentVendor"]  as? String {
                     if parentVendor != "" {
                         if  let vendor = CoreDataManager.shared.getVendor(email: parentVendor){
@@ -136,9 +136,9 @@ class InitialDataDownloadManager : NSObject{
                 address.addressLatitude =  data["latitude"] as? Double ?? 0
                 address.address =  data["address"] as? String ?? ""
                 
-                if let parentService = data["parentService"]  as? String {
-                    if parentService != "" {
-                        if let service = CoreDataManager.shared.getService(title: parentService){
+                if let parentService = data["parentService"]  as? Int {
+                    if parentService != -1 {
+                        if let service = CoreDataManager.shared.getService(serviceId: parentService){
                             address.parentService = service
                         }
                     }
@@ -176,9 +176,9 @@ class InitialDataDownloadManager : NSObject{
                     media.mediaContent = self.urlToData(path: picture)
                 }
                 
-                if let parentService = data["parentService"]  as? String {
-                    if parentService != "" {
-                        if let service = CoreDataManager.shared.getService(title: parentService){
+                if let parentService = data["parentService"]  as? Int {
+                    if parentService != -1 {
+                        if let service = CoreDataManager.shared.getService(serviceId: parentService){
                             media.parent_Service = service
                         }
                     }
@@ -200,16 +200,11 @@ class InitialDataDownloadManager : NSObject{
                 boobking.status =  data["status"] as? String ?? ""
 
                 
-                if let parentService = data["parentService"]  as? String {
-                    if parentService != "" {
-                        if let service = CoreDataManager.shared.getService(title: parentService){
+                if let parentService = data["parentService"]  as? Int {
+                    if parentService != -1 {
+                        if let service = CoreDataManager.shared.getService(serviceId: parentService){
                             boobking.service = service
                         }
-                        
-//                        if let amount = data["amount"]  as? Double {
-//                            let payment = CoreDataManager.shared.getPayment(amount: amount, serviceTitle:service?.serviceTitle ?? "" )
-//                                boobking.payment = payment
-//                        }
                     }
                 }
                 
@@ -246,9 +241,9 @@ class InitialDataDownloadManager : NSObject{
                 payment.date =  data["date"] as? Date
                 payment.status =  data["status"] as? String ?? ""
                 
-                if let client = data["clientAddress"]  as? String, let vendor = data["vendorAddress"]  as? String, let serviceTitle = data["serviceTitle"]  as? String  {
-                    if client != ""  && vendor != ""  && serviceTitle != "" {
-                        if let booking = CoreDataManager.shared.getBooking(client: client, serviceTitle: serviceTitle, vendor: vendor){
+                if let client = data["clientAddress"]  as? String, let vendor = data["vendorAddress"]  as? String, let serviceId = data["serviceId"] as? Int {
+                    if client != ""  && vendor != ""  && serviceId != -1 {
+                        if let booking = CoreDataManager.shared.getBooking(client: client, serviceId: serviceId, vendor: vendor){
                             payment.booking = booking
                         }
                     }
@@ -481,6 +476,8 @@ extension InitialDataDownloadManager {
             "serviceTitle":  service.serviceTitle ?? "",
             "parentCategory":  service.parent_Category?.name ?? "",
             "parentVendor":  service.parent_Vendor?.email ?? "",
+            "serviceId":  service.serviceId ,
+            
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
@@ -493,9 +490,9 @@ extension InitialDataDownloadManager {
     }
     
     func addAddressData(address: Address,completion: @escaping (_ status: Bool?) -> Void){
-        var parentService : String?
+        var serviceId : Int?
         if let service = address.parentService {
-            parentService = service.serviceTitle
+            serviceId = Int(service.serviceId)
         }
         var clientEmail : String?
         if let client = address.clientAddress {
@@ -510,7 +507,7 @@ extension InitialDataDownloadManager {
                 "longitude": address.addressLongitude,
                 "latitude": address.addressLatitude,
                 "address": address.address ?? "",
-                "parentService": parentService ?? "",
+                "parentService": serviceId ?? -1,
                 "clientAddress": clientEmail ?? "",
                 "vendorAddress": vendorEmail ?? "",
             ]) { err in
@@ -526,6 +523,10 @@ extension InitialDataDownloadManager {
     
         func addMediaData(media : MediaFile,completion: @escaping (_ status: Bool?) -> Void){
 
+            var serviceId = -1
+            if let service = media.parent_Service{
+                serviceId = Int(service.serviceId)
+            }
         if let imageData = media.mediaContent {
             uploadMedia(name:media.mediaName ?? "", media: imageData) { url in
                 var ref: DocumentReference? = nil
@@ -533,7 +534,7 @@ extension InitialDataDownloadManager {
                     "mediaName": media.mediaName ?? "",
                     "mediaContent": url ?? "",
                     "mediaPath": url ?? "",
-                    "parentService": media.parent_Service?.serviceTitle ?? "",
+                    "parentService": serviceId,
                     
                 ]) { err in
                     if let err = err {
@@ -541,7 +542,7 @@ extension InitialDataDownloadManager {
                         completion(false)
                     } else {
                         print("Document added with ID: \(ref!.documentID)")
-                        let media = CoreDataManager.shared.getMedia(name: media.mediaName ?? "", serviceTitle: media.parent_Service?.serviceTitle ?? "")
+                        let media = CoreDataManager.shared.getMedia(name: media.mediaName ?? "", serviceId: serviceId)
                         media?.mediaPath = url
                         self.saveData()
                         completion(true)
@@ -552,9 +553,9 @@ extension InitialDataDownloadManager {
     }
     
     func addBookingData(booking : Booking,completion: @escaping (_ status: Bool?) -> Void){
-        var parentService : String?
+        var serviceId : Int?
         if let service = booking.service {
-            parentService = service.serviceTitle
+            serviceId = Int(service.serviceId)
         }
         var clientEmail : String?
         if let client = booking.client {
@@ -568,7 +569,7 @@ extension InitialDataDownloadManager {
         ref = db.collection("booking").addDocument(data: [
             "date": booking.date,
             "status": booking.status ?? "",
-            "parentService": parentService ?? "",
+            "parentService": serviceId ?? -1,
             "clientAddress": clientEmail ?? "",
             "vendorAddress": vendorEmail ?? "",
         ]) { err in
@@ -586,11 +587,11 @@ extension InitialDataDownloadManager {
 
         var vendorEmail : String?
         var clientEmail : String?
-        var serviceTitle : String?
+        var serviceId = -1
         if let booking = payment.booking {
             vendorEmail = booking.vendor?.email
             clientEmail = booking.client?.email
-            serviceTitle = booking.service?.serviceTitle
+            serviceId = Int(booking.service?.serviceId ?? -1)
         }
         
         var ref: DocumentReference? = nil
@@ -600,7 +601,7 @@ extension InitialDataDownloadManager {
             "status": payment.status ?? "",
             "clientAddress": clientEmail ?? "",
             "vendorAddress": vendorEmail ?? "",
-            "serviceTitle" :serviceTitle ?? "",
+            "serviceId" :serviceId ,
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
@@ -763,11 +764,11 @@ extension InitialDataDownloadManager{
         if let address = addressObject.address {
             var filterField = ""
             var filterText = ""
-            var parentService : String?
+            var serviceId = -1
             if let service = addressObject.parentService {
-                parentService = service.serviceTitle
-                filterField = "parentService"
-                filterText = parentService ?? address
+                serviceId = Int(service.serviceId)
+                filterField = "serviceId"
+                filterText =  String(serviceId)
             }
             var clientEmail : String?
             if let client = addressObject.clientAddress {
@@ -798,9 +799,9 @@ extension InitialDataDownloadManager{
                                 "longitude": addressObject.addressLongitude,
                                 "latitude": addressObject.addressLatitude,
                                 "address": address,
-                                "parentService": parentService ?? "",
-                                "clientAddress": clientEmail ?? "",
-                                "vendorAddress": vendorEmail ?? "",
+//                                "parentService": serviceId ?? -1,
+//                                "clientAddress": clientEmail ?? "",
+//                                "vendorAddress": vendorEmail ?? "",
                             ])
                             completion(true)
                         }
@@ -817,7 +818,7 @@ extension InitialDataDownloadManager{
                     .getDocuments()
                 if let document = snapshot.documents.first {
                     try await document.reference.updateData([
-                        "parentService": media.parent_Service?.serviceTitle ?? "",
+                        "parentService": media.parent_Service?.serviceId ?? -1,
                     ])
                     completion(true)
                 }else{
@@ -843,6 +844,102 @@ extension InitialDataDownloadManager{
 //                    }
 //                }
         }
+    
+    func updateBookingData(booking : Booking,completion: @escaping (_ status: Bool?) -> Void){
+        var serviceId = -1
+        if let service = booking.service {
+            serviceId = Int(service.serviceId)
+        }
+        var clientEmail = ""
+        if let client = booking.client {
+            clientEmail = client.email ?? ""
+        }
+        var vendorEmail = ""
+        if let vendor = booking.vendor {
+            vendorEmail = vendor.email ?? ""
+        }
+
+        db.collection("booking")
+            .whereField("parentService", isEqualTo: serviceId).whereField("clientAddress", isEqualTo: clientEmail).whereField("vendorAddress", isEqualTo: vendorEmail)
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    // Some error occured
+                    
+                    completion(false)
+                } else if querySnapshot!.documents.count != 1 {
+                    // Perhaps this is an error for you?
+                    completion(false)
+                } else {
+                    if let document = querySnapshot!.documents.first{
+                        document.reference.updateData([
+                            "status": booking.status ?? "",
+                        ])
+                        completion(true)
+                    }
+                }
+            }
+
+        
+    }
+    
+    func updateServiceData(service : Service,completion: @escaping (_ status: Bool?) -> Void) async {
+            if let media = service.medias {
+                await self.updateMedia(media: media){ status in
+                    if let status = status {
+                        if status == false {
+                            completion(false)
+                        }
+                    }
+                }
+            }
+            
+            if let address = service.address {
+                self.updateAddressData(addressObject: address){ status in
+                    if let status = status {
+                        if status == false {
+                            completion(false)
+                        }
+                    }
+                }
+            }
+        
+        var category = ""
+        if let vendor = service.parent_Category {
+            category = vendor.name ?? ""
+        }
+        
+        var title = ""
+        if let st = service.serviceTitle {
+            title = st
+        }
+         
+            db.collection("service")
+            .whereField("serviceId", isEqualTo: service.serviceId)
+                .getDocuments() { (querySnapshot, err) in
+                    if let err = err {
+                        // Some error occured
+                        
+                        completion(false)
+                    } else if querySnapshot!.documents.count != 1 {
+                        // Perhaps this is an error for you?
+                        completion(false)
+                    } else {
+                        if let document = querySnapshot!.documents.first{
+                            document.reference.updateData([
+                                "cancelPolicy": service.cancelPolicy ?? "",
+                                "equipment": service.equipment,
+                                "price": service.price ?? "",
+                                "priceType": service.priceType ?? "",
+                                "serviceDescription": service.serviceDescription ?? "",
+                                "parentCategory":  category,
+                                "serviceTitle":  title,
+                                //"parentVendor":  service.parent_Vendor?.email ?? "",
+                            ])
+                            completion(true)
+                        }
+                    }
+        }
+    }
 }
 
 extension InitialDataDownloadManager{
