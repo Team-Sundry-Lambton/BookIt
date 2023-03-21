@@ -31,11 +31,20 @@ class ServiceDetailTableViewCell: UITableViewCell {
         if let price = service.price, let type = service.priceType {
             pricetLbl.text = "$ " + price + " / " + type
         }
-        locationLbl.text =  selectedLocation?.address
-        let user =  UserDefaultsManager.shared.getUserData()
-        if user.firstName != "" {
-            nameLbl.isHidden = false
-            nameLbl.text = user.firstName + " " + user.lastName
+        if let address =  service.address {
+            locationLbl.isHidden = false
+            locationLbl.text =  address.address
+        }else{
+            locationLbl.isHidden = true
+        }
+        
+        if let user =  service.parent_Vendor {
+            if let firstName = user.firstName, let lastName = user.lastName {
+                nameLbl.isHidden = false
+                nameLbl.text = firstName + " " + lastName
+            }else{
+                nameLbl.isHidden = true
+            }
         }else{
             nameLbl.isHidden = true
         }

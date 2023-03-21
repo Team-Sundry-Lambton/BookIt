@@ -7,7 +7,7 @@
 
 import UIKit
 import CoreData
-
+import JGProgressHUD
 class PostServiceViewController: UIViewController {
 
     var loginUser : LoginUser?
@@ -263,20 +263,30 @@ class PostServiceViewController: UIViewController {
             }
             
             if let object = mediaObject {
-                let mediaFile = MediaFile(context: strongSelf.context)
-                mediaFile.mediaName = object.fileName
-                mediaFile.mediaPath = ""
-                mediaFile.mediaContent = object.image?.pngData()
-                mediaFile.parent_Service = self?.selectedService
-                strongSelf.mediaList.append(mediaFile)
-                InitialDataDownloadManager.shared.addMediaData(media: mediaFile){ status in
-                    if let status = status {
+                DispatchQueue.main.async {
+                    let mediaFile = MediaFile(context: strongSelf.context)
+                    mediaFile.mediaName = object.fileName
+                    mediaFile.mediaPath = ""
+                    mediaFile.mediaContent = object.image?.pngData()
+                    mediaFile.parent_Service = self?.selectedService
+                  
+                    let hud = JGProgressHUD()
+                    hud.textLabel.text = "Uploading..."
+                    hud.show(in: strongSelf.view)
+                    InitialDataDownloadManager.shared.addMediaData(media: mediaFile){ url in
+                        hud.dismiss(animated: true)
+                        if let path = url {
+                                mediaFile.mediaPath = path
+                                strongSelf.mediaList.append(mediaFile)
+                                strongSelf.saveSingleCoreData()
+                                strongSelf.mediaFileCollectionView.reloadData()
+                        }else{
+                            UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: strongSelf)
+                        }
                         
                     }
                     
                 }
-                strongSelf.saveSingleCoreData()
-                strongSelf.mediaFileCollectionView.reloadData()
             }
         }
     }
@@ -327,10 +337,13 @@ class PostServiceViewController: UIViewController {
             serivice.equipment = isEquipmentNeed
             getVendor()
             serivice.parent_Vendor = vendor
-            saveAllContextCoreData()
+            let hud = JGProgressHUD()
+            hud.textLabel.text = "Uploading..."
+            hud.show(in: self.view)
             Task {
                 await InitialDataDownloadManager.shared.addServiceData(service: serivice){ status in
                     DispatchQueue.main.async {
+                        hud.dismiss(animated: true)
                         if let status = status {
                             if status {
                                 self.saveAllContextCoreData()
@@ -365,8 +378,11 @@ class PostServiceViewController: UIViewController {
 
         context.delete(mediaFile)
         mediaFileCollectionView.reloadData()
-        
+        let hud = JGProgressHUD()
+        hud.textLabel.text = "Deleting..."
+        hud.show(in: self.view)
         InitialDataDownloadManager.shared.deleteMediaData(media: mediaFile){ status in
+            hud.dismiss(animated: true)
             if let status = status{
                 if status == false {
                     DispatchQueue.main.async {
