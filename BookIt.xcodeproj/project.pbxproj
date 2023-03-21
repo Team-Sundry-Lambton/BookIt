@@ -165,8 +165,8 @@
 		BBE832BA29BD3B7300C58BF1 /* ServiceDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServiceDetailTableViewCell.xib; sourceTree = "<group>"; };
 		BBEC1C4729B5595E00B58D41 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIColorExtension.swift; path = BookIt/ManagerFiles/UIColorExtension.swift; sourceTree = SOURCE_ROOT; };
 		BBEC1C4929B55A6800B58D41 /* UIAlertViewExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIAlertViewExtention.swift; path = BookIt/ManagerFiles/UIAlertViewExtention.swift; sourceTree = SOURCE_ROOT; };
-		BD36696E29C946C000C83AA6 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Onboarding.storyboard; path = ../../../../../../../Desktop/Onboarding.storyboard; sourceTree = "<group>"; };
-		BD36697029C946C800C83AA6 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingViewController.swift; path = ../../../../../../../Desktop/OnboardingViewController.swift; sourceTree = "<group>"; };
+		BD36696E29C946C000C83AA6 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		BD36697029C946C800C83AA6 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
