@@ -21,7 +21,7 @@ class ServiceDetailTableViewCell: UITableViewCell {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     func configureCell(service: Service) {
-        getLocationData(serviceTitle: service.serviceTitle ?? "")
+        getLocationData(serviceId: Int(service.serviceId))
         if let title = service.serviceTitle {
             titleLbl.text = title
         }
@@ -60,9 +60,9 @@ class ServiceDetailTableViewCell: UITableViewCell {
 //        }
     }
     
-    private func getLocationData(serviceTitle : String) {
+    private func getLocationData(serviceId : Int) {
         let request: NSFetchRequest<Address> = Address.fetchRequest()
-        let folderPredicate = NSPredicate(format: "parentService.serviceTitle=%@", serviceTitle)
+        let folderPredicate = NSPredicate(format: "parentService.serviceId=%@", serviceId)
         request.predicate = folderPredicate
         do {
             let location = try context.fetch(request)

@@ -53,10 +53,10 @@ class CoreDataManager : NSObject{
         return category
     }
     
-    func getService(title : String) -> Service?{
+    func getService(serviceId : Int) -> Service?{
         var service : Service?
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Service")
-        fetchRequest.predicate = NSPredicate(format: "serviceTitle = %@ ", title)
+        fetchRequest.predicate = NSPredicate(format: "serviceId = %@ ", serviceId)
         do {
             let services = try context.fetch(fetchRequest)
             service = services.first as? Service
@@ -66,10 +66,10 @@ class CoreDataManager : NSObject{
         return service
     }
     
-    func getMedia(name : String, serviceTitle : String) -> MediaFile?{
+    func getMedia(name : String, serviceId : Int) -> MediaFile?{
         var media : MediaFile?
         let fetchRequest: NSFetchRequest<MediaFile> = MediaFile.fetchRequest()
-            let folderPredicate = NSPredicate(format: "parent_Service.serviceTitle=%@ AND mediaName=%@", serviceTitle,name)
+            let folderPredicate = NSPredicate(format: "parent_Service.serviceId=%@ AND mediaName=%@", serviceId,name)
         fetchRequest.predicate = folderPredicate
         do {
             let medias = try context.fetch(fetchRequest)
@@ -80,10 +80,10 @@ class CoreDataManager : NSObject{
         return media
     }
     
-    func getBooking(client : String, serviceTitle : String,vendor : String) -> Booking?{
+    func getBooking(client : String, serviceId : Int,vendor : String) -> Booking?{
         var booking : Booking?
         let fetchRequest: NSFetchRequest<Booking> = Booking.fetchRequest()
-            let folderPredicate = NSPredicate(format: "service.serviceTitle=%@ AND client.email=%@ AND vendor.email=%@", serviceTitle,client,vendor)
+            let folderPredicate = NSPredicate(format: "service.serviceId=%@ AND client.email=%@ AND vendor.email=%@", serviceId,client,vendor)
         fetchRequest.predicate = folderPredicate
         do {
             let bookings = try context.fetch(fetchRequest)
@@ -94,10 +94,10 @@ class CoreDataManager : NSObject{
         return booking
     }
     
-    func getPayment(amount : Double, serviceTitle : String) -> Payment?{
+    func getPayment(amount : Double, serviceId : Int) -> Payment?{
         var payment : Payment?
         let fetchRequest: NSFetchRequest<Payment> = Payment.fetchRequest()
-            let folderPredicate = NSPredicate(format: "booking.service.serviceTitle=%@ AND amount=%@", serviceTitle,amount)
+            let folderPredicate = NSPredicate(format: "booking.service.serviceId=%@ AND amount=%@", serviceId,amount)
         fetchRequest.predicate = folderPredicate
         do {
             let payments = try context.fetch(fetchRequest)

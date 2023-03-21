@@ -110,19 +110,16 @@ class ViewController: UIViewController {
             UserDefaultsManager.shared.removeUserLogin()
             UserDefaultsManager.shared.removeUserData()
         }
-        let hud = JGProgressHUD()
-        hud.textLabel.text = "Downloading..."
-        hud.show(in: self.view)
+        LoadingHudManager.shared.showSimpleHUD(title: "Downloading...", view: self.view)
         Task {
             await InitialDataDownloadManager.shared.downloadAllData{
                 DispatchQueue.main.async {
-                    hud.dismiss(animated: true)
+                    LoadingHudManager.shared.dissmissHud()
                     if (self.isVendor){
                         let storyboard = UIStoryboard(name: "VendorDashBoard", bundle: nil)
                         let mainTabBarController = storyboard.instantiateViewController(identifier: "VendorTabBarController")
                         mainTabBarController.modalPresentationStyle = .fullScreen
                         if let navigator = self.navigationController {
-                            //            viewController.loginUser = user
                             navigator.pushViewController(mainTabBarController, animated: true)
                         }
                     }

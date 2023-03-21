@@ -383,6 +383,7 @@ class PostServiceViewController: UIViewController {
     
     func saveService(){
         if let serivice = selectedService {
+            serivice.serviceId = getServiceID()
             serivice.parent_Category = selectedCategory
             serivice.serviceTitle = titleTextField.text
             if placeHolder != descriptionTextView.text {
@@ -420,6 +421,20 @@ class PostServiceViewController: UIViewController {
 
     }
     
+    func getServiceID() -> Int16 {
+        var count = 0
+        let request: NSFetchRequest<Service> = Service.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "serviceId", ascending: true)]
+        do {
+             let serviceList = try context.fetch(request)
+            if serviceList.count > 0 {
+                count = Int((serviceList.last?.serviceId ?? -1) + 1)
+            }
+        } catch {
+            print("Error loading Service \(error.localizedDescription)")
+        }
+        return Int16(count)
+    }
     func getVendor(){
 
         let user =  UserDefaultsManager.shared.getUserData()

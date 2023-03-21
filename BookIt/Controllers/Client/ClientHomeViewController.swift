@@ -455,7 +455,7 @@ extension ClientHomeViewController {
     
     func loadServices(){
         let request: NSFetchRequest<Service> = Service.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "serviceTitle", ascending: true)]
+        request.sortDescriptors = [NSSortDescriptor(key: "serviceId", ascending: true)]
         request.fetchLimit = 5
         do {
             serviceList = try context.fetch(request)
