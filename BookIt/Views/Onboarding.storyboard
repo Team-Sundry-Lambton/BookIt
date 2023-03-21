@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Onboarding View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="OnboardingStepOne" id="Y6W-OH-hqX" customClass="OnboardingViewController" customModule="BookIt" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="onboarding_bg_1" translatesAutoresizingMaskIntoConstraints="NO" id="QWn-7B-H4e">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RPv-CQ-QRs">
+                                <rect key="frame" x="22" y="794" width="33" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="iOK-kT-gIk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Skip"/>
+                                <connections>
+                                    <action selector="skip:" destination="ZZk-Fp-ZhA" eventType="touchUpInside" id="RWD-ko-iGi"/>
+                                    <action selector="skip:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="lK6-SH-dUT"/>
+                                    <action selector="skipBtn:" destination="ZZk-Fp-ZhA" eventType="touchUpInside" id="X3k-XY-4GN"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onboarding_paging_1" translatesAutoresizingMaskIntoConstraints="NO" id="hUZ-rc-g0b">
+                                <rect key="frame" x="25" y="736" width="42" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="Dl3-ph-QcQ"/>
+                                    <constraint firstAttribute="width" constant="42" id="xcv-Oh-eH5"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BookIt system" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7NU-jn-qWu">
+                                <rect key="frame" x="25" y="499" width="205.66666666666666" height="82"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="82" id="AKt-ke-cVk"/>
+                                    <constraint firstAttribute="width" constant="325" id="PVl-dC-Czz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                <color key="textColor" red="0.20392156862745098" green="0.23921568627450979" blue="0.38823529411764707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Get the most secure payment app ever and enjoy it." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YIf-Y6-Su7">
+                                <rect key="frame" x="25" y="568" width="230" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="0.23921568627450979" green="0.38823529411764707" blue="0.61568627450980395" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LNu-hY-m6f">
+                                <rect key="frame" x="183" y="712" width="166" height="66"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="onboarding_next">
+                                    <color key="baseForegroundColor" systemColor="systemRedColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="next:" destination="ZZk-Fp-ZhA" eventType="touchUpInside" id="bu9-eo-T0L"/>
+                                    <action selector="next:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="rz5-Ub-VL4"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="7NU-jn-qWu" secondAttribute="trailing" constant="162" id="3f2-NE-EYT"/>
+                            <constraint firstItem="RPv-CQ-QRs" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="22" id="6KW-Hk-QZz"/>
+                            <constraint firstItem="hUZ-rc-g0b" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="677" id="J9g-3z-cpv"/>
+                            <constraint firstItem="RPv-CQ-QRs" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="735" id="Sjt-eF-cLP"/>
+                            <constraint firstItem="hUZ-rc-g0b" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leadingMargin" constant="9" id="SkR-Mw-zTM"/>
+                            <constraint firstItem="7NU-jn-qWu" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="25" id="fVo-7p-FPe"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="RPv-CQ-QRs" secondAttribute="bottom" constant="2" id="gWN-td-r89"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hUZ-rc-g0b" secondAttribute="trailing" constant="310" id="pJs-Ms-RQc"/>
+                            <constraint firstItem="7NU-jn-qWu" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="440" id="wMj-qL-atR"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="nextButton" destination="LNu-hY-m6f" id="p5V-KO-IIx"/>
+                        <outlet property="skipButton" destination="RPv-CQ-QRs" id="o0h-Nz-6kj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="ZZk-Fp-ZhA" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="138" y="5"/>
+        </scene>
+        <!--Onboarding View Controller-->
+        <scene sceneID="iUb-yp-XUF">
+            <objects>
+                <viewController storyboardIdentifier="OnboardingStepTwo" id="AlM-is-qTm" customClass="OnboardingViewController" customModule="BookIt" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2zT-df-RIN">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="onboarding_bg_2" translatesAutoresizingMaskIntoConstraints="NO" id="61l-1t-f9v">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d2o-sA-PSu">
+                                <rect key="frame" x="22" y="794" width="33" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="aCp-rs-k7d"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Skip"/>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onboarding_paging_1" translatesAutoresizingMaskIntoConstraints="NO" id="ZAd-jL-qNZ">
+                                <rect key="frame" x="25" y="736" width="42" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="8ge-e8-NwA"/>
+                                    <constraint firstAttribute="width" constant="42" id="onO-w4-8GC"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BookIt system" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U79-LR-PV4">
+                                <rect key="frame" x="25" y="499" width="205.66666666666666" height="82"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="82" id="0zq-eO-CJM"/>
+                                    <constraint firstAttribute="width" constant="325" id="JaT-LC-oFL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                <color key="textColor" red="0.20392156859999999" green="0.23921568630000001" blue="0.38823529410000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Get the most secure payment app ever and enjoy it." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lh6-i4-cRS">
+                                <rect key="frame" x="25" y="568" width="230" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="0.23921568630000001" green="0.38823529410000002" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ACK-CQ-71g">
+                                <rect key="frame" x="183" y="712" width="166" height="66"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="onboarding_next">
+                                    <color key="baseForegroundColor" systemColor="systemRedColor"/>
+                                </buttonConfiguration>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="p05-ku-hRE"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ZAd-jL-qNZ" firstAttribute="leading" secondItem="2zT-df-RIN" secondAttribute="leadingMargin" constant="9" id="5kn-ls-e5k"/>
+                            <constraint firstItem="p05-ku-hRE" firstAttribute="bottom" secondItem="d2o-sA-PSu" secondAttribute="bottom" constant="2" id="Kga-Ji-oR8"/>
+                            <constraint firstItem="U79-LR-PV4" firstAttribute="top" secondItem="p05-ku-hRE" secondAttribute="top" constant="440" id="QUb-8J-JTB"/>
+                            <constraint firstItem="d2o-sA-PSu" firstAttribute="leading" secondItem="p05-ku-hRE" secondAttribute="leading" constant="22" id="SCd-fG-rW4"/>
+                            <constraint firstItem="ZAd-jL-qNZ" firstAttribute="top" secondItem="p05-ku-hRE" secondAttribute="top" constant="677" id="ZvR-Nt-qGx"/>
+                            <constraint firstItem="d2o-sA-PSu" firstAttribute="top" secondItem="p05-ku-hRE" secondAttribute="top" constant="735" id="kBn-KX-ue0"/>
+                            <constraint firstItem="U79-LR-PV4" firstAttribute="leading" secondItem="p05-ku-hRE" secondAttribute="leading" constant="25" id="mls-d1-JVr"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZAd-jL-qNZ" secondAttribute="trailing" constant="310" id="xmc-bF-Uc8"/>
+                            <constraint firstItem="p05-ku-hRE" firstAttribute="trailing" secondItem="U79-LR-PV4" secondAttribute="trailing" constant="162" id="z52-0E-enw"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nKB-G1-9PP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="969" y="5"/>
+        </scene>
+        <!--Onboarding View Controller-->
+        <scene sceneID="DLU-KC-JMw">
+            <objects>
+                <viewController storyboardIdentifier="OnboardingStepThree" id="ELQ-mQ-MZL" customClass="OnboardingViewController" customModule="BookIt" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6Mn-Oz-Pfg">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="onboarding_bg_3" translatesAutoresizingMaskIntoConstraints="NO" id="3LX-cJ-B3t">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fhB-7S-Hah">
+                                <rect key="frame" x="22" y="794" width="33" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="kmw-rs-cML"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Skip"/>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onboarding_paging_1" translatesAutoresizingMaskIntoConstraints="NO" id="NUE-Yo-2kK">
+                                <rect key="frame" x="25" y="736" width="42" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="SX9-pt-aBj"/>
+                                    <constraint firstAttribute="width" constant="42" id="zwY-aH-tKR"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BookIt system" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEn-HP-4o0">
+                                <rect key="frame" x="25" y="499" width="205.66666666666666" height="82"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="82" id="5Tq-K9-SAF"/>
+                                    <constraint firstAttribute="width" constant="325" id="fve-OJ-5sj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                <color key="textColor" red="0.20392156859999999" green="0.23921568630000001" blue="0.38823529410000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Get the most secure payment app ever and enjoy it." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GNy-I2-wOP">
+                                <rect key="frame" x="25" y="568" width="230" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="0.23921568630000001" green="0.38823529410000002" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m2K-5Q-80P">
+                                <rect key="frame" x="183" y="712" width="166" height="66"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="onboarding_next">
+                                    <color key="baseForegroundColor" systemColor="systemRedColor"/>
+                                </buttonConfiguration>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="2t4-nB-kPS"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="2t4-nB-kPS" firstAttribute="trailing" secondItem="xEn-HP-4o0" secondAttribute="trailing" constant="162" id="6h3-EZ-Q0s"/>
+                            <constraint firstItem="xEn-HP-4o0" firstAttribute="top" secondItem="2t4-nB-kPS" secondAttribute="top" constant="440" id="6pM-ch-HsL"/>
+                            <constraint firstItem="NUE-Yo-2kK" firstAttribute="top" secondItem="2t4-nB-kPS" secondAttribute="top" constant="677" id="809-xB-6Uw"/>
+                            <constraint firstItem="2t4-nB-kPS" firstAttribute="bottom" secondItem="fhB-7S-Hah" secondAttribute="bottom" constant="2" id="FHZ-hN-iMA"/>
+                            <constraint firstItem="xEn-HP-4o0" firstAttribute="leading" secondItem="2t4-nB-kPS" secondAttribute="leading" constant="25" id="Gaa-Hy-q0G"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="NUE-Yo-2kK" secondAttribute="trailing" constant="310" id="NRG-mu-K7Q"/>
+                            <constraint firstItem="fhB-7S-Hah" firstAttribute="top" secondItem="2t4-nB-kPS" secondAttribute="top" constant="735" id="O7X-fC-8h2"/>
+                            <constraint firstItem="NUE-Yo-2kK" firstAttribute="leading" secondItem="6Mn-Oz-Pfg" secondAttribute="leadingMargin" constant="9" id="ZQ7-cF-75Z"/>
+                            <constraint firstItem="fhB-7S-Hah" firstAttribute="leading" secondItem="2t4-nB-kPS" secondAttribute="leading" constant="22" id="k6o-T7-p5q"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HDB-tZ-bHb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1827" y="5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="onboarding_bg_1" width="375" height="812"/>
+        <image name="onboarding_bg_2" width="375" height="812"/>
+        <image name="onboarding_bg_3" width="375" height="812"/>
+        <image name="onboarding_next" width="166" height="66"/>
+        <image name="onboarding_paging_1" width="42" height="2"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
