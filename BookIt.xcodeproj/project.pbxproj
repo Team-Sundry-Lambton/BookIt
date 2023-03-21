@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		413CF83429C51A4300A174D3 /* VendorBookingDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413CF83329C51A4300A174D3 /* VendorBookingDetailController.swift */; };
+		413CF83629C51A5C00A174D3 /* VendorBookingConfirmationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413CF83529C51A5C00A174D3 /* VendorBookingConfirmationController.swift */; };
+		413CF83C29C51ADF00A174D3 /* VendorServiceListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 413CF83B29C51ADF00A174D3 /* VendorServiceListTableViewCell.xib */; };
+		413CF83E29C51B6200A174D3 /* VendorServiceListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413CF83D29C51B6200A174D3 /* VendorServiceListTableViewCell.swift */; };
+		41B85CFA29C3E082007CAF1C /* VendorBookingDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41B85CF929C3E082007CAF1C /* VendorBookingDetail.storyboard */; };
+		41B85CFC29C3E0A3007CAF1C /* VendorBookingConfirmation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41B85CFB29C3E0A3007CAF1C /* VendorBookingConfirmation.storyboard */; };
 		99AB0DCD29AD95B300B096BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AB0DCC29AD95B300B096BB /* AppDelegate.swift */; };
 		99AB0DCF29AD95B300B096BB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AB0DCE29AD95B300B096BB /* SceneDelegate.swift */; };
 		99AB0DD129AD95B300B096BB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AB0DD029AD95B300B096BB /* ViewController.swift */; };
@@ -58,6 +64,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		413CF83329C51A4300A174D3 /* VendorBookingDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorBookingDetailController.swift; sourceTree = "<group>"; };
+		413CF83529C51A5C00A174D3 /* VendorBookingConfirmationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorBookingConfirmationController.swift; sourceTree = "<group>"; };
+		413CF83B29C51ADF00A174D3 /* VendorServiceListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VendorServiceListTableViewCell.xib; sourceTree = "<group>"; };
+		413CF83D29C51B6200A174D3 /* VendorServiceListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorServiceListTableViewCell.swift; sourceTree = "<group>"; };
+		41B85CF929C3E082007CAF1C /* VendorBookingDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VendorBookingDetail.storyboard; sourceTree = "<group>"; };
+		41B85CFB29C3E0A3007CAF1C /* VendorBookingConfirmation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VendorBookingConfirmation.storyboard; sourceTree = "<group>"; };
 		99AB0DC929AD95B300B096BB /* BookIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99AB0DCC29AD95B300B096BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99AB0DCE29AD95B300B096BB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -176,6 +188,8 @@
 				BBA6356B29BA510500702A62 /* ClientDashBoard.storyboard */,
 				BBC9F83829BFC70900985AAA /* MapView.storyboard */,
 				B4D56B5B29C105B9005A2C63 /* CategoryCollectionViewCell.xib */,
+				41B85CF929C3E082007CAF1C /* VendorBookingDetail.storyboard */,
+				41B85CFB29C3E0A3007CAF1C /* VendorBookingConfirmation.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -217,6 +231,8 @@
 				BBE832B729BD3B5700C58BF1 /* NewVendorCollectionViewCell.swift */,
 				BBE832B929BD3B7300C58BF1 /* ServiceDetailTableViewCell.swift */,
 				BBE832BA29BD3B7300C58BF1 /* ServiceDetailTableViewCell.xib */,
+				413CF83B29C51ADF00A174D3 /* VendorServiceListTableViewCell.xib */,
+				413CF83D29C51B6200A174D3 /* VendorServiceListTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -227,6 +243,8 @@
 				BB7A1DCE29C0C870003CB894 /* VendorHomeViewController.swift */,
 				BB7A1DD029C0C87E003CB894 /* VendorProfileViewController.swift */,
 				BB7A1DD229C0C88D003CB894 /* VendorServicesViewController.swift */,
+				413CF83329C51A4300A174D3 /* VendorBookingDetailController.swift */,
+				413CF83529C51A5C00A174D3 /* VendorBookingConfirmationController.swift */,
 			);
 			path = Vendor;
 			sourceTree = "<group>";
@@ -335,9 +353,12 @@
 				BB0FF27129BAA75800E26A71 /* MediaFileCell.xib in Resources */,
 				BB0FF27829BAAB4400E26A71 /* VendorDashBoard.storyboard in Resources */,
 				BBA6356C29BA510500702A62 /* ClientDashBoard.storyboard in Resources */,
+				413CF83C29C51ADF00A174D3 /* VendorServiceListTableViewCell.xib in Resources */,
+				41B85CFC29C3E0A3007CAF1C /* VendorBookingConfirmation.storyboard in Resources */,
 				BB0FF27A29BAAB5F00E26A71 /* PostService.storyboard in Resources */,
 				99AB0DDC29AD95B600B096BB /* LaunchScreen.storyboard in Resources */,
 				BBC9F83929BFC70900985AAA /* MapView.storyboard in Resources */,
+				41B85CFA29C3E082007CAF1C /* VendorBookingDetail.storyboard in Resources */,
 				B4D56B5C29C105B9005A2C63 /* CategoryCollectionViewCell.xib in Resources */,
 				99AB0DD929AD95B600B096BB /* Assets.xcassets in Resources */,
 				BBE832BC29BD3B7300C58BF1 /* ServiceDetailTableViewCell.xib in Resources */,
@@ -353,14 +374,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4D56B5E29C10639005A2C63 /* CategoryCollectionViewCell.swift in Sources */,
+				413CF83E29C51B6200A174D3 /* VendorServiceListTableViewCell.swift in Sources */,
 				BBA6356F29BA62D700702A62 /* ClientHomeViewController.swift in Sources */,
 				BB7A1DD129C0C87E003CB894 /* VendorProfileViewController.swift in Sources */,
 				BB95083429BD950300C02D9E /* ServiceSearchTableViewController.swift in Sources */,
+				413CF83629C51A5C00A174D3 /* VendorBookingConfirmationController.swift in Sources */,
 				BBE7433429B3DDB00087DC74 /* MediaManager.swift in Sources */,
 				BB7A1DCF29C0C870003CB894 /* VendorHomeViewController.swift in Sources */,
 				BB0FF27229BAA75800E26A71 /* MediaFileCell.swift in Sources */,
 				BB9BB53529AE9B290004244E /* LoginUser.swift in Sources */,
 				BB0FF26B29BAA73800E26A71 /* BorderTextView.swift in Sources */,
+				413CF83429C51A4300A174D3 /* VendorBookingDetailController.swift in Sources */,
 				BB95083829BE4A6E00C02D9E /* PlaceObject.swift in Sources */,
 				BBA6357129BA62EC00702A62 /* ClientCategoryListViewController.swift in Sources */,
 				BB9BB53729AEA05E0004244E /* EditProfileViewController.swift in Sources */,
@@ -540,6 +564,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -570,6 +595,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
