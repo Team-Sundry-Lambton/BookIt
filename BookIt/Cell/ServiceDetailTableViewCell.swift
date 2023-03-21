@@ -22,8 +22,12 @@ class ServiceDetailTableViewCell: UITableViewCell {
     
     func configureCell(service: Service) {
         getLocationData(serviceTitle: service.serviceTitle ?? "")
-        titleLbl.text = service.serviceTitle
-        descriptionLbl.text = service.serviceDescription
+        if let title = service.serviceTitle {
+            titleLbl.text = title
+        }
+        if let description = service.serviceDescription {
+            descriptionLbl.text = description
+        }
         if let price = service.price, let type = service.priceType {
             pricetLbl.text = "$ " + price + " / " + type
         }

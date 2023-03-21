@@ -47,27 +47,36 @@ class ClientCategoryListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
     }
+//    func loadCategories() {
+//        let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest()
+//        let count = try! context.count(for: fetchRequest)
+//
+//        if count == 0 {
+//            for categoryData in categoriesList {
+//                let category = Category(context: context)
+//                category.name = categoryData["name"]!
+//                category.picture = UIImage(named: categoryData["imageName"]!)?.pngData()
+//                // If the image is not found, you can use a placeholder image or set the image to nil
+//            }
+//
+//            // Save the changes to Core Data
+//            try! context.save()
+//        }
+//
+//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+//
+//        do {
+//            categories = try context.fetch(fetchRequest)
+//        } catch {
+//            print("Error loading categories \(error.localizedDescription)")
+//        }
+//    }
     
     func loadCategories() {
-        let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest()
-        let count = try! context.count(for: fetchRequest)
-        
-        if count == 0 {
-            for categoryData in categoriesList {
-                let category = Category(context: context)
-                category.name = categoryData["name"]!
-                category.image = UIImage(named: categoryData["imageName"]!)?.pngData()
-                // If the image is not found, you can use a placeholder image or set the image to nil
-            }
-            
-            // Save the changes to Core Data
-            try! context.save()
-        }
-        
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-        
+        let request: NSFetchRequest<Category> = Category.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         do {
-            categories = try context.fetch(fetchRequest)
+            categories = try context.fetch(request)
         } catch {
             print("Error loading categories \(error.localizedDescription)")
         }
@@ -82,11 +91,13 @@ extension ClientCategoryListViewController: UICollectionViewDelegate, UICollecti
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCollectionViewCell", for: indexPath) as! CategoryCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCollectionViewCell", for: indexPath) as? CategoryCollectionViewCell
         let category = categories[indexPath.item]
-        cell.categoryLabel.text = category.name
-        cell.categoryImageView.image = UIImage(data: category.image!)
-        return cell
+        cell?.categoryLabel.text = category.name
+        if let imageData = category.picture {
+            cell?.categoryImageView.downloaded(from: imageData)
+        }
+        return cell ?? UICollectionViewCell()
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

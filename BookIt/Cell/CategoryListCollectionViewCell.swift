@@ -2,7 +2,7 @@
 //  CategoryListCollectionViewCell.swift
 //  BookIt
 //
-//  Created by Malsha Parani on 2023-03-11.
+//  Created by Malsha Parani on 2023-03-20.
 //
 
 import UIKit
@@ -16,8 +16,9 @@ class CategoryListCollectionViewCell: UICollectionViewCell {
             self.serviceName.text = title
         }
         
-        if let imageData = category.image {
-            self.serviceImage.image = UIImage(data: imageData)
+        if let imageData = category.picture {
+            self.serviceImage.downloaded(from: imageData)
+       //     self.serviceImage.image = UIImage(data: imageData)
         }
     }
 }

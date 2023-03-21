@@ -46,6 +46,7 @@ class ClientHomeViewController: UIViewController {
         setTimer()
         tabBarAppearance()
         getUserLocation()
+        loadData()
         
        
         // Do any additional setup after loading the view.
@@ -85,18 +86,18 @@ class ClientHomeViewController: UIViewController {
     }
     
     func initUI(){
-        
-        categoryCollectioView.register(CategoryListCollectionViewCell.self, forCellWithReuseIdentifier: "CategoryListCollectionViewCell")
+    
         categoryCollectioView.dataSource = self
         categoryCollectioView.delegate = self
-        
-        newVendersCollectionView.register(NewVendorCollectionViewCell.self, forCellWithReuseIdentifier: "NewVendorCollectionViewCell")
+        categoryCollectioView.register(UINib(nibName: "CategoryListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CategoryListCollectionViewCell")
+
         newVendersCollectionView.dataSource = self
         newVendersCollectionView.delegate = self
+        newVendersCollectionView.register(UINib(nibName: "NewVendorCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "NewVendorCollectionViewCell")
         
-        serviceListTableView.register(ServiceDetailTableViewCell.self, forCellReuseIdentifier: "ServiceDetailTableViewCell")
         serviceListTableView.delegate = self
         serviceListTableView.dataSource = self
+        serviceListTableView.register(UINib(nibName: "ServiceDetailTableViewCell", bundle: nil), forCellReuseIdentifier: "ServiceDetailTableViewCell")
         
         bannerTableView.register(BannerTableViewCell.self, forCellReuseIdentifier: BannerTableViewCell.identifier)
         bannerTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -303,10 +304,6 @@ extension ClientHomeViewController:  CLLocationManagerDelegate{
     
     func getAddressFromLatLon(latitude: Double, longitude : Double) {
             var center : CLLocationCoordinate2D = CLLocationCoordinate2D()
-//            let lat: Double = Double("\(pdblLatitude)")!
-//            //21.228124
-//            let lon: Double = Double("\(pdblLongitude)")!
-//            //72.833770
             let ceo: CLGeocoder = CLGeocoder()
             center.latitude = latitude
             center.longitude = longitude
@@ -366,21 +363,22 @@ extension ClientHomeViewController :UICollectionViewDataSource, UICollectionView
         
         if(collectionView == self.categoryCollectioView){
             
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryListCollectionViewCell", for: indexPath) as? CategoryListCollectionViewCell ?? CategoryListCollectionViewCell()
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryListCollectionViewCell", for: indexPath) as? CategoryListCollectionViewCell
             if categoryList.count > 0 {
                 let category = categoryList[indexPath.row]
-                cell.configureCell(category: category)
+                cell?.configureCell(category: category)
             }
-            return cell
+            return cell ?? UICollectionViewCell()
         }
         
         else{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NewVendorCollectionViewCell", for: indexPath) as? NewVendorCollectionViewCell ?? NewVendorCollectionViewCell()
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NewVendorCollectionViewCell", for: indexPath) as? NewVendorCollectionViewCell
             if vendorList.count > 0 {
                 let vendor = vendorList[indexPath.row]
-                cell.configureCell(vendor: vendor)
+                cell?.configureCell(vendor: vendor)
             }
-            return cell
+            return cell ?? UICollectionViewCell()
         }
     }
     
@@ -391,7 +389,7 @@ extension ClientHomeViewController :UICollectionViewDataSource, UICollectionView
             return CGSize.init(width: 82, height: 82)
         }
         else{
-            return CGSize.init(width: 74, height: 74)
+            return CGSize.init(width: 66, height: 66)
         }
     }
     
@@ -422,14 +420,10 @@ extension ClientHomeViewController {
     
     func loadNewVendors(){
         let request: NSFetchRequest<Vendor> = Vendor.fetchRequest()      
-//        request.sortDescriptors = [NSSortDescriptor(key: "firstName", ascending: false)]
-//        request.fetchLimit = 5
+        request.sortDescriptors = [NSSortDescriptor(key: "firstName", ascending: true)]
+        request.fetchLimit = 5
 //        request.returnsObjectsAsFaults = false
         do {
-            let allElementsCount = try context.count(for: request)
-               request.fetchLimit = 5
-               request.fetchOffset = allElementsCount - 5
-               request.returnsObjectsAsFaults = false
             vendorList = try context.fetch(request)
         } catch {
             print("Error loading Vendor \(error.localizedDescription)")
@@ -456,10 +450,6 @@ extension ClientHomeViewController : UISearchBarDelegate{
             }
         }
     }
-}
-
-extension ClientHomeViewController{
-
 }
 
 //MARK: Secntion Enum

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import CoreData
 class ClientProfileViewController: UIViewController {
 
     @IBOutlet weak var faceIDStatus: UISwitch!
@@ -18,6 +18,8 @@ class ClientProfileViewController: UIViewController {
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var logoutTextLbl: UILabel!
     
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+      
     override func viewDidLoad() {
         super.viewDidLoad()
         addBorder()
@@ -29,12 +31,7 @@ class ClientProfileViewController: UIViewController {
         
         if (UserDefaultsManager.shared.getUserLogin()){
             logoutTextLbl.text = "Logout"
-            let user =  UserDefaultsManager.shared.getUserData()
-            nameLbl.text = user.firstName + " " + user.lastName
-            emailLbl.text = user.email
-            if let path = user.picture{
-                imageView.load(url: path)
-            }
+            getClient()
         }else{
             nameLbl.text = ""
             emailLbl.text = ""
@@ -48,6 +45,25 @@ class ClientProfileViewController: UIViewController {
         imageView.contentMode = .scaleToFill
         imageView.layer.borderWidth = 5
         imageView.layer.cornerRadius = imageView.frame.height / 2
+    }
+    
+    func getClient(){
+
+        let user =  UserDefaultsManager.shared.getUserData()
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Client")
+        fetchRequest.predicate = NSPredicate(format: "email = %@", user.email)
+        do {
+            let users = try context.fetch(fetchRequest)
+            if let user = users.first as? Client{
+                nameLbl.text = (user.firstName ?? "") + " " + (user.lastName ?? "")
+                emailLbl.text = user.email
+                if let imageData = user.picture {
+                    self.imageView.image = UIImage(data: imageData)
+                }
+            }
+        } catch {
+            print(error)
+        }
     }
     
     @IBAction func faceIDStatus(sender: UISwitch) {
@@ -90,22 +106,28 @@ class ClientProfileViewController: UIViewController {
     }
     
     @IBAction func logOut() {
-        
-        let alert = UIAlertController(title: "Logout", message: "Are you sure you want to logout?", preferredStyle: .alert)
-        let yesAction = UIAlertAction(title: "Yes", style: .default) { (action) in
-            UserDefaultsManager.shared.removeUserLogin()
-            UserDefaultsManager.shared.removeUserData()
-            
-            if let navigator = self.navigationController {
-                navigator.popViewController(animated: true)
+        if (UserDefaultsManager.shared.getUserLogin()){
+            let alert = UIAlertController(title: "Logout", message: "Are you sure you want to logout?", preferredStyle: .alert)
+            let yesAction = UIAlertAction(title: "Yes", style: .default) { (action) in
+                self.clearUserData()
             }
+            let noAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alert.addAction(yesAction)
+            alert.addAction(noAction)
+            self.present(alert, animated: true, completion: nil)
+        }else{
+            clearUserData()
         }
-        let noAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        alert.addAction(yesAction)
-        alert.addAction(noAction)
-        self.present(alert, animated: true, completion: nil)    
     }
     
+    func clearUserData(){
+        UserDefaultsManager.shared.removeUserLogin()
+        UserDefaultsManager.shared.removeUserData()
+
+        if let navigator = self.navigationController {
+            navigator.popViewController(animated: true)
+        }
+    }
     
     /*
     // MARK: - Navigation

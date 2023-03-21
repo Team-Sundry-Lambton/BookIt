@@ -61,6 +61,7 @@ class PostServiceViewController: UIViewController {
     var categoryList = [Category]()
     var mediaList = [MediaFile]()
     var selectedLocation: Address?
+    var selectedService : Service?
     var vendor : Vendor?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -77,7 +78,7 @@ class PostServiceViewController: UIViewController {
             navigationController?.navigationBar.titleTextAttributes = textAttributes
         }
         self.title = "Post Service"
-        
+        selectedService = Service(context: context)
         uiViewsDesign()
         registerNib()
         uploadPhotoView.isHidden = false
@@ -263,10 +264,17 @@ class PostServiceViewController: UIViewController {
             
             if let object = mediaObject {
                 let mediaFile = MediaFile(context: strongSelf.context)
-                mediaFile.path = object.fileName
+                mediaFile.mediaName = object.fileName
+                mediaFile.mediaPath = ""
                 mediaFile.mediaContent = object.image?.pngData()
-                mediaFile.isImage = true
+                mediaFile.parent_Service = self?.selectedService
                 strongSelf.mediaList.append(mediaFile)
+                InitialDataDownloadManager.shared.addMediaData(media: mediaFile){ status in
+                    if let status = status {
+                        
+                    }
+                    
+                }
                 strongSelf.saveSingleCoreData()
                 strongSelf.mediaFileCollectionView.reloadData()
             }
@@ -303,39 +311,46 @@ class PostServiceViewController: UIViewController {
     }
     
     func saveService(){
-        let service = Service(context: context)
-        service.parent_Category = selectedCategory
-        service.serviceTitle = titleTextField.text
-        if placeHolder != descriptionTextView.text {
-            service.serviceDescription = descriptionTextView.text
+        if let serivice = selectedService {
+            serivice.parent_Category = selectedCategory
+            serivice.serviceTitle = titleTextField.text
+            if placeHolder != descriptionTextView.text {
+                serivice.serviceDescription = descriptionTextView.text
+            }
+            
+            serivice.cancelPolicy = cancelPolicyTextField.text
+            
+            //        selectedLocation?.parentService = service
+            
+            serivice.price = priceTextField.text
+            serivice.priceType = priceTypeTextField.text
+            serivice.equipment = isEquipmentNeed
+            getVendor()
+            serivice.parent_Vendor = vendor
+            saveAllContextCoreData()
+            Task {
+                await InitialDataDownloadManager.shared.addServiceData(service: serivice){ status in
+                    DispatchQueue.main.async {
+                        if let status = status {
+                            if status {
+                                self.saveAllContextCoreData()
+                            }else{
+                                UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
+                            }
+                        }
+                    }
+                }
+                
+            }
         }
-        
-        service.cancelPolicy = cancelPolicyTextField.text
-        
-        selectedLocation?.parentService = service        
 
-        service.price = priceTextField.text
-        service.priceType = priceTypeTextField.text
-        service.equipment = isEquipmentNeed
-        service.serviceStatus = "new"
-        getVendor()
-        service.parent_Vendor = vendor
-        
-        for  media in self.mediaList {
-            let mediaFile = MediaFile(context: context)
-            mediaFile.parent_Service = service
-            mediaFile.mediaContent = media.mediaContent
-            mediaFile.path = media.path
-            mediaFile.isImage = media.isImage
-        }
-        saveAllContextCoreData()
     }
     
     func getVendor(){
 
         let user =  UserDefaultsManager.shared.getUserData()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Vendor")
-        fetchRequest.predicate = NSPredicate(format: "email = %@ ", user.email)
+        fetchRequest.predicate = NSPredicate(format: "email = %@", user.email)
         do {
             let users = try context.fetch(fetchRequest)
             if let user = users.first as? Vendor{
@@ -350,6 +365,17 @@ class PostServiceViewController: UIViewController {
 
         context.delete(mediaFile)
         mediaFileCollectionView.reloadData()
+        
+        InitialDataDownloadManager.shared.deleteMediaData(media: mediaFile){ status in
+            if let status = status{
+                if status == false {
+                    DispatchQueue.main.async {
+                        self.deleteMediaFile(mediaFile: mediaFile)
+                    }
+                }
+            }
+            
+        }
     }
     
     private func saveAllContextCoreData() {
@@ -529,6 +555,7 @@ extension PostServiceViewController: UIPickerViewDelegate, UIPickerViewDataSourc
         }else if pickerView == categoryPicker{
             if !categoryList.isEmpty{
                 categoryTypeTextField.text = categoryList[row].name
+                selectedCategory = categoryList[row]
             }
         }
         self.view.endEditing(true)
@@ -549,9 +576,10 @@ extension PostServiceViewController: MapViewDelegate {
     
     func setServiceLocation(place : PlaceObject){
         selectedLocation = Address(context: context)
-        selectedLocation?.latitude = place.coordinate.latitude
-        selectedLocation?.longitude = place.coordinate.longitude
+        selectedLocation?.addressLatitude = place.coordinate.latitude
+        selectedLocation?.addressLongitude = place.coordinate.longitude
         selectedLocation?.address = place.title
+        selectedLocation?.parentService = selectedService
         locationTextField.text = place.title
     }
 }
