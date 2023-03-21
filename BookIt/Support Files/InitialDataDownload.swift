@@ -524,7 +524,7 @@ extension InitialDataDownloadManager {
             }
     }
     
-        func addMediaData(media : MediaFile,completion: @escaping (_ status: Bool?) -> Void){
+        func addMediaData(media : MediaFile,completion: @escaping (_ url: String?) -> Void){
 
         if let imageData = media.mediaContent {
             uploadMedia(name:media.mediaName ?? "", media: imageData) { url in
@@ -538,13 +538,14 @@ extension InitialDataDownloadManager {
                 ]) { err in
                     if let err = err {
                         print("Error adding document: \(err)")
-                        completion(false)
+                        completion(nil)
                     } else {
                         print("Document added with ID: \(ref!.documentID)")
-                        let media = CoreDataManager.shared.getMedia(name: media.mediaName ?? "", serviceTitle: media.parent_Service?.serviceTitle ?? "")
-                        media?.mediaPath = url
-                        self.saveData()
-                        completion(true)
+                        if let media = CoreDataManager.shared.getMedia(name: media.mediaName ?? "", serviceTitle: media.parent_Service?.serviceTitle ?? "") {
+                            media.mediaPath = url
+                            self.saveData()
+                        }
+                        completion(url)
                     }
                 }
             }
@@ -876,15 +877,16 @@ extension InitialDataDownloadManager{
     func deleteMedia(downloadURL : String,completion: @escaping (_ status: Bool?) -> Void) {
         
         let storage = Storage.storage()
-        let url = downloadURL
-        let storageRef = storage.reference(forURL: url)
-
-        //Removes image from storage
-        storageRef.delete { error in
-            if let error = error {
-                completion(false)
-            } else {
-                completion(true)
+        if downloadURL != "" {
+            let storageRef = storage.reference(forURL: downloadURL)
+            
+            //Removes image from storage
+            storageRef.delete { error in
+                if let error = error {
+                    completion(false)
+                } else {
+                    completion(true)
+                }
             }
         }
     }
