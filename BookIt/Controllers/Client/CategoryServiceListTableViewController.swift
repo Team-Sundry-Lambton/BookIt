@@ -16,6 +16,7 @@ class CategoryServiceListTableViewController: UITableViewController {
     var searchText = ""
     var isFiltered = false
     var selectedCategory: Category?
+    var selectedVendor: Vendor?
     @IBOutlet weak var emptyView: UIView!
     
     override func viewDidLoad() {
@@ -50,7 +51,12 @@ class CategoryServiceListTableViewController: UITableViewController {
     
     func customDesign(){
         let titleLabel = UILabel()
-        titleLabel.text = selectedCategory!.name
+        if let category = selectedCategory{
+            titleLabel.text = category.name
+        }
+        if let vendor = selectedVendor{
+            titleLabel.text = (vendor.firstName ?? "") + " " + (vendor.lastName ?? "")
+        }
         titleLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
         titleLabel.sizeToFit()
         self.navigationItem.titleView = titleLabel
@@ -63,6 +69,10 @@ class CategoryServiceListTableViewController: UITableViewController {
 
         // Add the custom bar button item to the right navigation item
         navigationItem.rightBarButtonItem = filterButton
+        
+        self.tableView.separatorStyle = .none
+        self.tableView.register(UINib(nibName: "ServiceDetailTableViewCell", bundle: nil), forCellReuseIdentifier: "ServiceDetailTableViewCell")
+        
         
         }
     
@@ -91,8 +101,14 @@ class CategoryServiceListTableViewController: UITableViewController {
         if let category = selectedCategory{
             if let categoryName = category.name{
                 let categoryPredicate = NSPredicate(format: "parent_Category.name == %@", categoryName)
-                let predicate = NSPredicate(format: "serviceTitle CONTAINS[cd] %@ OR serviceDescription CONTAINS[cd] %@", searchText, searchText)
-                request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate,predicate])
+//                let predicate = NSPredicate(format: "serviceTitle CONTAINS[cd] %@ OR serviceDescription CONTAINS[cd] %@", searchText, searchText)
+                request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate])
+            }
+        }else if let vendor = selectedVendor{
+            if let vendorName = vendor.email{
+                let categoryPredicate = NSPredicate(format: "parent_Vendor.email == %@", vendorName)
+//                let predicate = NSPredicate(format: "serviceTitle CONTAINS[cd] %@ OR serviceDescription CONTAINS[cd] %@", searchText, searchText)
+                request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate])
             }
         }
         request.sortDescriptors = [NSSortDescriptor(key: "serviceTitle", ascending: true)]

@@ -301,8 +301,8 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NNU-S6-Gb6">
                                                 <rect key="frame" x="0.0" y="669" width="393" height="200"/>
                                                 <subviews>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="RCj-hR-LdV">
-                                                        <rect key="frame" x="20" y="0.0" width="353" height="200"/>
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="RCj-hR-LdV">
+                                                        <rect key="frame" x="15" y="0.0" width="363" height="200"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <connections>
                                                             <outlet property="dataSource" destination="Y6W-OH-hqX" id="PUA-4Y-6zD"/>
@@ -312,10 +312,10 @@
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="RCj-hR-LdV" secondAttribute="trailing" constant="20" id="CRj-a7-l7m"/>
+                                                    <constraint firstAttribute="trailing" secondItem="RCj-hR-LdV" secondAttribute="trailing" constant="15" id="CRj-a7-l7m"/>
                                                     <constraint firstItem="RCj-hR-LdV" firstAttribute="top" secondItem="NNU-S6-Gb6" secondAttribute="top" id="IoY-Gs-UtS"/>
                                                     <constraint firstAttribute="bottom" secondItem="RCj-hR-LdV" secondAttribute="bottom" id="Svu-YO-CLD"/>
-                                                    <constraint firstItem="RCj-hR-LdV" firstAttribute="leading" secondItem="NNU-S6-Gb6" secondAttribute="leading" constant="20" id="cYe-dz-8m9"/>
+                                                    <constraint firstItem="RCj-hR-LdV" firstAttribute="leading" secondItem="NNU-S6-Gb6" secondAttribute="leading" constant="15" id="cYe-dz-8m9"/>
                                                     <constraint firstAttribute="height" constant="200" id="ksI-eE-ihM"/>
                                                 </constraints>
                                             </view>

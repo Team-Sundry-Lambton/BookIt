@@ -49,6 +49,12 @@ class ServiceDetailTableViewCell: UITableViewCell {
             nameLbl.isHidden = true
         }
         
+        if let media = CoreDataManager.shared.getServiceFirstMedia(serviceTitle: service.serviceTitle ?? "") {
+            if let imageData = media.mediaContent {
+                    self.serviceImage.image = UIImage(data: imageData)
+                }
+        }
+        
 //        if let imageData = mediaList[0].image {
 //            self.serviceImage.image = UIImage(data: imageData)
 //        }
