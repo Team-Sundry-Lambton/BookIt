@@ -1985,8 +1985,8 @@
             filePath = "BookIt/Controllers/PostServiceViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "300"
-            endingLineNumber = "300"
+            startingLineNumber = "361"
+            endingLineNumber = "361"
             landmarkName = "deleteMediaFileConfirmation(mediaFile:indexPath:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2001,8 +2001,8 @@
             filePath = "BookIt/Controllers/PostServiceViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "381"
-            endingLineNumber = "381"
+            startingLineNumber = "442"
+            endingLineNumber = "442"
             landmarkName = "deleteMediaFile(mediaFile:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2065,13 +2065,13 @@
             filePath = "BookIt/Controllers/PostServiceViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "384"
-            endingLineNumber = "384"
+            startingLineNumber = "445"
+            endingLineNumber = "445"
             landmarkName = "deleteMediaFile(mediaFile:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "6BB7915C-2124-489F-BBFA-648848CDAE79 - fdb0c50e51a8701b"
+                  uuid = "6BB7915C-2124-489F-BBFA-648848CDAE79 - fdb0c50e51a87836"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -2081,12 +2081,12 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Controllers/PostServiceViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "384"
-                  endingLineNumber = "384"
+                  startingLineNumber = "445"
+                  endingLineNumber = "445"
                   offsetFromSymbolStart = "644">
                </Location>
                <Location
-                  uuid = "6BB7915C-2124-489F-BBFA-648848CDAE79 - de762fcdc074e645"
+                  uuid = "6BB7915C-2124-489F-BBFA-648848CDAE79 - de762fcdc074ee2a"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -2096,8 +2096,8 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Controllers/PostServiceViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "385"
-                  endingLineNumber = "385"
+                  startingLineNumber = "446"
+                  endingLineNumber = "446"
                   offsetFromSymbolStart = "208">
                </Location>
             </Locations>
@@ -2113,13 +2113,13 @@
             filePath = "BookIt/Controllers/PostServiceViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "386"
-            endingLineNumber = "386"
+            startingLineNumber = "447"
+            endingLineNumber = "447"
             landmarkName = "deleteMediaFile(mediaFile:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "0DA3EEA5-062F-4BA2-A846-B89D1D46248F - de762fcdc074e666"
+                  uuid = "0DA3EEA5-062F-4BA2-A846-B89D1D46248F - de762fcdc074ee4b"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -2129,12 +2129,12 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Controllers/PostServiceViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "386"
-                  endingLineNumber = "386"
+                  startingLineNumber = "447"
+                  endingLineNumber = "447"
                   offsetFromSymbolStart = "228">
                </Location>
                <Location
-                  uuid = "0DA3EEA5-062F-4BA2-A846-B89D1D46248F - de762fcdc074e666"
+                  uuid = "0DA3EEA5-062F-4BA2-A846-B89D1D46248F - de762fcdc074ee4b"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -2144,8 +2144,8 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Controllers/PostServiceViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "386"
-                  endingLineNumber = "386"
+                  startingLineNumber = "447"
+                  endingLineNumber = "447"
                   offsetFromSymbolStart = "256">
                </Location>
             </Locations>
