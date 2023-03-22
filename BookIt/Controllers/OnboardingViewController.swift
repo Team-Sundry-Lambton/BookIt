@@ -55,7 +55,6 @@ class OnboardingViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
         vc.modalPresentationStyle = .fullScreen
-//        present(vc, animated: true, completion: nil)
         if let navigator = navigationController {
             navigator.pushViewController(vc, animated: true)
         }
