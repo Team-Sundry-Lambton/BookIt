@@ -396,9 +396,23 @@ extension ClientHomeViewController :UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
         if(collectionView == self.categoryCollectioView){
-            //Redirect to Service List Page
+            if let viewController = UIStoryboard(name: "ClientDashBoard", bundle: nil).instantiateViewController(withIdentifier: "CategoryServiceListTableViewController") as? CategoryServiceListTableViewController {
+                if let navigator = navigationController {
+                    let selectedCategory = categoryList[indexPath.item]
+                    viewController.selectedCategory = selectedCategory
+                    navigator.pushViewController(viewController, animated: true)
+                    
+                }
+            }
         }else{
-            //Redirect to Vendor Service List Page
+            if let viewController = UIStoryboard(name: "ClientDashBoard", bundle: nil).instantiateViewController(withIdentifier: "CategoryServiceListTableViewController") as? CategoryServiceListTableViewController {
+                if let navigator = navigationController {
+                    let selectedVendor = vendorList[indexPath.item]
+                    viewController.selectedVendor = selectedVendor
+                    navigator.pushViewController(viewController, animated: true)
+                    
+                }
+            }
         }
     }    
 }

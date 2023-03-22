@@ -21,6 +21,7 @@ class ServiceSearchTableViewController: UITableViewController {
         self.tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant:10.0).isActive = true
         self.tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant:-10.0).isActive = true
         
+        self.tableView.separatorStyle = .none
         self.tableView.register(UINib(nibName: "ServiceDetailTableViewCell", bundle: nil), forCellReuseIdentifier: "ServiceDetailTableViewCell")
         
           self.search.delegate = self

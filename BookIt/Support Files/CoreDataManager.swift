@@ -108,6 +108,19 @@ class CoreDataManager : NSObject{
         return payment
     }
 
+    func getServiceFirstMedia( serviceTitle : String) -> MediaFile?{
+        var media : MediaFile?
+        let fetchRequest: NSFetchRequest<MediaFile> = MediaFile.fetchRequest()
+            let folderPredicate = NSPredicate(format: "parent_Service.serviceTitle=%@", serviceTitle)
+        fetchRequest.predicate = folderPredicate
+        do {
+            let medias = try context.fetch(fetchRequest)
+            media = medias.first as? MediaFile
+        } catch {
+            print("Error loading medias \(error.localizedDescription)")
+        }
+        return media
+    }
     
     func deleteAllTables(){
         deleteVendors()
