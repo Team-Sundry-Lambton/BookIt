@@ -21,7 +21,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RPv-CQ-QRs">
-                                <rect key="frame" x="22" y="838" width="33" height="33"/>
+                                <rect key="frame" x="22" y="783" width="33" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="iOK-kT-gIk"/>
                                 </constraints>
@@ -33,14 +33,14 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onboarding_paging_1" translatesAutoresizingMaskIntoConstraints="NO" id="hUZ-rc-g0b">
-                                <rect key="frame" x="25" y="780" width="42" height="2"/>
+                                <rect key="frame" x="25" y="743" width="42" height="2"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="Dl3-ph-QcQ"/>
                                     <constraint firstAttribute="width" constant="42" id="xcv-Oh-eH5"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Step 1: Explore our services" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7NU-jn-qWu">
-                                <rect key="frame" x="25" y="499" width="330" height="61"/>
+                                <rect key="frame" x="25" y="490" width="330" height="61"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="34"/>
                                 <color key="textColor" red="0.20392156862745098" green="0.23921568627450979" blue="0.38823529411764707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -49,13 +49,13 @@
                                 <rect key="frame" x="183" y="712" width="166" height="66"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain"/>
+                                <buttonConfiguration key="configuration" style="plain" image="onboarding_next"/>
                                 <connections>
                                     <action selector="next:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="63z-Vn-3lG"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Get the most secure payment app ever and enjoy it." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YIf-Y6-Su7">
-                                <rect key="frame" x="25" y="586" width="330" height="118"/>
+                                <rect key="frame" x="25" y="586" width="330" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" red="0.23921568627450979" green="0.38823529411764707" blue="0.61568627450980395" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -66,13 +66,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="RPv-CQ-QRs" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="22" id="6KW-Hk-QZz"/>
-                            <constraint firstItem="hUZ-rc-g0b" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="677" id="J9g-3z-cpv"/>
-                            <constraint firstItem="RPv-CQ-QRs" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="735" id="Sjt-eF-cLP"/>
+                            <constraint firstItem="hUZ-rc-g0b" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="640" id="J9g-3z-cpv"/>
+                            <constraint firstItem="RPv-CQ-QRs" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="680" id="Sjt-eF-cLP"/>
                             <constraint firstItem="hUZ-rc-g0b" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leadingMargin" constant="9" id="SkR-Mw-zTM"/>
                             <constraint firstItem="7NU-jn-qWu" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="25" id="fVo-7p-FPe"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="RPv-CQ-QRs" secondAttribute="bottom" constant="2" id="gWN-td-r89"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hUZ-rc-g0b" secondAttribute="trailing" constant="310" id="pJs-Ms-RQc"/>
-                            <constraint firstItem="7NU-jn-qWu" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="440" id="wMj-qL-atR"/>
+                            <constraint firstItem="7NU-jn-qWu" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="387" id="wMj-qL-atR"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="a6R-p1-puF"/>
@@ -87,7 +87,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1061.8320610687022" y="4.9295774647887329"/>
+            <point key="canvasLocation" x="1060.3053435114502" y="4.9295774647887329"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="B7w-1v-IWe">
@@ -110,6 +110,7 @@
     </scenes>
     <resources>
         <image name="onboarding_bg_1" width="375" height="812"/>
+        <image name="onboarding_next" width="166" height="66"/>
         <image name="onboarding_paging_1" width="42" height="2"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
