@@ -56,12 +56,17 @@ class PostServiceViewController: UIViewController {
     var priceTypes:[String] = ["Per-hour","Per-day", "As per service"]
     var isEquipmentNeed = false
     let placeHolder = "Type Here...."
+    var editMode: Bool = false
     
     var selectedCategory: Category?
     var categoryList = [Category]()
     var mediaList = [MediaFile]()
     var selectedLocation: Address?
-    var selectedService : Service?
+    var selectedService : Service? {
+        didSet {
+            editMode = true
+        }
+    }
     var vendor : Vendor?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -77,8 +82,16 @@ class PostServiceViewController: UIViewController {
             textAttributes[NSAttributedString.Key.foregroundColor] = UIColor.black
             navigationController?.navigationBar.titleTextAttributes = textAttributes
         }
-        self.title = "Post Service"
-        selectedService = Service(context: context)
+      
+        if editMode{
+            loadServiceData()
+            loadMediaList()
+            self.title = "Edit Service"
+        }else{
+            self.title = "Post Service"
+            selectedService = Service(context: context)
+        }
+        
         uiViewsDesign()
         registerNib()
         uploadPhotoView.isHidden = false
@@ -142,6 +155,54 @@ class PostServiceViewController: UIViewController {
         mediaFileCollectionView?.register(nib, forCellWithReuseIdentifier: MediaFileCell.reuseIdentifier)
         if let flowLayout = self.mediaFileCollectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.estimatedItemSize = CGSize(width: 1, height: 1)
+        }
+    }
+    
+    private func loadServiceData() {
+        if let service = selectedService {
+            self.titleTextField.text = service.serviceTitle
+            self.descriptionTextView.text = service.serviceDescription
+            self.categoryTypeTextField.text = service.parent_Category?.name
+            self.cancelPolicyTextField.text = service.cancelPolicy
+            self.priceTextField.text = service.price
+            self.priceTypeTextField.text = service.priceType
+            getLocationData()
+            self.locationTextField.text = selectedLocation?.address
+            self.isEquipmentNeed = service.equipment
+            if(isEquipmentNeed){
+                equipmentCheckboxImageView.image = #imageLiteral(resourceName: "CheckBox")
+            }else{
+                equipmentCheckboxImageView.image = #imageLiteral(resourceName: "CheckBoxFill")
+            }
+        }
+        
+    }
+    
+    private func loadMediaList() {
+        let request: NSFetchRequest<MediaFile> = MediaFile.fetchRequest()
+        if let title = selectedService?.serviceTitle {
+            let folderPredicate = NSPredicate(format: "parent_Service.serviceTitle=%@", title)
+            request.predicate = folderPredicate
+        }
+        do {
+            mediaList = try context.fetch(request)
+        } catch {
+            print("Error loading medias \(error.localizedDescription)")
+        }
+        mediaFileCollectionView.reloadData()
+    }
+    
+    private func getLocationData() {
+        let request: NSFetchRequest<Address> = Address.fetchRequest()
+        if let title = selectedService?.serviceTitle {
+            let folderPredicate = NSPredicate(format: "parentService.serviceTitle=%@", title)
+            request.predicate = folderPredicate
+        }
+        do {
+            let location = try context.fetch(request)
+            selectedLocation = location.first
+        } catch {
+            print("Error loading location data \(error.localizedDescription)")
         }
     }
     
@@ -421,8 +482,13 @@ class PostServiceViewController: UIViewController {
     
     private func showAlert(){
         
+        var message = "Successfully Saved.."
+        if editMode {
+            message = "Successfully Updated.."
+        }
+        
         let alertController: UIAlertController = {
-            let controller = UIAlertController(title: "Success", message: "Successfully Saved..", preferredStyle: .alert)
+            let controller = UIAlertController(title: "Success", message: message, preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default){
                 UIAlertAction in
                 if let navigator = self.navigationController {
