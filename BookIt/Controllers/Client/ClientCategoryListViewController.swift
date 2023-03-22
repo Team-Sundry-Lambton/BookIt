@@ -107,7 +107,7 @@ extension ClientCategoryListViewController: UICollectionViewDelegate, UICollecti
         let row = indexPath.row / 2 // Divide by 2 to group cells into pairs for each row
         let isFirstCell = indexPath.row % 2 == 0 || indexPath.row == 0
         let isOddRow = row % 2 == 0
-        let cellWidth = isFirstCell ? (isOddRow ? collectionView.frame.width * 0.55 : collectionView.frame.width * 0.38) : (isOddRow ? collectionView.frame.width * 0.38 : collectionView.frame.width * 0.55)
+        let cellWidth = isFirstCell ? (isOddRow ? collectionView.frame.width * 0.38 : collectionView.frame.width * 0.55) : (isOddRow ? collectionView.frame.width * 0.55 : collectionView.frame.width * 0.38)
         
         return CGSize(width: cellWidth, height: cellHeight)
     }
