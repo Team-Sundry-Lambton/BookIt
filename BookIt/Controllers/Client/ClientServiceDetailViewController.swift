@@ -70,7 +70,7 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.navigationBar.isHidden = true
         mapView.isZoomEnabled = false
         locationMnager.delegate = self
         locationMnager.desiredAccuracy = kCLLocationAccuracyBest
