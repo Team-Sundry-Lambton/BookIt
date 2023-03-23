@@ -122,6 +122,19 @@ class CoreDataManager : NSObject{
         return media
     }
     
+    func getMediaList(serviceTitle : String) -> [MediaFile]{
+        var mediaList = [MediaFile]()
+        let request: NSFetchRequest<MediaFile> = MediaFile.fetchRequest()
+            let folderPredicate = NSPredicate(format: "parent_Service.serviceTitle=%@", serviceTitle)
+            request.predicate = folderPredicate
+        do {
+            mediaList = try context.fetch(request)
+        } catch {
+            print("Error loading medias \(error.localizedDescription)")
+        }
+       return mediaList
+    }
+    
     func deleteAllTables(){
         deleteVendors()
         deleteClients()
