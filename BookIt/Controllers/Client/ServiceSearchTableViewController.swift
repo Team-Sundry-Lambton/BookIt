@@ -42,8 +42,10 @@ class ServiceSearchTableViewController: UITableViewController {
     
     func loadServices(){
         let request: NSFetchRequest<Service> = Service.fetchRequest()
-        let predicate = NSPredicate(format: "serviceTitle CONTAINS[cd] %@ OR serviceDescription CONTAINS[cd] %@", searchText, searchText)
-        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate])
+        if !searchText.isEmpty{
+            let predicate = NSPredicate(format: "serviceTitle CONTAINS[cd] %@ OR serviceDescription CONTAINS[cd] %@", searchText, searchText)
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate])
+        }
         request.sortDescriptors = [NSSortDescriptor(key: "serviceTitle", ascending: true)]
         do {
             serviceList = try context.fetch(request)

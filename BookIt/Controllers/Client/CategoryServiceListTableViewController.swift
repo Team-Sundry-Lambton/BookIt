@@ -100,14 +100,18 @@ class CategoryServiceListTableViewController: UITableViewController {
         let request: NSFetchRequest<Service> = Service.fetchRequest()
         if let category = selectedCategory{
             if let categoryName = category.name{
-                let categoryPredicate = NSPredicate(format: "parent_Category.name == %@", categoryName)
-//                let predicate = NSPredicate(format: "serviceTitle CONTAINS[cd] %@ OR serviceDescription CONTAINS[cd] %@", searchText, searchText)
+                var categoryPredicate = NSPredicate(format: "parent_Category.name == %@", categoryName)
+                if !searchText.isEmpty{
+                    categoryPredicate = NSPredicate(format: "parent_Category.name == %@ AND ( serviceTitle CONTAINS[cd] %@ OR serviceDescription CONTAINS[cd] %@ )", categoryName, searchText, searchText)
+                }
                 request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate])
             }
         }else if let vendor = selectedVendor{
             if let vendorName = vendor.email{
-                let categoryPredicate = NSPredicate(format: "parent_Vendor.email == %@", vendorName)
-//                let predicate = NSPredicate(format: "serviceTitle CONTAINS[cd] %@ OR serviceDescription CONTAINS[cd] %@", searchText, searchText)
+                var categoryPredicate = NSPredicate(format: "parent_Vendor.email == %@", vendorName)
+                if !searchText.isEmpty{
+                    categoryPredicate = NSPredicate(format: "parent_Vendor.email == %@ AND ( serviceTitle CONTAINS[cd] %@ OR serviceDescription CONTAINS[cd] %@ )", vendorName, searchText, searchText)
+                }
                 request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate])
             }
         }
