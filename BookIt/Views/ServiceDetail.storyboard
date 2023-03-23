@@ -209,6 +209,7 @@ Cleaning service</string>
                     <connections>
                         <outlet property="bannerTableView" destination="tcD-T8-Ag6" id="cQH-F6-nPl"/>
                         <outlet property="interfaceSegmented" destination="gAM-OC-qvl" id="oZS-ks-mbD"/>
+                        <outlet property="ivAvatar" destination="i8b-cw-gZb" id="n8V-f5-DPo"/>
                         <outlet property="lblPrice" destination="ij8-yK-Yba" id="owL-sb-JaS"/>
                         <outlet property="lblTitle" destination="T1h-QA-VzZ" id="i4e-Zy-0QC"/>
                         <outlet property="lblVendorName" destination="VqH-5a-rA6" id="x89-7h-cxu"/>

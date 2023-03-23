@@ -35,7 +35,7 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
     @IBOutlet weak var viewReviews: UIView!
     @IBOutlet weak var tvReviews: UITableView!
     @IBOutlet weak var mapView: MKMapView!
-    
+    @IBOutlet weak var ivAvatar: UIImageView!
     
 
     // create location manager
@@ -45,7 +45,7 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
- 
+        addBorder()
         interfaceSegmented.delegate = self
         loadServiceDetail()
     }
@@ -81,6 +81,7 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
         }
         
         tvDescription.text = selectedService?.serviceDescription
+        getVendor()
     
     }
     
@@ -116,6 +117,33 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
         mapView.addAnnotation(annotation)
     }
     
+    func getVendor(){
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Vendor")
+        if let user =  selectedService?.parent_Vendor {
+            if let email = user.email {
+                fetchRequest.predicate = NSPredicate(format: "email = %@", email)
+                do {
+                    let users = try context.fetch(fetchRequest)
+                    if let user = users.first as? Vendor{
+                        if let imageData = user.picture {
+                            self.ivAvatar.image = UIImage(data: imageData)
+                        }
+                    }
+                } catch {
+                    print(error)
+                }
+            }
+        }
+        
+    }
+    
+    func addBorder() {
+        ivAvatar.layer.borderColor = UIColor.white.cgColor
+        ivAvatar.layer.masksToBounds = true
+        ivAvatar.contentMode = .scaleToFill
+        ivAvatar.layer.borderWidth = 5
+        ivAvatar.layer.cornerRadius = ivAvatar.frame.height / 2
+    }
 
 }
 
