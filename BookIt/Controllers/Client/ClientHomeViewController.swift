@@ -254,6 +254,16 @@ extension ClientHomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == serviceListTableView {
             //Redirect to service detail page
+            if let viewController = UIStoryboard(name: "ServiceDetail", bundle: nil).instantiateViewController(withIdentifier: "ClientServiceDetailViewController") as? ClientServiceDetailViewController {
+                if let navigator = navigationController {
+                    let selectedService = serviceList[indexPath.item]
+                    viewController.selectedService = selectedService
+                    navigator.pushViewController(viewController, animated: true)
+                    
+                }
+            }
+            
+          
         }
     }
     

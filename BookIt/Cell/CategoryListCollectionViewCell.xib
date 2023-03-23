@@ -68,7 +68,7 @@
                 <outlet property="serviceImage" destination="SV8-7H-zkT" id="2Nj-gI-qPE"/>
                 <outlet property="serviceName" destination="9ML-kJ-OP1" id="2bJ-j9-6ck"/>
             </connections>
-            <point key="canvasLocation" x="-27.480916030534349" y="46.126760563380287"/>
+            <point key="canvasLocation" x="-27.480916030534349" y="45.774647887323944"/>
         </collectionViewCell>
     </objects>
     <resources>

@@ -134,6 +134,7 @@ class InitialDataDownloadManager : NSObject{
                 let address = Address(context: self.context)
                 address.addressLongitude = data["longitude"] as? Double ?? 0
                 address.addressLatitude =  data["latitude"] as? Double ?? 0
+
                 address.address =  data["address"] as? String ?? ""
                 
                 if let parentService = data["parentService"]  as? String {
