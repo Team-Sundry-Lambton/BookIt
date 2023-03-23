@@ -138,8 +138,8 @@ Cleaning service</string>
                                             <constraint firstAttribute="height" constant="50" id="TVd-qH-d70"/>
                                         </constraints>
                                     </view>
-                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZiX-9X-5df">
-                                        <rect key="frame" x="0.0" y="490" width="398" height="300"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZiX-9X-5df">
+                                        <rect key="frame" x="0.0" y="495" width="398" height="300"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QBQ-re-wal">
                                                 <rect key="frame" x="16" y="0.0" width="366" height="300"/>
@@ -159,8 +159,8 @@ Cleaning service</string>
                                             <constraint firstItem="QBQ-re-wal" firstAttribute="top" secondItem="ZiX-9X-5df" secondAttribute="top" id="w1m-4Y-rlm"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oqA-b4-3SF">
-                                        <rect key="frame" x="0.0" y="495" width="398" height="300"/>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oqA-b4-3SF">
+                                        <rect key="frame" x="0.0" y="795" width="398" height="300"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="hWB-hI-oHj">
                                                 <rect key="frame" x="0.0" y="0.0" width="398" height="300"/>
@@ -201,9 +201,30 @@ Cleaning service</string>
                                     <constraint firstAttribute="trailing" secondItem="j1D-oe-SXy" secondAttribute="trailing" id="Her-L5-whT"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X3B-l9-Hw5">
+                                <rect key="frame" x="-3" y="772" width="398" height="46"/>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="wwT-3H-qAw"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <buttonConfiguration key="configuration" style="plain" image="bg_button_book_now"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="23"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9NS-NJ-0AY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="X3B-l9-Hw5" firstAttribute="top" secondItem="9NS-NJ-0AY" secondAttribute="top" constant="669" id="1fR-AF-sz9"/>
+                            <constraint firstAttribute="trailing" secondItem="X3B-l9-Hw5" secondAttribute="trailing" constant="-2" id="9FE-mX-mgc"/>
+                            <constraint firstItem="X3B-l9-Hw5" firstAttribute="leading" secondItem="oNO-4G-cBc" secondAttribute="leading" constant="-3" id="9ib-hd-rh4"/>
+                            <constraint firstItem="X3B-l9-Hw5" firstAttribute="bottom" secondItem="9NS-NJ-0AY" secondAttribute="bottom" id="ulH-gh-pA1"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="WZK-F4-fqy"/>
                     <connections>
@@ -246,6 +267,7 @@ Cleaning service</string>
     </scenes>
     <resources>
         <image name="Avatar" width="512" height="512"/>
+        <image name="bg_button_book_now" width="339" height="45"/>
         <image name="star12px" width="12" height="12"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

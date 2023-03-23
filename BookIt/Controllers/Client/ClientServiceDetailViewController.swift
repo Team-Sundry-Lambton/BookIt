@@ -37,6 +37,16 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var ivAvatar: UIImageView!
     
+    let fullSizeWidth = UIScreen.main.bounds.width
+    var bannerViews: [UIImageView] = []
+    var timer = Timer()
+    var xOffset: CGFloat = 0
+    var currentPage = 0 {
+        didSet{
+            xOffset = fullSizeWidth * CGFloat(self.currentPage)
+            bannerTableView.reloadData()
+        }
+    }
 
     // create location manager
     var locationMnager = CLLocationManager()
@@ -49,7 +59,9 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
         interfaceSegmented.delegate = self
         loadServiceDetail()
         
-        tvReviews.register(UINib(nibName: "ServiceStatusTableViewCell", bundle: nil), forCellReuseIdentifier: "ServiceStatusTableViewCell")
+        tvReviews.delegate = self
+        tvReviews.dataSource = self
+        tvReviews.register(UINib(nibName: "ReviewTableViewCell", bundle: nil), forCellReuseIdentifier: "ReviewTableViewCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,7 +77,11 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
     
     
     func loadServiceDetail(){
-        lblTitle.text = selectedService?.serviceTitle
+        if let title = selectedService?.serviceTitle {
+            lblTitle.text = title
+        } else {
+            lblTitle.text = "N/A"
+        }
         
         if let price = selectedService?.price, let priceType = selectedService?.priceType {
             lblPrice.setTitle("$ \(price)/ \(priceType)", for: .normal)
@@ -77,10 +93,10 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
             if let firstName = user.firstName, let lastName = user.lastName {
                 lblVendorName.text = firstName + " " + lastName
             }else{
-                lblVendorName.text = " "
+                lblVendorName.text = "N/A"
             }
         } else {
-            lblVendorName.text = " "
+            lblVendorName.text = "N/A"
         }
         
         tvDescription.text = selectedService?.serviceDescription
@@ -89,8 +105,8 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
     }
     
     func loadMap(){
-        let latitude: CLLocationDegrees = (selectedService?.address!.addressLatitude ?? 43.691221)!
-        let longitude: CLLocationDegrees = (selectedService?.address!.addressLongitude ?? -79.3383039)!
+        let latitude: CLLocationDegrees = selectedService?.address?.addressLatitude ?? 43.691221
+        let longitude: CLLocationDegrees = selectedService?.address?.addressLongitude ?? -79.3383039
         displayLocation(latitude: latitude, longitude: longitude, title: selectedService?.serviceTitle ?? "N/A", subtitle: selectedService?.address?.address ?? "Not found address")
     }
     
@@ -147,6 +163,29 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
         ivAvatar.layer.borderWidth = 5
         ivAvatar.layer.cornerRadius = ivAvatar.frame.height / 2
     }
+    
+    func setTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(swipeLeft), userInfo: nil, repeats: true)
+    }
+
+    @objc func swipeLeft() {
+        self.currentPage += 1
+        if self.currentPage > bannerViews.count - 1 {
+            self.currentPage = 0
+        }
+    }
+
+    func swipeRight() {
+        self.currentPage -= 1
+        if currentPage < 0 {
+            currentPage = bannerViews.count - 1
+        }
+    }
+
+    @objc func pageControlDidTap() {
+        timer.invalidate()
+        swipeLeft()
+    }
 
 }
 
@@ -200,11 +239,11 @@ extension ClientServiceDetailViewController: MKMapViewDelegate {
 
 extension ClientServiceDetailViewController: UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 10
     }
         
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ServiceStatusTableViewCell", for: indexPath) as? ServiceStatusTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewTableViewCell", for: indexPath) as? ReviewTableViewCell
             
         return cell ?? UITableViewCell()
     }

@@ -12,7 +12,7 @@ class ReviewTableViewCell: UITableViewCell {
     @IBOutlet weak var ivAvatar: UIImageView!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblDateTime: UILabel!
-    @IBOutlet weak var tvContent: UITextView!
+    @IBOutlet weak var lblContent: UITextView!
     @IBOutlet weak var lblRating: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
