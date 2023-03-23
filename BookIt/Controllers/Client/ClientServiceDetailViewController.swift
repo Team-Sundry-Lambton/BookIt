@@ -62,9 +62,15 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
         tvReviews.delegate = self
         tvReviews.dataSource = self
         tvReviews.register(UINib(nibName: "ReviewTableViewCell", bundle: nil), forCellReuseIdentifier: "ReviewTableViewCell")
+        
+        bannerTableView.register(BannerTableViewCell.self, forCellReuseIdentifier: BannerTableViewCell.identifier)
+        bannerTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        bannerTableView.delegate = self
+        bannerTableView.dataSource = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
         mapView.isZoomEnabled = false
         locationMnager.delegate = self
         locationMnager.desiredAccuracy = kCLLocationAccuracyBest
@@ -156,6 +162,21 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
         
     }
     
+    func getMedias(){
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Vendor")
+        if let media =  selectedService?.medias {
+            if let mediaPath = media.mediaPath {
+                fetchRequest.predicate = NSPredicate(format: "parent_Service = %@", email)
+                do {
+                    //get medias
+                } catch {
+                    print(error)
+                }
+            }
+        }
+        
+    }
+    
     func addBorder() {
         ivAvatar.layer.borderColor = UIColor.white.cgColor
         ivAvatar.layer.masksToBounds = true
@@ -239,13 +260,39 @@ extension ClientServiceDetailViewController: MKMapViewDelegate {
 
 extension ClientServiceDetailViewController: UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        if tableView == bannerTableView {
+            return 1
+        }else{
+            return 10
+        }
     }
         
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewTableViewCell", for: indexPath) as? ReviewTableViewCell
+        if tableView == bannerTableView {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: BannerTableViewCell.identifier, for: indexPath) as? BannerTableViewCell else { return UITableViewCell() }
             
-        return cell ?? UITableViewCell()
+            self.bannerViews = cell.bannerViews
+            cell.myScrollView.delegate = self
+            cell.pageControl.currentPage = self.currentPage
+            cell.pageControl.addTarget(self, action: #selector(pageControlDidTap), for: .touchUpInside)
+            UIView.animate(withDuration: 1) {
+                cell.myScrollView.contentOffset.x = self.xOffset
+            }
+            return cell
+        }else{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewTableViewCell", for: indexPath) as? ReviewTableViewCell
+                
+            return cell ?? UITableViewCell()
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if tableView == bannerTableView {
+            return 240
+        }else{
+            return 125
+        }
     }
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
