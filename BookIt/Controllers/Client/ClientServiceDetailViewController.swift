@@ -1,0 +1,74 @@
+//
+//  ClientServiceDetailViewController.swift
+//  BookIt
+//
+//  Created by Bao Trieu Thai on 2023-03-22.
+//
+
+import UIKit
+import CoreData
+
+class ClientServiceDetailViewController: UIViewController {
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var selectedService: Service?
+
+
+    @IBOutlet weak var interfaceSegmented: CustomSegmentedControl!{
+        didSet{
+            interfaceSegmented.setButtonTitles(buttonTitles: ["Descriptions","Reviews", "Location"])
+            interfaceSegmented.selectorViewColor = #colorLiteral(red: 0.2415007949, green: 0.3881379962, blue: 0.6172356606, alpha: 1)
+            interfaceSegmented.selectorTextColor = #colorLiteral(red: 0.2359043658, green: 0.3882460892, blue: 0.6172637939, alpha: 1)
+            interfaceSegmented.textColor = #colorLiteral(red: 0.6947146058, green: 0.7548407912, blue: 0.8478365541, alpha: 1)
+            interfaceSegmented.baseLineColor = #colorLiteral(red: 0.9490194917, green: 0.9490197301, blue: 0.9533253312, alpha: 1)
+        }
+    }
+    var segmentSelectedIndex: Int = 0
+    @IBOutlet weak var lblVendorName: UILabel!
+    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var lblPrice: UIButton!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        self.definesPresentationContext = true
+        loadServiceDetail()
+        
+        
+        // Add this custom Segmented Control to our view
+    }
+    
+    func loadServiceDetail(){
+        lblTitle.text = selectedService?.serviceTitle
+        
+        if let price = selectedService?.price, let priceType = selectedService?.priceType {
+            lblPrice.setTitle("$ \(price)/ \(priceType)", for: .normal)
+        } else {
+            lblPrice.setTitle("Not available", for: .normal)
+        }
+        
+        if let user =  selectedService?.parent_Vendor {
+            if let firstName = user.firstName, let lastName = user.lastName {
+                lblVendorName.text = firstName + " " + lastName
+            }else{
+                lblVendorName.text = " "
+            }
+        } else {
+            lblVendorName.text = " "
+        }
+    }
+    
+    
+    
+    
+    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
