@@ -37,7 +37,6 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var ivAvatar: UIImageView!
     
-    var imageList = [MediaObject]()
     let fullSizeWidth = UIScreen.main.bounds.width
     var bannerViews: [UIImageView] = []
     var timer = Timer()
@@ -108,7 +107,6 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
         
         tvDescription.text = selectedService?.serviceDescription
         getVendor()
-        getMedias()
     
     }
     
@@ -164,18 +162,6 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
         
     }
     
-    func getMedias(){
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "MediaFile")
-        if let title =  selectedService?.serviceTitle {
-            fetchRequest.predicate = NSPredicate(format: "parent_Service = %@", title)
-            do {
-                
-            } catch {
-                print(error)
-            }
-        }
-        
-    }
     
     func addBorder() {
         ivAvatar.layer.borderColor = UIColor.white.cgColor
