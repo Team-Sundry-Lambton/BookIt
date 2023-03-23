@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gNZ-eO-qSE">
-                                <rect key="frame" x="0.0" y="-9" width="398" height="510"/>
+                                <rect key="frame" x="0.0" y="-9" width="398" height="485"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tcD-T8-Ag6">
                                         <rect key="frame" x="0.0" y="0.0" width="398" height="240"/>
@@ -123,19 +123,60 @@ Cleaning service</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HIC-RV-F6I">
-                                        <rect key="frame" x="0.0" y="435" width="398" height="75"/>
+                                        <rect key="frame" x="0.0" y="435" width="398" height="50"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gAM-OC-qvl" customClass="CustomSegmentedControl" customModule="BookIt">
-                                                <rect key="frame" x="0.0" y="16" width="398" height="42"/>
+                                                <rect key="frame" x="16" y="0.0" width="366" height="42"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="gAM-OC-qvl" firstAttribute="top" secondItem="HIC-RV-F6I" secondAttribute="top" constant="16" id="07E-TP-qPi"/>
-                                            <constraint firstAttribute="trailing" secondItem="gAM-OC-qvl" secondAttribute="trailing" id="KVf-jL-Frh"/>
-                                            <constraint firstItem="gAM-OC-qvl" firstAttribute="leading" secondItem="HIC-RV-F6I" secondAttribute="leading" id="Rc7-rS-eHI"/>
-                                            <constraint firstAttribute="height" constant="75" id="TVd-qH-d70"/>
+                                            <constraint firstItem="gAM-OC-qvl" firstAttribute="leading" secondItem="HIC-RV-F6I" secondAttribute="leading" constant="16" id="Fvx-zI-1A7"/>
+                                            <constraint firstAttribute="trailing" secondItem="gAM-OC-qvl" secondAttribute="trailing" constant="16" id="RFb-5n-aBZ"/>
+                                            <constraint firstAttribute="height" constant="50" id="TVd-qH-d70"/>
+                                        </constraints>
+                                    </view>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZiX-9X-5df">
+                                        <rect key="frame" x="0.0" y="485" width="398" height="300"/>
+                                        <subviews>
+                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="huw-ib-Emh">
+                                                <rect key="frame" x="0.0" y="0.0" width="398" height="300"/>
+                                                <connections>
+                                                    <segue destination="8XP-oq-cwc" kind="embed" id="UM5-nG-8Z0"/>
+                                                </connections>
+                                            </containerView>
+                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jER-4B-yke">
+                                                <rect key="frame" x="0.0" y="0.0" width="398" height="300"/>
+                                                <connections>
+                                                    <segue destination="mlA-IN-lKn" kind="embed" id="PyH-pj-gVk"/>
+                                                </connections>
+                                            </containerView>
+                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ao8-dP-AiZ">
+                                                <rect key="frame" x="0.0" y="0.0" width="398" height="300"/>
+                                                <connections>
+                                                    <segue destination="3nV-51-Mj3" kind="embed" id="AAb-V2-2r6"/>
+                                                </connections>
+                                            </containerView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="Ao8-dP-AiZ" firstAttribute="leading" secondItem="ZiX-9X-5df" secondAttribute="leading" id="2Gd-eU-OSm"/>
+                                            <constraint firstItem="Ao8-dP-AiZ" firstAttribute="leading" secondItem="ZiX-9X-5df" secondAttribute="leading" id="2qV-Z8-84g"/>
+                                            <constraint firstAttribute="trailing" secondItem="Ao8-dP-AiZ" secondAttribute="trailing" id="7kz-GD-UvS"/>
+                                            <constraint firstAttribute="trailing" secondItem="huw-ib-Emh" secondAttribute="trailing" id="9Ex-za-2FV"/>
+                                            <constraint firstAttribute="bottom" secondItem="jER-4B-yke" secondAttribute="bottom" id="IMm-qQ-KF1"/>
+                                            <constraint firstAttribute="trailing" secondItem="Ao8-dP-AiZ" secondAttribute="trailing" id="OOy-lh-Fof"/>
+                                            <constraint firstItem="Ao8-dP-AiZ" firstAttribute="top" secondItem="ZiX-9X-5df" secondAttribute="top" id="QOh-YB-2fj"/>
+                                            <constraint firstAttribute="bottom" secondItem="Ao8-dP-AiZ" secondAttribute="bottom" id="Skr-mw-YxS"/>
+                                            <constraint firstItem="huw-ib-Emh" firstAttribute="top" secondItem="ZiX-9X-5df" secondAttribute="top" id="WY1-wX-QPY"/>
+                                            <constraint firstAttribute="height" constant="300" id="Z95-NK-bmE"/>
+                                            <constraint firstAttribute="trailing" secondItem="jER-4B-yke" secondAttribute="trailing" id="a4B-CJ-2XN"/>
+                                            <constraint firstItem="Ao8-dP-AiZ" firstAttribute="top" secondItem="ZiX-9X-5df" secondAttribute="top" id="ex3-Uo-uZr"/>
+                                            <constraint firstAttribute="bottom" secondItem="huw-ib-Emh" secondAttribute="bottom" id="g2M-qL-pTE"/>
+                                            <constraint firstItem="jER-4B-yke" firstAttribute="top" secondItem="ZiX-9X-5df" secondAttribute="top" id="r7r-0C-Owo"/>
+                                            <constraint firstItem="jER-4B-yke" firstAttribute="leading" secondItem="ZiX-9X-5df" secondAttribute="leading" id="u0h-6o-Kuj"/>
+                                            <constraint firstItem="huw-ib-Emh" firstAttribute="leading" secondItem="ZiX-9X-5df" secondAttribute="leading" id="uA9-Kb-VCD"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -150,17 +191,21 @@ Cleaning service</string>
                         <viewLayoutGuide key="safeArea" id="9NS-NJ-0AY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="xWt-H6-jmZ"/>
+                    <navigationItem key="navigationItem" id="WZK-F4-fqy"/>
                     <connections>
+                        <outlet property="bannerTableView" destination="tcD-T8-Ag6" id="cQH-F6-nPl"/>
                         <outlet property="interfaceSegmented" destination="gAM-OC-qvl" id="oZS-ks-mbD"/>
                         <outlet property="lblPrice" destination="ij8-yK-Yba" id="owL-sb-JaS"/>
                         <outlet property="lblTitle" destination="T1h-QA-VzZ" id="i4e-Zy-0QC"/>
                         <outlet property="lblVendorName" destination="VqH-5a-rA6" id="x89-7h-cxu"/>
+                        <outlet property="viewDescription" destination="huw-ib-Emh" id="757-q4-0wG"/>
+                        <outlet property="viewLocation" destination="Ao8-dP-AiZ" id="MlX-Jr-FDx"/>
+                        <outlet property="viewReviews" destination="jER-4B-yke" id="DfQ-dN-5AE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c2q-ZV-1Yu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1054.1984732824426" y="4.9295774647887329"/>
+            <point key="canvasLocation" x="1052.6717557251909" y="4.9295774647887329"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="74s-Tc-GTt">
@@ -180,15 +225,85 @@ Cleaning service</string>
             </objects>
             <point key="canvasLocation" x="135.1145038167939" y="4.9295774647887329"/>
         </scene>
+        <!--Client Service Detail View Controller-->
+        <scene sceneID="Miq-Re-bpM">
+            <objects>
+                <viewController id="8XP-oq-cwc" customClass="ClientServiceDetailViewController" customModule="BookIt" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lEf-VR-vNt">
+                        <rect key="frame" x="0.0" y="0.0" width="398" height="300"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dMn-GR-9NM">
+                                <rect key="frame" x="20" y="59" width="358" height="207"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="dMn-GR-9NM" secondAttribute="trailing" id="3HG-Yw-1jW"/>
+                            <constraint firstItem="dMn-GR-9NM" firstAttribute="leading" secondItem="lEf-VR-vNt" secondAttribute="leadingMargin" id="UcL-LA-8Qj"/>
+                            <constraint firstItem="dMn-GR-9NM" firstAttribute="top" secondItem="lEf-VR-vNt" secondAttribute="topMargin" id="gwb-Cp-3ul"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="dMn-GR-9NM" secondAttribute="bottom" id="jH1-7U-gN2"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tvDescription" destination="dMn-GR-9NM" id="F2F-Tq-lT3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eB5-Qf-tHe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1850" y="-175"/>
+        </scene>
+        <!--Client Service Detail View Controller-->
+        <scene sceneID="MYl-Xw-gKI">
+            <objects>
+                <viewController id="mlA-IN-lKn" customClass="ClientServiceDetailViewController" customModule="BookIt" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kz3-m7-MP5">
+                        <rect key="frame" x="0.0" y="0.0" width="398" height="300"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemMintColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MMT-gf-muA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1849" y="84"/>
+        </scene>
+        <!--Client Service Detail View Controller-->
+        <scene sceneID="1QE-l3-tLp">
+            <objects>
+                <viewController id="3nV-51-Mj3" customClass="ClientServiceDetailViewController" customModule="BookIt" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uAE-Xo-I9D">
+                        <rect key="frame" x="0.0" y="0.0" width="398" height="300"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ara-bS-sOt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1849" y="356"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Avatar" width="512" height="512"/>
         <image name="star12px" width="12" height="12"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemMintColor">
+            <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

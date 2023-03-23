@@ -8,7 +8,9 @@
 import UIKit
 import CoreData
 
-class ClientServiceDetailViewController: UIViewController {
+class ClientServiceDetailViewController: UIViewController{
+  
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var selectedService: Service?
 
@@ -22,18 +24,36 @@ class ClientServiceDetailViewController: UIViewController {
             interfaceSegmented.baseLineColor = #colorLiteral(red: 0.9490194917, green: 0.9490197301, blue: 0.9533253312, alpha: 1)
         }
     }
-    var segmentSelectedIndex: Int = 0
+
+    @IBOutlet weak var bannerTableView: UITableView!
     @IBOutlet weak var lblVendorName: UILabel!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblPrice: UIButton!
+    @IBOutlet weak var tvDescription: UITextView!
+    
+    @IBOutlet weak var viewDescription: UIView!
+    @IBOutlet weak var viewLocation: UIView!
+    @IBOutlet weak var viewReviews: UIView!
+    
+    let fullSizeWidth = UIScreen.main.bounds.width
+    var bannerViews: [UIImageView] = []
+    var timer = Timer()
+    var xOffset: CGFloat = 0
+    var currentPage = 0 {
+        didSet{
+            xOffset = fullSizeWidth * CGFloat(self.currentPage)
+            bannerTableView.reloadData()
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.definesPresentationContext = true
+ 
+        interfaceSegmented.delegate = self
         loadServiceDetail()
-        
-        
-        // Add this custom Segmented Control to our view
+                
     }
     
     func loadServiceDetail(){
@@ -42,7 +62,7 @@ class ClientServiceDetailViewController: UIViewController {
         if let price = selectedService?.price, let priceType = selectedService?.priceType {
             lblPrice.setTitle("$ \(price)/ \(priceType)", for: .normal)
         } else {
-            lblPrice.setTitle("Not available", for: .normal)
+            lblPrice.setTitle("N/A", for: .normal)
         }
         
         if let user =  selectedService?.parent_Vendor {
@@ -54,9 +74,9 @@ class ClientServiceDetailViewController: UIViewController {
         } else {
             lblVendorName.text = " "
         }
+        
+        tvDescription.text = selectedService?.serviceDescription
     }
-    
-    
     
     
     
@@ -71,4 +91,23 @@ class ClientServiceDetailViewController: UIViewController {
     }
     */
 
+}
+
+extension ClientServiceDetailViewController: CustomSegmentedControlDelegate {
+    func change(to index: Int) {
+        switch (index)  {
+          case 1:
+            viewDescription.alpha = 0
+            viewReviews.alpha = 1
+            viewLocation.alpha = 0
+          case 2:
+            viewDescription.alpha = 0
+            viewReviews.alpha = 0
+            viewLocation.alpha = 1
+          default:
+            viewDescription.alpha = 1
+            viewReviews.alpha = 0
+            viewLocation.alpha = 0
+        }
+    }
 }
