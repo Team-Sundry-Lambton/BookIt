@@ -48,6 +48,8 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
         addBorder()
         interfaceSegmented.delegate = self
         loadServiceDetail()
+        
+        tvReviews.register(UINib(nibName: "ServiceStatusTableViewCell", bundle: nil), forCellReuseIdentifier: "ServiceStatusTableViewCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,6 +60,7 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
         locationMnager.startUpdatingLocation()
         mapView.delegate = self
         loadMap()
+        tvReviews.reloadData()
     }
     
     
@@ -149,6 +152,7 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
 
 extension ClientServiceDetailViewController: CustomSegmentedControlDelegate {
     func change(to index: Int) {
+        tvReviews.reloadData()
          switch (index)  {
           case 1:
             viewDescription.isHidden = true
@@ -194,3 +198,19 @@ extension ClientServiceDetailViewController: MKMapViewDelegate {
 
 
 
+extension ClientServiceDetailViewController: UITableViewDelegate , UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+        
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ServiceStatusTableViewCell", for: indexPath) as? ServiceStatusTableViewCell
+            
+        return cell ?? UITableViewCell()
+    }
+        
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            //go to review detail page.
+        print("selected" + "\(indexPath.row)")
+    }
+}

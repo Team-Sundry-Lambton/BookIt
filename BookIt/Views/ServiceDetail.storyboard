@@ -138,8 +138,8 @@ Cleaning service</string>
                                             <constraint firstAttribute="height" constant="50" id="TVd-qH-d70"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZiX-9X-5df">
-                                        <rect key="frame" x="0.0" y="495" width="398" height="300"/>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZiX-9X-5df">
+                                        <rect key="frame" x="0.0" y="490" width="398" height="300"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QBQ-re-wal">
                                                 <rect key="frame" x="16" y="0.0" width="366" height="300"/>
@@ -159,8 +159,8 @@ Cleaning service</string>
                                             <constraint firstItem="QBQ-re-wal" firstAttribute="top" secondItem="ZiX-9X-5df" secondAttribute="top" id="w1m-4Y-rlm"/>
                                         </constraints>
                                     </view>
-                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oqA-b4-3SF">
-                                        <rect key="frame" x="0.0" y="795" width="398" height="300"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oqA-b4-3SF">
+                                        <rect key="frame" x="0.0" y="495" width="398" height="300"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="hWB-hI-oHj">
                                                 <rect key="frame" x="0.0" y="0.0" width="398" height="300"/>

@@ -102,6 +102,8 @@
 		BD36696F29C946C000C83AA6 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD36696E29C946C000C83AA6 /* Onboarding.storyboard */; };
 		BD36697129C946C800C83AA6 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD36697029C946C800C83AA6 /* OnboardingViewController.swift */; };
 		BD3CE98129CBCE2700408AEE /* ServiceDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD3CE98029CBCE2700408AEE /* ServiceDetail.storyboard */; };
+		BD3CE98329CC9D1800408AEE /* ReviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD3CE98229CC9D1800408AEE /* ReviewTableViewCell.xib */; };
+		BD3CE98529CCA2B200408AEE /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3CE98429CCA2B200408AEE /* ReviewTableViewCell.swift */; };
 		BD89B73829CB73B000F26546 /* ClientServiceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD89B73729CB73B000F26546 /* ClientServiceDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -170,6 +172,8 @@
 		BD36696E29C946C000C83AA6 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		BD36697029C946C800C83AA6 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		BD3CE98029CBCE2700408AEE /* ServiceDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ServiceDetail.storyboard; sourceTree = "<group>"; };
+		BD3CE98229CC9D1800408AEE /* ReviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewTableViewCell.xib; sourceTree = "<group>"; };
+		BD3CE98429CCA2B200408AEE /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
 		BD89B73729CB73B000F26546 /* ClientServiceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientServiceDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -331,6 +335,8 @@
 				BB7524EE29C8E929004C4837 /* CategoryListCollectionViewCell.xib */,
 				BB7524F129C8EC6E004C4837 /* NewVendorCollectionViewCell.swift */,
 				BB7524F229C8EC6E004C4837 /* NewVendorCollectionViewCell.xib */,
+				BD3CE98229CC9D1800408AEE /* ReviewTableViewCell.xib */,
+				BD3CE98429CCA2B200408AEE /* ReviewTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -495,6 +501,7 @@
 				B4D56B5C29C105B9005A2C63 /* CategoryCollectionViewCell.xib in Resources */,
 				99AB0DD929AD95B600B096BB /* Assets.xcassets in Resources */,
 				BB7524F029C8E929004C4837 /* CategoryListCollectionViewCell.xib in Resources */,
+				BD3CE98329CC9D1800408AEE /* ReviewTableViewCell.xib in Resources */,
 				BB7A1E1429C2AFB1003CB894 /* GoogleService-Info.plist in Resources */,
 				BBE832BC29BD3B7300C58BF1 /* ServiceDetailTableViewCell.xib in Resources */,
 				995B2F7729C68C8700745992 /* ServiceStatusTableViewCell.xib in Resources */,
@@ -534,6 +541,7 @@
 				996588C029C7BE6A00A7D796 /* GradientColorExtension.swift in Sources */,
 				996588C829C7D03500A7D796 /* FilterPopupViewController.swift in Sources */,
 				BBEC1C4A29B55A6800B58D41 /* UIAlertViewExtention.swift in Sources */,
+				BD3CE98529CCA2B200408AEE /* ReviewTableViewCell.swift in Sources */,
 				BB0FF26A29BAA73800E26A71 /* BorderTextField.swift in Sources */,
 				BB7A1DD329C0C88D003CB894 /* VendorServicesViewController.swift in Sources */,
 				BB7A1E1629C3AB36003CB894 /* InitialDataDownload.swift in Sources */,
