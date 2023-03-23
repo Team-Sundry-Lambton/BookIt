@@ -6,15 +6,16 @@
 //
 
 import UIKit
+import SnapKit
+import CoreLocation
 import CoreData
+import MapKit
 
-class ClientServiceDetailViewController: UIViewController{
+class ClientServiceDetailViewController: UIViewController, CLLocationManagerDelegate{
   
-    
+    weak var delegate: ClientServiceDetailViewController!
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var selectedService: Service?
-
-
     @IBOutlet weak var interfaceSegmented: CustomSegmentedControl!{
         didSet{
             interfaceSegmented.setButtonTitles(buttonTitles: ["Descriptions","Reviews", "Location"])
@@ -24,30 +25,22 @@ class ClientServiceDetailViewController: UIViewController{
             interfaceSegmented.baseLineColor = #colorLiteral(red: 0.9490194917, green: 0.9490197301, blue: 0.9533253312, alpha: 1)
         }
     }
-
     @IBOutlet weak var bannerTableView: UITableView!
     @IBOutlet weak var lblVendorName: UILabel!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblPrice: UIButton!
     @IBOutlet weak var tvDescription: UITextView!
-    
-
     @IBOutlet weak var viewDescription: UIView!
-    
     @IBOutlet weak var viewLocation: UIView!
     @IBOutlet weak var viewReviews: UIView!
+    @IBOutlet weak var tvReviews: UITableView!
+    @IBOutlet weak var mapView: MKMapView!
     
-    let fullSizeWidth = UIScreen.main.bounds.width
-    var bannerViews: [UIImageView] = []
-    var timer = Timer()
-    var xOffset: CGFloat = 0
-    var currentPage = 0 {
-        didSet{
-            xOffset = fullSizeWidth * CGFloat(self.currentPage)
-            bannerTableView.reloadData()
-        }
-    }
     
+
+    // create location manager
+    var locationMnager = CLLocationManager()
+    var openMap = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,8 +48,18 @@ class ClientServiceDetailViewController: UIViewController{
  
         interfaceSegmented.delegate = self
         loadServiceDetail()
-                
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        mapView.isZoomEnabled = false
+        locationMnager.delegate = self
+        locationMnager.desiredAccuracy = kCLLocationAccuracyBest
+        locationMnager.requestWhenInUseAuthorization()
+        locationMnager.startUpdatingLocation()
+        mapView.delegate = self
+        loadMap()
+    }
+    
     
     func loadServiceDetail(){
         lblTitle.text = selectedService?.serviceTitle
@@ -78,20 +81,41 @@ class ClientServiceDetailViewController: UIViewController{
         }
         
         tvDescription.text = selectedService?.serviceDescription
+    
     }
     
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func loadMap(){
+        let latitude: CLLocationDegrees = (selectedService?.address!.addressLatitude ?? 43.691221)!
+        let longitude: CLLocationDegrees = (selectedService?.address!.addressLongitude ?? -79.3383039)!
+        displayLocation(latitude: latitude, longitude: longitude, title: selectedService?.serviceTitle ?? "N/A", subtitle: selectedService?.address?.address ?? "Not found address")
     }
-    */
+    
+    //MARK: - display user location method
+    func displayLocation(latitude: CLLocationDegrees,
+                         longitude: CLLocationDegrees,
+                         title: String,
+                         subtitle: String) {
+        // 2nd step - define span
+        let latDelta: CLLocationDegrees = 0.05
+        let lngDelta: CLLocationDegrees = 0.05
+        
+        let span = MKCoordinateSpan(latitudeDelta: latDelta, longitudeDelta: lngDelta)
+        // 3rd step is to define the location
+        let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        // 4th step is to define the region
+        let region = MKCoordinateRegion(center: location, span: span)
+        
+        // 5th step is to set the region for the map
+        mapView.setRegion(region, animated: true)
+        
+        // 6th step is to define annotation
+        let annotation = MKPointAnnotation()
+        annotation.title = title
+        annotation.subtitle = subtitle
+        annotation.coordinate = location
+        mapView.addAnnotation(annotation)
+    }
+    
 
 }
 
@@ -106,11 +130,39 @@ extension ClientServiceDetailViewController: CustomSegmentedControlDelegate {
             viewDescription.isHidden = true
             viewReviews.isHidden = true
             viewLocation.isHidden = false
+            openMap = true
           default:
-             viewDescription.isHidden = false
+            viewDescription.isHidden = false
             viewReviews.isHidden = true
             viewLocation.isHidden = true
         }
         
     }
 }
+
+
+// MARK: - MapViewDelegate
+
+extension ClientServiceDetailViewController: MKMapViewDelegate {
+        
+        //MARK: - viewFor annotation method
+        func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+            
+            if annotation is MKUserLocation {
+                return nil
+            }
+            
+            switch annotation.title {
+            case "my location":
+                let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "ic_place_2x")
+                annotationView.markerTintColor = UIColor.blue
+                return annotationView
+            default:
+                return nil
+            }
+        }
+        
+    }
+
+
+

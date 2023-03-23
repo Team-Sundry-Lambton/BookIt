@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -160,16 +161,36 @@ Cleaning service</string>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oqA-b4-3SF">
                                         <rect key="frame" x="0.0" y="795" width="398" height="300"/>
+                                        <subviews>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="hWB-hI-oHj">
+                                                <rect key="frame" x="0.0" y="0.0" width="398" height="300"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </tableView>
+                                        </subviews>
                                         <color key="backgroundColor" systemColor="systemMintColor"/>
                                         <constraints>
+                                            <constraint firstItem="hWB-hI-oHj" firstAttribute="top" secondItem="oqA-b4-3SF" secondAttribute="top" id="dai-aI-8Dj"/>
+                                            <constraint firstAttribute="bottom" secondItem="hWB-hI-oHj" secondAttribute="bottom" id="fLR-6a-FNx"/>
+                                            <constraint firstItem="hWB-hI-oHj" firstAttribute="leading" secondItem="oqA-b4-3SF" secondAttribute="leading" id="kMn-bJ-2uc"/>
+                                            <constraint firstAttribute="trailing" secondItem="hWB-hI-oHj" secondAttribute="trailing" id="kgS-b2-VPK"/>
                                             <constraint firstAttribute="height" constant="300" id="z9A-E8-nmE"/>
                                         </constraints>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qve-uh-Rdu">
                                         <rect key="frame" x="0.0" y="795" width="398" height="300"/>
-                                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                        <subviews>
+                                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mtr-ie-SJc">
+                                                <rect key="frame" x="0.0" y="0.0" width="398" height="300"/>
+                                                <standardMapConfiguration key="preferredConfiguration"/>
+                                            </mapView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
+                                            <constraint firstItem="mtr-ie-SJc" firstAttribute="top" secondItem="qve-uh-Rdu" secondAttribute="top" id="LBa-vD-SoK"/>
                                             <constraint firstAttribute="height" constant="300" id="MsA-nz-2bY"/>
+                                            <constraint firstAttribute="bottom" secondItem="mtr-ie-SJc" secondAttribute="bottom" id="Ukh-v7-BBV"/>
+                                            <constraint firstItem="mtr-ie-SJc" firstAttribute="leading" secondItem="qve-uh-Rdu" secondAttribute="leading" id="dye-Cp-mwb"/>
+                                            <constraint firstAttribute="trailing" secondItem="mtr-ie-SJc" secondAttribute="trailing" id="hdW-Hh-vpK"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -191,10 +212,12 @@ Cleaning service</string>
                         <outlet property="lblPrice" destination="ij8-yK-Yba" id="owL-sb-JaS"/>
                         <outlet property="lblTitle" destination="T1h-QA-VzZ" id="i4e-Zy-0QC"/>
                         <outlet property="lblVendorName" destination="VqH-5a-rA6" id="x89-7h-cxu"/>
+                        <outlet property="mapView" destination="mtr-ie-SJc" id="6f1-Qj-vU9"/>
                         <outlet property="tvDescription" destination="QBQ-re-wal" id="k0M-Xh-LcW"/>
+                        <outlet property="tvReviews" destination="hWB-hI-oHj" id="dAV-BE-NId"/>
                         <outlet property="viewDescription" destination="ZiX-9X-5df" id="Kp6-bw-kkX"/>
                         <outlet property="viewLocation" destination="qve-uh-Rdu" id="ON6-HN-oMZ"/>
-                        <outlet property="viewReviews" destination="oqA-b4-3SF" id="clD-qQ-HCf"/>
+                        <outlet property="viewReviews" destination="oqA-b4-3SF" id="ZSX-et-X6X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c2q-ZV-1Yu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -234,9 +257,6 @@ Cleaning service</string>
         </systemColor>
         <systemColor name="systemMintColor">
             <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
