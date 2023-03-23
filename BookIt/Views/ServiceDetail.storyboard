@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gNZ-eO-qSE">
-                                <rect key="frame" x="0.0" y="-9" width="398" height="485"/>
+                                <rect key="frame" x="0.0" y="-9" width="398" height="795"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tcD-T8-Ag6">
                                         <rect key="frame" x="0.0" y="0.0" width="398" height="240"/>
@@ -137,46 +137,39 @@ Cleaning service</string>
                                             <constraint firstAttribute="height" constant="50" id="TVd-qH-d70"/>
                                         </constraints>
                                     </view>
-                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZiX-9X-5df">
-                                        <rect key="frame" x="0.0" y="485" width="398" height="300"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZiX-9X-5df">
+                                        <rect key="frame" x="0.0" y="495" width="398" height="300"/>
                                         <subviews>
-                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="huw-ib-Emh">
-                                                <rect key="frame" x="0.0" y="0.0" width="398" height="300"/>
-                                                <connections>
-                                                    <segue destination="8XP-oq-cwc" kind="embed" id="UM5-nG-8Z0"/>
-                                                </connections>
-                                            </containerView>
-                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jER-4B-yke">
-                                                <rect key="frame" x="0.0" y="0.0" width="398" height="300"/>
-                                                <connections>
-                                                    <segue destination="mlA-IN-lKn" kind="embed" id="PyH-pj-gVk"/>
-                                                </connections>
-                                            </containerView>
-                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ao8-dP-AiZ">
-                                                <rect key="frame" x="0.0" y="0.0" width="398" height="300"/>
-                                                <connections>
-                                                    <segue destination="3nV-51-Mj3" kind="embed" id="AAb-V2-2r6"/>
-                                                </connections>
-                                            </containerView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QBQ-re-wal">
+                                                <rect key="frame" x="16" y="0.0" width="366" height="300"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                <color key="textColor" systemColor="labelColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="Ao8-dP-AiZ" firstAttribute="leading" secondItem="ZiX-9X-5df" secondAttribute="leading" id="2Gd-eU-OSm"/>
-                                            <constraint firstItem="Ao8-dP-AiZ" firstAttribute="leading" secondItem="ZiX-9X-5df" secondAttribute="leading" id="2qV-Z8-84g"/>
-                                            <constraint firstAttribute="trailing" secondItem="Ao8-dP-AiZ" secondAttribute="trailing" id="7kz-GD-UvS"/>
-                                            <constraint firstAttribute="trailing" secondItem="huw-ib-Emh" secondAttribute="trailing" id="9Ex-za-2FV"/>
-                                            <constraint firstAttribute="bottom" secondItem="jER-4B-yke" secondAttribute="bottom" id="IMm-qQ-KF1"/>
-                                            <constraint firstAttribute="trailing" secondItem="Ao8-dP-AiZ" secondAttribute="trailing" id="OOy-lh-Fof"/>
-                                            <constraint firstItem="Ao8-dP-AiZ" firstAttribute="top" secondItem="ZiX-9X-5df" secondAttribute="top" id="QOh-YB-2fj"/>
-                                            <constraint firstAttribute="bottom" secondItem="Ao8-dP-AiZ" secondAttribute="bottom" id="Skr-mw-YxS"/>
-                                            <constraint firstItem="huw-ib-Emh" firstAttribute="top" secondItem="ZiX-9X-5df" secondAttribute="top" id="WY1-wX-QPY"/>
                                             <constraint firstAttribute="height" constant="300" id="Z95-NK-bmE"/>
-                                            <constraint firstAttribute="trailing" secondItem="jER-4B-yke" secondAttribute="trailing" id="a4B-CJ-2XN"/>
-                                            <constraint firstItem="Ao8-dP-AiZ" firstAttribute="top" secondItem="ZiX-9X-5df" secondAttribute="top" id="ex3-Uo-uZr"/>
-                                            <constraint firstAttribute="bottom" secondItem="huw-ib-Emh" secondAttribute="bottom" id="g2M-qL-pTE"/>
-                                            <constraint firstItem="jER-4B-yke" firstAttribute="top" secondItem="ZiX-9X-5df" secondAttribute="top" id="r7r-0C-Owo"/>
-                                            <constraint firstItem="jER-4B-yke" firstAttribute="leading" secondItem="ZiX-9X-5df" secondAttribute="leading" id="u0h-6o-Kuj"/>
-                                            <constraint firstItem="huw-ib-Emh" firstAttribute="leading" secondItem="ZiX-9X-5df" secondAttribute="leading" id="uA9-Kb-VCD"/>
+                                            <constraint firstAttribute="bottom" secondItem="QBQ-re-wal" secondAttribute="bottom" id="Zlh-Jv-jqO"/>
+                                            <constraint firstItem="QBQ-re-wal" firstAttribute="leading" secondItem="ZiX-9X-5df" secondAttribute="leading" constant="16" id="hwo-av-tV1"/>
+                                            <constraint firstAttribute="trailing" secondItem="QBQ-re-wal" secondAttribute="trailing" constant="16" id="k5y-st-6gF"/>
+                                            <constraint firstItem="QBQ-re-wal" firstAttribute="top" secondItem="ZiX-9X-5df" secondAttribute="top" id="w1m-4Y-rlm"/>
+                                        </constraints>
+                                    </view>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oqA-b4-3SF">
+                                        <rect key="frame" x="0.0" y="795" width="398" height="300"/>
+                                        <color key="backgroundColor" systemColor="systemMintColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="300" id="z9A-E8-nmE"/>
+                                        </constraints>
+                                    </view>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qve-uh-Rdu">
+                                        <rect key="frame" x="0.0" y="795" width="398" height="300"/>
+                                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="300" id="MsA-nz-2bY"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -198,9 +191,10 @@ Cleaning service</string>
                         <outlet property="lblPrice" destination="ij8-yK-Yba" id="owL-sb-JaS"/>
                         <outlet property="lblTitle" destination="T1h-QA-VzZ" id="i4e-Zy-0QC"/>
                         <outlet property="lblVendorName" destination="VqH-5a-rA6" id="x89-7h-cxu"/>
-                        <outlet property="viewDescription" destination="huw-ib-Emh" id="757-q4-0wG"/>
-                        <outlet property="viewLocation" destination="Ao8-dP-AiZ" id="MlX-Jr-FDx"/>
-                        <outlet property="viewReviews" destination="jER-4B-yke" id="DfQ-dN-5AE"/>
+                        <outlet property="tvDescription" destination="QBQ-re-wal" id="k0M-Xh-LcW"/>
+                        <outlet property="viewDescription" destination="ZiX-9X-5df" id="Kp6-bw-kkX"/>
+                        <outlet property="viewLocation" destination="qve-uh-Rdu" id="ON6-HN-oMZ"/>
+                        <outlet property="viewReviews" destination="oqA-b4-3SF" id="clD-qQ-HCf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c2q-ZV-1Yu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -225,67 +219,6 @@ Cleaning service</string>
             </objects>
             <point key="canvasLocation" x="135.1145038167939" y="4.9295774647887329"/>
         </scene>
-        <!--Client Service Detail View Controller-->
-        <scene sceneID="Miq-Re-bpM">
-            <objects>
-                <viewController id="8XP-oq-cwc" customClass="ClientServiceDetailViewController" customModule="BookIt" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="lEf-VR-vNt">
-                        <rect key="frame" x="0.0" y="0.0" width="398" height="300"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dMn-GR-9NM">
-                                <rect key="frame" x="20" y="59" width="358" height="207"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="dMn-GR-9NM" secondAttribute="trailing" id="3HG-Yw-1jW"/>
-                            <constraint firstItem="dMn-GR-9NM" firstAttribute="leading" secondItem="lEf-VR-vNt" secondAttribute="leadingMargin" id="UcL-LA-8Qj"/>
-                            <constraint firstItem="dMn-GR-9NM" firstAttribute="top" secondItem="lEf-VR-vNt" secondAttribute="topMargin" id="gwb-Cp-3ul"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="dMn-GR-9NM" secondAttribute="bottom" id="jH1-7U-gN2"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="tvDescription" destination="dMn-GR-9NM" id="F2F-Tq-lT3"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eB5-Qf-tHe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1850" y="-175"/>
-        </scene>
-        <!--Client Service Detail View Controller-->
-        <scene sceneID="MYl-Xw-gKI">
-            <objects>
-                <viewController id="mlA-IN-lKn" customClass="ClientServiceDetailViewController" customModule="BookIt" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="kz3-m7-MP5">
-                        <rect key="frame" x="0.0" y="0.0" width="398" height="300"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemMintColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MMT-gf-muA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1849" y="84"/>
-        </scene>
-        <!--Client Service Detail View Controller-->
-        <scene sceneID="1QE-l3-tLp">
-            <objects>
-                <viewController id="3nV-51-Mj3" customClass="ClientServiceDetailViewController" customModule="BookIt" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="uAE-Xo-I9D">
-                        <rect key="frame" x="0.0" y="0.0" width="398" height="300"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemPurpleColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ara-bS-sOt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1849" y="356"/>
-        </scene>
     </scenes>
     <resources>
         <image name="Avatar" width="512" height="512"/>
@@ -302,8 +235,8 @@ Cleaning service</string>
         <systemColor name="systemMintColor">
             <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
-        <systemColor name="systemPurpleColor">
-            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

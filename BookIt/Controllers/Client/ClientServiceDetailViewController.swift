@@ -31,7 +31,9 @@ class ClientServiceDetailViewController: UIViewController{
     @IBOutlet weak var lblPrice: UIButton!
     @IBOutlet weak var tvDescription: UITextView!
     
+
     @IBOutlet weak var viewDescription: UIView!
+    
     @IBOutlet weak var viewLocation: UIView!
     @IBOutlet weak var viewReviews: UIView!
     
@@ -95,19 +97,20 @@ class ClientServiceDetailViewController: UIViewController{
 
 extension ClientServiceDetailViewController: CustomSegmentedControlDelegate {
     func change(to index: Int) {
-        switch (index)  {
+         switch (index)  {
           case 1:
-            viewDescription.alpha = 0
-            viewReviews.alpha = 1
-            viewLocation.alpha = 0
+            viewDescription.isHidden = true
+            viewReviews.isHidden = false
+            viewLocation.isHidden = true
           case 2:
-            viewDescription.alpha = 0
-            viewReviews.alpha = 0
-            viewLocation.alpha = 1
+            viewDescription.isHidden = true
+            viewReviews.isHidden = true
+            viewLocation.isHidden = false
           default:
-            viewDescription.alpha = 1
-            viewReviews.alpha = 0
-            viewLocation.alpha = 0
+             viewDescription.isHidden = false
+            viewReviews.isHidden = true
+            viewLocation.isHidden = true
         }
+        
     }
 }
