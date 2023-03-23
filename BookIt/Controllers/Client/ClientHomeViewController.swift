@@ -53,6 +53,7 @@ class ClientHomeViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
+        bannerTableView.reloadData()
     }
     
     func tabBarAppearance(){
@@ -263,11 +264,8 @@ extension ClientHomeViewController: UITableViewDelegate, UITableViewDataSource {
                     
                 }
             }
-            
-          
         }
     }
-    
 }
 
 extension ClientHomeViewController: UIScrollViewDelegate {

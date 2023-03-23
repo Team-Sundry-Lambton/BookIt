@@ -211,7 +211,7 @@
                                     <action selector="continueGuest" destination="BYZ-38-t0r" eventType="touchUpInside" id="2QD-bJ-4xw"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="evk-kt-feR">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="evk-kt-feR">
                                 <rect key="frame" x="0.0" y="748.66666666666663" width="134" height="34.333333333333371"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="VendorByPass"/>

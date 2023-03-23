@@ -19,6 +19,25 @@ class ReviewTableViewCell: UITableViewCell {
         selectionStyle = .none
         addBorder()
     }
+    
+    func configureCell(vendorReview: VendorReview) {
+
+        if let user = vendorReview.vendor {
+            if let imageData = user.picture {
+                self.ivAvatar.image = UIImage(data: imageData)
+            }
+            if let firstName = user.firstName, let lastName = user.lastName {
+                lblName.isHidden = false
+                lblName.text = firstName + " " + lastName
+            }else{
+                lblName.isHidden = true
+            }
+        }
+        lblDateTime.text = vendorReview.date?.dateAndTimetoString()
+        lblContent.text = vendorReview.comment
+        lblRating.text = String(vendorReview.rating)
+        
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

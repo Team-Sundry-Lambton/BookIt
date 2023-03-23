@@ -18,13 +18,6 @@ class BannerTableViewCell: UITableViewCell {
     var serviceTitle : String?
     var bannerViews: [UIImageView] {
         var bannerView = [UIImageView]()
-//        for i in 0...5 {
-//            let imageView = UIImageView(image: UIImage(named: "\(i)"))
-//            imageView.frame = CGRect(x: fullSize.width * CGFloat(i), y: 0, width: fullSize.width, height: 240)
-//            bannerView.append(imageView)
-//            print(bannerView[i].frame)
-//        }
-       
         if imageViewArray.count > 0 {
             let count = imageViewArray.count - 1
             for i in 0...count{
@@ -101,14 +94,22 @@ class BannerTableViewCell: UITableViewCell {
     }
     
     func getImageArray(serviceTitle : String?){
+        imageViewArray.removeAll()
         if let title = serviceTitle {
-            imageViewArray.removeAll()
             let mediaList = CoreDataManager.shared.getMediaList(serviceTitle : title)
-            for media in mediaList {
-                if let imageData = media.mediaContent {
-                    let imageView = UIImageView(image:UIImage(data: imageData))
-                    imageViewArray.append(imageView)
+            if mediaList.count > 0 {
+                for media in mediaList {
+                    if let imageData = media.mediaContent {
+                        let imageView = UIImageView(image:UIImage(data: imageData))
+                        imageViewArray.append(imageView)
+                    }else{
+                        let imageView = UIImageView(image: UIImage(named: "\(0)"))
+                        imageViewArray.append(imageView)
+                    }
                 }
+            }else{
+                let imageView = UIImageView(image: UIImage(named: "\(0)"))
+                imageViewArray.append(imageView)
             }
          print(title)
         }else{
