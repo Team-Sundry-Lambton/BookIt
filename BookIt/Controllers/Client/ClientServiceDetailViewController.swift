@@ -163,17 +163,7 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
     }
     
     func getMedias(){
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Vendor")
-        if let media =  selectedService?.medias {
-            if let mediaPath = media.mediaPath {
-                fetchRequest.predicate = NSPredicate(format: "parent_Service = %@", email)
-                do {
-                    //get medias
-                } catch {
-                    print(error)
-                }
-            }
-        }
+        
         
     }
     

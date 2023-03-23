@@ -18,17 +18,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gNZ-eO-qSE">
-                                <rect key="frame" x="0.0" y="-9" width="398" height="795"/>
+                                <rect key="frame" x="0.0" y="-9" width="398" height="819"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tcD-T8-Ag6">
-                                        <rect key="frame" x="0.0" y="0.0" width="398" height="240"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="398" height="300"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="240" id="uKy-yS-XZA"/>
+                                            <constraint firstAttribute="height" constant="300" id="uKy-yS-XZA"/>
                                         </constraints>
                                     </tableView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j1D-oe-SXy">
-                                        <rect key="frame" x="0.0" y="250" width="398" height="83"/>
+                                        <rect key="frame" x="0.0" y="310" width="398" height="55"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ij8-yK-Yba">
                                                 <rect key="frame" x="184" y="5" width="198" height="31"/>
@@ -41,13 +41,13 @@
                                                 </buttonConfiguration>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.7 (2.3k reviews)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a3O-mB-oZn">
-                                                <rect key="frame" x="300" y="41" width="82" height="23"/>
+                                                <rect key="frame" x="300" y="41" width="82" height="12"/>
                                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="10"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star12px" translatesAutoresizingMaskIntoConstraints="NO" id="8zl-cE-yFZ">
-                                                <rect key="frame" x="285" y="40" width="12" height="24"/>
+                                                <rect key="frame" x="285" y="40" width="12" height="12"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T1h-QA-VzZ">
                                                 <rect key="frame" x="24" y="0.0" width="210" height="59"/>
@@ -62,11 +62,9 @@ Cleaning service</string>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="8zl-cE-yFZ" firstAttribute="top" secondItem="ij8-yK-Yba" secondAttribute="bottom" constant="4" id="95c-V3-Uft"/>
-                                            <constraint firstAttribute="bottom" secondItem="a3O-mB-oZn" secondAttribute="bottom" constant="19" id="LeE-sO-RJS"/>
                                             <constraint firstAttribute="width" constant="398" id="NU3-iV-871"/>
                                             <constraint firstAttribute="trailing" secondItem="ij8-yK-Yba" secondAttribute="trailing" constant="16" id="gb6-sH-klh"/>
-                                            <constraint firstAttribute="bottom" secondItem="8zl-cE-yFZ" secondAttribute="bottom" constant="19" id="j4Y-iP-ziG"/>
-                                            <constraint firstAttribute="height" constant="83" id="jbE-X8-Yfk"/>
+                                            <constraint firstAttribute="height" constant="55" id="jbE-X8-Yfk"/>
                                             <constraint firstAttribute="trailing" secondItem="a3O-mB-oZn" secondAttribute="trailing" constant="16" id="nl7-9M-VKC"/>
                                             <constraint firstItem="ij8-yK-Yba" firstAttribute="top" secondItem="j1D-oe-SXy" secondAttribute="top" constant="5" id="v9I-Mr-OP2"/>
                                             <constraint firstItem="a3O-mB-oZn" firstAttribute="top" secondItem="ij8-yK-Yba" secondAttribute="bottom" constant="5" id="xap-DF-l2i"/>
@@ -74,7 +72,7 @@ Cleaning service</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0YR-Lt-HY0">
-                                        <rect key="frame" x="0.0" y="343" width="398" height="82"/>
+                                        <rect key="frame" x="0.0" y="375" width="398" height="82"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Avatar" translatesAutoresizingMaskIntoConstraints="NO" id="i8b-cw-gZb">
                                                 <rect key="frame" x="26" y="-1" width="75" height="75"/>
@@ -124,7 +122,7 @@ Cleaning service</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HIC-RV-F6I">
-                                        <rect key="frame" x="0.0" y="435" width="398" height="50"/>
+                                        <rect key="frame" x="0.0" y="467" width="398" height="42"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gAM-OC-qvl" customClass="CustomSegmentedControl" customModule="BookIt">
                                                 <rect key="frame" x="16" y="0.0" width="366" height="42"/>
@@ -135,11 +133,11 @@ Cleaning service</string>
                                         <constraints>
                                             <constraint firstItem="gAM-OC-qvl" firstAttribute="leading" secondItem="HIC-RV-F6I" secondAttribute="leading" constant="16" id="Fvx-zI-1A7"/>
                                             <constraint firstAttribute="trailing" secondItem="gAM-OC-qvl" secondAttribute="trailing" constant="16" id="RFb-5n-aBZ"/>
-                                            <constraint firstAttribute="height" constant="50" id="TVd-qH-d70"/>
+                                            <constraint firstAttribute="height" constant="42" id="TVd-qH-d70"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZiX-9X-5df">
-                                        <rect key="frame" x="0.0" y="495" width="398" height="300"/>
+                                        <rect key="frame" x="0.0" y="519" width="398" height="300"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QBQ-re-wal">
                                                 <rect key="frame" x="16" y="0.0" width="366" height="300"/>
@@ -160,7 +158,7 @@ Cleaning service</string>
                                         </constraints>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oqA-b4-3SF">
-                                        <rect key="frame" x="0.0" y="795" width="398" height="300"/>
+                                        <rect key="frame" x="0.0" y="819" width="398" height="300"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="hWB-hI-oHj">
                                                 <rect key="frame" x="0.0" y="0.0" width="398" height="300"/>
@@ -177,7 +175,7 @@ Cleaning service</string>
                                         </constraints>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qve-uh-Rdu">
-                                        <rect key="frame" x="0.0" y="795" width="398" height="300"/>
+                                        <rect key="frame" x="0.0" y="819" width="398" height="300"/>
                                         <subviews>
                                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mtr-ie-SJc">
                                                 <rect key="frame" x="0.0" y="0.0" width="398" height="300"/>
@@ -195,9 +193,7 @@ Cleaning service</string>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="j1D-oe-SXy" firstAttribute="top" secondItem="tcD-T8-Ag6" secondAttribute="bottom" constant="10" id="4pX-Xa-5qK"/>
                                     <constraint firstItem="j1D-oe-SXy" firstAttribute="leading" secondItem="gNZ-eO-qSE" secondAttribute="leading" id="6Bk-2i-Lse"/>
-                                    <constraint firstItem="0YR-Lt-HY0" firstAttribute="top" secondItem="j1D-oe-SXy" secondAttribute="bottom" constant="10" id="DEl-tx-JNW"/>
                                     <constraint firstAttribute="trailing" secondItem="j1D-oe-SXy" secondAttribute="trailing" id="Her-L5-whT"/>
                                 </constraints>
                             </stackView>
