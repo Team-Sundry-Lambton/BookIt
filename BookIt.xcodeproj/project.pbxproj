@@ -106,6 +106,7 @@
 		BD3CE98529CCA2B200408AEE /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3CE98429CCA2B200408AEE /* ReviewTableViewCell.swift */; };
 		BD3CE98729CCEA0000408AEE /* ImageServiceDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3CE98629CCEA0000408AEE /* ImageServiceDetailTableViewCell.swift */; };
 		BD3CE98929CCEBE600408AEE /* ImageServiceDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD3CE98829CCEBE600408AEE /* ImageServiceDetailTableViewCell.xib */; };
+		BD3CE98B29CCF3ED00408AEE /* MediaObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3CE98A29CCF3ED00408AEE /* MediaObject.swift */; };
 		BD89B73829CB73B000F26546 /* ClientServiceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD89B73729CB73B000F26546 /* ClientServiceDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -178,6 +179,7 @@
 		BD3CE98429CCA2B200408AEE /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
 		BD3CE98629CCEA0000408AEE /* ImageServiceDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageServiceDetailTableViewCell.swift; sourceTree = "<group>"; };
 		BD3CE98829CCEBE600408AEE /* ImageServiceDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageServiceDetailTableViewCell.xib; sourceTree = "<group>"; };
+		BD3CE98A29CCF3ED00408AEE /* MediaObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaObject.swift; sourceTree = "<group>"; };
 		BD89B73729CB73B000F26546 /* ClientServiceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientServiceDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -268,6 +270,7 @@
 				BB9BB53429AE9B290004244E /* LoginUser.swift */,
 				99AB0DD529AD95B300B096BB /* BookIt.xcdatamodeld */,
 				BB95083729BE4A6E00C02D9E /* PlaceObject.swift */,
+				BD3CE98A29CCF3ED00408AEE /* MediaObject.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -546,6 +549,7 @@
 				BBC9F83E29BFC75A00985AAA /* LocationSearchTableViewController.swift in Sources */,
 				99AB0DD129AD95B300B096BB /* ViewController.swift in Sources */,
 				996588BC29C7B0E100A7D796 /* Date+Extension.swift in Sources */,
+				BD3CE98B29CCF3ED00408AEE /* MediaObject.swift in Sources */,
 				996588C029C7BE6A00A7D796 /* GradientColorExtension.swift in Sources */,
 				996588C829C7D03500A7D796 /* FilterPopupViewController.swift in Sources */,
 				BBEC1C4A29B55A6800B58D41 /* UIAlertViewExtention.swift in Sources */,
