@@ -30,8 +30,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NetworkMonitor.shared.setObserve(viewController: self)
     }
-
 
     @IBAction func vendorByPass(_ sender: Any) {
         let lastName = "Admin"
