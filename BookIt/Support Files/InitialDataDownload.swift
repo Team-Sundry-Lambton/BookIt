@@ -278,6 +278,7 @@ class InitialDataDownloadManager : NSObject{
                 review.comment =  data["comment"] as? String ?? ""
                 review.date =  data["date"] as? Date
                 review.rating = Int16(data["rating"] as? Int ?? 0)
+                review.vendorRating = data["vendorRating"] as? Bool ?? false
                 if let clientEmail = data["clientAddress"]  as? String {
                     if clientEmail != "" {
                         if let client = CoreDataManager.shared.getClient(email: clientEmail){
@@ -640,6 +641,7 @@ extension InitialDataDownloadManager {
             "comment": vendorReview.comment ?? "",
             "clientAddress": clientEmail ?? "",
             "vendorAddress": vendorEmail ?? "",
+            "vendorRating" : vendorReview.vendorRating
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")

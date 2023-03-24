@@ -138,7 +138,7 @@ class CoreDataManager : NSObject{
     func getVendorReviewList(email : String) -> [VendorReview]{
         var vendorReview = [VendorReview]()
         let request: NSFetchRequest<VendorReview> = VendorReview.fetchRequest()
-            let folderPredicate = NSPredicate(format: "vendor.email=%@", email)
+            let folderPredicate = NSPredicate(format: "vendor.email=%@ AND vendorRating=true", email)
             request.predicate = folderPredicate
         do {
             vendorReview = try context.fetch(request)
