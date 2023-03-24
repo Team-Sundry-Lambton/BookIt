@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		993181C029CD2B15003D82E5 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993181BF29CD2B15003D82E5 /* NetworkMonitor.swift */; };
 		995B2F7629C68C8700745992 /* ServiceStatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995B2F7429C68C8700745992 /* ServiceStatusTableViewCell.swift */; };
 		995B2F7729C68C8700745992 /* ServiceStatusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 995B2F7529C68C8700745992 /* ServiceStatusTableViewCell.xib */; };
 		996588BA29C79F1400A7D796 /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996588B929C79F1400A7D796 /* CustomSegmentedControl.swift */; };
@@ -108,6 +109,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		993181BF29CD2B15003D82E5 /* NetworkMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		995B2F7429C68C8700745992 /* ServiceStatusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceStatusTableViewCell.swift; sourceTree = "<group>"; };
 		995B2F7529C68C8700745992 /* ServiceStatusTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServiceStatusTableViewCell.xib; sourceTree = "<group>"; };
 		996588B929C79F1400A7D796 /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 				BB0FF26929BAA73800E26A71 /* BorderTextView.swift */,
 				BBE7433529B41D440087DC74 /* BiometricIDAuth.swift */,
 				BBE7433729B41EE60087DC74 /* UserDefaultsManager.swift */,
+				993181BF29CD2B15003D82E5 /* NetworkMonitor.swift */,
 				BBEC1C4729B5595E00B58D41 /* UIColorExtension.swift */,
 				BBEC1C4929B55A6800B58D41 /* UIAlertViewExtention.swift */,
 				996588B929C79F1400A7D796 /* CustomSegmentedControl.swift */,
@@ -547,6 +550,7 @@
 				BB7A1E1629C3AB36003CB894 /* InitialDataDownload.swift in Sources */,
 				99AB0DCD29AD95B300B096BB /* AppDelegate.swift in Sources */,
 				BB7A1DD929C1023B003CB894 /* PostServiceViewController.swift in Sources */,
+				993181C029CD2B15003D82E5 /* NetworkMonitor.swift in Sources */,
 				996588C429C7C05400A7D796 /* BaseCustomButton.swift in Sources */,
 				BBA6357529BA631700702A62 /* ClientBookingViewController.swift in Sources */,
 				BBE7433829B41EE60087DC74 /* UserDefaultsManager.swift in Sources */,
