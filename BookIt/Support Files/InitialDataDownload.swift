@@ -16,8 +16,6 @@ class InitialDataDownloadManager : NSObject{
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     func downloadAllData(completion: @escaping () -> Void)  async{
-        
-        CoreDataManager.shared.deleteAllTables()
 
            await getAllCategoryData()
             await getAllClientData()
@@ -35,6 +33,7 @@ class InitialDataDownloadManager : NSObject{
     
     func getAllCategoryData() async{
         do {
+            CoreDataManager.shared.deleteCategory()
             let snapshot = try await db.collection("categories").getDocuments()
             snapshot.documents.forEach { documentSnapshot in
                 let data = documentSnapshot.data()
@@ -51,6 +50,7 @@ class InitialDataDownloadManager : NSObject{
     
     func getAllClientData() async{
         do {
+            CoreDataManager.shared.deleteClients()
             let snapshot = try await db.collection("client").getDocuments();  snapshot.documents.forEach { documentSnapshot in
                 let data = documentSnapshot.data()
                         let client = Client(context: self.context)
@@ -72,6 +72,7 @@ class InitialDataDownloadManager : NSObject{
     
     func getAllVendorData() async{
         do {
+            CoreDataManager.shared.deleteVendors()
             let snapshot = try await db.collection("vendor").getDocuments(); snapshot.documents.forEach { documentSnapshot in
                 let data = documentSnapshot.data()
                     let vendor = Vendor(context: self.context)
@@ -93,6 +94,7 @@ class InitialDataDownloadManager : NSObject{
     
     func getAllServiceData() async{
         do {
+            CoreDataManager.shared.deleteServices()
             let snapshot = try await  db.collection("service").getDocuments()
             snapshot.documents.forEach { documentSnapshot in
                 let data = documentSnapshot.data()
@@ -129,6 +131,7 @@ class InitialDataDownloadManager : NSObject{
     
     func getAllAddressData()async{
         do {
+            CoreDataManager.shared.deleteAddresss()
             let snapshot = try await db.collection("address").getDocuments() ; snapshot.documents.forEach { documentSnapshot in
                 let data = documentSnapshot.data()
                 let address = Address(context: self.context)
@@ -167,6 +170,7 @@ class InitialDataDownloadManager : NSObject{
     
     func getAllMediaData()async{
         do {
+            CoreDataManager.shared.deleteMediaFiles()
             let snapshot = try await db.collection("media").getDocuments();
             snapshot.documents.forEach { documentSnapshot in
                 let data = documentSnapshot.data()
@@ -193,6 +197,7 @@ class InitialDataDownloadManager : NSObject{
     
     func getAllBookingData()async{
         do {
+            CoreDataManager.shared.deleteBookings()
             let snapshot = try await db.collection("booking").getDocuments();
             snapshot.documents.forEach { documentSnapshot in
                 let data = documentSnapshot.data()
@@ -239,6 +244,7 @@ class InitialDataDownloadManager : NSObject{
     
     func getAllPaymentData()async{
         do {
+            CoreDataManager.shared.deletePayments()
             let snapshot = try await db.collection("payment").getDocuments();
             snapshot.documents.forEach { documentSnapshot in
                 let data = documentSnapshot.data()
@@ -264,6 +270,7 @@ class InitialDataDownloadManager : NSObject{
     
     func getAllVendorReviewData()async{
         do {
+            CoreDataManager.shared.deleteVendorReviews()
             let snapshot = try await db.collection("vendorReview").getDocuments();
             snapshot.documents.forEach { documentSnapshot in
                 let data = documentSnapshot.data()
@@ -271,6 +278,7 @@ class InitialDataDownloadManager : NSObject{
                 review.comment =  data["comment"] as? String ?? ""
                 review.date =  data["date"] as? Date
                 review.rating = Int16(data["rating"] as? Int ?? 0)
+                review.vendorRating = data["vendorRating"] as? Bool ?? false
                 if let clientEmail = data["clientAddress"]  as? String {
                     if clientEmail != "" {
                         if let client = CoreDataManager.shared.getClient(email: clientEmail){
@@ -295,6 +303,7 @@ class InitialDataDownloadManager : NSObject{
     
     func getAllAccountData() async{
         do {
+            CoreDataManager.shared.deleteAccounts()
             let snapshot = try await db.collection("account").getDocuments();
             snapshot.documents.forEach { documentSnapshot in
                 let data = documentSnapshot.data()
@@ -632,6 +641,7 @@ extension InitialDataDownloadManager {
             "comment": vendorReview.comment ?? "",
             "clientAddress": clientEmail ?? "",
             "vendorAddress": vendorEmail ?? "",
+            "vendorRating" : vendorReview.vendorRating
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")

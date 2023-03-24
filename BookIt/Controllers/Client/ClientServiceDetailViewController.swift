@@ -10,6 +10,7 @@ import SnapKit
 import CoreLocation
 import CoreData
 import MapKit
+import JGProgressHUD
 
 class ClientServiceDetailViewController: UIViewController, CLLocationManagerDelegate{
   
@@ -51,7 +52,8 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
     // create location manager
     var locationMnager = CLLocationManager()
     var openMap = false
-    
+    var vendorReviewList = [VendorReview]()
+    var vendor : Vendor?
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -107,7 +109,7 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
         
         tvDescription.text = selectedService?.serviceDescription
         getVendor()
-    
+        vendorReviewList = CoreDataManager.shared.getVendorReviewList(email: vendor?.email ?? "")
     }
     
     func loadMap(){
@@ -146,22 +148,10 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Vendor")
         if let user =  selectedService?.parent_Vendor {
             if let email = user.email {
-                fetchRequest.predicate = NSPredicate(format: "email = %@", email)
-                do {
-                    let users = try context.fetch(fetchRequest)
-                    if let user = users.first as? Vendor{
-                        if let imageData = user.picture {
-                            self.ivAvatar.image = UIImage(data: imageData)
-                        }
-                    }
-                } catch {
-                    print(error)
-                }
+                vendor = CoreDataManager.shared.getVendor(email: email)
             }
         }
-        
     }
-    
     
     func addBorder() {
         ivAvatar.layer.borderColor = UIColor.white.cgColor
@@ -193,7 +183,78 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
         timer.invalidate()
         swipeLeft()
     }
-
+    
+    @IBAction func backButtonPressed() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func bookButtonPressed() {
+        if (UserDefaultsManager.shared.getUserLogin()){
+            //Redirect ot Booking Page
+            
+        }else{
+            UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Please regiter first to book a service. Please go to profile tab for register", okActionTitle: "OK", view: self)
+        }
+    }
+    
+/*    func saveBooking(){
+       var booking = Booking(context: context)
+        booking.date = Date()
+        booking.status = "New"
+        booking.service = selectedService
+        getVendor()
+        booking.vendor = vendor
+        let user =  UserDefaultsManager.shared.getUserData()
+        booking.client = CoreDataManager.shared.getClient(email: user.email)
+            let hud = JGProgressHUD()
+            hud.textLabel.text = "Booking..."
+            hud.show(in: self.view)
+            Task {
+                await InitialDataDownloadManager.shared.addBookingData(booking:booking){ status in
+                    DispatchQueue.main.async {
+                        hud.dismiss(animated: true)
+                        if let status = status {
+                            if status {
+                                self.saveAllContextCoreData()
+                            }else{
+                                UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
+                            }
+                        }
+                    }
+                }
+                
+            }
+    }
+    
+    private func saveAllContextCoreData() {
+        do {
+            try context.save()
+            showAlert()
+        } catch {
+            print("Error saving the data \(error.localizedDescription)")
+        }
+    }
+    
+    private func showAlert(){
+    
+        var message = "Successfully Booked.."
+    
+        let alertController: UIAlertController = {
+            let controller = UIAlertController(title: "Success", message: message, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default){
+                UIAlertAction in
+                if let navigator = self.navigationController {
+                    navigator.popViewController(animated: true)
+                }else{
+                    self.dismiss(animated: true)
+                }
+            }
+            controller.addAction(okAction)
+            return controller
+        }()
+        self.present(alertController, animated: true)
+    }
+*/
 }
 
 extension ClientServiceDetailViewController: CustomSegmentedControlDelegate {
@@ -249,15 +310,16 @@ extension ClientServiceDetailViewController: UITableViewDelegate , UITableViewDa
         if tableView == bannerTableView {
             return 1
         }else{
-            return 10
+            return vendorReviewList.count
         }
     }
         
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == bannerTableView {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: BannerTableViewCell.identifier, for: indexPath) as? BannerTableViewCell else { return UITableViewCell() }
-            
+            cell.configureCell(serviceTitle: selectedService?.serviceTitle)
             self.bannerViews = cell.bannerViews
+            
             cell.myScrollView.delegate = self
             cell.pageControl.currentPage = self.currentPage
             cell.pageControl.addTarget(self, action: #selector(pageControlDidTap), for: .touchUpInside)
@@ -267,7 +329,8 @@ extension ClientServiceDetailViewController: UITableViewDelegate , UITableViewDa
             return cell
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewTableViewCell", for: indexPath) as? ReviewTableViewCell
-                
+            let vendorReview = vendorReviewList[indexPath.row]
+            cell?.configureCell(vendorReview: vendorReview)
             return cell ?? UITableViewCell()
         }
         

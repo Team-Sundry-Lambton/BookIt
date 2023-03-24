@@ -14,13 +14,18 @@ class BannerTableViewCell: UITableViewCell {
     
     static let identifier = "bannerCell"
     let fullSize = UIScreen.main.bounds
+    var imageViewArray = [UIImageView]()
+    var serviceTitle : String?
     var bannerViews: [UIImageView] {
         var bannerView = [UIImageView]()
-        for i in 0...5 {
-            let imageView = UIImageView(image: UIImage(named: "\(i)"))
-            imageView.frame = CGRect(x: fullSize.width * CGFloat(i), y: 0, width: fullSize.width, height: 240)
-            bannerView.append(imageView)
-            print(bannerView[i].frame)
+        if imageViewArray.count > 0 {
+            let count = imageViewArray.count - 1
+            for i in 0...count{
+                let imageView = imageViewArray[i]
+                imageView.frame = CGRect(x: fullSize.width * CGFloat(i), y: 0, width: fullSize.width, height: 240)
+                bannerView.append(imageView)
+                print(bannerView[i].frame)
+            }
         }
         return bannerView
     }
@@ -52,10 +57,14 @@ class BannerTableViewCell: UITableViewCell {
     
     //MARK: - Init
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    func configureCell(serviceTitle : String?) {
+        getImageArray(serviceTitle: serviceTitle)
         setSubviews()
         setLayouts()
+    }
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+
     }
     
     required init?(coder: NSCoder) {
@@ -72,7 +81,6 @@ class BannerTableViewCell: UITableViewCell {
     //MARK: - Set Layouts
 
     func setLayouts() {
-        
         myScrollView.snp.makeConstraints { (make) in
             make.edges.equalTo(contentView)
         }
@@ -85,4 +93,30 @@ class BannerTableViewCell: UITableViewCell {
         
     }
     
+    func getImageArray(serviceTitle : String?){
+        imageViewArray.removeAll()
+        if let title = serviceTitle {
+            let mediaList = CoreDataManager.shared.getMediaList(serviceTitle : title)
+            if mediaList.count > 0 {
+                for media in mediaList {
+                    if let imageData = media.mediaContent {
+                        let imageView = UIImageView(image:UIImage(data: imageData))
+                        imageViewArray.append(imageView)
+                    }else{
+                        let imageView = UIImageView(image: UIImage(named: "\(0)"))
+                        imageViewArray.append(imageView)
+                    }
+                }
+            }else{
+                let imageView = UIImageView(image: UIImage(named: "\(0)"))
+                imageViewArray.append(imageView)
+            }
+         print(title)
+        }else{
+            for i in 0...5 {
+                let imageView = UIImageView(image: UIImage(named: "\(i)"))
+                imageViewArray.append(imageView)
+            }
+        }
+    }
 }

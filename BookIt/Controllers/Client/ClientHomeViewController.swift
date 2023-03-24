@@ -53,6 +53,7 @@ class ClientHomeViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
+        bannerTableView.reloadData()
     }
     
     func tabBarAppearance(){
@@ -98,7 +99,7 @@ class ClientHomeViewController: UIViewController {
         serviceListTableView.delegate = self
         serviceListTableView.dataSource = self
         serviceListTableView.register(UINib(nibName: "ServiceDetailTableViewCell", bundle: nil), forCellReuseIdentifier: "ServiceDetailTableViewCell")
-        
+
         bannerTableView.register(BannerTableViewCell.self, forCellReuseIdentifier: BannerTableViewCell.identifier)
         bannerTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         bannerTableView.delegate = self
@@ -213,8 +214,9 @@ extension ClientHomeViewController: UITableViewDelegate, UITableViewDataSource {
             switch mySections[indexPath.section] {
             case .banner:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: BannerTableViewCell.identifier, for: indexPath) as? BannerTableViewCell else { return UITableViewCell() }
-                
+                cell.configureCell(serviceTitle: nil)
                 self.bannerViews = cell.bannerViews
+                
                 cell.myScrollView.delegate = self
                 cell.pageControl.currentPage = self.currentPage
                 cell.pageControl.addTarget(self, action: #selector(pageControlDidTap), for: .touchUpInside)
@@ -262,11 +264,8 @@ extension ClientHomeViewController: UITableViewDelegate, UITableViewDataSource {
                     
                 }
             }
-            
-          
         }
     }
-    
 }
 
 extension ClientHomeViewController: UIScrollViewDelegate {

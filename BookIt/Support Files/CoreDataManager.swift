@@ -122,18 +122,32 @@ class CoreDataManager : NSObject{
         return media
     }
     
-    func deleteAllTables(){
-        deleteVendors()
-        deleteClients()
-        deleteAccounts()
-        deleteAddresss()
-        deleteBookings()
-        deleteCategory()
-        deletePayments()
-        deleteServices()
-        deleteMediaFiles()
-        deleteVendorReviews()
+    func getMediaList(serviceTitle : String) -> [MediaFile]{
+        var mediaList = [MediaFile]()
+        let request: NSFetchRequest<MediaFile> = MediaFile.fetchRequest()
+            let folderPredicate = NSPredicate(format: "parent_Service.serviceTitle=%@", serviceTitle)
+            request.predicate = folderPredicate
+        do {
+            mediaList = try context.fetch(request)
+        } catch {
+            print("Error loading medias \(error.localizedDescription)")
+        }
+       return mediaList
     }
+    
+    func getVendorReviewList(email : String) -> [VendorReview]{
+        var vendorReview = [VendorReview]()
+        let request: NSFetchRequest<VendorReview> = VendorReview.fetchRequest()
+            let folderPredicate = NSPredicate(format: "vendor.email=%@ AND vendorRating=true", email)
+            request.predicate = folderPredicate
+        do {
+            vendorReview = try context.fetch(request)
+        } catch {
+            print("Error loading VendorReview \(error.localizedDescription)")
+        }
+       return vendorReview
+    }
+    
     func deleteVendors() {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName:"Vendor")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)

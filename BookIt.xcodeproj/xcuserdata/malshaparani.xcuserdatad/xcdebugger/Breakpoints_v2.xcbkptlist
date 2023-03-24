@@ -480,7 +480,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "696"
             endingLineNumber = "696"
-            landmarkName = "updateClientData(client:completion:)"
+            landmarkName = "uploadMedia(name:media:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -496,55 +496,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "693"
             endingLineNumber = "693"
-            landmarkName = "updateClientData(client:completion:)"
+            landmarkName = "uploadMedia(name:media:completion:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "3CDC7C9D-8B51-420C-88A1-E81DB5BF33F8 - d6b5c1484de8c7db"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "BookIt.InitialDataDownloadManager.updateClientData(client: BookIt.Client, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "BookIt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "693"
-                  endingLineNumber = "693"
-                  offsetFromSymbolStart = "128">
-               </Location>
-               <Location
-                  uuid = "3CDC7C9D-8B51-420C-88A1-E81DB5BF33F8 - 6befdc32860cc368"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.String&gt;) -&gt; () in BookIt.InitialDataDownloadManager.updateClientData(client: BookIt.Client, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "BookIt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "693"
-                  endingLineNumber = "693"
-                  offsetFromSymbolStart = "96">
-               </Location>
-               <Location
-                  uuid = "3CDC7C9D-8B51-420C-88A1-E81DB5BF33F8 - 1c657ebf67110a1b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Optional&lt;Swift.String&gt;) -&gt; () in BookIt.InitialDataDownloadManager.updateClientData(client: BookIt.Client, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "BookIt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "693"
-                  endingLineNumber = "693"
-                  offsetFromSymbolStart = "224">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -575,7 +528,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "500"
             endingLineNumber = "500"
-            landmarkName = "addAddressData(address:completion:)"
+            landmarkName = "addServiceData(service:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -897,53 +850,6 @@
             endingLineNumber = "418"
             landmarkName = "addVendorData(vendor:completion:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "7D8D1444-4AB6-4575-BC78-63A90CD6A0C8 - 8b068c19b9237d9"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Optional&lt;Swift.String&gt;) -&gt; () in closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BookIt.InitialDataDownloadManager.addVendorData(vendor: BookIt.Vendor, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "BookIt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "418"
-                  endingLineNumber = "418"
-                  offsetFromSymbolStart = "1712">
-               </Location>
-               <Location
-                  uuid = "7D8D1444-4AB6-4575-BC78-63A90CD6A0C8 - d84963bf7c0dfa29"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Sendable () async -&gt; () in closure #1 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Optional&lt;Swift.String&gt;) -&gt; () in closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BookIt.InitialDataDownloadManager.addVendorData(vendor: BookIt.Vendor, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "BookIt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "418"
-                  endingLineNumber = "418"
-                  offsetFromSymbolStart = "60">
-               </Location>
-               <Location
-                  uuid = "7D8D1444-4AB6-4575-BC78-63A90CD6A0C8 - 6e21b83a2c139fce"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) await resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Optional&lt;Swift.String&gt;) -&gt; () in closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BookIt.InitialDataDownloadManager.addVendorData(vendor: BookIt.Vendor, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "BookIt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "418"
-                  endingLineNumber = "418"
-                  offsetFromSymbolStart = "48">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -976,38 +882,6 @@
             endingLineNumber = "402"
             landmarkName = "addVendorData(vendor:completion:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "89929F6D-DEE5-43BE-9689-8C145FC37889 - a87ac3ef663d6c3f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.String&gt;) -&gt; () in closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BookIt.InitialDataDownloadManager.addVendorData(vendor: BookIt.Vendor, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "BookIt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "402"
-                  endingLineNumber = "402"
-                  offsetFromSymbolStart = "180">
-               </Location>
-               <Location
-                  uuid = "89929F6D-DEE5-43BE-9689-8C145FC37889 - 8b068c19b9235c9"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Optional&lt;Swift.String&gt;) -&gt; () in closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BookIt.InitialDataDownloadManager.addVendorData(vendor: BookIt.Vendor, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "BookIt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "402"
-                  endingLineNumber = "402"
-                  offsetFromSymbolStart = "224">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1040,68 +914,6 @@
             endingLineNumber = "743"
             landmarkName = "updateVendorData(vendor:completion:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "DC020829-7688-4FC2-B50C-EE27B492997E - 1c657ebf671100ad"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Optional&lt;Swift.String&gt;) -&gt; () in BookIt.InitialDataDownloadManager.updateVendorData(vendor: BookIt.Vendor, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "BookIt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "743"
-                  endingLineNumber = "743"
-                  offsetFromSymbolStart = "612">
-               </Location>
-               <Location
-                  uuid = "DC020829-7688-4FC2-B50C-EE27B492997E - 1c657ebf671100ad"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Optional&lt;Swift.String&gt;) -&gt; () in BookIt.InitialDataDownloadManager.updateVendorData(vendor: BookIt.Vendor, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "BookIt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "743"
-                  endingLineNumber = "743"
-                  offsetFromSymbolStart = "660">
-               </Location>
-               <Location
-                  uuid = "DC020829-7688-4FC2-B50C-EE27B492997E - 1c657ebf671100ad"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Optional&lt;Swift.String&gt;) -&gt; () in BookIt.InitialDataDownloadManager.updateVendorData(vendor: BookIt.Vendor, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "BookIt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "743"
-                  endingLineNumber = "743"
-                  offsetFromSymbolStart = "852">
-               </Location>
-               <Location
-                  uuid = "DC020829-7688-4FC2-B50C-EE27B492997E - 1c657ebf671100ad"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Optional&lt;Swift.String&gt;) -&gt; () in BookIt.InitialDataDownloadManager.updateVendorData(vendor: BookIt.Vendor, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "BookIt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "743"
-                  endingLineNumber = "743"
-                  offsetFromSymbolStart = "1052">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1132,7 +944,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "732"
             endingLineNumber = "732"
-            landmarkName = "updateVendorData(vendor:completion:)"
+            landmarkName = "updateClientData(client:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1150,38 +962,6 @@
             endingLineNumber = "744"
             landmarkName = "updateVendorData(vendor:completion:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "684925EA-7278-4CBB-9517-6F35BC4D4314 - 1c657ebf6711008c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Optional&lt;Swift.String&gt;) -&gt; () in BookIt.InitialDataDownloadManager.updateVendorData(vendor: BookIt.Vendor, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "BookIt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "744"
-                  endingLineNumber = "744"
-                  offsetFromSymbolStart = "1208">
-               </Location>
-               <Location
-                  uuid = "684925EA-7278-4CBB-9517-6F35BC4D4314 - 1c657ebf6711008c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Optional&lt;Swift.String&gt;) -&gt; () in BookIt.InitialDataDownloadManager.updateVendorData(vendor: BookIt.Vendor, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "BookIt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "744"
-                  endingLineNumber = "744"
-                  offsetFromSymbolStart = "1472">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1196,85 +976,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "455"
             endingLineNumber = "455"
-            landmarkName = "addServiceData(service:completion:)"
+            landmarkName = "addVendorData(vendor:completion:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "EAFCEE63-DDBD-4FA2-94F4-98B69DAC1A54 - 28a5259dbab47c44"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for BookIt.InitialDataDownloadManager.addServiceData(service: BookIt.Service, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) async -&gt; ()"
-                  moduleName = "BookIt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "455"
-                  endingLineNumber = "455"
-                  offsetFromSymbolStart = "332">
-               </Location>
-               <Location
-                  uuid = "EAFCEE63-DDBD-4FA2-94F4-98B69DAC1A54 - 1e47c0373bd18e71"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(2) await resume partial function for BookIt.InitialDataDownloadManager.addServiceData(service: BookIt.Service, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) async -&gt; ()"
-                  moduleName = "BookIt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "455"
-                  endingLineNumber = "455"
-                  offsetFromSymbolStart = "40">
-               </Location>
-               <Location
-                  uuid = "EAFCEE63-DDBD-4FA2-94F4-98B69DAC1A54 - e0f64d354ccd406d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for BookIt.InitialDataDownloadManager.addServiceData(service: BookIt.Service, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) async -&gt; ()"
-                  moduleName = "BookIt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "454"
-                  endingLineNumber = "454"
-                  offsetFromSymbolStart = "136">
-               </Location>
-               <Location
-                  uuid = "EAFCEE63-DDBD-4FA2-94F4-98B69DAC1A54 - e0f64d354ccd404a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for BookIt.InitialDataDownloadManager.addServiceData(service: BookIt.Service, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) async -&gt; ()"
-                  moduleName = "BookIt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "455"
-                  endingLineNumber = "455"
-                  offsetFromSymbolStart = "152">
-               </Location>
-               <Location
-                  uuid = "EAFCEE63-DDBD-4FA2-94F4-98B69DAC1A54 - 2c27eb81a32da581"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Bool&gt;) -&gt; () in BookIt.InitialDataDownloadManager.addServiceData(service: BookIt.Service, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) async -&gt; ()"
-                  moduleName = "BookIt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "456"
-                  endingLineNumber = "456"
-                  offsetFromSymbolStart = "56">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1305,14 +1008,14 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "464"
                   endingLineNumber = "464"
-                  offsetFromSymbolStart = "436">
+                  offsetFromSymbolStart = "332">
                </Location>
                <Location
-                  uuid = "0831AF4F-496E-4A99-B202-7B320A01F36C - 28a5259dbab47d9d"
+                  uuid = "0831AF4F-496E-4A99-B202-7B320A01F36C - 1e47c0373bd18fa8"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for BookIt.InitialDataDownloadManager.addServiceData(service: BookIt.Service, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) async -&gt; ()"
+                  symbolName = "(2) await resume partial function for BookIt.InitialDataDownloadManager.addServiceData(service: BookIt.Service, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) async -&gt; ()"
                   moduleName = "BookIt"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
@@ -1320,7 +1023,22 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "464"
                   endingLineNumber = "464"
-                  offsetFromSymbolStart = "648">
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "0831AF4F-496E-4A99-B202-7B320A01F36C - e0f64d354ccd41b2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for BookIt.InitialDataDownloadManager.addServiceData(service: BookIt.Service, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) async -&gt; ()"
+                  moduleName = "BookIt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "463"
+                  endingLineNumber = "463"
+                  offsetFromSymbolStart = "136">
                </Location>
                <Location
                   uuid = "0831AF4F-496E-4A99-B202-7B320A01F36C - e0f64d354ccd4193"
@@ -1335,22 +1053,22 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "464"
                   endingLineNumber = "464"
-                  offsetFromSymbolStart = "200">
+                  offsetFromSymbolStart = "152">
                </Location>
                <Location
-                  uuid = "0831AF4F-496E-4A99-B202-7B320A01F36C - e0f64d354ccd4193"
+                  uuid = "0831AF4F-496E-4A99-B202-7B320A01F36C - 2c27eb81a32da4da"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for BookIt.InitialDataDownloadManager.addServiceData(service: BookIt.Service, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) async -&gt; ()"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Bool&gt;) -&gt; () in BookIt.InitialDataDownloadManager.addServiceData(service: BookIt.Service, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) async -&gt; ()"
                   moduleName = "BookIt"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "464"
-                  endingLineNumber = "464"
-                  offsetFromSymbolStart = "412">
+                  startingLineNumber = "465"
+                  endingLineNumber = "465"
+                  offsetFromSymbolStart = "56">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1369,38 +1087,6 @@
             endingLineNumber = "480"
             landmarkName = "addServiceData(service:completion:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "21082A18-5D9E-497E-8C76-CD9BA8C2BCBD - 28a5259dbab47f8d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for BookIt.InitialDataDownloadManager.addServiceData(service: BookIt.Service, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) async -&gt; ()"
-                  moduleName = "BookIt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "480"
-                  endingLineNumber = "480"
-                  offsetFromSymbolStart = "2152">
-               </Location>
-               <Location
-                  uuid = "21082A18-5D9E-497E-8C76-CD9BA8C2BCBD - e0f64d354ccd4383"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for BookIt.InitialDataDownloadManager.addServiceData(service: BookIt.Service, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) async -&gt; ()"
-                  moduleName = "BookIt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "480"
-                  endingLineNumber = "480"
-                  offsetFromSymbolStart = "1916">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1417,6 +1103,38 @@
             endingLineNumber = "486"
             landmarkName = "addServiceData(service:completion:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A76350D1-5A5A-4934-975B-22472AA60868 - 28a5259dbab47043"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for BookIt.InitialDataDownloadManager.addServiceData(service: BookIt.Service, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) async -&gt; ()"
+                  moduleName = "BookIt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "486"
+                  endingLineNumber = "486"
+                  offsetFromSymbolStart = "1308">
+               </Location>
+               <Location
+                  uuid = "A76350D1-5A5A-4934-975B-22472AA60868 - e0f64d354ccd4c4d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for BookIt.InitialDataDownloadManager.addServiceData(service: BookIt.Service, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) async -&gt; ()"
+                  moduleName = "BookIt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "486"
+                  endingLineNumber = "486"
+                  offsetFromSymbolStart = "1072">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1433,6 +1151,38 @@
             endingLineNumber = "491"
             landmarkName = "addServiceData(service:completion:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E7488115-EE88-4B7A-AB4C-F473FC3C9E76 - 28a5259dbab47118"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for BookIt.InitialDataDownloadManager.addServiceData(service: BookIt.Service, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) async -&gt; ()"
+                  moduleName = "BookIt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "491"
+                  endingLineNumber = "491"
+                  offsetFromSymbolStart = "2912">
+               </Location>
+               <Location
+                  uuid = "E7488115-EE88-4B7A-AB4C-F473FC3C9E76 - e0f64d354ccd4d16"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for BookIt.InitialDataDownloadManager.addServiceData(service: BookIt.Service, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) async -&gt; ()"
+                  moduleName = "BookIt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "491"
+                  endingLineNumber = "491"
+                  offsetFromSymbolStart = "2676">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1467,7 +1217,7 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "4FEE4031-0530-4556-9AE9-FDF0A2BFE94A - bb73fc8c564c85a1"
+                  uuid = "4FEE4031-0530-4556-9AE9-FDF0A2BFE94A - bb73fc8c564c8b4e"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1477,12 +1227,12 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "846"
-                  endingLineNumber = "846"
+                  startingLineNumber = "855"
+                  endingLineNumber = "855"
                   offsetFromSymbolStart = "1488">
                </Location>
                <Location
-                  uuid = "4FEE4031-0530-4556-9AE9-FDF0A2BFE94A - 6f396218ab75c1a3"
+                  uuid = "4FEE4031-0530-4556-9AE9-FDF0A2BFE94A - 6f396218ab75cf4c"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1492,12 +1242,12 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "846"
-                  endingLineNumber = "846"
+                  startingLineNumber = "855"
+                  endingLineNumber = "855"
                   offsetFromSymbolStart = "224">
                </Location>
                <Location
-                  uuid = "4FEE4031-0530-4556-9AE9-FDF0A2BFE94A - c9da2f5ea6e2a3a2"
+                  uuid = "4FEE4031-0530-4556-9AE9-FDF0A2BFE94A - c9da2f5ea6e2ad4d"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1507,12 +1257,12 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "846"
-                  endingLineNumber = "846"
+                  startingLineNumber = "855"
+                  endingLineNumber = "855"
                   offsetFromSymbolStart = "216">
                </Location>
                <Location
-                  uuid = "4FEE4031-0530-4556-9AE9-FDF0A2BFE94A - 23e6eb94a01f1dbd"
+                  uuid = "4FEE4031-0530-4556-9AE9-FDF0A2BFE94A - 23e6eb94a01f1352"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1522,8 +1272,8 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "846"
-                  endingLineNumber = "846"
+                  startingLineNumber = "855"
+                  endingLineNumber = "855"
                   offsetFromSymbolStart = "288">
                </Location>
             </Locations>
@@ -1541,40 +1291,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "454"
             endingLineNumber = "454"
-            landmarkName = "addServiceData(service:completion:)"
+            landmarkName = "addVendorData(vendor:completion:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "0AA2B212-D08D-47FA-B0B8-F79897C61F98 - 28a5259dbab47c63"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for BookIt.InitialDataDownloadManager.addServiceData(service: BookIt.Service, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) async -&gt; ()"
-                  moduleName = "BookIt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "454"
-                  endingLineNumber = "454"
-                  offsetFromSymbolStart = "180">
-               </Location>
-               <Location
-                  uuid = "0AA2B212-D08D-47FA-B0B8-F79897C61F98 - e0f64d354ccd406d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for BookIt.InitialDataDownloadManager.addServiceData(service: BookIt.Service, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) async -&gt; ()"
-                  moduleName = "BookIt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "454"
-                  endingLineNumber = "454"
-                  offsetFromSymbolStart = "136">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1593,11 +1311,11 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "27CE0428-DC8B-4170-ABCB-CB13F9346C97 - 28a5259dbab47dfe"
+                  uuid = "27CE0428-DC8B-4170-ABCB-CB13F9346C97 - 2c27eb81a32da4da"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for BookIt.InitialDataDownloadManager.addServiceData(service: BookIt.Service, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) async -&gt; ()"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Bool&gt;) -&gt; () in BookIt.InitialDataDownloadManager.addServiceData(service: BookIt.Service, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) async -&gt; ()"
                   moduleName = "BookIt"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
@@ -1605,37 +1323,22 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "465"
                   endingLineNumber = "465"
-                  offsetFromSymbolStart = "596">
-               </Location>
-               <Location
-                  uuid = "27CE0428-DC8B-4170-ABCB-CB13F9346C97 - e0f64d354ccd41f0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for BookIt.InitialDataDownloadManager.addServiceData(service: BookIt.Service, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) async -&gt; ()"
-                  moduleName = "BookIt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "465"
-                  endingLineNumber = "465"
-                  offsetFromSymbolStart = "360">
-               </Location>
-               <Location
-                  uuid = "27CE0428-DC8B-4170-ABCB-CB13F9346C97 - c2766a3416a60efa"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Swift.Optional&lt;Swift.Bool&gt;) -&gt; () in BookIt.InitialDataDownloadManager.addServiceData(service: BookIt.Service, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) async -&gt; ()"
-                  moduleName = "BookIt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "466"
-                  endingLineNumber = "466"
                   offsetFromSymbolStart = "56">
+               </Location>
+               <Location
+                  uuid = "27CE0428-DC8B-4170-ABCB-CB13F9346C97 - 2c27eb81a32da4da"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Bool&gt;) -&gt; () in BookIt.InitialDataDownloadManager.addServiceData(service: BookIt.Service, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) async -&gt; ()"
+                  moduleName = "BookIt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "465"
+                  endingLineNumber = "465"
+                  offsetFromSymbolStart = "84">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1668,7 +1371,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "474"
                   endingLineNumber = "474"
-                  offsetFromSymbolStart = "736">
+                  offsetFromSymbolStart = "596">
                </Location>
                <Location
                   uuid = "B3DC0587-A624-4325-86A1-04FA1475CF58 - e0f64d354ccd42d9"
@@ -1683,22 +1386,22 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "474"
                   endingLineNumber = "474"
-                  offsetFromSymbolStart = "500">
+                  offsetFromSymbolStart = "360">
                </Location>
                <Location
-                  uuid = "B3DC0587-A624-4325-86A1-04FA1475CF58 - e6ff18e4bdd4ae38"
+                  uuid = "B3DC0587-A624-4325-86A1-04FA1475CF58 - c2766a3416a60c0d"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #3 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BookIt.InitialDataDownloadManager.addServiceData(service: BookIt.Service, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) async -&gt; ()"
+                  symbolName = "closure #2 (Swift.Optional&lt;Swift.Bool&gt;) -&gt; () in BookIt.InitialDataDownloadManager.addServiceData(service: BookIt.Service, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) async -&gt; ()"
                   moduleName = "BookIt"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "474"
-                  endingLineNumber = "474"
-                  offsetFromSymbolStart = "144">
+                  startingLineNumber = "475"
+                  endingLineNumber = "475"
+                  offsetFromSymbolStart = "56">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1749,6 +1452,38 @@
             endingLineNumber = "231"
             landmarkName = "getAllBookingData()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2C608A86-5473-4149-98C2-BDE5A543BC43 - e49dab2375d3f8ca"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.FIRQueryDocumentSnapshot) -&gt; () in BookIt.InitialDataDownloadManager.getAllBookingData() async -&gt; ()"
+                  moduleName = "BookIt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "231"
+                  endingLineNumber = "231"
+                  offsetFromSymbolStart = "2704">
+               </Location>
+               <Location
+                  uuid = "2C608A86-5473-4149-98C2-BDE5A543BC43 - e49dab2375d3f8ca"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.FIRQueryDocumentSnapshot) -&gt; () in BookIt.InitialDataDownloadManager.getAllBookingData() async -&gt; ()"
+                  moduleName = "BookIt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "231"
+                  endingLineNumber = "231"
+                  offsetFromSymbolStart = "2800">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1765,6 +1500,68 @@
             endingLineNumber = "256"
             landmarkName = "getAllPaymentData()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "8CDB3E42-2C19-4AE1-80D4-07C44AAD5EF9 - 8cf6546a49c943b6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.FIRQueryDocumentSnapshot) -&gt; () in BookIt.InitialDataDownloadManager.getAllPaymentData() async -&gt; ()"
+                  moduleName = "BookIt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "256"
+                  endingLineNumber = "256"
+                  offsetFromSymbolStart = "1444">
+               </Location>
+               <Location
+                  uuid = "8CDB3E42-2C19-4AE1-80D4-07C44AAD5EF9 - 8cf6546a49c943b6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.FIRQueryDocumentSnapshot) -&gt; () in BookIt.InitialDataDownloadManager.getAllPaymentData() async -&gt; ()"
+                  moduleName = "BookIt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "256"
+                  endingLineNumber = "256"
+                  offsetFromSymbolStart = "1696">
+               </Location>
+               <Location
+                  uuid = "8CDB3E42-2C19-4AE1-80D4-07C44AAD5EF9 - 8cf6546a49c943b6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.FIRQueryDocumentSnapshot) -&gt; () in BookIt.InitialDataDownloadManager.getAllPaymentData() async -&gt; ()"
+                  moduleName = "BookIt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "256"
+                  endingLineNumber = "256"
+                  offsetFromSymbolStart = "2000">
+               </Location>
+               <Location
+                  uuid = "8CDB3E42-2C19-4AE1-80D4-07C44AAD5EF9 - 8cf6546a49c943b6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.FIRQueryDocumentSnapshot) -&gt; () in BookIt.InitialDataDownloadManager.getAllPaymentData() async -&gt; ()"
+                  moduleName = "BookIt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "256"
+                  endingLineNumber = "256"
+                  offsetFromSymbolStart = "2308">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1825,9 +1622,9 @@
             filePath = "BookIt/Controllers/Client/ClientHomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "368"
-            endingLineNumber = "368"
-            landmarkName = "collectionView(_:cellForItemAt:)"
+            startingLineNumber = "366"
+            endingLineNumber = "366"
+            landmarkName = "collectionView(_:numberOfItemsInSection:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1841,8 +1638,8 @@
             filePath = "BookIt/Controllers/Client/ClientHomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "381"
-            endingLineNumber = "381"
+            startingLineNumber = "379"
+            endingLineNumber = "379"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1857,8 +1654,8 @@
             filePath = "BookIt/Controllers/Client/ClientHomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "376"
-            endingLineNumber = "376"
+            startingLineNumber = "374"
+            endingLineNumber = "374"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2019,15 +1816,15 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "855"
             endingLineNumber = "855"
-            landmarkName = "deleteMediaData(media:completion:)"
+            landmarkName = "updateMedia(media:completion:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "C9B91F86-D468-4BE8-81FA-DDA7E7939E19 - 675d48a71723059a"
+                  uuid = "C9B91F86-D468-4BE8-81FA-DDA7E7939E19 - bb73fc8c564c8b4e"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Bool&gt;) -&gt; () in BookIt.InitialDataDownloadManager.deleteMediaData(media: BookIt.MediaFile, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) -&gt; ()"
+                  symbolName = "(3) suspend resume partial function for BookIt.InitialDataDownloadManager.updateMedia(media: BookIt.MediaFile, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) async -&gt; ()"
                   moduleName = "BookIt"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
@@ -2035,22 +1832,52 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "855"
                   endingLineNumber = "855"
-                  offsetFromSymbolStart = "156">
+                  offsetFromSymbolStart = "1488">
                </Location>
                <Location
-                  uuid = "C9B91F86-D468-4BE8-81FA-DDA7E7939E19 - 1a2b89ec200dc11d"
+                  uuid = "C9B91F86-D468-4BE8-81FA-DDA7E7939E19 - 6f396218ab75cf4c"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.Optional&lt;Swift.Bool&gt;) -&gt; () in BookIt.InitialDataDownloadManager.deleteMediaData(media: BookIt.MediaFile, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) -&gt; ()"
+                  symbolName = "(5) suspend resume partial function for BookIt.InitialDataDownloadManager.updateMedia(media: BookIt.MediaFile, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) async -&gt; ()"
                   moduleName = "BookIt"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "856"
-                  endingLineNumber = "856"
-                  offsetFromSymbolStart = "116">
+                  startingLineNumber = "855"
+                  endingLineNumber = "855"
+                  offsetFromSymbolStart = "224">
+               </Location>
+               <Location
+                  uuid = "C9B91F86-D468-4BE8-81FA-DDA7E7939E19 - c9da2f5ea6e2ad4d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(6) suspend resume partial function for BookIt.InitialDataDownloadManager.updateMedia(media: BookIt.MediaFile, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) async -&gt; ()"
+                  moduleName = "BookIt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "855"
+                  endingLineNumber = "855"
+                  offsetFromSymbolStart = "216">
+               </Location>
+               <Location
+                  uuid = "C9B91F86-D468-4BE8-81FA-DDA7E7939E19 - 23e6eb94a01f1352"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(7) suspend resume partial function for BookIt.InitialDataDownloadManager.updateMedia(media: BookIt.MediaFile, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) async -&gt; ()"
+                  moduleName = "BookIt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "855"
+                  endingLineNumber = "855"
+                  offsetFromSymbolStart = "288">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -2163,38 +1990,68 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "851"
             endingLineNumber = "851"
-            landmarkName = "deleteMediaData(media:completion:)"
+            landmarkName = "updateMedia(media:completion:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "6151C3D6-2EFE-4B0E-8516-DED8406EB471 - 3b32464da2abb99c"
+                  uuid = "6151C3D6-2EFE-4B0E-8516-DED8406EB471 - bb73fc8c564c8b4e"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "BookIt.InitialDataDownloadManager.deleteMediaData(media: BookIt.MediaFile, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) -&gt; ()"
+                  symbolName = "(3) suspend resume partial function for BookIt.InitialDataDownloadManager.updateMedia(media: BookIt.MediaFile, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) async -&gt; ()"
                   moduleName = "BookIt"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "851"
-                  endingLineNumber = "851"
-                  offsetFromSymbolStart = "76">
+                  startingLineNumber = "855"
+                  endingLineNumber = "855"
+                  offsetFromSymbolStart = "1488">
                </Location>
                <Location
-                  uuid = "6151C3D6-2EFE-4B0E-8516-DED8406EB471 - 3b32464da2abb99c"
+                  uuid = "6151C3D6-2EFE-4B0E-8516-DED8406EB471 - 6f396218ab75cf4c"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "BookIt.InitialDataDownloadManager.deleteMediaData(media: BookIt.MediaFile, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) -&gt; ()"
+                  symbolName = "(5) suspend resume partial function for BookIt.InitialDataDownloadManager.updateMedia(media: BookIt.MediaFile, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) async -&gt; ()"
                   moduleName = "BookIt"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "851"
-                  endingLineNumber = "851"
-                  offsetFromSymbolStart = "124">
+                  startingLineNumber = "855"
+                  endingLineNumber = "855"
+                  offsetFromSymbolStart = "224">
+               </Location>
+               <Location
+                  uuid = "6151C3D6-2EFE-4B0E-8516-DED8406EB471 - c9da2f5ea6e2ad4d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(6) suspend resume partial function for BookIt.InitialDataDownloadManager.updateMedia(media: BookIt.MediaFile, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) async -&gt; ()"
+                  moduleName = "BookIt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "855"
+                  endingLineNumber = "855"
+                  offsetFromSymbolStart = "216">
+               </Location>
+               <Location
+                  uuid = "6151C3D6-2EFE-4B0E-8516-DED8406EB471 - 23e6eb94a01f1352"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(7) suspend resume partial function for BookIt.InitialDataDownloadManager.updateMedia(media: BookIt.MediaFile, completion: (Swift.Optional&lt;Swift.Bool&gt;) -&gt; ()) async -&gt; ()"
+                  moduleName = "BookIt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "855"
+                  endingLineNumber = "855"
+                  offsetFromSymbolStart = "288">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -2211,7 +2068,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "882"
             endingLineNumber = "882"
-            landmarkName = "deleteMedia(downloadURL:completion:)"
+            landmarkName = "deleteMediaData(media:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2227,7 +2084,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "880"
             endingLineNumber = "880"
-            landmarkName = "deleteMedia(downloadURL:completion:)"
+            landmarkName = "deleteMediaData(media:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2243,7 +2100,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "878"
             endingLineNumber = "878"
-            landmarkName = "deleteMedia(downloadURL:completion:)"
+            landmarkName = "deleteMediaData(media:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2282,38 +2139,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "45A8CA44-2BE6-473F-867E-42D8F7E92DB9"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BookIt/Cell/ServiceDetailTableViewCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "configureCell(service:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C9DB829B-FE1E-40AD-BDAC-7615B7238CA5"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BookIt/Controllers/Client/CategoryServiceListTableViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "customDesign()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "D335D393-71F7-433A-AD03-16A4AF2049CB"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -2339,38 +2164,6 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "114"
             endingLineNumber = "114"
-            landmarkName = "loadServices()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "08955C24-BB7D-4AC2-BFA2-CFFCF1BE937F"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BookIt/Controllers/Client/CategoryServiceListTableViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
-            landmarkName = "loadServices()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "660616C1-F94E-4026-88D9-3C8AC1A0ABCA"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BookIt/Controllers/Client/CategoryServiceListTableViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
             landmarkName = "loadServices()"
             landmarkType = "7">
          </BreakpointContent>
