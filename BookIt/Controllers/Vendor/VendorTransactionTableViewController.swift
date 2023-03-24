@@ -11,6 +11,8 @@ class VendorTransactionViewController: UIViewController {
 
     @IBOutlet weak var totalIncomeLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    var loginUser : LoginUser?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "TransactionTableViewCell", bundle: nil), forCellReuseIdentifier: "TransactionTableViewCell")
