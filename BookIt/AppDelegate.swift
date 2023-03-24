@@ -31,6 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
            }
          }
 
+        NetworkMonitor.shared.startMonitoring()
+        
         return true
     }
     
