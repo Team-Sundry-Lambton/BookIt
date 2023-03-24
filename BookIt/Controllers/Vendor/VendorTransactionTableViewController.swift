@@ -9,12 +9,20 @@ import UIKit
 
 class VendorTransactionViewController: UIViewController {
 
+    @IBOutlet weak var totalIncomeLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "TransactionTableViewCell", bundle: nil), forCellReuseIdentifier: "TransactionTableViewCell")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = true
+    }
 }
 
 extension VendorTransactionViewController: UITableViewDelegate, UITableViewDataSource {

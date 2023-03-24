@@ -26,7 +26,52 @@
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wSO-Bf-gGg" userLabel="Context View">
                         <rect key="frame" x="30" y="5" width="381" height="85"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Client A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JkW-Qd-YtN">
+                                <rect key="frame" x="20" y="15" width="63" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <color key="textColor" red="0.2117646933" green="0.23921570180000001" blue="0.37647059560000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service 1 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMC-rZ-cQQ">
+                                <rect key="frame" x="20.000000000000004" y="44" width="62.333333333333343" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$900.2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nJn-Ok-9Hi">
+                                <rect key="frame" x="309" y="15" width="58" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <color key="textColor" red="0.34509804840000002" green="0.75686275960000005" blue="0.5647059083" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="April 23, 2014 4:56 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QC5-49-pVL">
+                                <rect key="frame" x="217" y="53" width="150" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="**** **** 3947" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LeK-YC-kKm">
+                                <rect key="frame" x="20" y="61.000000000000007" width="82" height="14.333333333333336"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="QC5-49-pVL" secondAttribute="trailing" constant="14" id="1yB-A4-w04"/>
+                            <constraint firstItem="JkW-Qd-YtN" firstAttribute="top" secondItem="wSO-Bf-gGg" secondAttribute="top" constant="15" id="H34-Xi-XX5"/>
+                            <constraint firstItem="JkW-Qd-YtN" firstAttribute="leading" secondItem="wSO-Bf-gGg" secondAttribute="leading" constant="20" symbolic="YES" id="HPg-4Z-o1B"/>
+                            <constraint firstAttribute="trailing" secondItem="nJn-Ok-9Hi" secondAttribute="trailing" constant="14" id="I7a-W6-3aU"/>
+                            <constraint firstItem="nJn-Ok-9Hi" firstAttribute="top" secondItem="wSO-Bf-gGg" secondAttribute="top" constant="15" id="LbN-2W-z90"/>
+                            <constraint firstItem="LeK-YC-kKm" firstAttribute="top" secondItem="PMC-rZ-cQQ" secondAttribute="bottom" id="NXW-La-Ecd"/>
+                            <constraint firstItem="LeK-YC-kKm" firstAttribute="leading" secondItem="wSO-Bf-gGg" secondAttribute="leading" constant="20" symbolic="YES" id="Puu-kv-Kjl"/>
+                            <constraint firstItem="QC5-49-pVL" firstAttribute="top" secondItem="nJn-Ok-9Hi" secondAttribute="bottom" constant="17" id="TQC-Md-mwd"/>
+                            <constraint firstAttribute="bottom" secondItem="QC5-49-pVL" secondAttribute="bottom" constant="15" id="XIi-eN-nbR"/>
+                            <constraint firstItem="PMC-rZ-cQQ" firstAttribute="leading" secondItem="wSO-Bf-gGg" secondAttribute="leading" constant="20" symbolic="YES" id="XnV-Bw-qQc"/>
+                            <constraint firstItem="PMC-rZ-cQQ" firstAttribute="top" secondItem="JkW-Qd-YtN" secondAttribute="bottom" constant="8" symbolic="YES" id="fnL-JP-s3R"/>
+                        </constraints>
                     </view>
                 </subviews>
                 <constraints>
@@ -42,6 +87,13 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="bankAccountLabel" destination="LeK-YC-kKm" id="CJ9-6D-ZQf"/>
+                <outlet property="clientNameLabel" destination="JkW-Qd-YtN" id="dm3-P3-d97"/>
+                <outlet property="dateTimeLabel" destination="QC5-49-pVL" id="snl-0J-rFX"/>
+                <outlet property="serviceNameLabel" destination="PMC-rZ-cQQ" id="vLA-oa-pqd"/>
+                <outlet property="totalIncomeLabel" destination="QC5-49-pVL" id="qa4-Ks-YM9"/>
+            </connections>
             <point key="canvasLocation" x="41.984732824427482" y="21.83098591549296"/>
         </tableViewCell>
     </objects>

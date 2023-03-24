@@ -45,15 +45,54 @@ transactions</string>
                                     <outlet property="delegate" destination="Y6W-OH-hqX" id="ER0-n8-CAZ"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BFn-z8-yEz" userLabel="Context View">
+                                <rect key="frame" x="36" y="205.66666666666666" width="321" height="84.999999999999972"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$2,087.2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ps-E2-wqi">
+                                        <rect key="frame" x="188" y="25.666666666666686" width="125" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="125" id="1Hp-7q-k3x"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="28"/>
+                                        <color key="textColor" red="0.34509804840000002" green="0.75686275960000005" blue="0.5647059083" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Income" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vm0-pV-VHe">
+                                        <rect key="frame" x="23" y="18" width="74" height="27"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From start of month" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kIX-Ra-ipw">
+                                        <rect key="frame" x="23" y="50" width="134.33333333333334" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="kIX-Ra-ipw" firstAttribute="leading" secondItem="Vm0-pV-VHe" secondAttribute="leading" id="CkR-Q3-NQw"/>
+                                    <constraint firstItem="Vm0-pV-VHe" firstAttribute="leading" secondItem="BFn-z8-yEz" secondAttribute="leading" constant="23" id="NXU-hC-Ttz"/>
+                                    <constraint firstItem="kIX-Ra-ipw" firstAttribute="top" secondItem="Vm0-pV-VHe" secondAttribute="bottom" constant="5" id="PUj-k1-VOf"/>
+                                    <constraint firstAttribute="trailing" secondItem="2Ps-E2-wqi" secondAttribute="trailing" constant="8" id="bzF-eL-qfl"/>
+                                    <constraint firstItem="Vm0-pV-VHe" firstAttribute="top" secondItem="BFn-z8-yEz" secondAttribute="top" constant="18" id="f8W-nI-HVK"/>
+                                    <constraint firstItem="2Ps-E2-wqi" firstAttribute="centerY" secondItem="BFn-z8-yEz" secondAttribute="centerY" id="sQc-66-7Tj"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="vsl-8u-qNB" firstAttribute="top" secondItem="Ur7-R5-ZZR" secondAttribute="bottom" id="5yq-KD-oEq"/>
+                            <constraint firstItem="Ur7-R5-ZZR" firstAttribute="bottom" secondItem="BFn-z8-yEz" secondAttribute="bottom" constant="45" id="8Ek-bx-iHX"/>
+                            <constraint firstItem="BFn-z8-yEz" firstAttribute="leading" secondItem="Ur7-R5-ZZR" secondAttribute="leading" constant="34" id="97s-N1-2ok"/>
                             <constraint firstItem="vsl-8u-qNB" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Dgy-vk-WlA"/>
                             <constraint firstItem="P1Y-gK-kyh" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="IGa-Vd-MUr"/>
                             <constraint firstItem="Ur7-R5-ZZR" firstAttribute="top" secondItem="d5d-S3-5KV" secondAttribute="bottom" constant="30" id="L4m-Wq-FXh"/>
+                            <constraint firstItem="Ur7-R5-ZZR" firstAttribute="trailing" secondItem="BFn-z8-yEz" secondAttribute="trailing" constant="34" id="P51-yn-99b"/>
                             <constraint firstItem="P1Y-gK-kyh" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="PC3-37-Rb1"/>
+                            <constraint firstItem="BFn-z8-yEz" firstAttribute="top" secondItem="Ur7-R5-ZZR" secondAttribute="top" constant="10" id="YO9-a6-bvC"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="vsl-8u-qNB" secondAttribute="bottom" id="ZMP-Lb-f1b"/>
                             <constraint firstItem="P1Y-gK-kyh" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="c7a-fK-UrA"/>
                             <constraint firstItem="d5d-S3-5KV" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="nF6-HY-sCr"/>
@@ -65,6 +104,7 @@ transactions</string>
                     <navigationItem key="navigationItem" title="Transactions" largeTitleDisplayMode="never" id="BE5-5c-iqg"/>
                     <connections>
                         <outlet property="tableView" destination="vsl-8u-qNB" id="Omt-ge-InA"/>
+                        <outlet property="totalIncomeLabel" destination="2Ps-E2-wqi" id="PNH-dW-Lv0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
