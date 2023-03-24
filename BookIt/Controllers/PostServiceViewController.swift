@@ -67,7 +67,7 @@ class PostServiceViewController: UIViewController {
             editMode = true
         }
     }
-    var vendor : Vendor?
+//    var vendor : Vendor?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     let categoryPicker = UIPickerView()
@@ -85,7 +85,8 @@ class PostServiceViewController: UIViewController {
       
         if editMode{
             loadServiceData()
-            loadMediaList()
+            mediaList = CoreDataManager.shared.getMediaList(serviceId: Int(selectedService?.serviceId ?? -1))
+            mediaFileCollectionView.reloadData()
             self.title = "Edit Service"
         }else{
             self.title = "Post Service"
@@ -106,7 +107,7 @@ class PostServiceViewController: UIViewController {
         descriptionTextView.text = placeHolder
         descriptionTextView.textColor = UIColor.systemGray3
         
-        loadCategories()
+        categoryList = CoreDataManager.shared.loadCategories()
         
         titleTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
@@ -166,7 +167,7 @@ class PostServiceViewController: UIViewController {
             self.cancelPolicyTextField.text = service.cancelPolicy
             self.priceTextField.text = service.price
             self.priceTypeTextField.text = service.priceType
-            getLocationData()
+            selectedLocation =  CoreDataManager.shared.getServiceLocationData(serviceId: Int(service.serviceId))
             self.locationTextField.text = selectedLocation?.address
             self.isEquipmentNeed = service.equipment
             if(isEquipmentNeed){
@@ -176,34 +177,6 @@ class PostServiceViewController: UIViewController {
             }
         }
         
-    }
-    
-    private func loadMediaList() {
-        let request: NSFetchRequest<MediaFile> = MediaFile.fetchRequest()
-        if let title = selectedService?.serviceTitle {
-            let folderPredicate = NSPredicate(format: "parent_Service.serviceTitle=%@", title)
-            request.predicate = folderPredicate
-        }
-        do {
-            mediaList = try context.fetch(request)
-        } catch {
-            print("Error loading medias \(error.localizedDescription)")
-        }
-        mediaFileCollectionView.reloadData()
-    }
-    
-    private func getLocationData() {
-        let request: NSFetchRequest<Address> = Address.fetchRequest()
-        if let title = selectedService?.serviceTitle {
-            let folderPredicate = NSPredicate(format: "parentService.serviceTitle=%@", title)
-            request.predicate = folderPredicate
-        }
-        do {
-            let location = try context.fetch(request)
-            selectedLocation = location.first
-        } catch {
-            print("Error loading location data \(error.localizedDescription)")
-        }
     }
     
     @IBAction func nextButtonUploadPhotoAction(_ sender: Any) {
@@ -331,18 +304,18 @@ class PostServiceViewController: UIViewController {
                     mediaFile.mediaContent = object.image?.pngData()
                     mediaFile.parent_Service = self?.selectedService
                   
-                    let hud = JGProgressHUD()
-                    hud.textLabel.text = "Uploading..."
-                    hud.show(in: strongSelf.view)
+                    LoadingHudManager.shared.showSimpleHUD(title: "Uploading...", view: strongSelf.view)
                     InitialDataDownloadManager.shared.addMediaData(media: mediaFile){ url in
-                        hud.dismiss(animated: true)
-                        if let path = url {
+                        DispatchQueue.main.async {
+                            LoadingHudManager.shared.dissmissHud()
+                            if let path = url {
                                 mediaFile.mediaPath = path
                                 strongSelf.mediaList.append(mediaFile)
                                 strongSelf.saveSingleCoreData()
                                 strongSelf.mediaFileCollectionView.reloadData()
-                        }else{
-                            UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: strongSelf)
+                            }else{
+                                UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: strongSelf)
+                            }
                         }
                         
                     }
@@ -369,21 +342,10 @@ class PostServiceViewController: UIViewController {
     }
     
     //MARK: - Core data interaction methods
-
-    /// load Category from core data
-    func loadCategories() {
-        let request: NSFetchRequest<Category> = Category.fetchRequest()
-        
-        do {
-            categoryList = try context.fetch(request)
-        } catch {
-            print("Error loading categories \(error.localizedDescription)")
-        }
-    }
     
     func saveService(){
         if let serivice = selectedService {
-            serivice.serviceId = getServiceID()
+            serivice.serviceId = CoreDataManager.shared.getServiceID()
             serivice.parent_Category = selectedCategory
             serivice.serviceTitle = titleTextField.text
             if placeHolder != descriptionTextView.text {
@@ -397,15 +359,13 @@ class PostServiceViewController: UIViewController {
             serivice.price = priceTextField.text
             serivice.priceType = priceTypeTextField.text
             serivice.equipment = isEquipmentNeed
-            getVendor()
-            serivice.parent_Vendor = vendor
-            let hud = JGProgressHUD()
-            hud.textLabel.text = "Uploading..."
-            hud.show(in: self.view)
+            let user =  UserDefaultsManager.shared.getUserData()
+            serivice.parent_Vendor = CoreDataManager.shared.getVendor(email: user.email)
+            LoadingHudManager.shared.showSimpleHUD(title: "Uploading...", view: self.view)
             Task {
                 await InitialDataDownloadManager.shared.addServiceData(service: serivice){ status in
                     DispatchQueue.main.async {
-                        hud.dismiss(animated: true)
+                        LoadingHudManager.shared.dissmissHud()
                         if let status = status {
                             if status {
                                 self.saveAllContextCoreData()
@@ -418,51 +378,21 @@ class PostServiceViewController: UIViewController {
                 
             }
         }
-
-    }
-    
-    func getServiceID() -> Int16 {
-        var count = 0
-        let request: NSFetchRequest<Service> = Service.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "serviceId", ascending: true)]
-        do {
-             let serviceList = try context.fetch(request)
-            if serviceList.count > 0 {
-                count = Int((serviceList.last?.serviceId ?? -1) + 1)
-            }
-        } catch {
-            print("Error loading Service \(error.localizedDescription)")
-        }
-        return Int16(count)
-    }
-    func getVendor(){
-
-        let user =  UserDefaultsManager.shared.getUserData()
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Vendor")
-        fetchRequest.predicate = NSPredicate(format: "email = %@", user.email)
-        do {
-            let users = try context.fetch(fetchRequest)
-            if let user = users.first as? Vendor{
-                vendor = user
-            }
-        } catch {
-            print(error)
-        }
     }
     
     private func deleteMediaFile(mediaFile: MediaFile) {
 
         context.delete(mediaFile)
         mediaFileCollectionView.reloadData()
-        let hud = JGProgressHUD()
-        hud.textLabel.text = "Deleting..."
-        hud.show(in: self.view)
+        LoadingHudManager.shared.showSimpleHUD(title: "Deleting...", view: self.view)
         InitialDataDownloadManager.shared.deleteMediaData(media: mediaFile){ status in
-            hud.dismiss(animated: true)
-            if let status = status{
-                if status == false {
-                    DispatchQueue.main.async {
-                        self.deleteMediaFile(mediaFile: mediaFile)
+            DispatchQueue.main.async {
+                LoadingHudManager.shared.dissmissHud()
+                if let status = status{
+                    if status == false {
+                        DispatchQueue.main.async {
+                            self.deleteMediaFile(mediaFile: mediaFile)
+                        }
                     }
                 }
             }

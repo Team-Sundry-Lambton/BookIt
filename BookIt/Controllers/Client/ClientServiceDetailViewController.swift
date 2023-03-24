@@ -145,7 +145,6 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
     }
     
     func getVendor(){
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Vendor")
         if let user =  selectedService?.parent_Vendor {
             if let email = user.email {
                 vendor = CoreDataManager.shared.getVendor(email: email)
@@ -317,7 +316,7 @@ extension ClientServiceDetailViewController: UITableViewDelegate , UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == bannerTableView {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: BannerTableViewCell.identifier, for: indexPath) as? BannerTableViewCell else { return UITableViewCell() }
-            cell.configureCell(serviceTitle: selectedService?.serviceTitle)
+            cell.configureCell(serviceId: Int(selectedService?.serviceId ?? -1))
             self.bannerViews = cell.bannerViews
             
             cell.myScrollView.delegate = self

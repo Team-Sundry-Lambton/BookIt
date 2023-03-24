@@ -77,47 +77,30 @@ class EditProfileViewController: UIViewController {
     }
     
     func getClient(){
-
         let user =  UserDefaultsManager.shared.getUserData()
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Client")
-        fetchRequest.predicate = NSPredicate(format: "email = %@", user.email)
-        do {
-            let users = try context.fetch(fetchRequest)
-            if let user = users.first as? Client{
-                firstNameTxt.text = user.firstName
-                lastNameTxt.text = user.lastName
-                emailTxt.text = user.email
-                phoneNumberTxt.text = user.contactNumber
-                isVendor = false
-                if let imageData = user.picture {
-                    self.imageView.image = UIImage(data: imageData)
-                }
-
+        if let user = CoreDataManager.shared.getClient(email: user.email){
+            firstNameTxt.text = user.firstName
+            lastNameTxt.text = user.lastName
+            emailTxt.text = user.email
+            phoneNumberTxt.text = user.contactNumber
+            isVendor = false
+            if let imageData = user.picture {
+                self.imageView.image = UIImage(data: imageData)
             }
-        } catch {
-            print(error)
         }
     }
     
     func getVendor(){
-
         let user =  UserDefaultsManager.shared.getUserData()
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Vendor")
-        fetchRequest.predicate = NSPredicate(format: "email = %@", user.email)
-        do {
-            let users = try context.fetch(fetchRequest)
-            if let user = users.first as? Vendor{
-                firstNameTxt.text = user.firstName
-                lastNameTxt.text = user.lastName
-                emailTxt.text = user.email
-                phoneNumberTxt.text = user.contactNumber
-                isVendor = true
-                if let imageData = user.picture {
-                    self.imageView.image = UIImage(data: imageData)
-                }
+        if let user = CoreDataManager.shared.getVendor(email: user.email){
+            firstNameTxt.text = user.firstName
+            lastNameTxt.text = user.lastName
+            emailTxt.text = user.email
+            phoneNumberTxt.text = user.contactNumber
+            isVendor = true
+            if let imageData = user.picture {
+                self.imageView.image = UIImage(data: imageData)
             }
-        } catch {
-            print(error)
         }
     }
     
@@ -154,8 +137,8 @@ class EditProfileViewController: UIViewController {
         {
             let loginUser = LoginUser(firstName: firstNameTxt.text ?? "", lastName: lastNameTxt.text ?? "", email: emailTxt.text ?? "", contactNumber: phoneNumberTxt.text ?? "",isVendor: isVendor)
             
-                if (checkUserInDB(user: loginUser)){
-                    deleteUser(user: loginUser)
+            if (CoreDataManager.shared.checkUserInDB(user: loginUser,isVendor: isVendor)){
+                    CoreDataManager.shared.deleteUser(user: loginUser,isVendor: isVendor)
                     UserDefaultsManager.shared.saveUserData(user: loginUser)
                     setUserObject(isEdit: true)
                     UIAlertViewExtention.shared.showBasicAlertView(title: "Success",message: "User updated successfully.", okActionTitle: "OK", view: self)
@@ -202,14 +185,18 @@ class EditProfileViewController: UIViewController {
             vendor.bannerURL = nil
             saveUser()
             if(isEdit){
+                LoadingHudManager.shared.showSimpleHUD(title: "Updating...", view: self.view)
                 InitialDataDownloadManager.shared.updateVendorData(vendor: vendor){ status in
                     DispatchQueue.main.async {
+                        LoadingHudManager.shared.dissmissHud()
                         self.displayErrorMessage(status: status)
                     }
                 }
             }else{
+                LoadingHudManager.shared.showSimpleHUD(title: "Inserting...", view: self.view)
                 InitialDataDownloadManager.shared.addVendorData(vendor: vendor){ status in
                     DispatchQueue.main.async {
+                        LoadingHudManager.shared.dissmissHud()
                         self.displayErrorMessage(status: status)
                     }
                 }
@@ -224,14 +211,18 @@ class EditProfileViewController: UIViewController {
             client.isPremium = false
             saveUser()
             if(isEdit){
+                LoadingHudManager.shared.showSimpleHUD(title: "Updating...", view: self.view)
                 InitialDataDownloadManager.shared.updateClientData(client: client){ status in
                     DispatchQueue.main.async {
+                        LoadingHudManager.shared.dissmissHud()
                         self.displayErrorMessage(status: status)
                     }
                 }
             }else{
+                LoadingHudManager.shared.showSimpleHUD(title: "Inserting...", view: self.view)
                 InitialDataDownloadManager.shared.addClientData(client: client){ status in
                     DispatchQueue.main.async {
+                        LoadingHudManager.shared.dissmissHud()
                         self.displayErrorMessage(status: status)
                     }
                 }
@@ -248,24 +239,6 @@ class EditProfileViewController: UIViewController {
     }
     
     //MARK: - Core data interaction methods
-    func checkUserInDB(user : LoginUser) -> Bool{
-        var success = false
-        var entityName = "Client"
-        if (isVendor){
-            entityName = "Vendor"
-        }
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: entityName)
-        fetchRequest.predicate = NSPredicate(format: "email = %@", user.email)
-        do {
-            let user = try context.fetch(fetchRequest)
-            if user.count >= 1 {
-                success = true
-            }
-        } catch {
-            print(error)
-        }
-        return success
-    }
     
     func saveUser() {
         do {
@@ -275,41 +248,23 @@ class EditProfileViewController: UIViewController {
         }
     }
     
-    func deleteUser(user : LoginUser) {
-        
-        var entityName = "Client"
-        if (isVendor){
-            entityName = "Vendor"
-        }
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: entityName)
-        fetchRequest.predicate = NSPredicate(format: "email = %@", user.email)
-        do {
-            let user = try context.fetch(fetchRequest)
-            if let slectedUser = user.first as? NSManagedObject {
-                context.delete(slectedUser)
-            }
-        } catch {
-            print(error)
-        }
-    }
-    
-    func loadDashBoard(user : LoginUser?){
-        
-        UserDefaultsManager.shared.setUserLogin(status: true)
-        UserDefaultsManager.shared.setIsVendor(status: isVendor)
-
-        if let loginUser = user {
-            UserDefaultsManager.shared.saveUserData(user: loginUser)
-        }
-        
-        Task {
-            await InitialDataDownloadManager.shared.downloadAllData(){
-                DispatchQueue.main.async {
-                    self.navigationController?.popViewController(animated: true)
-                }
-            }
-        }
-    }
+//    func loadDashBoard(user : LoginUser?){
+//        
+//        UserDefaultsManager.shared.setUserLogin(status: true)
+//        UserDefaultsManager.shared.setIsVendor(status: isVendor)
+//
+//        if let loginUser = user {
+//            UserDefaultsManager.shared.saveUserData(user: loginUser)
+//        }
+//        
+//        Task {
+//            await InitialDataDownloadManager.shared.downloadAllData(){
+//                DispatchQueue.main.async {
+//                    self.navigationController?.popViewController(animated: true)
+//                }
+//            }
+//        }
+//    }
     
     private func addProfilePic() {
         MediaManager.shared.pickMediaFile(title: "Choose Profile Picture",self) { [weak self] mediaObject in

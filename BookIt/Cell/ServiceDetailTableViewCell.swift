@@ -17,11 +17,9 @@ class ServiceDetailTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var serviceImage: UIImageView!
     
-    var selectedLocation: Address?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     func configureCell(service: Service) {
-        getLocationData(serviceId: Int(service.serviceId))
         if let title = service.serviceTitle {
             titleLbl.text = title
         }
@@ -49,26 +47,10 @@ class ServiceDetailTableViewCell: UITableViewCell {
             nameLbl.isHidden = true
         }
         
-        if let media = CoreDataManager.shared.getServiceFirstMedia(serviceTitle: service.serviceTitle ?? "") {
+        if let media = CoreDataManager.shared.getServiceFirstMedia(serviceId: Int(service.serviceId)) {
             if let imageData = media.mediaContent {
                     self.serviceImage.image = UIImage(data: imageData)
                 }
-        }
-        
-//        if let imageData = mediaList[0].image {
-//            self.serviceImage.image = UIImage(data: imageData)
-//        }
-    }
-    
-    private func getLocationData(serviceId : Int) {
-        let request: NSFetchRequest<Address> = Address.fetchRequest()
-        let folderPredicate = NSPredicate(format: "parentService.serviceId=%@", serviceId)
-        request.predicate = folderPredicate
-        do {
-            let location = try context.fetch(request)
-            selectedLocation = location.first
-        } catch {
-            print("Error loading location data \(error.localizedDescription)")
         }
     }
     

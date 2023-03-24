@@ -47,22 +47,14 @@ class VendorHomeViewController: UIViewController {
     }
     
     private func loadBookingList(){
-        let request: NSFetchRequest<Booking> = Booking.fetchRequest()
-        let folderPredicate = NSPredicate(format: "vendor.email=%@", loginUser?.email ?? "")
-        request.predicate = folderPredicate
-        request.sortDescriptors = [NSSortDescriptor(key: "status", ascending: true)]
-//        request.fetchLimit = 10
-        do {
-            bookingList = try context.fetch(request)
+
+        bookingList = CoreDataManager.shared.loadBookingList(email: loginUser?.email ?? "")
             bookingListOngoing = bookingList.filter({
                 $0.status == "new" || $0.status == "pending" || $0.status == "inprogress"
             })
             bookingListHistory = bookingList.filter({
                 $0.status == "cancel" || $0.status == "completed"
             })
-        } catch {
-            print("Error loading Service \(error.localizedDescription)")
-        }
     }
     
     @IBAction func filterAction(_ sender: Any) {

@@ -85,7 +85,7 @@ class ViewController: UIViewController {
         
     }
     func checkUserAvailablility(user : LoginUser){
-        if (checkUserInDB(user: user)){
+        if (CoreDataManager.shared.checkUserInDB(user: user,isVendor: isVendor)){
             loadDashBoard(user: user)
             
         }else{
@@ -138,49 +138,19 @@ class ViewController: UIViewController {
         
     }
     
-    func checkUserInDB(user : LoginUser) -> Bool{
-        var success = false
-        var entityName = "Client"
-        if (isVendor){
-            entityName = "Vendor"
-        }
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: entityName)
-        fetchRequest.predicate = NSPredicate(format: "email = %@", user.email)
-        do {
-            let users = try context.fetch(fetchRequest)
-            if users.count >= 1 {
-                success = true
-            }
-        } catch {
-            print(error)
-        }
-        return success
-    }
-    
     func setUser(user : LoginUser){
-        var entityName = "Client"
         if (isVendor){
-            entityName = "Vendor"
-        }
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: entityName)
-        fetchRequest.predicate = NSPredicate(format: "email = %@", user.email)
-        do {
-            let users = try context.fetch(fetchRequest)
-            if (isVendor){
-                if let user = users.first as? Vendor{
-                    
-                    let loginUser = LoginUser(firstName: user.firstName ?? "", lastName: user.lastName ?? "", email: user.email ?? "", contactNumber: user.contactNumber ?? "",isVendor: isVendor)
-                    UserDefaultsManager.shared.saveUserData(user: loginUser)
-                    
-                }
-            }else{
-                if let user = users.first as? Client{
-                    let loginUser = LoginUser(firstName: user.firstName ?? "", lastName: user.lastName ?? "", email: user.email ?? "", contactNumber: user.contactNumber ?? "",isVendor: isVendor)
-                    UserDefaultsManager.shared.saveUserData(user: loginUser)
-                }
+            if let user = CoreDataManager.shared.getVendor(email: user.email) {
+                
+                let loginUser = LoginUser(firstName: user.firstName ?? "", lastName: user.lastName ?? "", email: user.email ?? "", contactNumber: user.contactNumber ?? "",isVendor: isVendor)
+                UserDefaultsManager.shared.saveUserData(user: loginUser)
+                
             }
-        } catch {
-            print(error)
+        }else{
+            if let user = CoreDataManager.shared.getClient(email: user.email){
+                let loginUser = LoginUser(firstName: user.firstName ?? "", lastName: user.lastName ?? "", email: user.email ?? "", contactNumber: user.contactNumber ?? "",isVendor: isVendor)
+                UserDefaultsManager.shared.saveUserData(user: loginUser)
+            }
         }
     }
 }

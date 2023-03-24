@@ -147,14 +147,14 @@ class InitialDataDownloadManager : NSObject{
                         }
                     }
                 }
-                if let clientEmail = data["clientAddress"]  as? String {
+                if let clientEmail = data["clientEmailAddress"]  as? String {
                     if clientEmail != "" {
                         if let client = CoreDataManager.shared.getClient(email: clientEmail){
                             address.clientAddress = client
                         }
                     }
                 }
-                if let vendorEmail = data["vendorAddress"]  as? String {
+                if let vendorEmail = data["vendorEmailAddress"]  as? String {
                     if vendorEmail != "" {
                         if let vendor = CoreDataManager.shared.getVendor(email: vendorEmail){
                             address.vendorAddress = vendor
@@ -214,14 +214,14 @@ class InitialDataDownloadManager : NSObject{
                     }
                 }
                 
-                if let clientEmail = data["clientAddress"]  as? String {
+                if let clientEmail = data["clientEmailAddress"]  as? String {
                     if clientEmail != "" {
                         if let client = CoreDataManager.shared.getClient(email: clientEmail){
                             boobking.client = client
                         }
                     }
                 }
-                if let vendorEmail = data["vendorAddress"]  as? String {
+                if let vendorEmail = data["vendorEmailAddress"]  as? String {
                     if vendorEmail != "" {
                         if let vendor = CoreDataManager.shared.getVendor(email: vendorEmail){
                             boobking.vendor = vendor
@@ -248,7 +248,7 @@ class InitialDataDownloadManager : NSObject{
                 payment.date =  data["date"] as? Date
                 payment.status =  data["status"] as? String ?? ""
                 
-                if let client = data["clientAddress"]  as? String, let vendor = data["vendorAddress"]  as? String, let serviceId = data["serviceId"] as? Int {
+                if let client = data["clientEmailAddress"]  as? String, let vendor = data["vendorEmailAddress"]  as? String, let serviceId = data["serviceId"] as? Int {
                     if client != ""  && vendor != ""  && serviceId != -1 {
                         if let booking = CoreDataManager.shared.getBooking(client: client, serviceId: serviceId, vendor: vendor){
                             payment.booking = booking
@@ -274,14 +274,14 @@ class InitialDataDownloadManager : NSObject{
                 review.date =  data["date"] as? Date
                 review.rating = Int16(data["rating"] as? Int ?? 0)
                 review.vendorRating = data["vendorRating"] as? Bool ?? false
-                if let clientEmail = data["clientAddress"]  as? String {
+                if let clientEmail = data["clientEmailAddress"]  as? String {
                     if clientEmail != "" {
                         if let client = CoreDataManager.shared.getClient(email: clientEmail){
                             review.client = client
                         }
                     }
                 }
-                if let vendorEmail = data["vendorAddress"]  as? String {
+                if let vendorEmail = data["vendorEmailAddress"]  as? String {
                     if vendorEmail != "" {
                         if let vendor = CoreDataManager.shared.getVendor(email: vendorEmail){
                             review.vendor = vendor
@@ -309,7 +309,7 @@ class InitialDataDownloadManager : NSObject{
                 account.institutionNumber = Int32(data["institutionNumber"] as? Int ?? 0)
                 account.transitNumber = Int32(data["transitNumber"] as? Int ?? 0)
 
-                if let vendorEmail = data["vendorAddress"]  as? String {
+                if let vendorEmail = data["vendorEmailAddress"]  as? String {
                     if vendorEmail != "" {
                         if let vendor = CoreDataManager.shared.getVendor(email: vendorEmail){
                             account.parent_vendor = vendor
@@ -518,8 +518,8 @@ extension InitialDataDownloadManager {
                 "latitude": address.addressLatitude,
                 "address": address.address ?? "",
                 "parentService": serviceId ?? -1,
-                "clientAddress": clientEmail ?? "",
-                "vendorAddress": vendorEmail ?? "",
+                "clientEmailAddress": clientEmail ?? "",
+                "vendorEmailAddress": vendorEmail ?? "",
             ]) { err in
                 if let err = err {
                     print("Error adding document: \(err)")
@@ -555,7 +555,7 @@ extension InitialDataDownloadManager {
                         let media = CoreDataManager.shared.getMedia(name: media.mediaName ?? "", serviceId: serviceId)
                         media?.mediaPath = url
                         self.saveData()
-                        completion(true)
+                        completion(url)
                     }
                 }
             }
@@ -580,8 +580,8 @@ extension InitialDataDownloadManager {
             "date": booking.date,
             "status": booking.status ?? "",
             "parentService": serviceId ?? -1,
-            "clientAddress": clientEmail ?? "",
-            "vendorAddress": vendorEmail ?? "",
+            "clientEmailAddress": clientEmail ?? "",
+            "vendorEmailAddress": vendorEmail ?? "",
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
@@ -609,8 +609,8 @@ extension InitialDataDownloadManager {
             "amount": payment.amount,
             "date": payment.date,
             "status": payment.status ?? "",
-            "clientAddress": clientEmail ?? "",
-            "vendorAddress": vendorEmail ?? "",
+            "clientEmailAddress": clientEmail ?? "",
+            "vendorEmailAddress": vendorEmail ?? "",
             "serviceId" :serviceId ,
         ]) { err in
             if let err = err {
@@ -639,8 +639,8 @@ extension InitialDataDownloadManager {
             "rating": vendorReview.rating,
             "date": vendorReview.date,
             "comment": vendorReview.comment ?? "",
-            "clientAddress": clientEmail ?? "",
-            "vendorAddress": vendorEmail ?? "",
+            "clientEmailAddress": clientEmail ?? "",
+            "vendorEmailAddress": vendorEmail ?? "",
             "vendorRating" : vendorReview.vendorRating
         ]) { err in
             if let err = err {
@@ -667,7 +667,7 @@ extension InitialDataDownloadManager {
             "transitNumber": account.transitNumber,
             "recipiantName": account.recipiantName ?? "",
             "recipiantBankName": account.recipiantBankName ?? "",
-            "vendorAddress": vendorEmail ?? "",
+            "vendorEmailAddress": vendorEmail ?? "",
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
@@ -784,13 +784,13 @@ extension InitialDataDownloadManager{
             var clientEmail : String?
             if let client = addressObject.clientAddress {
                 clientEmail = client.email
-                filterField = "clientAddress"
+                filterField = "clientEmailAddress"
                 filterText = clientEmail ?? address
             }
             var vendorEmail : String?
             if let vendor = addressObject.vendorAddress {
                 vendorEmail = vendor.email
-                filterField = "vendorAddress"
+                filterField = "vendorEmailAddress"
                 filterText = vendorEmail ?? address
             }
             
@@ -811,8 +811,8 @@ extension InitialDataDownloadManager{
                                 "latitude": addressObject.addressLatitude,
                                 "address": address,
 //                                "parentService": serviceId ?? -1,
-//                                "clientAddress": clientEmail ?? "",
-//                                "vendorAddress": vendorEmail ?? "",
+//                                "clientEmailAddress": clientEmail ?? "",
+//                                "vendorEmailAddress": vendorEmail ?? "",
                             ])
                             completion(true)
                         }
@@ -849,7 +849,7 @@ extension InitialDataDownloadManager{
 //                    } else {
 //                            if let document = querySnapshot!.documents.first{
 //                                document.reference.updateData([
-//                                    "parentService": media.parent_Service?.serviceTitle ?? "",
+//                                    "parentService": media.parent_Service?.serviceId ?? "",
 //                                ])
 //                            }
 //                    }
@@ -871,7 +871,7 @@ extension InitialDataDownloadManager{
         }
 
         db.collection("booking")
-            .whereField("parentService", isEqualTo: serviceId).whereField("clientAddress", isEqualTo: clientEmail).whereField("vendorAddress", isEqualTo: vendorEmail)
+            .whereField("parentService", isEqualTo: serviceId).whereField("clientEmailAddress", isEqualTo: clientEmail).whereField("vendorEmailAddress", isEqualTo: vendorEmail)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     // Some error occured
