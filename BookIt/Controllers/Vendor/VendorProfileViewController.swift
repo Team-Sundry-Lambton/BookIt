@@ -22,6 +22,8 @@ class VendorProfileViewController: UIViewController {
     @IBOutlet weak var tacnsactionView: UIView!
     @IBOutlet weak var bankView: UIView!
     
+    var vendor : Vendor?
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
   
     override func viewDidLoad() {
@@ -62,6 +64,7 @@ class VendorProfileViewController: UIViewController {
         do {
             let users = try context.fetch(fetchRequest)
             if let user = users.first as? Vendor{
+                vendor = user
                 nameLbl.text = (user.firstName ?? "") + " " + (user.lastName ?? "")
                 emailLbl.text = user.email
                 if let imageData = user.picture {
@@ -115,7 +118,8 @@ class VendorProfileViewController: UIViewController {
     
     @IBAction func loadTansactionPage() {
         if (UserDefaultsManager.shared.getUserLogin()){
-            if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EditProfileViewController") as? EditProfileViewController {
+            if let viewController = UIStoryboard(name: "VendorTransaction", bundle: nil).instantiateViewController(withIdentifier: "VendorTransactionViewController") as? VendorTransactionViewController {
+                viewController.vendor = vendor
                 if let navigator = navigationController {
                     navigator.pushViewController(viewController, animated: true)
                 }
