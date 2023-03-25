@@ -102,6 +102,7 @@ class BannerTableViewCell: UITableViewCell {
                     if let imageData = media.mediaContent {
                         let imageView = UIImageView(image:UIImage(data: imageData))
                         imageViewArray.append(imageView)
+                        print("Service ID: ", media.parent_Service?.serviceId);
                     }else{
                         let imageView = UIImageView(image: UIImage(named: "\(0)"))
                         imageViewArray.append(imageView)

@@ -183,6 +183,7 @@ class InitialDataDownloadManager : NSObject{
                 
                 if let parentService = data["parentService"]  as? Int {
                     if parentService != -1 {
+                        print("Service ID: ", parentService);
                         if let service = CoreDataManager.shared.getService(serviceId: parentService){
                             media.parent_Service = service
                         }

@@ -57,6 +57,7 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        setTimer()
         addBorder()
         interfaceSegmented.delegate = self
         loadServiceDetail()
@@ -346,5 +347,31 @@ extension ClientServiceDetailViewController: UITableViewDelegate , UITableViewDa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             //go to review detail page.
         print("selected" + "\(indexPath.row)")
+    }
+}
+
+extension ClientServiceDetailViewController: UIScrollViewDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        timer.invalidate()
+    }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        setTimer()
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+
+        if scrollView == bannerTableView{
+            //do nothing
+        }else{
+            let translatedPoint = scrollView.panGestureRecognizer.translation(in:scrollView)
+            print(translatedPoint.x)
+            if translatedPoint.x < 0 {
+                swipeLeft()
+            }else{
+                swipeRight()
+            }
+            print(currentPage)
+        }
     }
 }

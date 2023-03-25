@@ -205,7 +205,7 @@ extension ClientHomeViewController: UITableViewDelegate, UITableViewDataSource {
             }
         }else
         {
-            return 5
+            return serviceList.count > 5 ? 5 : serviceList.count
         }
     }
     
@@ -364,7 +364,7 @@ extension ClientHomeViewController :UICollectionViewDataSource, UICollectionView
             return 4
         }
         else{
-            return vendorList.count
+            return vendorList.count > 10 ? 10 : vendorList.count
         }
     }
     

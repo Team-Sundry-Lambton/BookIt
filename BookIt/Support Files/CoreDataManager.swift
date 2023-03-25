@@ -56,7 +56,7 @@ class CoreDataManager : NSObject{
     func getService(serviceId : Int) -> Service?{
         var service : Service?
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Service")
-        fetchRequest.predicate = NSPredicate(format: "serviceId = %@ ", serviceId)
+        fetchRequest.predicate = NSPredicate(format: "serviceId = %i ", serviceId)
         do {
             let services = try context.fetch(fetchRequest)
             service = services.first as? Service
@@ -69,7 +69,7 @@ class CoreDataManager : NSObject{
     func getMedia(name : String, serviceId : Int) -> MediaFile?{
         var media : MediaFile?
         let fetchRequest: NSFetchRequest<MediaFile> = MediaFile.fetchRequest()
-            let folderPredicate = NSPredicate(format: "parent_Service.serviceId=%@ AND mediaName=%@", serviceId,name)
+            let folderPredicate = NSPredicate(format: "parent_Service.serviceId=%i AND mediaName=%@", serviceId,name)
         fetchRequest.predicate = folderPredicate
         do {
             let medias = try context.fetch(fetchRequest)
@@ -83,7 +83,7 @@ class CoreDataManager : NSObject{
     func getBooking(client : String, serviceId : Int,vendor : String) -> Booking?{
         var booking : Booking?
         let fetchRequest: NSFetchRequest<Booking> = Booking.fetchRequest()
-            let folderPredicate = NSPredicate(format: "service.serviceId=%@ AND client.email=%@ AND vendor.email=%@", serviceId,client,vendor)
+            let folderPredicate = NSPredicate(format: "service.serviceId=%i AND client.email=%@ AND vendor.email=%@", serviceId,client,vendor)
         fetchRequest.predicate = folderPredicate
         do {
             let bookings = try context.fetch(fetchRequest)
@@ -97,7 +97,7 @@ class CoreDataManager : NSObject{
     func getPayment(amount : Double, serviceId : Int) -> Payment?{
         var payment : Payment?
         let fetchRequest: NSFetchRequest<Payment> = Payment.fetchRequest()
-            let folderPredicate = NSPredicate(format: "booking.service.serviceId=%@ AND amount=%@", serviceId,amount)
+            let folderPredicate = NSPredicate(format: "booking.service.serviceId=%i AND amount=%@", serviceId,amount)
         fetchRequest.predicate = folderPredicate
         do {
             let payments = try context.fetch(fetchRequest)
@@ -111,7 +111,7 @@ class CoreDataManager : NSObject{
     func getServiceFirstMedia(serviceId : Int) -> MediaFile?{
         var media : MediaFile?
         let fetchRequest: NSFetchRequest<MediaFile> = MediaFile.fetchRequest()
-            let folderPredicate = NSPredicate(format: "parent_Service.serviceId=%@", serviceId)
+            let folderPredicate = NSPredicate(format: "parent_Service.serviceId=%i", serviceId)
         fetchRequest.predicate = folderPredicate
         do {
             let medias = try context.fetch(fetchRequest)
@@ -125,8 +125,8 @@ class CoreDataManager : NSObject{
     func getMediaList(serviceId : Int) -> [MediaFile]{
         var mediaList = [MediaFile]()
         let request: NSFetchRequest<MediaFile> = MediaFile.fetchRequest()
-            let folderPredicate = NSPredicate(format: "parent_Service.serviceId=%@", serviceId)
-            request.predicate = folderPredicate
+//            let folderPredicate = NSPredicate(format: "parent_Service.serviceId=%i", serviceId)
+//            request.predicate = folderPredicate
         do {
             mediaList = try context.fetch(request)
         } catch {
@@ -151,7 +151,7 @@ class CoreDataManager : NSObject{
     func getServiceLocationData(serviceId : Int) -> Address? {
         var selectedLocation : Address?
         let request: NSFetchRequest<Address> = Address.fetchRequest()
-        let folderPredicate = NSPredicate(format: "parentService.serviceId=%@", serviceId)
+        let folderPredicate = NSPredicate(format: "parentService.serviceId=%i", serviceId)
         request.predicate = folderPredicate
         do {
             let location = try context.fetch(request)
@@ -226,7 +226,7 @@ class CoreDataManager : NSObject{
         do {
              let serviceList = try context.fetch(request)
             if serviceList.count > 0 {
-                count = Int((serviceList.last?.serviceId ?? -1) + 1)
+                count = Int((serviceList.last?.serviceId ?? 0) + 1)
             }
         } catch {
             print("Error loading Service \(error.localizedDescription)")

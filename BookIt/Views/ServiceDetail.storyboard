@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gNZ-eO-qSE">
-                                <rect key="frame" x="0.0" y="0.0" width="398" height="759"/>
+                                <rect key="frame" x="0.0" y="59" width="398" height="759"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tcD-T8-Ag6">
                                         <rect key="frame" x="0.0" y="0.0" width="398" height="240"/>
@@ -26,6 +26,10 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="240" id="uKy-yS-XZA"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="dataSource" destination="3qv-mL-GRh" id="zIx-Mq-tb9"/>
+                                            <outlet property="delegate" destination="3qv-mL-GRh" id="RBR-xA-F5f"/>
+                                        </connections>
                                     </tableView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j1D-oe-SXy">
                                         <rect key="frame" x="0.0" y="250" width="398" height="55"/>
@@ -196,9 +200,7 @@ Cleaning service</string>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="0YR-Lt-HY0" firstAttribute="top" secondItem="j1D-oe-SXy" secondAttribute="bottom" constant="10" id="3Sc-gW-20c"/>
-                                    <constraint firstItem="j1D-oe-SXy" firstAttribute="leading" secondItem="gNZ-eO-qSE" secondAttribute="leading" id="6Bk-2i-Lse"/>
                                     <constraint firstAttribute="trailing" secondItem="j1D-oe-SXy" secondAttribute="trailing" id="Her-L5-whT"/>
-                                    <constraint firstAttribute="trailing" secondItem="0YR-Lt-HY0" secondAttribute="trailing" id="VFo-nN-f5D"/>
                                     <constraint firstItem="0YR-Lt-HY0" firstAttribute="leading" secondItem="gNZ-eO-qSE" secondAttribute="leading" id="kxD-dz-8BK"/>
                                     <constraint firstItem="HIC-RV-F6I" firstAttribute="top" secondItem="0YR-Lt-HY0" secondAttribute="bottom" constant="10" id="tZq-ih-Lck"/>
                                 </constraints>
@@ -235,19 +237,20 @@ Cleaning service</string>
                                 </connections>
                             </button>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="9NS-NJ-0AY"/>
+                        <viewLayoutGuide key="safeArea" id="hGH-GN-rYt"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="gNZ-eO-qSE" firstAttribute="leading" secondItem="9NS-NJ-0AY" secondAttribute="leading" id="3ch-Ad-kno"/>
-                            <constraint firstItem="76w-2i-Tbj" firstAttribute="leading" secondItem="9NS-NJ-0AY" secondAttribute="leading" constant="10" id="3ux-ZX-p61"/>
-                            <constraint firstAttribute="trailing" secondItem="X3B-l9-Hw5" secondAttribute="trailing" constant="20" id="9FE-mX-mgc"/>
-                            <constraint firstItem="X3B-l9-Hw5" firstAttribute="leading" secondItem="oNO-4G-cBc" secondAttribute="leading" constant="20" id="9ib-hd-rh4"/>
-                            <constraint firstItem="76w-2i-Tbj" firstAttribute="top" secondItem="9NS-NJ-0AY" secondAttribute="top" constant="10" id="C0z-Cn-YId"/>
-                            <constraint firstAttribute="trailing" secondItem="gNZ-eO-qSE" secondAttribute="trailing" id="OU1-Td-u5q"/>
-                            <constraint firstItem="gNZ-eO-qSE" firstAttribute="top" secondItem="oNO-4G-cBc" secondAttribute="top" id="ovD-uM-Acj"/>
-                            <constraint firstItem="X3B-l9-Hw5" firstAttribute="bottom" secondItem="9NS-NJ-0AY" secondAttribute="bottom" id="ulH-gh-pA1"/>
+                            <constraint firstItem="gNZ-eO-qSE" firstAttribute="top" secondItem="hGH-GN-rYt" secondAttribute="top" id="0SQ-gB-Uqu"/>
+                            <constraint firstItem="76w-2i-Tbj" firstAttribute="leading" secondItem="hGH-GN-rYt" secondAttribute="leading" constant="10" id="3ux-ZX-p61"/>
+                            <constraint firstAttribute="trailing" secondItem="gNZ-eO-qSE" secondAttribute="trailing" id="5Ta-Ln-UKA"/>
+                            <constraint firstItem="hGH-GN-rYt" firstAttribute="trailing" secondItem="X3B-l9-Hw5" secondAttribute="trailing" constant="20" id="9FE-mX-mgc"/>
+                            <constraint firstItem="X3B-l9-Hw5" firstAttribute="leading" secondItem="hGH-GN-rYt" secondAttribute="leading" constant="20" id="9ib-hd-rh4"/>
+                            <constraint firstItem="76w-2i-Tbj" firstAttribute="top" secondItem="hGH-GN-rYt" secondAttribute="top" constant="10" id="C0z-Cn-YId"/>
+                            <constraint firstItem="gNZ-eO-qSE" firstAttribute="leading" secondItem="hGH-GN-rYt" secondAttribute="leading" id="fp4-t8-mXZ"/>
+                            <constraint firstItem="X3B-l9-Hw5" firstAttribute="bottom" secondItem="hGH-GN-rYt" secondAttribute="bottom" id="ulH-gh-pA1"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="WZK-F4-fqy"/>
                     <connections>
                         <outlet property="bannerTableView" destination="tcD-T8-Ag6" id="cQH-F6-nPl"/>
