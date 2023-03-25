@@ -12,6 +12,7 @@
 		993181C529CD3DAA003D82E5 /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993181C329CD3DAA003D82E5 /* TransactionTableViewCell.swift */; };
 		993181C629CD3DAA003D82E5 /* TransactionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 993181C429CD3DAA003D82E5 /* TransactionTableViewCell.xib */; };
 		993181C829CD4009003D82E5 /* VendorTransactionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993181C729CD4009003D82E5 /* VendorTransactionTableViewController.swift */; };
+		993F476E29CE70DA00BC857D /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993F476D29CE70DA00BC857D /* String+Extension.swift */; };
 		995B2F7629C68C8700745992 /* ServiceStatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995B2F7429C68C8700745992 /* ServiceStatusTableViewCell.swift */; };
 		995B2F7729C68C8700745992 /* ServiceStatusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 995B2F7529C68C8700745992 /* ServiceStatusTableViewCell.xib */; };
 		996588BA29C79F1400A7D796 /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996588B929C79F1400A7D796 /* CustomSegmentedControl.swift */; };
@@ -118,6 +119,7 @@
 		993181C329CD3DAA003D82E5 /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
 		993181C429CD3DAA003D82E5 /* TransactionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionTableViewCell.xib; sourceTree = "<group>"; };
 		993181C729CD4009003D82E5 /* VendorTransactionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorTransactionTableViewController.swift; sourceTree = "<group>"; };
+		993F476D29CE70DA00BC857D /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		995B2F7429C68C8700745992 /* ServiceStatusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceStatusTableViewCell.swift; sourceTree = "<group>"; };
 		995B2F7529C68C8700745992 /* ServiceStatusTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServiceStatusTableViewCell.xib; sourceTree = "<group>"; };
 		996588B929C79F1400A7D796 /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 				996588C329C7C05400A7D796 /* BaseCustomButton.swift */,
 				BB7A1E1529C3AB36003CB894 /* InitialDataDownload.swift */,
 				BB7A1E1A29C3BF61003CB894 /* CoreDataManager.swift */,
+				993F476D29CE70DA00BC857D /* String+Extension.swift */,
 			);
 			path = "Support Files";
 			sourceTree = "<group>";
@@ -567,6 +570,7 @@
 				BB7A1DD929C1023B003CB894 /* PostServiceViewController.swift in Sources */,
 				993181C029CD2B15003D82E5 /* NetworkMonitor.swift in Sources */,
 				996588C429C7C05400A7D796 /* BaseCustomButton.swift in Sources */,
+				993F476E29CE70DA00BC857D /* String+Extension.swift in Sources */,
 				BBA6357529BA631700702A62 /* ClientBookingViewController.swift in Sources */,
 				BBE7433829B41EE60087DC74 /* UserDefaultsManager.swift in Sources */,
 				BB7A1E1929C3B388003CB894 /* FirestoreObjectMapping.swift in Sources */,
