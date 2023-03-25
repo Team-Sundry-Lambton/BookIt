@@ -16,6 +16,7 @@ class ServiceDetailTableViewCell: UITableViewCell {
     @IBOutlet weak var locationLbl: UILabel!
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var serviceImage: UIImageView!
+    @IBOutlet weak var lblServiceRating: UILabel!
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -52,6 +53,21 @@ class ServiceDetailTableViewCell: UITableViewCell {
                     self.serviceImage.image = UIImage(data: imageData)
                 }
         }
+        
+        dipalyServiceReview(serviceId :Int(service.serviceId))
+    }
+    
+    func dipalyServiceReview(serviceId : Int){
+        let serviceReviewList = CoreDataManager.shared.getServiceReviewList(serviceId:serviceId)
+        var reviewTotal = 0
+        var rate = 0
+        for review in serviceReviewList {
+            reviewTotal += Int(review.rating)
+        }
+        if serviceReviewList.count > 0 {
+            rate = reviewTotal / serviceReviewList.count
+        }
+        lblServiceRating.text =  String(rate)
     }
     
     override func awakeFromNib() {
