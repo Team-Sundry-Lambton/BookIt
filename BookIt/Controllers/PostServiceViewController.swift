@@ -91,6 +91,7 @@ class PostServiceViewController: UIViewController {
         }else{
             self.title = "Post Service"
             selectedService = Service(context: context)
+            selectedService.serviceId = CoreDataManager.shared.getServiceID()
         }
         
         uiViewsDesign()
@@ -345,7 +346,6 @@ class PostServiceViewController: UIViewController {
     
     func saveService(){
         if let serivice = selectedService {
-            serivice.serviceId = CoreDataManager.shared.getServiceID()
             serivice.parent_Category = selectedCategory
             serivice.serviceTitle = titleTextField.text
             if placeHolder != descriptionTextView.text {
