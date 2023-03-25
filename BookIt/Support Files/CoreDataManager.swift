@@ -125,8 +125,8 @@ class CoreDataManager : NSObject{
     func getMediaList(serviceId : Int) -> [MediaFile]{
         var mediaList = [MediaFile]()
         let request: NSFetchRequest<MediaFile> = MediaFile.fetchRequest()
-//            let folderPredicate = NSPredicate(format: "parent_Service.serviceId=%i", serviceId)
-//            request.predicate = folderPredicate
+            let folderPredicate = NSPredicate(format: "parent_Service.serviceId=%i", serviceId)
+            request.predicate = folderPredicate
         do {
             mediaList = try context.fetch(request)
         } catch {

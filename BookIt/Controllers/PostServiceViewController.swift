@@ -91,7 +91,7 @@ class PostServiceViewController: UIViewController {
         }else{
             self.title = "Post Service"
             selectedService = Service(context: context)
-            selectedService.serviceId = CoreDataManager.shared.getServiceID()
+            selectedService?.serviceId = CoreDataManager.shared.getServiceID()
         }
         
         uiViewsDesign()

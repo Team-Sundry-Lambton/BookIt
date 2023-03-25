@@ -457,11 +457,13 @@ extension InitialDataDownloadManager {
     
     func addServiceData(service : Service,completion: @escaping (_ status: Bool?) -> Void) async {
         
-        if let media = service.medias {
-            await self.updateMedia(media: media){ status in
-                if let status = status {
-                    if status == false {
-                        completion(false)
+        if let medias = service.medias {
+            for media in medias {
+                await self.updateMedia(media: media as! MediaFile){ status in
+                    if let status = status {
+                        if status == false {
+                            completion(false)
+                        }
                     }
                 }
             }
@@ -895,11 +897,13 @@ extension InitialDataDownloadManager{
     }
     
     func updateServiceData(service : Service,completion: @escaping (_ status: Bool?) -> Void) async {
-            if let media = service.medias {
-                await self.updateMedia(media: media){ status in
-                    if let status = status {
-                        if status == false {
-                            completion(false)
+            if let medias = service.medias {
+                for media in medias {
+                    await self.updateMedia(media: media as! MediaFile){ status in
+                        if let status = status {
+                            if status == false {
+                                completion(false)
+                            }
                         }
                     }
                 }
