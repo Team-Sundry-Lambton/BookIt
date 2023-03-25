@@ -9,8 +9,6 @@ import UIKit
 import CoreData
 import JGProgressHUD
 class PostServiceViewController: UIViewController {
-
-    var loginUser : LoginUser?
     
     @IBOutlet weak var pageTitleLbl: UILabel!
     
