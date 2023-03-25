@@ -12,7 +12,7 @@ class VendorTransactionViewController: UIViewController {
 
     @IBOutlet weak var totalIncomeLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    var loginUser : LoginUser?
+    var vendor : Vendor?
     var transactionList = [Payment]()
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -23,6 +23,7 @@ class VendorTransactionViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = false
         navigationController?.isNavigationBarHidden = false
     }
     
@@ -42,7 +43,7 @@ class VendorTransactionViewController: UIViewController {
     
     private func loadTransactionList(){
         let request: NSFetchRequest<Payment> = Payment.fetchRequest()
-        let folderPredicate = NSPredicate(format: "booking.vendor.email=%@", loginUser?.email ?? "")
+        let folderPredicate = NSPredicate(format: "booking.vendor.email=%@", vendor?.email ?? "")
         request.predicate = folderPredicate
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
 //        request.fetchLimit = 10
