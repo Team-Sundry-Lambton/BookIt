@@ -385,7 +385,7 @@
             startingLineNumber = "699"
             endingLineNumber = "699"
             landmarkName = "uploadMedia(name:media:completion:)"
-            landmarkType = "9">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -401,7 +401,7 @@
             startingLineNumber = "696"
             endingLineNumber = "696"
             landmarkName = "uploadMedia(name:media:completion:)"
-            landmarkType = "9">
+            landmarkType = "7">
             <Locations>
                <Location
                   uuid = "3CDC7C9D-8B51-420C-88A1-E81DB5BF33F8 - 968f0bca739ca52e"
@@ -848,8 +848,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "740"
             endingLineNumber = "740"
-            landmarkName = "InitialDataDownloadManager"
-            landmarkType = "21">
+            landmarkName = "updateClientData(client:completion:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1390,7 +1390,7 @@
             startingLineNumber = "551"
             endingLineNumber = "551"
             landmarkName = "addMediaData(media:completion:)"
-            landmarkType = "9">
+            landmarkType = "7">
             <Locations>
                <Location
                   uuid = "DC6D4D2F-A85F-4FCE-87B1-45F617EE6A9E - e01bb2d6e36a7ab7"
@@ -1914,7 +1914,7 @@
             startingLineNumber = "550"
             endingLineNumber = "550"
             landmarkName = "addMediaData(media:completion:)"
-            landmarkType = "9">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1930,7 +1930,7 @@
             startingLineNumber = "559"
             endingLineNumber = "559"
             landmarkName = "addMediaData(media:completion:)"
-            landmarkType = "9">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1946,7 +1946,7 @@
             startingLineNumber = "541"
             endingLineNumber = "541"
             landmarkName = "addMediaData(media:completion:)"
-            landmarkType = "9">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
