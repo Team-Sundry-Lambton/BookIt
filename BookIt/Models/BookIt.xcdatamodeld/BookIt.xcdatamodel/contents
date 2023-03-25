@@ -27,7 +27,7 @@
     <entity name="Category" representedClassName="Category" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="picture" optional="YES" attributeType="String"/>
-        <relationship name="services" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Service" inverseName="parent_Category" inverseEntity="Service"/>
+        <relationship name="services" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Service" inverseName="parent_Category" inverseEntity="Service"/>
     </entity>
     <entity name="Client" representedClassName="Client" syncable="YES" codeGenerationType="class">
         <attribute name="contactNumber" optional="YES" attributeType="String"/>
@@ -37,8 +37,8 @@
         <attribute name="lastName" optional="YES" attributeType="String"/>
         <attribute name="picture" optional="YES" attributeType="Binary"/>
         <relationship name="address" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Address" inverseName="clientAddress" inverseEntity="Address"/>
-        <relationship name="booking" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Booking" inverseName="client" inverseEntity="Booking"/>
-        <relationship name="vendor_Review" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VendorReview" inverseName="client" inverseEntity="VendorReview"/>
+        <relationship name="booking" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Booking" inverseName="client" inverseEntity="Booking"/>
+        <relationship name="vendor_Review" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VendorReview" inverseName="client" inverseEntity="VendorReview"/>
     </entity>
     <entity name="MediaFile" representedClassName="MediaFile" syncable="YES" codeGenerationType="class">
         <attribute name="mediaContent" optional="YES" attributeType="Binary"/>
@@ -58,10 +58,11 @@
         <attribute name="price" optional="YES" attributeType="String"/>
         <attribute name="priceType" optional="YES" attributeType="String"/>
         <attribute name="serviceDescription" optional="YES" attributeType="String"/>
+        <attribute name="serviceId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="serviceTitle" optional="YES" attributeType="String"/>
         <relationship name="address" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Address" inverseName="parentService" inverseEntity="Address"/>
         <relationship name="booking" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Booking" inverseName="service" inverseEntity="Booking"/>
-        <relationship name="medias" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MediaFile" inverseName="parent_Service" inverseEntity="MediaFile"/>
+        <relationship name="medias" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MediaFile" inverseName="parent_Service" inverseEntity="MediaFile"/>
         <relationship name="parent_Category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="services" inverseEntity="Category"/>
         <relationship name="parent_Vendor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Vendor" inverseName="services" inverseEntity="Vendor"/>
     </entity>
@@ -74,9 +75,9 @@
         <attribute name="picture" optional="YES" attributeType="Binary"/>
         <relationship name="account" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="parent_vendor" inverseEntity="Account"/>
         <relationship name="address" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Address" inverseName="vendorAddress" inverseEntity="Address"/>
-        <relationship name="booking" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Booking" inverseName="vendor" inverseEntity="Booking"/>
-        <relationship name="services" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Service" inverseName="parent_Vendor" inverseEntity="Service"/>
-        <relationship name="vendor_Review" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VendorReview" inverseName="vendor" inverseEntity="VendorReview"/>
+        <relationship name="booking" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Booking" inverseName="vendor" inverseEntity="Booking"/>
+        <relationship name="services" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Service" inverseName="parent_Vendor" inverseEntity="Service"/>
+        <relationship name="vendor_Review" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VendorReview" inverseName="vendor" inverseEntity="VendorReview"/>
     </entity>
     <entity name="VendorReview" representedClassName="VendorReview" syncable="YES" codeGenerationType="class">
         <attribute name="comment" optional="YES" attributeType="String"/>

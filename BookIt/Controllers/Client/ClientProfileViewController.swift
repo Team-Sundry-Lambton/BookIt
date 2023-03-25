@@ -50,19 +50,12 @@ class ClientProfileViewController: UIViewController {
     func getClient(){
 
         let user =  UserDefaultsManager.shared.getUserData()
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Client")
-        fetchRequest.predicate = NSPredicate(format: "email = %@", user.email)
-        do {
-            let users = try context.fetch(fetchRequest)
-            if let user = users.first as? Client{
-                nameLbl.text = (user.firstName ?? "") + " " + (user.lastName ?? "")
-                emailLbl.text = user.email
-                if let imageData = user.picture {
-                    self.imageView.image = UIImage(data: imageData)
-                }
+        if let user = CoreDataManager.shared.getClient(email: user.email){
+            nameLbl.text = (user.firstName ?? "") + " " + (user.lastName ?? "")
+            emailLbl.text = user.email
+            if let imageData = user.picture {
+                self.imageView.image = UIImage(data: imageData)
             }
-        } catch {
-            print(error)
         }
     }
     

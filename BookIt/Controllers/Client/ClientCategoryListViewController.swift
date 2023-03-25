@@ -36,7 +36,7 @@ class ClientCategoryListViewController: UIViewController {
         super.viewDidLoad()
         
         // Fetch categories from Core Data
-        loadCategories()
+        categories = CoreDataManager.shared.loadCategories()
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "CategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CategoryCollectionViewCell")
@@ -71,16 +71,6 @@ class ClientCategoryListViewController: UIViewController {
 //            print("Error loading categories \(error.localizedDescription)")
 //        }
 //    }
-    
-    func loadCategories() {
-        let request: NSFetchRequest<Category> = Category.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-        do {
-            categories = try context.fetch(request)
-        } catch {
-            print("Error loading categories \(error.localizedDescription)")
-        }
-    }
     
 }
 

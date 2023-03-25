@@ -57,8 +57,8 @@ class BannerTableViewCell: UITableViewCell {
     
     //MARK: - Init
     
-    func configureCell(serviceTitle : String?) {
-        getImageArray(serviceTitle: serviceTitle)
+    func configureCell(serviceId : Int?) {
+        getImageArray(serviceId: serviceId)
         setSubviews()
         setLayouts()
     }
@@ -93,15 +93,16 @@ class BannerTableViewCell: UITableViewCell {
         
     }
     
-    func getImageArray(serviceTitle : String?){
+    func getImageArray(serviceId : Int?){
         imageViewArray.removeAll()
-        if let title = serviceTitle {
-            let mediaList = CoreDataManager.shared.getMediaList(serviceTitle : title)
+        if let id = serviceId {
+            let mediaList = CoreDataManager.shared.getMediaList(serviceId : id)
             if mediaList.count > 0 {
                 for media in mediaList {
                     if let imageData = media.mediaContent {
                         let imageView = UIImageView(image:UIImage(data: imageData))
                         imageViewArray.append(imageView)
+                        print("Service ID: ", media.parent_Service?.serviceId);
                     }else{
                         let imageView = UIImageView(image: UIImage(named: "\(0)"))
                         imageViewArray.append(imageView)
@@ -111,7 +112,6 @@ class BannerTableViewCell: UITableViewCell {
                 let imageView = UIImageView(image: UIImage(named: "\(0)"))
                 imageViewArray.append(imageView)
             }
-         print(title)
         }else{
             for i in 0...5 {
                 let imageView = UIImageView(image: UIImage(named: "\(i)"))

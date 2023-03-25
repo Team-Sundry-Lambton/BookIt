@@ -58,8 +58,8 @@ class ConfirmLocationViewController: UIViewController {
     @IBAction func confirmLocation() {
       
         if (UserDefaultsManager.shared.getUserLogin()){
-            if (checkLocationInDB(place: currentAddress)){
-                deleteLocation(place: currentAddress)
+            if (CoreDataManager.shared.checkClientLocationInDB(email: client?.email ?? "")){
+                CoreDataManager.shared.deleteClientLocation(email: client?.email ?? "")
                 setLocationObject(isUpdate: true)
                 UIAlertViewExtention.shared.showBasicAlertView(title: "Success",message: "Location updated successfully.", okActionTitle: "OK", view: self)
                 
@@ -82,8 +82,10 @@ class ConfirmLocationViewController: UIViewController {
         selectedLocation.clientAddress = client
         saveLocation()
         if isUpdate {
+            LoadingHudManager.shared.showSimpleHUD(title: "Updating...", view: self.view)
             InitialDataDownloadManager.shared.updateAddressData(addressObject: selectedLocation){ status in
                 DispatchQueue.main.async {
+                    LoadingHudManager.shared.dissmissHud()
                     if let status = status{
                         if status == false {
                             UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
@@ -92,8 +94,10 @@ class ConfirmLocationViewController: UIViewController {
                 }
             }
         }else{
+            LoadingHudManager.shared.showSimpleHUD(title: "Inserting...", view: self.view)
             InitialDataDownloadManager.shared.addAddressData(address: selectedLocation){ status in
                 DispatchQueue.main.async {
+                    LoadingHudManager.shared.dissmissHud()
                     if let status = status{
                         if status == false {
                             UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
@@ -106,49 +110,8 @@ class ConfirmLocationViewController: UIViewController {
     }
     
     func getClient(){
-
         let user =  UserDefaultsManager.shared.getUserData()
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Client")
-        fetchRequest.predicate = NSPredicate(format: "email = %@", user.email)
-        do {
-            let users = try context.fetch(fetchRequest)
-            client = users.first as? Client
-        } catch {
-            print(error)
-        }
-    }
-    
-    func deleteLocation(place : PlaceObject?) {
-        
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Address")
-        if let currentPlace = place{
-            fetchRequest.predicate = NSPredicate(format: "clientAddress.email = %@",client?.email ?? "")
-        }
-        do {
-            let location = try context.fetch(fetchRequest)
-            if let slectedLocation = location.first as? NSManagedObject {
-                context.delete(slectedLocation)
-            }
-        } catch {
-            print(error)
-        }
-    }
-    
-    func checkLocationInDB(place: PlaceObject?)-> Bool{
-        var success = false
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Address")
-        if let currentPlace = place{
-            fetchRequest.predicate = NSPredicate(format: "clientAddress.email = %@", client?.email ?? "")
-        }
-        do {
-            let location = try context.fetch(fetchRequest)
-            if location.count >= 1 {
-                success = true
-            }
-        } catch {
-            print(error)
-        }
-        return success
+        client = CoreDataManager.shared.getClient(email: user.email)
     }
     
     func saveLocation() {

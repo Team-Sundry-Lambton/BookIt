@@ -57,22 +57,13 @@ class VendorProfileViewController: UIViewController {
     }
     
     func getVendor(){
-
         let user =  UserDefaultsManager.shared.getUserData()
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Vendor")
-        fetchRequest.predicate = NSPredicate(format: "email = %@", user.email)
-        do {
-            let users = try context.fetch(fetchRequest)
-            if let user = users.first as? Vendor{
-                vendor = user
-                nameLbl.text = (user.firstName ?? "") + " " + (user.lastName ?? "")
-                emailLbl.text = user.email
-                if let imageData = user.picture {
-                    self.imageView.image = UIImage(data: imageData)
-                }
+        if let user = CoreDataManager.shared.getVendor(email: user.email){
+            nameLbl.text = (user.firstName ?? "") + " " + (user.lastName ?? "")
+            emailLbl.text = user.email
+            if let imageData = user.picture {
+                self.imageView.image = UIImage(data: imageData)
             }
-        } catch {
-            print(error)
         }
     }
 

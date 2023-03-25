@@ -108,13 +108,13 @@ class ClientHomeViewController: UIViewController {
     }
     
     func loadData(){
-        loadCategories()
+        categoryList = CoreDataManager.shared.loadCategories()
         categoryCollectioView.reloadData()
         
         loadNewVendors()
         newVendersCollectionView.reloadData()
         
-        loadServices()
+        serviceList = CoreDataManager.shared.loadServices()
         serviceListHeightConstrain.constant = CGFloat((serviceList.count) * 125)
         serviceListTableView.reloadData()
     }
@@ -205,7 +205,7 @@ extension ClientHomeViewController: UITableViewDelegate, UITableViewDataSource {
             }
         }else
         {
-            return serviceList.count
+            return serviceList.count > 5 ? 5 : serviceList.count
         }
     }
     
@@ -214,7 +214,7 @@ extension ClientHomeViewController: UITableViewDelegate, UITableViewDataSource {
             switch mySections[indexPath.section] {
             case .banner:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: BannerTableViewCell.identifier, for: indexPath) as? BannerTableViewCell else { return UITableViewCell() }
-                cell.configureCell(serviceTitle: nil)
+                cell.configureCell(serviceId: nil)
                 self.bannerViews = cell.bannerViews
                 
                 cell.myScrollView.delegate = self
@@ -364,7 +364,7 @@ extension ClientHomeViewController :UICollectionViewDataSource, UICollectionView
             return 4
         }
         else{
-            return vendorList.count
+            return vendorList.count > 10 ? 10 : vendorList.count
         }
     }
     
@@ -428,18 +428,6 @@ extension ClientHomeViewController :UICollectionViewDataSource, UICollectionView
 
 //MARK: - Core data interaction methods
 extension ClientHomeViewController {
-
-    /// load Category from core data
-    func loadCategories() {
-        let request: NSFetchRequest<Category> = Category.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-        request.fetchLimit = 5
-        do {
-            categoryList = try context.fetch(request)
-        } catch {
-            print("Error loading categories \(error.localizedDescription)")
-        }
-    }
     
     func loadNewVendors(){
         let request: NSFetchRequest<Vendor> = Vendor.fetchRequest()      
@@ -450,17 +438,6 @@ extension ClientHomeViewController {
             vendorList = try context.fetch(request)
         } catch {
             print("Error loading Vendor \(error.localizedDescription)")
-        }
-    }
-    
-    func loadServices(){
-        let request: NSFetchRequest<Service> = Service.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "serviceTitle", ascending: true)]
-        request.fetchLimit = 5
-        do {
-            serviceList = try context.fetch(request)
-        } catch {
-            print("Error loading Service \(error.localizedDescription)")
         }
     }
 }
