@@ -361,16 +361,34 @@ class PostServiceViewController: UIViewController {
             serivice.equipment = isEquipmentNeed
             let user =  UserDefaultsManager.shared.getUserData()
             serivice.parent_Vendor = CoreDataManager.shared.getVendor(email: user.email)
+            if editMode{
+                LoadingHudManager.shared.showSimpleHUD(title: "Uploading...", view: self.view)
+                    Task {
+                        await InitialDataDownloadManager.shared.updateServiceData(service: serivice){ status in
+                            DispatchQueue.main.async {
+                                LoadingHudManager.shared.dissmissHud()
+                                if let status = status {
+                                    if status {
+                                        self.saveAllContextCoreData()
+                                    }else{
+                                        UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
+                                    }
+                                }
+                            }
+                        }
+                    }
+            }else{
             LoadingHudManager.shared.showSimpleHUD(title: "Uploading...", view: self.view)
-            Task {
-                await InitialDataDownloadManager.shared.addServiceData(service: serivice){ status in
-                    DispatchQueue.main.async {
-                        LoadingHudManager.shared.dissmissHud()
-                        if let status = status {
-                            if status {
-                                self.saveAllContextCoreData()
-                            }else{
-                                UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
+                Task {
+                    await InitialDataDownloadManager.shared.addServiceData(service: serivice){ status in
+                        DispatchQueue.main.async {
+                            LoadingHudManager.shared.dissmissHud()
+                            if let status = status {
+                                if status {
+                                    self.saveAllContextCoreData()
+                                }else{
+                                    UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
+                                }
                             }
                         }
                     }
