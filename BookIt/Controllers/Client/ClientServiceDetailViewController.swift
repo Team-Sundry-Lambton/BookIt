@@ -241,15 +241,16 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
                 }
             }else{
                 //Redirect to service booking page
-                if let viewController = UIStoryboard(name: "ClientDashBoard", bundle: nil).instantiateViewController(withIdentifier: "ClientBookVendorViewController") as? ClientBookingViewController {
+                if let viewController = UIStoryboard(name: "ClientDashBoard", bundle: nil).instantiateViewController(withIdentifier: "ClientBookVendorViewController") as? ClientBookVendorViewController {
                     if let navigator = navigationController {
                         viewController.selectedService = selectedService
                         navigator.pushViewController(viewController, animated: true)
                     }
                 }
+                
             }
-            
-        }else{
+        }
+            else{
             UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Please regiter first to book a service. Please go to profile tab for register", okActionTitle: "OK", view: self)
         }
     }
