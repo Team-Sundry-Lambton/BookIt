@@ -37,7 +37,11 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
     @IBOutlet weak var tvReviews: UITableView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var ivAvatar: UIImageView!
-    
+    @IBOutlet weak var lblVendorRating: UILabel!
+    @IBOutlet weak var lblServiceRating: UILabel!
+    @IBOutlet weak var bookNowBtn: UIButton!
+    @IBOutlet weak var viewVendorDetails: UIView!
+    @IBOutlet weak var vendorDetailHeightConstrain: NSLayoutConstraint!
     let fullSizeWidth = UIScreen.main.bounds.width
     var bannerViews: [UIImageView] = []
     var timer = Timer()
@@ -54,6 +58,7 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
     var openMap = false
     var vendorReviewList = [VendorReview]()
     var vendor : Vendor?
+    var isVendor = false
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -61,6 +66,16 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
         addBorder()
         interfaceSegmented.delegate = self
         loadServiceDetail()
+        
+        if isVendor {
+            bookNowBtn.setTitle("Edit", for: .normal)
+            viewVendorDetails.isHidden = true
+            vendorDetailHeightConstrain.constant = 0
+        }else{
+            bookNowBtn.setTitle("Book Now", for: .normal)
+            viewVendorDetails.isHidden = false
+            vendorDetailHeightConstrain.constant = 85
+        }
         
         tvReviews.delegate = self
         tvReviews.dataSource = self
@@ -111,12 +126,39 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
         tvDescription.text = selectedService?.serviceDescription
         getVendor()
         vendorReviewList = CoreDataManager.shared.getVendorReviewList(email: vendor?.email ?? "")
+        dipalyServiceReview()
+        dipalyVendorReview()
     }
     
     func loadMap(){
         let latitude: CLLocationDegrees = selectedService?.address?.addressLatitude ?? 43.691221
         let longitude: CLLocationDegrees = selectedService?.address?.addressLongitude ?? -79.3383039
         displayLocation(latitude: latitude, longitude: longitude, title: selectedService?.serviceTitle ?? "N/A", subtitle: selectedService?.address?.address ?? "Not found address")
+    }
+    
+    func dipalyServiceReview(){
+        let serviceReviewList = CoreDataManager.shared.getServiceReviewList(serviceId: Int(selectedService?.serviceId ?? -1))
+        var reviewTotal = 0
+        var rate = 0
+        for review in serviceReviewList {
+            reviewTotal += Int(review.rating)
+        }
+        if serviceReviewList.count > 0 {
+            rate = reviewTotal / serviceReviewList.count
+        }
+        lblServiceRating.text =  String(rate) + " ( " + String(serviceReviewList.count) + " reviews )"
+    }
+    
+    func dipalyVendorReview(){
+        var reviewTotal = 0
+        var rate = 0
+        for review in vendorReviewList {
+            reviewTotal += Int(review.rating)
+        }
+        if vendorReviewList.count > 0 {
+            rate = reviewTotal / vendorReviewList.count
+        }
+        lblVendorRating.text = String(rate)
     }
     
     //MARK: - display user location method
@@ -190,7 +232,16 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
     
     @IBAction func bookButtonPressed() {
         if (UserDefaultsManager.shared.getUserLogin()){
-            //Redirect ot Booking Page
+            if isVendor {
+                if let viewController = UIStoryboard(name: "PostService", bundle: nil).instantiateViewController(withIdentifier: "PostServiceViewController") as? PostServiceViewController {
+                    if let navigator = navigationController {
+                        viewController.selectedService = selectedService
+                        navigator.pushViewController(viewController, animated: true)
+                    }
+                }
+            }else{
+                //Redirect to service booking page
+            }
             
         }else{
             UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Please regiter first to book a service. Please go to profile tab for register", okActionTitle: "OK", view: self)

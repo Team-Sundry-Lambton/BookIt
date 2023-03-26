@@ -23,7 +23,6 @@ class VendorServicesViewController: UIViewController {
     @IBAction func addNewService(){
         if let viewController = UIStoryboard(name: "PostService", bundle: nil).instantiateViewController(withIdentifier: "PostServiceViewController") as? PostServiceViewController {
             if let navigator = navigationController {
-                viewController.loginUser = loginUser
                 navigator.pushViewController(viewController, animated: true)
             }
         }
