@@ -910,42 +910,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose timing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="obn-9J-HAQ">
-                                <rect key="frame" x="20" y="42" width="149" height="20.333333333333329"/>
+                                <rect key="frame" x="20" y="42" width="149" height="24"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Tnd-nO-MYw">
-                                <rect key="frame" x="16" y="102.33333333333333" width="150" height="29.999999999999986"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LUH-Od-yVq" customClass="CustomRadioButton" customModule="BookIt" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="30" id="TUc-wM-0Ro"/>
-                                        </constraints>
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain">
-                                            <backgroundConfiguration key="background">
-                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            </backgroundConfiguration>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="radioBtnImmediately:" destination="KEd-RA-Cae" eventType="touchUpInside" id="sya-wS-LfQ"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="immediately" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6j-JT-8sr">
-                                        <rect key="frame" x="35" y="0.0" width="115" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="G4q-8v-9fz"/>
-                                    <constraint firstAttribute="width" constant="150" id="RYb-KT-k5R"/>
-                                </constraints>
-                            </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="B66-9H-acX">
                                 <rect key="frame" x="205" y="102" width="160" height="30"/>
                                 <subviews>
@@ -977,19 +946,8 @@
                                     <constraint firstAttribute="width" constant="160" id="qUP-hm-Lf8"/>
                                 </constraints>
                             </stackView>
-                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="247" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Choose Time" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c2y-r5-fWt">
-                                <rect key="frame" x="220" y="149" width="174" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="174" id="Q2u-0j-M4R"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="image" keyPath="rightIcon" value="TimeIcon"/>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
-                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Choose Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l7x-Xl-TkP">
-                                <rect key="frame" x="20" y="149" width="174" height="34"/>
+                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Choose Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l7x-Xl-TkP">
+                                <rect key="frame" x="20" y="171" width="175" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
@@ -1033,11 +991,11 @@
                                 </buttonConfiguration>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="describeProblem" translatesAutoresizingMaskIntoConstraints="NO" id="RuN-ik-p0g" customClass="BorderTextView" customModule="BookIt" customModuleProvider="target">
-                                <rect key="frame" x="20" y="210" width="374" height="126"/>
+                                <rect key="frame" x="20" y="236" width="374" height="126"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <accessibility key="accessibilityConfiguration" identifier="describeProblem"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="126" id="KJr-WF-EjW"/>
+                                    <constraint firstAttribute="height" constant="126" id="Lsy-b8-fvw"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1060,29 +1018,70 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textView>
+                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="247" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Choose Time" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c2y-r5-fWt">
+                                <rect key="frame" x="219" y="171" width="175" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="175" id="sJ9-h4-45f"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="rightIcon" value="TimeIcon"/>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Tnd-nO-MYw">
+                                <rect key="frame" x="19" y="102" width="150" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LUH-Od-yVq" customClass="CustomRadioButton" customModule="BookIt" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="TUc-wM-0Ro"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain">
+                                            <backgroundConfiguration key="background">
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </backgroundConfiguration>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="radioBtnImmediately:" destination="KEd-RA-Cae" eventType="touchUpInside" id="sya-wS-LfQ"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="immediately" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6j-JT-8sr">
+                                        <rect key="frame" x="35" y="0.0" width="115" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="G4q-8v-9fz"/>
+                                    <constraint firstAttribute="width" constant="150" id="RYb-KT-k5R"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="msI-VT-iJw"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="B66-9H-acX" firstAttribute="leading" secondItem="Tnd-nO-MYw" secondAttribute="trailing" constant="39" id="0Os-Nd-QiG"/>
-                            <constraint firstItem="l7x-Xl-TkP" firstAttribute="top" secondItem="V6j-JT-8sr" secondAttribute="bottom" constant="50.666666666666686" id="8Ll-ry-0tj"/>
+                            <constraint firstItem="B66-9H-acX" firstAttribute="leading" secondItem="Tnd-nO-MYw" secondAttribute="trailing" constant="36" id="0Os-Nd-QiG"/>
+                            <constraint firstItem="c2y-r5-fWt" firstAttribute="top" secondItem="l7x-Xl-TkP" secondAttribute="top" id="2z5-vR-fhH"/>
                             <constraint firstItem="msI-VT-iJw" firstAttribute="bottom" secondItem="5tO-t0-phD" secondAttribute="bottom" constant="20" id="916-po-ssI"/>
-                            <constraint firstItem="Tnd-nO-MYw" firstAttribute="leading" secondItem="msI-VT-iJw" secondAttribute="leading" constant="16" id="9dw-Sy-aoE"/>
-                            <constraint firstItem="RuN-ik-p0g" firstAttribute="top" secondItem="c2y-r5-fWt" secondAttribute="bottom" constant="27" id="Arm-w5-BDz"/>
+                            <constraint firstItem="Tnd-nO-MYw" firstAttribute="leading" secondItem="msI-VT-iJw" secondAttribute="leading" constant="19" id="9dw-Sy-aoE"/>
+                            <constraint firstItem="c2y-r5-fWt" firstAttribute="top" secondItem="B66-9H-acX" secondAttribute="bottom" constant="39" id="Azt-Yj-hwX"/>
+                            <constraint firstItem="RuN-ik-p0g" firstAttribute="trailing" secondItem="c2y-r5-fWt" secondAttribute="trailing" id="EbL-pW-aZ2"/>
                             <constraint firstItem="msI-VT-iJw" firstAttribute="trailing" secondItem="tLz-co-J7P" secondAttribute="trailing" constant="82" id="Ewp-Fb-AMp"/>
-                            <constraint firstItem="c2y-r5-fWt" firstAttribute="leading" secondItem="l7x-Xl-TkP" secondAttribute="trailing" constant="26" id="Fzl-h7-FFD"/>
-                            <constraint firstItem="c2y-r5-fWt" firstAttribute="trailing" secondItem="RuN-ik-p0g" secondAttribute="trailing" id="HHy-AT-cED"/>
-                            <constraint firstItem="l7x-Xl-TkP" firstAttribute="leading" secondItem="msI-VT-iJw" secondAttribute="leading" constant="20" id="IQh-XY-8dH"/>
-                            <constraint firstItem="c2y-r5-fWt" firstAttribute="top" secondItem="Amo-Ja-mRQ" secondAttribute="bottom" constant="51" id="Szr-HJ-bqA"/>
-                            <constraint firstItem="Tnd-nO-MYw" firstAttribute="top" secondItem="obn-9J-HAQ" secondAttribute="bottom" constant="40" id="W8C-oj-GVC"/>
-                            <constraint firstItem="RuN-ik-p0g" firstAttribute="top" secondItem="Ek5-dn-ejn" secondAttribute="top" constant="210" id="fSN-Dr-ROE"/>
+                            <constraint firstItem="l7x-Xl-TkP" firstAttribute="top" secondItem="Tnd-nO-MYw" secondAttribute="bottom" constant="39" id="HyV-dc-Osb"/>
+                            <constraint firstItem="RuN-ik-p0g" firstAttribute="trailing" secondItem="5tO-t0-phD" secondAttribute="trailing" id="ToB-LK-CNR"/>
+                            <constraint firstItem="RuN-ik-p0g" firstAttribute="top" secondItem="l7x-Xl-TkP" secondAttribute="bottom" constant="31" id="TqS-qh-pmI"/>
+                            <constraint firstItem="Tnd-nO-MYw" firstAttribute="top" secondItem="obn-9J-HAQ" secondAttribute="bottom" constant="36" id="W8C-oj-GVC"/>
+                            <constraint firstItem="RuN-ik-p0g" firstAttribute="leading" secondItem="l7x-Xl-TkP" secondAttribute="leading" id="bX0-oN-Xb5"/>
+                            <constraint firstItem="RuN-ik-p0g" firstAttribute="leading" secondItem="obn-9J-HAQ" secondAttribute="leading" id="fuS-EL-zZC"/>
                             <constraint firstItem="msI-VT-iJw" firstAttribute="trailing" secondItem="5tO-t0-phD" secondAttribute="trailing" constant="20" id="grd-4i-YQG"/>
-                            <constraint firstItem="RuN-ik-p0g" firstAttribute="leading" secondItem="l7x-Xl-TkP" secondAttribute="leading" id="myw-79-cC5"/>
-                            <constraint firstItem="RuN-ik-p0g" firstAttribute="trailing" secondItem="5tO-t0-phD" secondAttribute="trailing" id="nG6-4d-6kv"/>
+                            <constraint firstItem="c2y-r5-fWt" firstAttribute="leading" secondItem="l7x-Xl-TkP" secondAttribute="trailing" constant="24" id="iuR-I0-Hak"/>
                             <constraint firstItem="tLz-co-J7P" firstAttribute="leading" secondItem="msI-VT-iJw" secondAttribute="leading" constant="82" id="ou4-Hu-fhp"/>
                             <constraint firstItem="msI-VT-iJw" firstAttribute="trailing" secondItem="obn-9J-HAQ" secondAttribute="trailing" constant="245" id="p1t-I7-eJa"/>
                             <constraint firstItem="B66-9H-acX" firstAttribute="top" secondItem="msI-VT-iJw" secondAttribute="top" constant="102" id="r0e-E0-fpk"/>
-                            <constraint firstItem="RuN-ik-p0g" firstAttribute="centerX" secondItem="tLz-co-J7P" secondAttribute="centerX" id="tXb-Cs-tbx"/>
                             <constraint firstItem="5tO-t0-phD" firstAttribute="leading" secondItem="msI-VT-iJw" secondAttribute="leading" constant="20" id="tqI-v2-ieA"/>
                             <constraint firstItem="obn-9J-HAQ" firstAttribute="leading" secondItem="msI-VT-iJw" secondAttribute="leading" constant="20" id="xac-CS-OyF"/>
                             <constraint firstItem="obn-9J-HAQ" firstAttribute="top" secondItem="msI-VT-iJw" secondAttribute="top" constant="42" id="zMT-uL-ldN"/>
