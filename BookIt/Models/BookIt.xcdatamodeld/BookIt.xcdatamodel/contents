@@ -65,6 +65,7 @@
         <relationship name="medias" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MediaFile" inverseName="parent_Service" inverseEntity="MediaFile"/>
         <relationship name="parent_Category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="services" inverseEntity="Category"/>
         <relationship name="parent_Vendor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Vendor" inverseName="services" inverseEntity="Vendor"/>
+        <relationship name="review" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VendorReview" inverseName="service" inverseEntity="VendorReview"/>
     </entity>
     <entity name="Vendor" representedClassName="Vendor" syncable="YES" codeGenerationType="class">
         <attribute name="bannerURL" optional="YES" attributeType="String"/>
@@ -85,6 +86,7 @@
         <attribute name="rating" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="vendorRating" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="client" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Client" inverseName="vendor_Review" inverseEntity="Client"/>
+        <relationship name="service" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Service" inverseName="review" inverseEntity="Service"/>
         <relationship name="vendor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Vendor" inverseName="vendor_Review" inverseEntity="Vendor"/>
     </entity>
 </model>

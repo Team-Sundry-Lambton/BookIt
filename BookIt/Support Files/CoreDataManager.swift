@@ -298,6 +298,19 @@ class CoreDataManager : NSObject{
         }
     }
     
+    func getServiceReviewList(serviceId : Int) -> [VendorReview]{
+        var vendorReview = [VendorReview]()
+        let request: NSFetchRequest<VendorReview> = VendorReview.fetchRequest()
+            let folderPredicate = NSPredicate(format: "service.serviceId=%i AND vendorRating=true", serviceId)
+            request.predicate = folderPredicate
+        do {
+            vendorReview = try context.fetch(request)
+        } catch {
+            print("Error loading VendorReview \(error.localizedDescription)")
+        }
+       return vendorReview
+    }
+    
     func deleteVendors() {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName:"Vendor")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)

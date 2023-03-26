@@ -77,12 +77,32 @@
                                         <color key="textColor" red="0.60392156860000001" green="0.602715373" blue="0.602715373" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="36f-1p-gur">
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Rzy-qk-IDt">
                                         <rect key="frame" x="0.0" y="13.666666666666671" width="295" height="13.333333333333336"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="36f-1p-gur">
+                                                <rect key="frame" x="0.0" y="0.0" width="249" height="13.333333333333334"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star12px" translatesAutoresizingMaskIntoConstraints="NO" id="2Hv-Q8-Dig">
+                                                <rect key="frame" x="252" y="0.0" width="15" height="13.333333333333334"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="15" id="2Jd-xu-qK3"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5.0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5aG-6b-R6y">
+                                                <rect key="frame" x="270" y="0.0" width="25" height="13.333333333333334"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="25" id="osP-6Y-c7R"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" red="0.60392156860000001" green="0.602715373" blue="0.602715373" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -115,6 +135,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="descriptionLbl" destination="H79-Nl-F3d" id="NmM-P8-Wbw"/>
+                <outlet property="lblServiceRating" destination="5aG-6b-R6y" id="SA1-dV-arP"/>
                 <outlet property="locationLbl" destination="hpq-Ib-ee4" id="Kph-gt-Wah"/>
                 <outlet property="nameLbl" destination="36f-1p-gur" id="77t-Vk-262"/>
                 <outlet property="pricetLbl" destination="QdF-iK-H8B" id="OsK-RQ-ZUO"/>
@@ -127,6 +148,7 @@
     <resources>
         <image name="0" width="375" height="240"/>
         <image name="ServiceConformCell" width="340" height="119"/>
+        <image name="star12px" width="12" height="12"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

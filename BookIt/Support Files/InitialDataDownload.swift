@@ -289,6 +289,13 @@ class InitialDataDownloadManager : NSObject{
                         }
                     }
                 }
+                if let parentService = data["parentService"]  as? Int {
+                    if parentService != -1 {
+                        if let service = CoreDataManager.shared.getService(serviceId: parentService){
+                            review.service = service
+                        }
+                    }
+                }
                 self.saveData()
             }
         }catch{
@@ -580,7 +587,7 @@ extension InitialDataDownloadManager {
         }
         var ref: DocumentReference? = nil
         ref = db.collection("booking").addDocument(data: [
-            "date": booking.date,
+            "date": booking.date ?? Date(),
             "status": booking.status ?? "",
             "parentService": serviceId ?? -1,
             "clientEmailAddress": clientEmail ?? "",
@@ -610,7 +617,7 @@ extension InitialDataDownloadManager {
         var ref: DocumentReference? = nil
         ref = db.collection("payment").addDocument(data: [
             "amount": payment.amount,
-            "date": payment.date,
+            "date": payment.date ?? Date(),
             "status": payment.status ?? "",
             "clientEmailAddress": clientEmail ?? "",
             "vendorEmailAddress": vendorEmail ?? "",
@@ -636,15 +643,21 @@ extension InitialDataDownloadManager {
         if let vendor = vendorReview.vendor {
             vendorEmail = vendor.email
         }
+        
+        var serviceId : Int?
+        if let service = vendorReview.service {
+            serviceId = Int(service.serviceId)
+        }
 
         var ref: DocumentReference? = nil
         ref = db.collection("vendorReview").addDocument(data: [
             "rating": vendorReview.rating,
-            "date": vendorReview.date,
+            "date": vendorReview.date ?? Date(),
             "comment": vendorReview.comment ?? "",
             "clientEmailAddress": clientEmail ?? "",
             "vendorEmailAddress": vendorEmail ?? "",
-            "vendorRating" : vendorReview.vendorRating
+            "vendorRating" : vendorReview.vendorRating,
+            "parentService": serviceId ?? -1,
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
@@ -761,7 +774,7 @@ extension InitialDataDownloadManager{
                                             "email": email,
                                             "lastName": lastName,
                                             "firstName": firstName,
-                                            "bannerURL": vendor.bannerURL,
+                                            "bannerURL": vendor.bannerURL ?? "",
                                             "picture": picturePath ?? "",
                                         ])
                                         completion(true)
