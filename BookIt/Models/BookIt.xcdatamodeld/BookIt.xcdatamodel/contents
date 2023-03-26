@@ -36,6 +36,7 @@
         <attribute name="firstName" optional="YES" attributeType="String"/>
         <attribute name="isPremium" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String"/>
+        <attribute name="password" optional="YES" attributeType="String"/>
         <attribute name="picture" optional="YES" attributeType="Binary"/>
         <relationship name="address" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Address" inverseName="clientAddress" inverseEntity="Address"/>
         <relationship name="booking" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Booking" inverseName="client" inverseEntity="Booking"/>
@@ -74,6 +75,7 @@
         <attribute name="email" optional="YES" attributeType="String"/>
         <attribute name="firstName" optional="YES" attributeType="String"/>
         <attribute name="lastName" optional="YES" attributeType="String"/>
+        <attribute name="password" optional="YES" attributeType="String"/>
         <attribute name="picture" optional="YES" attributeType="Binary"/>
         <relationship name="account" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="parent_vendor" inverseEntity="Account"/>
         <relationship name="address" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Address" inverseName="vendorAddress" inverseEntity="Address"/>

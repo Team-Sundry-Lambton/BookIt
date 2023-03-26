@@ -6,25 +6,17 @@
 //
 
 import UIKit
-import FacebookLogin
-import CoreData
-import GoogleSignIn
 import AuthenticationServices
 import JGProgressHUD
 
 class ViewController: UIViewController {
-    
+      
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var isVendor = false
     private let biometricIDAuth = BiometricIDAuth()
-    
-    
-    @IBOutlet weak var appleLoginBtn: ASAuthorizationAppleIDButton!
-    @IBOutlet weak var vendorStatus: UISwitch!{
+
+    @IBOutlet weak var vendorStatus: UISegmentedControl!{
         didSet{
-            vendorStatus.onTintColor = UIColor.switchBackgroundColor
-            vendorStatus.tintColor = UIColor.switchBackgroundColor
-            vendorStatus.subviews[0].subviews[0].backgroundColor = UIColor.switchBackgroundColor
         }
     }
     
@@ -33,44 +25,43 @@ class ViewController: UIViewController {
         NetworkMonitor.shared.setObserve(viewController: self)
     }
 
-    @IBAction func vendorByPass(_ sender: Any) {
-        let lastName = "Admin"
-        let email = "admin@gmail.com"
-        let firstName = "Admin"
-        var loginUser = LoginUser(firstName: firstName, lastName: lastName, email: email, contactNumber: "123456789",isVendor: self.isVendor)
-        loginUser.picture = nil
-        self.checkUserAvailablility(user: loginUser)
+    @IBAction func loginButtonClicked(_ sender: Any) {
+        
+        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
+            if let navigator = navigationController {
+                viewController.isVendor = isVendor
+                viewController.delegate = self
+                navigator.pushViewController(viewController, animated: true)
+            }
+        }
+      
     }
     
+    @IBAction func signUpButtonClicked(_ sender: Any) {
+        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SignupViewController") as? SignupViewController {
+            if let navigator = navigationController {
+                viewController.isVendor = isVendor
+                viewController.delegate = self
+                navigator.pushViewController(viewController, animated: true)
+            }
+        }
+    }
     
     @IBAction func continueGuest() {
         loadDashBoard(user: nil)
     }
-    @IBAction func facebookLogin(_ sender: Any) {
-        fetchFacebookFields();
-    }
+   
     
-    @IBAction func vendorStatus(sender: UISwitch) {
-        if (sender.isOn == true){
+    @IBAction func vendorStatus(_ sender: Any) {
+        switch vendorStatus.selectedSegmentIndex {
+        case 0:
+            isVendor = false
+        case 1 :
             isVendor = true
-        }else{
+        default:
             isVendor = false
         }
     }
-    
-    @IBAction func googleLogin(sender: Any) {
-        getGoogleUser()
-    }
-    
-    @IBAction func appleLogin(sender: Any) {
-        handleLogInWithAppleID()
-    }
-    
-    //    @IBAction func signOut(sender: Any) {
-    //      GIDSignIn.sharedInstance.signOut()
-    //    let loginManager = LoginManager()
-    //    loginManager.logOut()
-    //    }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
@@ -151,115 +142,6 @@ class ViewController: UIViewController {
                 let loginUser = LoginUser(firstName: user.firstName ?? "", lastName: user.lastName ?? "", email: user.email ?? "", contactNumber: user.contactNumber ?? "",isVendor: isVendor)
                 UserDefaultsManager.shared.saveUserData(user: loginUser)
             }
-        }
-    }
-}
-
-
-
-// MARK: - Facebook Login
-extension ViewController{
-    func fetchFacebookFields(){
-        
-        LoginManager().logIn(permissions: ["email","public_profile"], from: nil) {
-            (result, error) -> Void in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
-            guard let result = result else { return }
-            if result.isCancelled { return }
-            else {
-                
-                GraphRequest(graphPath: "me", parameters: ["fields" : "first_name, last_name, email, birthday, gender, hometown"]).start() {
-                    (connection, result, error) in
-                    if let error = error {
-                        print(error.localizedDescription)
-                        return
-                    }
-                    if
-                        let fields = result as? [String:Any],
-                        let userID = fields["id"] as? String,
-                        let firstName = fields["first_name"] as? String,
-                        let lastName = fields["last_name"] as? String,
-                        let email = fields["email"] as? String
-                            
-                    {
-                        let facebookProfileUrl = "http://graph.facebook.com/\(userID)/picture?type=large"
-                        print("firstName -> \(firstName)")
-                        print("lastName -> \(lastName)")
-                        print("email -> \(email)")
-                        print("facebookProfileUrl -> \(facebookProfileUrl)")
-                        
-                        var loginUser = LoginUser(firstName: firstName, lastName: lastName, email: email, contactNumber: "",isVendor: self.isVendor)
-                        if let url = URL(string: facebookProfileUrl) {
-                            loginUser.picture = url
-                        }
-                        
-                        self.checkUserAvailablility(user: loginUser)
-                        
-                    }
-                }
-            }
-        }
-    }
-}
-
-// MARK: - Google Login
-extension ViewController{
-    
-    func getGoogleUser(){
-        GIDSignIn.sharedInstance.signIn(withPresenting: self) { signInResult, error in
-            guard error == nil else { return }
-            guard let signInResult = signInResult else { return }
-            
-            let user = signInResult.user
-            
-            let emailAddress = user.profile?.email ?? ""
-            
-            let givenName = user.profile?.givenName ?? ""
-            let familyName = user.profile?.familyName ?? ""
-            
-            let profilePicUrl = user.profile?.imageURL(withDimension: 320) ?? nil
-            
-            var loginUser = LoginUser(firstName: givenName, lastName: familyName, email: emailAddress, contactNumber: "",isVendor: self.isVendor)
-            loginUser.picture = profilePicUrl
-            self.checkUserAvailablility(user: loginUser)
-        }
-    }
-}
-
-// MARK: - Apple Login
-extension ViewController: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
-    
-    func handleLogInWithAppleID() {
-        let request = ASAuthorizationAppleIDProvider().createRequest()
-        request.requestedScopes = [.fullName, .email,]
-        
-        let controller = ASAuthorizationController(authorizationRequests: [request])
-        
-        controller.delegate = self
-        controller.presentationContextProvider = self
-        
-        controller.performRequests()
-    }
-    
-    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
-        return self.view.window!
-    }
-    
-    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        switch authorization.credential {
-        case let appleIDCredential as ASAuthorizationAppleIDCredential:
-            let lastName = appleIDCredential.fullName?.familyName ?? ""
-            let email = appleIDCredential.email ?? ""
-            let firstName = appleIDCredential.fullName?.givenName ?? ""
-            var loginUser = LoginUser(firstName: firstName, lastName: lastName, email: email, contactNumber: "",isVendor: self.isVendor)
-            loginUser.picture = nil
-            self.checkUserAvailablility(user: loginUser)
-            break
-        default:
-            break
         }
     }
 }

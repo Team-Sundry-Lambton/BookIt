@@ -57,6 +57,7 @@ class InitialDataDownloadManager : NSObject{
                         client.firstName = data["firstName"] as? String ?? ""
                         client.lastName =  data["lastName"] as? String ?? ""
                         client.email =  data["email"] as? String ?? ""
+                        client.password =  data["password"] as? String ?? ""
                         if let picture =  data["picture"] as? String{
                             client.picture = self.urlToData(path: picture)
                         }
@@ -79,6 +80,7 @@ class InitialDataDownloadManager : NSObject{
                     vendor.firstName = data["firstName"] as? String ?? ""
                     vendor.lastName =  data["lastName"] as? String ?? ""
                     vendor.email =  data["email"] as? String ?? ""
+                    vendor.password =  data["password"] as? String ?? ""
                     if let picture =  data["picture"] as? String{
                         vendor.picture = self.urlToData(path: picture)
                     }
@@ -363,6 +365,7 @@ extension InitialDataDownloadManager {
                                     "firstName": client.firstName ?? "",
                                     "isPremium": client.isPremium,
                                     "picture":  picturePath ?? "",
+                                    "password" : client.password ?? "",
                                     
                                 ]) { err in
                                     if let err = err {
@@ -388,6 +391,7 @@ extension InitialDataDownloadManager {
                                 "firstName": client.firstName ?? "",
                                 "isPremium": client.isPremium,
                                 "picture":  picturePath ?? "",
+                                "password" : client.password ?? "",
                                 
                             ]) { err in
                                 if let err = err {
@@ -427,6 +431,7 @@ extension InitialDataDownloadManager {
                                     "firstName": vendor.firstName ?? "",
                                     "bannerURL": vendor.bannerURL ?? "",
                                     "picture": url ?? "",
+                                    "password" : client.password ?? "",
                                     
                                 ]) { err in
                                     if let err = err {
@@ -451,6 +456,7 @@ extension InitialDataDownloadManager {
                                 "firstName": vendor.firstName ?? "",
                                 "bannerURL": vendor.bannerURL ?? "",
                                 "picture": url ?? "",
+                                "password" : client.password ?? "",
                                 
                             ]) { err in
                                 if let err = err {
@@ -465,6 +471,39 @@ extension InitialDataDownloadManager {
                             }
                         }
                     }
+                }
+        }
+        
+        
+        func chedkVendorData(email : String,completion: @escaping (_ status: Bool?) -> Void){
+                self.db.collection("vendor")
+                    .whereField("email", isEqualTo: email)
+                    .getDocuments(){ (document, error) in
+                        if let document = document {
+                            if document.count >= 1 {
+                                completion(true)
+                            }else{
+                                completion(false)
+                            }
+                        }else{
+                            completion(false)
+                        }
+            }
+        }
+        
+        func checkClientData(email : String,completion: @escaping (_ status: Bool?) -> Void){
+                self.db.collection("client")
+                    .whereField("email", isEqualTo: email)
+                    .getDocuments(){ (document, error) in
+                        if let document = document {
+                            if document.count >= 1 {
+                                completion(true)
+                            }else{
+                                completion(false)
+                            }
+                        }else{
+                            completion(false)
+                        }
                 }
         }
     }
@@ -548,12 +587,13 @@ extension InitialDataDownloadManager {
             }
     }
     
-        func addMediaData(media : MediaFile,completion: @escaping (_ url: String?) -> Void){
+    func addMediaData(media : MediaFile,completion: @escaping (_ url: String?) -> Void){
 
-            var serviceId = -1
-            if let service = media.parent_Service{
-                serviceId = Int(service.serviceId)
-            }
+        var serviceId = -1
+        if let service = media.parent_Service{
+            serviceId = Int(service.serviceId)
+        }
+        
         if let imageData = media.mediaContent {
             uploadMedia(name:media.mediaName ?? "", media: imageData) { url in
                 var ref: DocumentReference? = nil
@@ -740,7 +780,7 @@ extension InitialDataDownloadManager{
                                 // Perhaps this is an error for you?
                                 completion(false)
                             } else {
-                                if let number = client.contactNumber,let lastName = client.lastName,let firstName = client.firstName{
+                                if let number = client.contactNumber,let lastName = client.lastName,let firstName = client.firstName,let password = client.password{
                                     if let document = querySnapshot!.documents.first{
                                         document.reference.updateData([
                                             "contactNumber": number,
@@ -749,6 +789,7 @@ extension InitialDataDownloadManager{
                                             "firstName": firstName,
                                             "isPremium": client.isPremium,
                                             "picture": picturePath ?? "",
+                                            "password" : password,
                                         ])
                                         completion(true)
                                     }
@@ -775,7 +816,7 @@ extension InitialDataDownloadManager{
                                 // Perhaps this is an error for you?
                                 completion(false)
                             } else {
-                                if let number = vendor.contactNumber,let lastName = vendor.lastName,let firstName = vendor.firstName {
+                                if let number = vendor.contactNumber,let lastName = vendor.lastName,let firstName = vendor.firstName,let password = vendor.password {
                                     if let document = querySnapshot!.documents.first{
                                         document.reference.updateData([
                                             "contactNumber": number,
@@ -784,6 +825,7 @@ extension InitialDataDownloadManager{
                                             "firstName": firstName,
                                             "bannerURL": vendor.bannerURL ?? "",
                                             "picture": picturePath ?? "",
+                                            "password" : password,
                                         ])
                                         completion(true)
                                     }
