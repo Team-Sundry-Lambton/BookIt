@@ -13,6 +13,7 @@ class ClientBookingViewController: UIViewController {
     var bookingList = [Booking]()
     var bookingListOngoing = [Booking]()
     var bookingListHistory = [Booking]()
+    var selectedService: Service?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
     @IBOutlet weak var tableView: UITableView!
