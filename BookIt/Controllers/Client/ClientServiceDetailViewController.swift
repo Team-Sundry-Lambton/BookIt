@@ -191,6 +191,13 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
     @IBAction func bookButtonPressed() {
         if (UserDefaultsManager.shared.getUserLogin()){
             //Redirect ot Booking Page
+            if let viewController = UIStoryboard(name: "ClientDashBoard", bundle: nil).instantiateViewController(withIdentifier: "ClientBookVendorViewController") as? ClientBookVendorViewController {
+                if let navigator = navigationController {
+                    viewController.selectedService = selectedService
+                    navigator.pushViewController(viewController, animated: true)
+                    
+                }
+            }
             
         }else{
             UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Please regiter first to book a service. Please go to profile tab for register", okActionTitle: "OK", view: self)
