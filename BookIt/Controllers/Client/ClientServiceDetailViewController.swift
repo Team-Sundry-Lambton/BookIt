@@ -241,6 +241,11 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
                 }
             }else{
                 //Redirect to service booking page
+               if let viewController = UIStoryboard(name: "ClientDashBoard", bundle: nil).instantiateViewController(withIdentifier: "ClientBookVendorViewController") as? ClientBookVendorViewController {
+                  if let navigator = navigationController {
+                    viewController.selectedService = selectedService
+                    navigator.pushViewController(viewController, animated: true)  
+                }
             }
             
         }else{
