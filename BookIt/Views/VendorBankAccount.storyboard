@@ -136,11 +136,11 @@
                     <navigationItem key="navigationItem" title="My Bank Account" largeTitleDisplayMode="always" id="gmR-4l-Pvz"/>
                     <connections>
                         <outlet property="btnAddToVerify" destination="JAS-k7-aJ7" id="bdk-vJ-oJU"/>
-                        <outlet property="lblAccountNumber" destination="OCy-pg-jhf" id="VWG-b5-8uY"/>
-                        <outlet property="lblInstitutionNumber" destination="SCz-sQ-RCT" id="57Q-ve-6Ut"/>
-                        <outlet property="lblRecipient" destination="w37-UD-uTR" id="Asi-tT-yfV"/>
-                        <outlet property="lblRecipientName" destination="KNf-Pl-2Vf" id="ZOH-1W-rjS"/>
-                        <outlet property="lblTransitNumber" destination="l53-PF-svz" id="Avb-YV-MPX"/>
+                        <outlet property="txtAccountNumber" destination="OCy-pg-jhf" id="bLT-E9-JmN"/>
+                        <outlet property="txtInstitutionNumber" destination="SCz-sQ-RCT" id="NuU-91-yq1"/>
+                        <outlet property="txtRecipient" destination="w37-UD-uTR" id="FMT-CA-G63"/>
+                        <outlet property="txtRecipientName" destination="KNf-Pl-2Vf" id="AcE-YC-J7F"/>
+                        <outlet property="txtTransitNumber" destination="l53-PF-svz" id="dCk-wy-mVW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="skc-Jt-xLx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -9,11 +9,11 @@ import UIKit
 
 class VendorBankAccountViewController: UIViewController {
 
-    @IBOutlet weak var lblRecipient: UITextField!
-    @IBOutlet weak var lblRecipientName: UITextField!
-    @IBOutlet weak var lblAccountNumber: UITextField!
-    @IBOutlet weak var lblTransitNumber: UITextField!
-    @IBOutlet weak var lblInstitutionNumber: UITextField!
+    @IBOutlet weak var txtRecipient: UITextField!
+    @IBOutlet weak var txtRecipientName: UITextField!
+    @IBOutlet weak var txtAccountNumber: UITextField!
+    @IBOutlet weak var txtTransitNumber: UITextField!
+    @IBOutlet weak var txtInstitutionNumber: UITextField!
     @IBOutlet weak var btnAddToVerify: UIButton!
     
     var loginUser : LoginUser?
@@ -22,9 +22,6 @@ class VendorBankAccountViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        navigationController?.navigationBar.tintColor = UIColor.black
-        
         if var textAttributes = navigationController?.navigationBar.titleTextAttributes {
             textAttributes[NSAttributedString.Key.foregroundColor] = UIColor.black
             navigationController?.navigationBar.titleTextAttributes = textAttributes
@@ -37,35 +34,31 @@ class VendorBankAccountViewController: UIViewController {
         navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationController?.navigationBar.isHidden = false
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        navigationController?.isNavigationBarHidden = true
-    }
 
     @IBAction func saveBankAccount(_ sender: Any) {
-        if lblRecipient.text == "" {
+        if txtRecipient.text == "" {
             UIAlertViewExtention.shared.showBasicAlertView(title: "Error",message: "Recipient name cannot be empty.",okActionTitle: "OK", view: self)
             return
         }
-        else if lblRecipientName.text == "" {
+        else if txtRecipientName.text == "" {
             UIAlertViewExtention.shared.showBasicAlertView(title: "Error",message: "Recipient Bank name cannot be empty.", okActionTitle: "OK", view: self)
             return
         }
-        else if lblAccountNumber.text == "" {
+        else if txtAccountNumber.text == "" {
             UIAlertViewExtention.shared.showBasicAlertView(title: "Error",message: "Account number cannot be empty.", okActionTitle: "OK", view: self)
             return
         }
-        else if lblTransitNumber.text == "" {
+        else if txtTransitNumber.text == "" {
             UIAlertViewExtention.shared.showBasicAlertView(title: "Error",message: "Transit number cannot be empty.", okActionTitle: "OK", view: self)
             return
         }
-        else if lblInstitutionNumber.text == "" {
+        else if txtInstitutionNumber.text == "" {
             UIAlertViewExtention.shared.showBasicAlertView(title: "Error",message: "Institution number cannot be empty.", okActionTitle: "OK", view: self)
             return
         }
         else
         {
-            setUserObject(isEdit: false)
+            setAccountObject()
             UIAlertViewExtention.shared.showBasicAlertView(title: "Success",message: "Bank account updated successfully.", okActionTitle: "OK", view: self)
             if let navigator = self.navigationController {
                 navigator.popViewController(animated: true)
@@ -75,14 +68,14 @@ class VendorBankAccountViewController: UIViewController {
         }
     }
     
-    func setUserObject(isEdit : Bool) {
+    func setAccountObject() {
         let account = Account(context: context)
         let user =  UserDefaultsManager.shared.getUserData()
-        account.recipiantName = lblRecipient.text
-        account.recipiantBankName = lblRecipientName.text
-        account.accountNumber = Int32(lblAccountNumber.text ?? "") ?? 0
-        account.transitNumber = Int32(lblTransitNumber.text ?? "") ?? 0
-        account.institutionNumber = Int32(lblInstitutionNumber.text ?? "") ?? 0
+        account.recipiantName = txtRecipient.text
+        account.recipiantBankName = txtRecipientName.text
+        account.accountNumber = Int32(txtAccountNumber.text ?? "") ?? 0
+        account.transitNumber = Int32(txtTransitNumber.text ?? "") ?? 0
+        account.institutionNumber = Int32(txtInstitutionNumber.text ?? "") ?? 0
         
         let vendor = CoreDataManager.shared.getVendor(email: user.email)
         account.parent_vendor = vendor
@@ -110,11 +103,11 @@ class VendorBankAccountViewController: UIViewController {
     func getBankAccount(){
         let user =  UserDefaultsManager.shared.getUserData()
         if let account = CoreDataManager.shared.getVendorBankAccount(email: user.email){
-            lblRecipient.text = account.recipiantName
-            lblRecipientName.text = account.recipiantBankName
-            lblAccountNumber.text = String(account.accountNumber)
-            lblTransitNumber.text = String(account.transitNumber)
-            lblInstitutionNumber.text = String(account.institutionNumber)
+            txtRecipient.text = account.recipiantName
+            txtRecipientName.text = account.recipiantBankName
+            txtAccountNumber.text = String(account.accountNumber)
+            txtTransitNumber.text = String(account.transitNumber)
+            txtInstitutionNumber.text = String(account.institutionNumber)
         }
     }
     
