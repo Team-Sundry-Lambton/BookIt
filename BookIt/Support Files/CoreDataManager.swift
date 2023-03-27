@@ -420,4 +420,17 @@ class CoreDataManager : NSObject{
             debugPrint(error)
         }
     }
+    
+    func getVendorBankAccount(email : String) -> Account?{
+        var account : Account?
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Account")
+        fetchRequest.predicate = NSPredicate(format: "parent_vendor.email=%@",email)
+        do {
+            let accounts = try context.fetch(fetchRequest)
+            account = accounts.first as? Account
+        } catch {
+            print(error)
+        }
+        return account
+    }
 }
