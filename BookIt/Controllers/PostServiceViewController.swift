@@ -60,11 +60,7 @@ class PostServiceViewController: UIViewController {
     var categoryList = [Category]()
     var mediaList = [MediaFile]()
     var selectedLocation: Address?
-    var selectedService : Service? {
-        didSet {
-            editMode = true
-        }
-    }
+    var selectedService : Service?
 //    var vendor : Vendor?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -81,12 +77,14 @@ class PostServiceViewController: UIViewController {
             navigationController?.navigationBar.titleTextAttributes = textAttributes
         }
       
-        if editMode{
+        if selectedService != nil {
+            editMode = true
             loadServiceData()
             mediaList = CoreDataManager.shared.getMediaList(serviceId: Int(selectedService?.serviceId ?? -1))
             mediaFileCollectionView.reloadData()
             self.title = "Edit Service"
         }else{
+            editMode = false
             self.title = "Post Service"
             selectedService = Service(context: context)
             selectedService?.serviceId = CoreDataManager.shared.getServiceID()
@@ -300,7 +298,7 @@ class PostServiceViewController: UIViewController {
                     let mediaFile = MediaFile(context: strongSelf.context)
                     mediaFile.mediaName = object.fileName
                     mediaFile.mediaPath = ""
-                    mediaFile.mediaContent = object.image?.pngData()
+                    mediaFile.mediaContent = object.image?.jpeg(.lowest)
                     mediaFile.parent_Service = self?.selectedService
                   
                     LoadingHudManager.shared.showSimpleHUD(title: "Uploading...", view: strongSelf.view)

@@ -804,7 +804,7 @@ extension InitialDataDownloadManager{
                             if let err = err {
                                 // Some error occured
                                 completion(false)
-                            } else if querySnapshot!.documents.count != 1 {
+                            } else if querySnapshot!.documents.count == 0 {
                                 // Perhaps this is an error for you?
                                 completion(false)
                             } else {
@@ -840,7 +840,7 @@ extension InitialDataDownloadManager{
                         .getDocuments() { (querySnapshot, err) in
                             if let err = err {
                                 completion(false)
-                            } else if querySnapshot!.documents.count != 1 {
+                            } else if querySnapshot!.documents.count == 0 {
                                 // Perhaps this is an error for you?
                                 completion(false)
                             } else {
@@ -895,7 +895,7 @@ extension InitialDataDownloadManager{
                         // Some error occured
                         
                         completion(false)
-                    } else if querySnapshot!.documents.count != 1 {
+                    } else if querySnapshot!.documents.count == 0 {
                         // Perhaps this is an error for you?
                         completion(false)
                     } else {
@@ -971,7 +971,7 @@ extension InitialDataDownloadManager{
                     // Some error occured
                     
                     completion(false)
-                } else if querySnapshot!.documents.count != 1 {
+                } else if querySnapshot!.documents.count == 0 {
                     // Perhaps this is an error for you?
                     completion(false)
                 } else {
@@ -983,8 +983,6 @@ extension InitialDataDownloadManager{
                     }
                 }
             }
-
-        
     }
     
     func updateServiceData(service : Service,completion: @escaping (_ status: Bool?) -> Void) async {
@@ -1027,7 +1025,7 @@ extension InitialDataDownloadManager{
                         // Some error occured
                         
                         completion(false)
-                    } else if querySnapshot!.documents.count != 1 {
+                    } else if querySnapshot!.documents.count == 0 {
                         // Perhaps this is an error for you?
                         completion(false)
                     } else {
@@ -1059,7 +1057,7 @@ extension InitialDataDownloadManager{
                             if let err = err {
                                 // Some error occured
                                 completion(false)
-                            } else if querySnapshot!.documents.count != 1 {
+                            } else if querySnapshot!.documents.count == 0 {
                                 // Perhaps this is an error for you?
                                 completion(false)
                             } else {

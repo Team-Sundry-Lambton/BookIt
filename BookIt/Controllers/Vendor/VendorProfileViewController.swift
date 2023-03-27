@@ -158,6 +158,14 @@ class VendorProfileViewController: UIViewController {
               }
     }
     
+    @IBAction func aboutUs() {
+        if let viewController = UIStoryboard(name: "AboutUs", bundle: nil).instantiateViewController(withIdentifier: "AoubtUsViewController") as? AoubtUsViewController {
+            if let navigator = navigationController {
+                navigator.pushViewController(viewController, animated: true)
+            }
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
