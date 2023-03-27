@@ -10,6 +10,8 @@ import UIKit
 
 class VendorBookingDetailController: UIViewController{
     
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     var booking:Booking! = nil
     var client:Client! = nil
     var vendor:Vendor! = nil
@@ -69,8 +71,63 @@ class VendorBookingDetailController: UIViewController{
     
     @IBAction func acceptBooking(_ sender: Any) {
         
-        let viewController:VendorBookingConfirmationController = UIStoryboard(name: "VendorBookingConfirmation", bundle: nil).instantiateViewController(withIdentifier: "VendorBookingConfirmation") as? VendorBookingConfirmationController ?? VendorBookingConfirmationController()
-        navigationController?.pushViewController(viewController, animated: true)
+        if let booking = booking{
+            LoadingHudManager.shared.showSimpleHUD(title: "Accepting...", view: self.view)
+                Task {
+                    booking.status = "Accepted"
+                    await
+                    InitialDataDownloadManager.shared.updateBookingData(booking:booking){ status in
+                        DispatchQueue.main.async {
+                            LoadingHudManager.shared.dissmissHud()
+                            if let status = status {
+                                if status {
+                                    self.saveAllContextCoreData()
+                                    let viewController:VendorBookingConfirmationController = UIStoryboard(name: "VendorBookingConfirmation", bundle: nil).instantiateViewController(withIdentifier: "VendorBookingConfirmation") as? VendorBookingConfirmationController ?? VendorBookingConfirmationController()
+                                    self.navigationController?.pushViewController(viewController, animated: true)
+                                }else{
+                                    UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
+                                }
+                            }
+                        }
+                    }
+                }
+        }
         
     }
+    
+    private func saveAllContextCoreData() {
+        do {
+            try context.save()
+        } catch {
+            print("Error saving the data \(error.localizedDescription)")
+        }
+    }
+    
+    
+    @IBAction func rejectBooking(_ sender: Any) {
+        
+        if let booking = booking{
+            LoadingHudManager.shared.showSimpleHUD(title: "Rejecting...", view: self.view)
+                Task {
+                    booking.status = "Rejected"
+                    await
+                    InitialDataDownloadManager.shared.updateBookingData(booking:booking){ status in
+                        DispatchQueue.main.async {
+                            LoadingHudManager.shared.dissmissHud()
+                            if let status = status {
+                                if status {
+                                    self.saveAllContextCoreData()
+                                    //go back
+                                }else{
+                                    UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
+                                }
+                            }
+                        }
+                    }
+                }
+        }
+        
+    }
+    
+    
 }
