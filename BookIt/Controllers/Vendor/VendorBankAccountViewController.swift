@@ -59,7 +59,6 @@ class VendorBankAccountViewController: UIViewController {
         else
         {
             setAccountObject()
-            UIAlertViewExtention.shared.showBasicAlertView(title: "Success",message: "Bank account updated successfully.", okActionTitle: "OK", view: self)
             if let navigator = self.navigationController {
                 navigator.popViewController(animated: true)
             }else{
@@ -115,6 +114,8 @@ class VendorBankAccountViewController: UIViewController {
         if let status = status {
             if status == false {
                 UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
+            } else {
+                UIAlertViewExtention.shared.showBasicAlertView(title: "Success",message: "Bank account inserted successfully.", okActionTitle: "OK", view: self)
             }
         }
     }
