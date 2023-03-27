@@ -241,77 +241,20 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
                 }
             }else{
                 //Redirect to service booking page
-                if let viewController = UIStoryboard(name: "ClientDashBoard", bundle: nil).instantiateViewController(withIdentifier: "ClientBookVendorViewController") as? ClientBookingViewController {
+                if let viewController = UIStoryboard(name: "ClientDashBoard", bundle: nil).instantiateViewController(withIdentifier: "ClientBookVendorViewController") as? ClientBookVendorViewController {
                     if let navigator = navigationController {
                         viewController.selectedService = selectedService
+                        viewController.vendor = vendor
                         navigator.pushViewController(viewController, animated: true)
-                    }
-                }
-            }
-            
-        }else{
-            UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Please regiter first to book a service. Please go to profile tab for register", okActionTitle: "OK", view: self)
-        }
-    }
-    
-/*    func saveBooking(){
-       var booking = Booking(context: context)
-        booking.date = Date()
-        booking.status = "New"
-        booking.service = selectedService
-        getVendor()
-        booking.vendor = vendor
-        let user =  UserDefaultsManager.shared.getUserData()
-        booking.client = CoreDataManager.shared.getClient(email: user.email)
-            let hud = JGProgressHUD()
-            hud.textLabel.text = "Booking..."
-            hud.show(in: self.view)
-            Task {
-                await InitialDataDownloadManager.shared.addBookingData(booking:booking){ status in
-                    DispatchQueue.main.async {
-                        hud.dismiss(animated: true)
-                        if let status = status {
-                            if status {
-                                self.saveAllContextCoreData()
-                            }else{
-                                UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
-                            }
-                        }
                     }
                 }
                 
             }
-    }
-    
-    private func saveAllContextCoreData() {
-        do {
-            try context.save()
-            showAlert()
-        } catch {
-            print("Error saving the data \(error.localizedDescription)")
+        }
+            else{
+            UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Please regiter first to book a service. Please go to profile tab for register", okActionTitle: "OK", view: self)
         }
     }
-    
-    private func showAlert(){
-    
-        var message = "Successfully Booked.."
-    
-        let alertController: UIAlertController = {
-            let controller = UIAlertController(title: "Success", message: message, preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default){
-                UIAlertAction in
-                if let navigator = self.navigationController {
-                    navigator.popViewController(animated: true)
-                }else{
-                    self.dismiss(animated: true)
-                }
-            }
-            controller.addAction(okAction)
-            return controller
-        }()
-        self.present(alertController, animated: true)
-    }
-*/
 }
 
 extension ClientServiceDetailViewController: CustomSegmentedControlDelegate {
