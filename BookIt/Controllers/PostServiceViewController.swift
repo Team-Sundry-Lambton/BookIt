@@ -351,7 +351,7 @@ class PostServiceViewController: UIViewController {
             service.cancelPolicy = cancelPolicyTextField.text
             
             //        selectedLocation?.parentService = service
-            
+            service.createdDate = Date()
             service.price = priceTextField.text
             service.priceType = priceTypeTextField.text
             service.equipment = isEquipmentNeed

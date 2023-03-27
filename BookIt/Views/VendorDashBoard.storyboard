@@ -398,7 +398,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hW8-aK-FSW">
                                         <rect key="frame" x="0.0" y="300" width="373" height="50"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoutIcon" translatesAutoresizingMaskIntoConstraints="NO" id="ttF-gH-lDS">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AboutUsIcon" translatesAutoresizingMaskIntoConstraints="NO" id="ttF-gH-lDS">
                                                 <rect key="frame" x="20" y="7.6666666666666288" width="35" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="35" id="sff-V4-ffH"/>
@@ -533,6 +533,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="AboutUsIcon" width="35" height="35"/>
         <image name="AccountInfoIcon" width="35" height="35"/>
         <image name="Avatar" width="512" height="512"/>
         <image name="BanckAccountIcon" width="35" height="35"/>

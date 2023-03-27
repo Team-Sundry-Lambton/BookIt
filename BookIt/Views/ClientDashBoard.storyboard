@@ -675,7 +675,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DHG-1D-btY">
                                                 <rect key="frame" x="0.0" y="180" width="373" height="50"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoutIcon" translatesAutoresizingMaskIntoConstraints="NO" id="k2M-MV-K0X">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AboutUsIcon" translatesAutoresizingMaskIntoConstraints="NO" id="k2M-MV-K0X">
                                                         <rect key="frame" x="20" y="7.6666666666666856" width="35" height="35"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="35" id="bTk-HX-x0U"/>
@@ -1174,6 +1174,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="AboutUsIcon" width="35" height="35"/>
         <image name="AccountInfoIcon" width="35" height="35"/>
         <image name="Avatar" width="512" height="512"/>
         <image name="BookingTabIcon" width="24" height="24"/>
