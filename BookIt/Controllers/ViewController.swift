@@ -30,7 +30,6 @@ class ViewController: UIViewController {
         if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
             if let navigator = navigationController {
                 viewController.isVendor = isVendor
-                viewController.delegate = self
                 navigator.pushViewController(viewController, animated: true)
             }
         }
@@ -41,7 +40,6 @@ class ViewController: UIViewController {
         if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SignupViewController") as? SignupViewController {
             if let navigator = navigationController {
                 viewController.isVendor = isVendor
-                viewController.delegate = self
                 navigator.pushViewController(viewController, animated: true)
             }
         }
@@ -76,7 +74,7 @@ class ViewController: UIViewController {
         
     }
     func checkUserAvailablility(user : LoginUser){
-        if (CoreDataManager.shared.checkUserInDB(user: user,isVendor: isVendor)){
+        if (CoreDataManager.shared.checkUserInDB(email: user.email,isVendor: isVendor)){
             loadDashBoard(user: user)
             
         }else{
@@ -164,11 +162,5 @@ extension ViewController {
                 UIAlertViewExtention.shared.showBasicAlertView(title: "Success", message:  "You have a free pass, now", okActionTitle: "OK", view: self ?? ViewController())
             }
         }
-    }
-}
-
-extension ViewController {
-    func openDashBoard(user : LoginUser?) {
-        self.loadDashBoard(user: user)
     }
 }

@@ -281,14 +281,14 @@ class CoreDataManager : NSObject{
         return serviceList
     }
     
-    func checkUserInDB(user : LoginUser , isVendor : Bool) -> Bool{
+    func checkUserInDB(email : String , isVendor : Bool) -> Bool{
         var success = false
         var entityName = "Client"
         if (isVendor){
             entityName = "Vendor"
         }
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: entityName)
-        fetchRequest.predicate = NSPredicate(format: "email = %@", user.email)
+        fetchRequest.predicate = NSPredicate(format: "email = %@", email)
         do {
             let user = try context.fetch(fetchRequest)
             if user.count >= 1 {

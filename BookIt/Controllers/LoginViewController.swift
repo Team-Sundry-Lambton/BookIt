@@ -16,7 +16,6 @@ class LoginViewController: UIViewController {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var isVendor = false
-    weak var delegate: ViewController!
     private let biometricIDAuth = BiometricIDAuth()
     var loginSuccess = false
     var loginUser : LoginUser?
@@ -29,9 +28,21 @@ class LoginViewController: UIViewController {
         NetworkMonitor.shared.setObserve(viewController: self)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.tintColor = UIColor.black
+        self.navigationController?.navigationBar.isHidden = false
+    }
     
     @IBAction func loginBtnClicked() {
-        loadDashBoard(user: nil)
+        if emailTxt.text == "" {
+            UIAlertViewExtention.shared.showBasicAlertView(title: "Error",message: "Email cannot be empty.", okActionTitle: "OK", view: self)
+            return
+        }else if passwordTxt.text == "" {
+            UIAlertViewExtention.shared.showBasicAlertView(title: "Error",message: "Password cannot be empty.", okActionTitle: "OK", view: self)
+            return
+        }else{
+            redirectUser(email: emailTxt.text ?? "")
+        }
     }
     
     @IBAction func facebookLogin(_ sender: Any) {
@@ -47,29 +58,60 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func forgotPassword() {
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
+        UIAlertViewExtention.shared.showBasicAlertView(title: "Forgot Password?",message: "Please contact us at teamsundry@gmail.com to send resent password link.", okActionTitle: "OK", view: self)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        if loginSuccess {
-            delegate?.openDashBoard(user : loginUser)
+    }
+    
+    func redirectUser(email : String){
+        checkUserAvailablility(email : email){ status in
+            DispatchQueue.main.async {
+                if status == true {
+                    var password = ""
+                    if (self.isVendor){
+                        if let vendor = CoreDataManager.shared.getVendor(email: email){
+                            self.loginUser = LoginUser(firstName: vendor.firstName ?? "", lastName: vendor.lastName ?? "", email: vendor.email ?? "", contactNumber: vendor.contactNumber ?? "",isVendor: self.isVendor)
+                            password = vendor.password ?? ""
+                        }
+                    }else{
+                        if let client = CoreDataManager.shared.getClient(email: email){
+                            self.loginUser = LoginUser(firstName: client.firstName ?? "", lastName: client.lastName ?? "", email: client.email ?? "", contactNumber: client.contactNumber ?? "",isVendor: self.isVendor)
+                            password = client.password ?? ""
+                        }
+                    }
+                    if let enterdPassword = self.passwordTxt.text {
+                        if password == enterdPassword{
+                            self.loadDashBoard(user: self.loginUser)
+                        }else{
+                            UIAlertViewExtention.shared.showBasicAlertView(title: "Error",message: "Password miss match.", okActionTitle: "OK", view: self)
+                        }
+                    }
+                }else{
+                    UIAlertViewExtention.shared.showBasicAlertView(title: "Error",message: "User not found please register first.", okActionTitle: "OK", view: self)
+                }
+            }
         }
     }
     
-    func checkUserAvailablility(user : LoginUser){
-        if (CoreDataManager.shared.checkUserInDB(user: user,isVendor: isVendor)){
-            loadDashBoard(user: user)
-            
-        }else{
-            if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EditProfileViewController") as? EditProfileViewController {
-                if let navigator = navigationController {
-                    viewController.loginUser = user
-                    viewController.delegate = self
-                    navigator.pushViewController(viewController, animated: true)
+    func checkUserAvailablility(email : String,completion: @escaping (_ status: Bool?) -> Void){
+         let dbCheck = CoreDataManager.shared.checkUserInDB(email: email,isVendor: isVendor)
+        if !dbCheck {
+            LoadingHudManager.shared.showSimpleHUD(title: "Validating...", view: self.view)
+            InitialDataDownloadManager.shared.chedkUserData(email: email ,isVendor: isVendor ){ status in
+                DispatchQueue.main.async {
+                    LoadingHudManager.shared.dissmissHud()
+                    if let user = status {
+                        if user{
+                            completion(true)
+                        }else{
+                            completion(false)
+                        }
+                    }
                 }
             }
+        }else{
+            completion(true)
         }
     }
     
@@ -165,12 +207,12 @@ extension LoginViewController{
                         print("email -> \(email)")
                         print("facebookProfileUrl -> \(facebookProfileUrl)")
                         
-                        var loginUser = LoginUser(firstName: firstName, lastName: lastName, email: email, contactNumber: "",isVendor: self.isVendor)
+                        self.loginUser = LoginUser(firstName: firstName, lastName: lastName, email: email, contactNumber: "",isVendor: self.isVendor)
                         if let url = URL(string: facebookProfileUrl) {
-                            loginUser.picture = url
+                            self.loginUser?.picture = url
                         }
                         
-                        self.checkUserAvailablility(user: loginUser)
+                        self.redirectUser(email: email)
                         
                     }
                 }
@@ -196,9 +238,9 @@ extension LoginViewController{
             
             let profilePicUrl = user.profile?.imageURL(withDimension: 320) ?? nil
             
-            var loginUser = LoginUser(firstName: givenName, lastName: familyName, email: emailAddress, contactNumber: "",isVendor: self.isVendor)
-            loginUser.picture = profilePicUrl
-            self.checkUserAvailablility(user: loginUser)
+            self.loginUser = LoginUser(firstName: givenName, lastName: familyName, email: emailAddress, contactNumber: "",isVendor: self.isVendor)
+            self.loginUser?.picture = profilePicUrl
+            self.redirectUser(email: emailAddress)
         }
     }
 }
@@ -228,9 +270,9 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
             let lastName = appleIDCredential.fullName?.familyName ?? ""
             let email = appleIDCredential.email ?? ""
             let firstName = appleIDCredential.fullName?.givenName ?? ""
-            var loginUser = LoginUser(firstName: firstName, lastName: lastName, email: email, contactNumber: "",isVendor: self.isVendor)
-            loginUser.picture = nil
-            self.checkUserAvailablility(user: loginUser)
+            self.loginUser = LoginUser(firstName: firstName, lastName: lastName, email: email, contactNumber: "",isVendor: self.isVendor)
+            self.loginUser?.picture = nil
+            self.redirectUser(email: email)
             break
         default:
             break

@@ -71,9 +71,9 @@ class EditProfileViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        if newUser {
-            delegate?.openDashBoard(user : loginUser)
-        }
+//        if newUser {
+//            delegate?.openDashBoard(user : loginUser)
+//        }
     }
     
     func getClient(){
@@ -137,7 +137,7 @@ class EditProfileViewController: UIViewController {
         {
             let loginUser = LoginUser(firstName: firstNameTxt.text ?? "", lastName: lastNameTxt.text ?? "", email: emailTxt.text ?? "", contactNumber: phoneNumberTxt.text ?? "",isVendor: isVendor)
             
-            if (CoreDataManager.shared.checkUserInDB(user: loginUser,isVendor: isVendor)){
+            if (CoreDataManager.shared.checkUserInDB(email: loginUser.email,isVendor: isVendor)){
                     CoreDataManager.shared.deleteUser(user: loginUser,isVendor: isVendor)
                     UserDefaultsManager.shared.saveUserData(user: loginUser)
                     setUserObject(isEdit: true)

@@ -116,10 +116,11 @@ class ClientProfileViewController: UIViewController {
     func clearUserData(){
         UserDefaultsManager.shared.removeUserLogin()
         UserDefaultsManager.shared.removeUserData()
-
-        if let navigator = self.navigationController {
-            navigator.popViewController(animated: true)
-        }
+        var targetVC : UIViewController?
+        targetVC = navigationController?.viewControllers.first(where: {$0 is ViewController})
+        if let targetVC = targetVC {
+                 navigationController?.popToViewController(targetVC, animated: true)
+              }
     }
     
     /*

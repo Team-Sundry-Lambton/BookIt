@@ -16,8 +16,7 @@ class SignupViewController: UIViewController {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var isVendor = false
-    weak var delegate: ViewController!
-    
+    var loginUser : LoginUser?
     @IBOutlet weak var phoneNumberTxt: UITextField!
     @IBOutlet weak var emailTxt: UITextField!
     @IBOutlet weak var lastNameTxt: UITextField!
@@ -30,6 +29,10 @@ class SignupViewController: UIViewController {
         NetworkMonitor.shared.setObserve(viewController: self)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.tintColor = UIColor.black
+        self.navigationController?.navigationBar.isHidden = false
+    }
 
     @IBAction func facebookLogin(_ sender: Any) {
         fetchFacebookFields();
@@ -45,42 +48,127 @@ class SignupViewController: UIViewController {
     }
     
     @IBAction func register(sender: Any) {
-
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = true
-
+        if firstNameTxt.text == "" {
+            UIAlertViewExtention.shared.showBasicAlertView(title: "Error",message: "First Name cannot be empty.",okActionTitle: "OK", view: self)
+            return
+        }
+        else if lastNameTxt.text == "" {
+            UIAlertViewExtention.shared.showBasicAlertView(title: "Error",message: "Last Name cannot be empty.", okActionTitle: "OK", view: self)
+            return
+        }
+        else if emailTxt.text == "" {
+            UIAlertViewExtention.shared.showBasicAlertView(title: "Error",message: "Email cannot be empty.", okActionTitle: "OK", view: self)
+            return
+        }
+        else if phoneNumberTxt.text == "" {
+            UIAlertViewExtention.shared.showBasicAlertView(title: "Error",message: "Contact number cannot be empty.", okActionTitle: "OK", view: self)
+            return
+        } else if passwordTxt.text == "" {
+            UIAlertViewExtention.shared.showBasicAlertView(title: "Error",message: "Password cannot be empty.", okActionTitle: "OK", view: self)
+            return
+        } else if confirmPasswordTxt.text == "" {
+            UIAlertViewExtention.shared.showBasicAlertView(title: "Error",message: "Confirm Password cannot be empty.", okActionTitle: "OK", view: self)
+            return
+        }else if confirmPasswordTxt.text != passwordTxt.text {
+            UIAlertViewExtention.shared.showBasicAlertView(title: "Error",message: "Password missmatch.", okActionTitle: "OK", view: self)
+            return
+        }
+        else
+        {
+            loginUser = LoginUser(firstName: firstNameTxt.text ?? "", lastName: lastNameTxt.text ?? "", email: emailTxt.text ?? "", contactNumber: phoneNumberTxt.text ?? "",isVendor: isVendor)
+            redirectUser(email:  emailTxt.text ?? "")
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        if newUser {
-            delegate?.openDashBoard(user : loginUser)
-        }
     }
     
-    func checkUserAvailablility(user : LoginUser){
-        if (CoreDataManager.shared.checkUserInDB(user: user,isVendor: isVendor)){
-            loadDashBoard(user: user)
+    func redirectUser(email : String){
+        if (checkUserAvailablility(email : email)){
+            loadDashBoard()
             
         }else{
-            if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EditProfileViewController") as? EditProfileViewController {
-                if let navigator = navigationController {
-                    viewController.loginUser = user
-                    viewController.delegate = self
-                    navigator.pushViewController(viewController, animated: true)
-                }
+            if let user = loginUser {
+                setUserObject(user: user)
             }
         }
     }
+    func checkUserAvailablility(email : String) -> Bool{
+        var dbCheck = false
+        dbCheck = CoreDataManager.shared.checkUserInDB(email: email,isVendor: isVendor)
+        if !dbCheck {
+            LoadingHudManager.shared.showSimpleHUD(title: "Validating...", view: self.view)
+            InitialDataDownloadManager.shared.chedkUserData(email: email ,isVendor: isVendor ){ status in
+                DispatchQueue.main.async {
+                    LoadingHudManager.shared.dissmissHud()
+                    if let user = status {
+                        if user{
+                            dbCheck = true
+                        }else{
+                            dbCheck = false
+                        }
+                    }
+                }
+            }
+        }
+        return dbCheck
+    }
     
-    func loadDashBoard(user : LoginUser?){
+    func setUserObject(user: LoginUser) {
+        
+        if (isVendor){
+            let vendor = Vendor(context: context)
+            vendor.firstName = user.firstName
+            vendor.lastName =  user.lastName
+            vendor.email = user.email
+            vendor.picture = nil
+            vendor.contactNumber = user.contactNumber
+            vendor.bannerURL = nil
+            saveUser()
+     
+                LoadingHudManager.shared.showSimpleHUD(title: "Inserting...", view: self.view)
+                InitialDataDownloadManager.shared.addVendorData(vendor: vendor){ status in
+                    DispatchQueue.main.async {
+                        LoadingHudManager.shared.dissmissHud()
+                        self.displayErrorMessage(status: status)
+                    }
+                }
+        }else{
+            let client = Client(context: context)
+            client.firstName = user.firstName
+            client.lastName = user.lastName
+            client.email = user.email
+            client.picture = nil
+            client.contactNumber = user.contactNumber
+            client.isPremium = false
+            saveUser()
+                LoadingHudManager.shared.showSimpleHUD(title: "Inserting...", view: self.view)
+                InitialDataDownloadManager.shared.addClientData(client: client){ status in
+                    DispatchQueue.main.async {
+                        LoadingHudManager.shared.dissmissHud()
+                        self.displayErrorMessage(status: status)
+                    }
+                }
+        }
+    }
+    
+    //MARK: - Core data interaction methods
+    
+    func saveUser() {
+        do {
+            try context.save()
+        } catch {
+            print("Error saving the notes \(error.localizedDescription)")
+        }
+    }
+    
+    func loadDashBoard(){
         
         UserDefaultsManager.shared.setUserLogin(status: true)
         UserDefaultsManager.shared.setIsVendor(status: isVendor)
-        if let loginUser = user {
+        if let user = loginUser {
             UserDefaultsManager.shared.setUserLogin(status: true)
-            setUser(user: loginUser)
+            UserDefaultsManager.shared.saveUserData(user: user)
         }else{
             UserDefaultsManager.shared.removeUserLogin()
             UserDefaultsManager.shared.removeUserData()
@@ -113,18 +201,12 @@ class SignupViewController: UIViewController {
         
     }
     
-    func setUser(user : LoginUser){
-        if (isVendor){
-            if let user = CoreDataManager.shared.getVendor(email: user.email) {
-                
-                let loginUser = LoginUser(firstName: user.firstName ?? "", lastName: user.lastName ?? "", email: user.email ?? "", contactNumber: user.contactNumber ?? "",isVendor: isVendor)
-                UserDefaultsManager.shared.saveUserData(user: loginUser)
-                
-            }
-        }else{
-            if let user = CoreDataManager.shared.getClient(email: user.email){
-                let loginUser = LoginUser(firstName: user.firstName ?? "", lastName: user.lastName ?? "", email: user.email ?? "", contactNumber: user.contactNumber ?? "",isVendor: isVendor)
-                UserDefaultsManager.shared.saveUserData(user: loginUser)
+    func displayErrorMessage(status : Bool?){
+        if let status = status {
+            if status == false {
+                UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
+            }else{
+                loadDashBoard()
             }
         }
     }
@@ -166,12 +248,12 @@ extension SignupViewController{
                         print("email -> \(email)")
                         print("facebookProfileUrl -> \(facebookProfileUrl)")
                         
-                        var loginUser = LoginUser(firstName: firstName, lastName: lastName, email: email, contactNumber: "",isVendor: self.isVendor)
+                        self.loginUser = LoginUser(firstName: firstName, lastName: lastName, email: email, contactNumber: "",isVendor: self.isVendor)
                         if let url = URL(string: facebookProfileUrl) {
-                            loginUser.picture = url
+                            self.loginUser?.picture = url
                         }
                         
-                        self.checkUserAvailablility(user: loginUser)
+                        self.redirectUser(email: email)
                         
                     }
                 }
@@ -197,9 +279,9 @@ extension SignupViewController{
             
             let profilePicUrl = user.profile?.imageURL(withDimension: 320) ?? nil
             
-            var loginUser = LoginUser(firstName: givenName, lastName: familyName, email: emailAddress, contactNumber: "",isVendor: self.isVendor)
-            loginUser.picture = profilePicUrl
-            self.checkUserAvailablility(user: loginUser)
+            self.loginUser = LoginUser(firstName: givenName, lastName: familyName, email: emailAddress, contactNumber: "",isVendor: self.isVendor)
+            self.loginUser?.picture = profilePicUrl
+            self.redirectUser(email: emailAddress)
         }
     }
 }
@@ -229,39 +311,12 @@ extension SignupViewController: ASAuthorizationControllerDelegate, ASAuthorizati
             let lastName = appleIDCredential.fullName?.familyName ?? ""
             let email = appleIDCredential.email ?? ""
             let firstName = appleIDCredential.fullName?.givenName ?? ""
-            var loginUser = LoginUser(firstName: firstName, lastName: lastName, email: email, contactNumber: "",isVendor: self.isVendor)
-            loginUser.picture = nil
-            self.checkUserAvailablility(user: loginUser)
+            self.loginUser = LoginUser(firstName: firstName, lastName: lastName, email: email, contactNumber: "",isVendor: self.isVendor)
+            self.loginUser?.picture = nil
+            self.redirectUser(email: email)
             break
         default:
             break
         }
-    }
-}
-
-
-extension SignupViewController {
-    func bioMetricVerification(){
-        biometricIDAuth.canEvaluate { (canEvaluate, _, canEvaluateError) in
-            guard canEvaluate else {
-                return
-            }
-            
-            biometricIDAuth.evaluate { [weak self] (success, error) in
-                guard success else {
-                    return
-                }
-                
-                let loginUser =  UserDefaultsManager.shared.getUserData()
-                self?.loadDashBoard(user: loginUser)
-                UIAlertViewExtention.shared.showBasicAlertView(title: "Success", message:  "You have a free pass, now", okActionTitle: "OK", view: self ?? ViewController())
-            }
-        }
-    }
-}
-
-extension SignupViewController {
-    func openDashBoard(user : LoginUser?) {
-        self.loadDashBoard(user: user)
     }
 }

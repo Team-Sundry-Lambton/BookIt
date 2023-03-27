@@ -345,9 +345,8 @@ extension InitialDataDownloadManager {
     
     func addClientData(client : Client,completion: @escaping (_ status: Bool?) -> Void){
         var picturePath : String?
-
+        var ref: DocumentReference? = nil
         if let imageData = client.picture {
-            var ref: DocumentReference? = nil
             self.db.collection("client")
                 .whereField("email", isEqualTo: client.email ?? "")
                 .getDocuments(){ (document, error) in
@@ -408,13 +407,33 @@ extension InitialDataDownloadManager {
                     }
             }
 
+        }else{
+            ref = self.db.collection("client").addDocument(data: [
+                "contactNumber": client.contactNumber ?? "",
+                "email": client.email ?? "",
+                "lastName": client.lastName ?? "",
+                "firstName": client.firstName ?? "",
+                "isPremium": client.isPremium,
+                "picture":  "",
+                "password" : client.password ?? "",
+                
+            ]) { err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                    completion(false)
+                } else {
+                    print("Document added with ID: \(ref!.documentID)")
+                    CoreDataManager.shared.deleteClients()
+                    Task { await self.getAllClientData() }
+                    completion(true)
+                }
+            }
         }
     }
     
     func addVendorData(vendor : Vendor,completion: @escaping (_ status: Bool?) -> Void){
-        
+        var ref: DocumentReference? = nil
         if let imageData = vendor.picture {
-            var ref: DocumentReference? = nil
             self.db.collection("vendor")
                 .whereField("email", isEqualTo: vendor.email ?? "")
                 .getDocuments(){ (document, error) in
@@ -431,7 +450,7 @@ extension InitialDataDownloadManager {
                                     "firstName": vendor.firstName ?? "",
                                     "bannerURL": vendor.bannerURL ?? "",
                                     "picture": url ?? "",
-                                    "password" : client.password ?? "",
+                                    "password" : vendor.password ?? "",
                                     
                                 ]) { err in
                                     if let err = err {
@@ -456,7 +475,7 @@ extension InitialDataDownloadManager {
                                 "firstName": vendor.firstName ?? "",
                                 "bannerURL": vendor.bannerURL ?? "",
                                 "picture": url ?? "",
-                                "password" : client.password ?? "",
+                                "password" : vendor.password ?? "",
                                 
                             ]) { err in
                                 if let err = err {
@@ -472,11 +491,36 @@ extension InitialDataDownloadManager {
                         }
                     }
                 }
+        }else{
+            ref = self.db.collection("vendor").addDocument(data: [
+                "contactNumber": vendor.contactNumber ?? "",
+                "email": vendor.email ?? "",
+                "lastName": vendor.lastName ?? "",
+                "firstName": vendor.firstName ?? "",
+                "bannerURL": vendor.bannerURL ?? "",
+                "picture": "",
+                "password" : vendor.password ?? "",
+                
+            ]) { err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                    completion(false)
+                } else {
+                    print("Document added with ID: \(ref!.documentID)")
+                    CoreDataManager.shared.deleteVendors()
+                    Task { await  self.getAllVendorData() }
+                    completion(true)
+                }
+            }
         }
+    }
         
-        
-        func chedkVendorData(email : String,completion: @escaping (_ status: Bool?) -> Void){
-                self.db.collection("vendor")
+        func chedkUserData(email : String, isVendor : Bool,completion: @escaping (_ status: Bool?) -> Void){
+            var dataCollection = "client"
+            if isVendor {
+                dataCollection = "vendor"
+            }
+                self.db.collection(dataCollection)
                     .whereField("email", isEqualTo: email)
                     .getDocuments(){ (document, error) in
                         if let document = document {
@@ -489,23 +533,7 @@ extension InitialDataDownloadManager {
                             completion(false)
                         }
             }
-        }
-        
-        func checkClientData(email : String,completion: @escaping (_ status: Bool?) -> Void){
-                self.db.collection("client")
-                    .whereField("email", isEqualTo: email)
-                    .getDocuments(){ (document, error) in
-                        if let document = document {
-                            if document.count >= 1 {
-                                completion(true)
-                            }else{
-                                completion(false)
-                            }
-                        }else{
-                            completion(false)
-                        }
-                }
-        }
+    
     }
     
     func addServiceData(service : Service,completion: @escaping (_ status: Bool?) -> Void) async {
