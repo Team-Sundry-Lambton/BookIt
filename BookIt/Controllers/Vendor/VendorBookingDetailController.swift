@@ -12,10 +12,8 @@ class VendorBookingDetailController: UIViewController{
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    var booking:Booking! = nil
-    var client:Client! = nil
-    var vendor:Vendor! = nil
-    var service:Service! = nil
+    var booking:Booking?
+    var service:Service?
     
     @IBOutlet weak var bookingIdLbl: UILabel!
     
@@ -45,24 +43,23 @@ class VendorBookingDetailController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadDetails()
     }
     
-    func loadDetails(model:Booking){
+    func loadDetails(){
         
-        bookingIdLbl.text = "Booking number is \(model)"
-        
-        guard let service = service,
-        let client = client,
-        let vendor = vendor else {
+        guard let service = booking?.service,
+              let client = booking?.client,
+              let payment = booking?.payment,
+              let vendor = booking?.vendor else {
             return
         }
+        
+        bookingIdLbl.text = "Booking number is \(booking)"
+        
         serviceNameLbl.text = service.serviceTitle
         
         customerNameLbl.text = "\(client.firstName) + \(client.lastName)"
-        
-//        bookingDateLbl.text = "\(booking.date)"
-        
-//        customerLocationLbl.text = service.
         
         
         

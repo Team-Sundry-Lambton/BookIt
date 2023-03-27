@@ -32,8 +32,7 @@ class VendorServicesViewController: UIViewController {
     }
     
     func loadMyServices(){
-//        services = CoreDataManager.shared.loadServicesByVendor(email: loginUser?.email ?? "")
-        services = CoreDataManager.shared.loadServices()
+        services = CoreDataManager.shared.loadServicesByVendor(email: loginUser?.email ?? "")
     }
     
     func deleteService(service:Service){
@@ -117,6 +116,13 @@ extension VendorServicesViewController : UITableViewDelegate, UITableViewDataSou
         let EditItem = UIContextualAction(style: .normal , title: "Edit") {  (contextualAction, view, boolValue) in
             
             //goto edit page
+            if let viewController = UIStoryboard(name: "PostService", bundle: nil).instantiateViewController(withIdentifier: "PostServiceViewController") as? PostServiceViewController {
+                if let navigator = self.navigationController {
+                    let selectedService = self.services[indexPath.item]
+                    viewController.selectedService = selectedService
+                    navigator.pushViewController(viewController, animated: true)
+                }
+            }
             
         }
        EditItem.backgroundColor = UIColor.systemBlue
