@@ -32,7 +32,8 @@ class VendorServicesViewController: UIViewController {
     }
     
     func loadMyServices(){
-        
+//        services = CoreDataManager.shared.loadServicesByVendor(email: loginUser?.email ?? "")
+        services = CoreDataManager.shared.loadServices()
     }
     
     func deleteService(service:Service){
@@ -66,14 +67,13 @@ extension VendorServicesViewController : UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return services.count
-        return 3
+        return services.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "VendorServiceListTableViewCell", for: indexPath) as! VendorServiceListTableViewCell
-//        let service = services[indexPath.row]
-//        cell.configureCell(service: service)
+        let service = services[indexPath.row]
+        cell.configureCell(service: service)
         return cell
     }
     
@@ -82,9 +82,14 @@ extension VendorServicesViewController : UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-//        let viewController:VendorBookingDetailController = UIStoryboard(name: "VendorBookingDetail", bundle: nil).instantiateViewController(withIdentifier: "VendorBookingDetail") as? VendorBookingDetailController ?? VendorBookingDetailController()
-//        navigationController?.pushViewController(viewController, animated: true)
+        if let viewController = UIStoryboard(name: "ServiceDetail", bundle: nil).instantiateViewController(withIdentifier: "ClientServiceDetailViewController") as? ClientServiceDetailViewController {
+            if let navigator = navigationController {
+                let selectedService = services[indexPath.item]
+                viewController.selectedService = selectedService
+                navigator.pushViewController(viewController, animated: true)
+                
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

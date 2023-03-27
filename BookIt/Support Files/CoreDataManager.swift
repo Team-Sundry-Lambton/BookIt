@@ -261,6 +261,19 @@ class CoreDataManager : NSObject{
         }
         return serviceList
     }
+    func loadServicesByVendor(email:String) -> [Service]{
+        var serviceList = [Service]()
+        let request: NSFetchRequest<Service> = Service.fetchRequest()
+        let folderPredicate = NSPredicate(format: "parent_Vendor.email=%@", email ?? "")
+        request.predicate = folderPredicate
+        request.sortDescriptors = [NSSortDescriptor(key: "serviceTitle", ascending: true)]
+        do {
+            serviceList = try context.fetch(request)
+        } catch {
+            print("Error loading Service \(error.localizedDescription)")
+        }
+        return serviceList
+    }
     
     func checkUserInDB(user : LoginUser , isVendor : Bool) -> Bool{
         var success = false

@@ -15,17 +15,49 @@ class VendorServiceListTableViewCell : UITableViewCell{
     @IBOutlet weak var descLbl: UILabel!
     @IBOutlet weak var priceLbl: UILabel!
     
+    @IBOutlet weak var ratingLbl: UILabel!
+    @IBOutlet weak var locationLbl: UILabel!
+    
+    
     func configureCell(service: Service) {
         
-        titleLbl.text = service.serviceTitle
-        descLbl.text = service.serviceDescription
+        if let title = service.serviceTitle {
+            titleLbl.text = title
+        }
+        if let description = service.serviceDescription {
+            descLbl.text = description
+        }
         if let price = service.price, let type = service.priceType {
             priceLbl.text = "$ " + price + " / " + type
         }
+        if let address =  service.address {
+            locationLbl.isHidden = false
+            locationLbl.text =  address.address
+        }else{
+            locationLbl.isHidden = true
+        }
         
-//        if let imageData = mediaList[0].image {
-//            self.serviceImage.image = UIImage(data: imageData)
-//        }
+        if let media = CoreDataManager.shared.getServiceFirstMedia(serviceId: Int(service.serviceId)) {
+            if let imageData = media.mediaContent {
+                    self.serviceImage.image = UIImage(data: imageData)
+                }
+        }
+        
+        dipalyServiceReview(serviceId :Int(service.serviceId))
+        
+    }
+    
+    func dipalyServiceReview(serviceId : Int){
+        let serviceReviewList = CoreDataManager.shared.getServiceReviewList(serviceId:serviceId)
+        var reviewTotal = 0
+        var rate = 0
+        for review in serviceReviewList {
+            reviewTotal += Int(review.rating)
+        }
+        if serviceReviewList.count > 0 {
+            rate = reviewTotal / serviceReviewList.count
+        }
+        ratingLbl.text =  String(rate)
     }
     
     override func awakeFromNib() {
