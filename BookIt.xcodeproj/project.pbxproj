@@ -111,6 +111,8 @@
 		BD3CE98329CC9D1800408AEE /* ReviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD3CE98229CC9D1800408AEE /* ReviewTableViewCell.xib */; };
 		BD3CE98529CCA2B200408AEE /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3CE98429CCA2B200408AEE /* ReviewTableViewCell.swift */; };
 		BD89B73829CB73B000F26546 /* ClientServiceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD89B73729CB73B000F26546 /* ClientServiceDetailViewController.swift */; };
+		BDA8015829D0EC31009A1570 /* VendorBankAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDA8015729D0EC31009A1570 /* VendorBankAccount.storyboard */; };
+		BDA8015A29D0EC88009A1570 /* VendorBankAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA8015929D0EC88009A1570 /* VendorBankAccountViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -187,6 +189,8 @@
 		BD3CE98229CC9D1800408AEE /* ReviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewTableViewCell.xib; sourceTree = "<group>"; };
 		BD3CE98429CCA2B200408AEE /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
 		BD89B73729CB73B000F26546 /* ClientServiceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientServiceDetailViewController.swift; sourceTree = "<group>"; };
+		BDA8015729D0EC31009A1570 /* VendorBankAccount.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VendorBankAccount.storyboard; sourceTree = "<group>"; };
+		BDA8015929D0EC88009A1570 /* VendorBankAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorBankAccountViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -292,6 +296,7 @@
 				996588BD29C7B87D00A7D796 /* FilterPopup.storyboard */,
 				BD3CE98029CBCE2700408AEE /* ServiceDetail.storyboard */,
 				993181C129CD3767003D82E5 /* VendorTransaction.storyboard */,
+				BDA8015729D0EC31009A1570 /* VendorBankAccount.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -365,6 +370,7 @@
 				BB7A1DD029C0C87E003CB894 /* VendorProfileViewController.swift */,
 				BB7A1DD229C0C88D003CB894 /* VendorServicesViewController.swift */,
 				993181C729CD4009003D82E5 /* VendorTransactionViewController.swift */,
+				BDA8015929D0EC88009A1570 /* VendorBankAccountViewController.swift */,
 			);
 			path = Vendor;
 			sourceTree = "<group>";
@@ -517,6 +523,7 @@
 				BB7A1E1429C2AFB1003CB894 /* GoogleService-Info.plist in Resources */,
 				BBE832BC29BD3B7300C58BF1 /* ServiceDetailTableViewCell.xib in Resources */,
 				995B2F7729C68C8700745992 /* ServiceStatusTableViewCell.xib in Resources */,
+				BDA8015829D0EC31009A1570 /* VendorBankAccount.storyboard in Resources */,
 				BB7524F429C8EC6E004C4837 /* NewVendorCollectionViewCell.xib in Resources */,
 				99AB0DD429AD95B300B096BB /* Main.storyboard in Resources */,
 				996588BE29C7B87D00A7D796 /* FilterPopup.storyboard in Resources */,
@@ -535,6 +542,7 @@
 				993181C829CD4009003D82E5 /* VendorTransactionViewController.swift in Sources */,
 				BB7524FC29C931F4004C4837 /* LoadingHudManager.swift in Sources */,
 				B4D56B5E29C10639005A2C63 /* CategoryCollectionViewCell.swift in Sources */,
+				BDA8015A29D0EC88009A1570 /* VendorBankAccountViewController.swift in Sources */,
 				BBA6356F29BA62D700702A62 /* ClientHomeViewController.swift in Sources */,
 				BB7A1DD129C0C87E003CB894 /* VendorProfileViewController.swift in Sources */,
 				BB95083429BD950300C02D9E /* ServiceSearchTableViewController.swift in Sources */,

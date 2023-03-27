@@ -669,7 +669,7 @@ extension InitialDataDownloadManager {
         }
     }
     
-    func addAccountData(account : Account,completion: @escaping (_ status: Bool?) -> Void){
+    func addBankAccountData(account : Account,completion: @escaping (_ status: Bool?) -> Void){
         
         var vendorEmail : String?
         if let vendor = account.parent_vendor {

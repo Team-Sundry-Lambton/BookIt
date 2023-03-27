@@ -122,7 +122,7 @@ class VendorProfileViewController: UIViewController {
     
     @IBAction func loadBankAccountPage() {
         if (UserDefaultsManager.shared.getUserLogin()){
-            if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EditProfileViewController") as? EditProfileViewController {
+            if let viewController = UIStoryboard(name: "VendorBankAccount", bundle: nil).instantiateViewController(withIdentifier: "VendorBankAccount") as? VendorBankAccountViewController {
                 if let navigator = navigationController {
                     navigator.pushViewController(viewController, animated: true)
                 }
