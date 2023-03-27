@@ -205,7 +205,7 @@ class InitialDataDownloadManager : NSObject{
                 let boobking = Booking(context: self.context)
                 boobking.date =  data["date"] as? Date
                 boobking.status =  data["status"] as? String ?? ""
-
+                boobking.problemDescription = data["problemDescription"] as? String ?? ""
                 
                 if let parentService = data["parentService"]  as? Int {
                     if parentService != -1 {
@@ -592,6 +592,7 @@ extension InitialDataDownloadManager {
             "parentService": serviceId ?? -1,
             "clientEmailAddress": clientEmail ?? "",
             "vendorEmailAddress": vendorEmail ?? "",
+            "problemDescription" : booking.problemDescription ?? "",
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")

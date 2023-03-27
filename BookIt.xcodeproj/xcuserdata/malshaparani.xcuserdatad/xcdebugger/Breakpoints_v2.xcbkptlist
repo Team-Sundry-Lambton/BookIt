@@ -382,8 +382,8 @@
             filePath = "BookIt/Support Files/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "712"
-            endingLineNumber = "712"
+            startingLineNumber = "713"
+            endingLineNumber = "713"
             landmarkName = "uploadMedia(name:media:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -398,13 +398,13 @@
             filePath = "BookIt/Support Files/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "709"
-            endingLineNumber = "709"
+            startingLineNumber = "710"
+            endingLineNumber = "710"
             landmarkName = "uploadMedia(name:media:completion:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "3CDC7C9D-8B51-420C-88A1-E81DB5BF33F8 - 968f0bca739ca399"
+                  uuid = "3CDC7C9D-8B51-420C-88A1-E81DB5BF33F8 - 968f0bca739ca3f8"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -414,12 +414,12 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "709"
-                  endingLineNumber = "709"
+                  startingLineNumber = "710"
+                  endingLineNumber = "710"
                   offsetFromSymbolStart = "264">
                </Location>
                <Location
-                  uuid = "3CDC7C9D-8B51-420C-88A1-E81DB5BF33F8 - 968f0bca739ca399"
+                  uuid = "3CDC7C9D-8B51-420C-88A1-E81DB5BF33F8 - 968f0bca739ca3f8"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -429,8 +429,8 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "709"
-                  endingLineNumber = "709"
+                  startingLineNumber = "710"
+                  endingLineNumber = "710"
                   offsetFromSymbolStart = "420">
                </Location>
             </Locations>
@@ -446,8 +446,8 @@
             filePath = "BookIt/Support Files/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "732"
-            endingLineNumber = "732"
+            startingLineNumber = "733"
+            endingLineNumber = "733"
             landmarkName = "updateClientData(client:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -606,8 +606,8 @@
             filePath = "BookIt/Support Files/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "802"
-            endingLineNumber = "802"
+            startingLineNumber = "803"
+            endingLineNumber = "803"
             landmarkName = "updateAddressData(addressObject:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -814,8 +814,8 @@
             filePath = "BookIt/Support Files/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "765"
-            endingLineNumber = "765"
+            startingLineNumber = "766"
+            endingLineNumber = "766"
             landmarkName = "updateVendorData(vendor:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -830,8 +830,8 @@
             filePath = "BookIt/Support Files/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "759"
-            endingLineNumber = "759"
+            startingLineNumber = "760"
+            endingLineNumber = "760"
             landmarkName = "updateVendorData(vendor:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -846,10 +846,10 @@
             filePath = "BookIt/Support Files/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "753"
-            endingLineNumber = "753"
-            landmarkName = "updateClientData(client:completion:)"
-            landmarkType = "7">
+            startingLineNumber = "754"
+            endingLineNumber = "754"
+            landmarkName = "InitialDataDownloadManager"
+            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -862,8 +862,8 @@
             filePath = "BookIt/Support Files/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "748"
-            endingLineNumber = "748"
+            startingLineNumber = "749"
+            endingLineNumber = "749"
             landmarkName = "updateClientData(client:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -878,13 +878,13 @@
             filePath = "BookIt/Support Files/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "760"
-            endingLineNumber = "760"
+            startingLineNumber = "761"
+            endingLineNumber = "761"
             landmarkName = "updateVendorData(vendor:completion:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "684925EA-7278-4CBB-9517-6F35BC4D4314 - 6e15da6502e6d3af"
+                  uuid = "684925EA-7278-4CBB-9517-6F35BC4D4314 - 6e15da6502e6d38c"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -894,12 +894,12 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "760"
-                  endingLineNumber = "760"
+                  startingLineNumber = "761"
+                  endingLineNumber = "761"
                   offsetFromSymbolStart = "200">
                </Location>
                <Location
-                  uuid = "684925EA-7278-4CBB-9517-6F35BC4D4314 - 6e15da6502e6d3af"
+                  uuid = "684925EA-7278-4CBB-9517-6F35BC4D4314 - 6e15da6502e6d38c"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -909,8 +909,8 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "760"
-                  endingLineNumber = "760"
+                  startingLineNumber = "761"
+                  endingLineNumber = "761"
                   offsetFromSymbolStart = "248">
                </Location>
             </Locations>
@@ -1133,13 +1133,13 @@
             filePath = "BookIt/Support Files/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "856"
-            endingLineNumber = "856"
+            startingLineNumber = "857"
+            endingLineNumber = "857"
             landmarkName = "updateMedia(media:completion:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "4FEE4031-0530-4556-9AE9-FDF0A2BFE94A - bb73fc8c564c891c"
+                  uuid = "4FEE4031-0530-4556-9AE9-FDF0A2BFE94A - bb73fc8c564c893d"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1149,12 +1149,12 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "873"
-                  endingLineNumber = "873"
+                  startingLineNumber = "874"
+                  endingLineNumber = "874"
                   offsetFromSymbolStart = "1304">
                </Location>
                <Location
-                  uuid = "4FEE4031-0530-4556-9AE9-FDF0A2BFE94A - 6f396218ab75cd1e"
+                  uuid = "4FEE4031-0530-4556-9AE9-FDF0A2BFE94A - 6f396218ab75cd3f"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1164,12 +1164,12 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "873"
-                  endingLineNumber = "873"
+                  startingLineNumber = "874"
+                  endingLineNumber = "874"
                   offsetFromSymbolStart = "224">
                </Location>
                <Location
-                  uuid = "4FEE4031-0530-4556-9AE9-FDF0A2BFE94A - c9da2f5ea6e2af1f"
+                  uuid = "4FEE4031-0530-4556-9AE9-FDF0A2BFE94A - c9da2f5ea6e2af3e"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1179,12 +1179,12 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "873"
-                  endingLineNumber = "873"
+                  startingLineNumber = "874"
+                  endingLineNumber = "874"
                   offsetFromSymbolStart = "216">
                </Location>
                <Location
-                  uuid = "4FEE4031-0530-4556-9AE9-FDF0A2BFE94A - 23e6eb94a01f1100"
+                  uuid = "4FEE4031-0530-4556-9AE9-FDF0A2BFE94A - 23e6eb94a01f1121"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1194,8 +1194,8 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "873"
-                  endingLineNumber = "873"
+                  startingLineNumber = "874"
+                  endingLineNumber = "874"
                   offsetFromSymbolStart = "288">
                </Location>
             </Locations>
@@ -1611,13 +1611,13 @@
             filePath = "BookIt/Support Files/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "871"
-            endingLineNumber = "871"
+            startingLineNumber = "872"
+            endingLineNumber = "872"
             landmarkName = "updateMedia(media:completion:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "C9B91F86-D468-4BE8-81FA-DDA7E7939E19 - bb73fc8c564c891c"
+                  uuid = "C9B91F86-D468-4BE8-81FA-DDA7E7939E19 - bb73fc8c564c893d"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1627,12 +1627,12 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "873"
-                  endingLineNumber = "873"
+                  startingLineNumber = "874"
+                  endingLineNumber = "874"
                   offsetFromSymbolStart = "1304">
                </Location>
                <Location
-                  uuid = "C9B91F86-D468-4BE8-81FA-DDA7E7939E19 - 6f396218ab75cd1e"
+                  uuid = "C9B91F86-D468-4BE8-81FA-DDA7E7939E19 - 6f396218ab75cd3f"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1642,12 +1642,12 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "873"
-                  endingLineNumber = "873"
+                  startingLineNumber = "874"
+                  endingLineNumber = "874"
                   offsetFromSymbolStart = "224">
                </Location>
                <Location
-                  uuid = "C9B91F86-D468-4BE8-81FA-DDA7E7939E19 - c9da2f5ea6e2af1f"
+                  uuid = "C9B91F86-D468-4BE8-81FA-DDA7E7939E19 - c9da2f5ea6e2af3e"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1657,12 +1657,12 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "873"
-                  endingLineNumber = "873"
+                  startingLineNumber = "874"
+                  endingLineNumber = "874"
                   offsetFromSymbolStart = "216">
                </Location>
                <Location
-                  uuid = "C9B91F86-D468-4BE8-81FA-DDA7E7939E19 - 23e6eb94a01f1100"
+                  uuid = "C9B91F86-D468-4BE8-81FA-DDA7E7939E19 - 23e6eb94a01f1121"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1672,8 +1672,8 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "873"
-                  endingLineNumber = "873"
+                  startingLineNumber = "874"
+                  endingLineNumber = "874"
                   offsetFromSymbolStart = "288">
                </Location>
             </Locations>
@@ -1689,13 +1689,13 @@
             filePath = "BookIt/Support Files/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "867"
-            endingLineNumber = "867"
+            startingLineNumber = "868"
+            endingLineNumber = "868"
             landmarkName = "updateMedia(media:completion:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "6151C3D6-2EFE-4B0E-8516-DED8406EB471 - bb73fc8c564c891c"
+                  uuid = "6151C3D6-2EFE-4B0E-8516-DED8406EB471 - bb73fc8c564c893d"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1705,12 +1705,12 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "873"
-                  endingLineNumber = "873"
+                  startingLineNumber = "874"
+                  endingLineNumber = "874"
                   offsetFromSymbolStart = "1304">
                </Location>
                <Location
-                  uuid = "6151C3D6-2EFE-4B0E-8516-DED8406EB471 - 6f396218ab75cd1e"
+                  uuid = "6151C3D6-2EFE-4B0E-8516-DED8406EB471 - 6f396218ab75cd3f"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1720,12 +1720,12 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "873"
-                  endingLineNumber = "873"
+                  startingLineNumber = "874"
+                  endingLineNumber = "874"
                   offsetFromSymbolStart = "224">
                </Location>
                <Location
-                  uuid = "6151C3D6-2EFE-4B0E-8516-DED8406EB471 - c9da2f5ea6e2af1f"
+                  uuid = "6151C3D6-2EFE-4B0E-8516-DED8406EB471 - c9da2f5ea6e2af3e"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1735,12 +1735,12 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "873"
-                  endingLineNumber = "873"
+                  startingLineNumber = "874"
+                  endingLineNumber = "874"
                   offsetFromSymbolStart = "216">
                </Location>
                <Location
-                  uuid = "6151C3D6-2EFE-4B0E-8516-DED8406EB471 - 23e6eb94a01f1100"
+                  uuid = "6151C3D6-2EFE-4B0E-8516-DED8406EB471 - 23e6eb94a01f1121"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1750,8 +1750,8 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "873"
-                  endingLineNumber = "873"
+                  startingLineNumber = "874"
+                  endingLineNumber = "874"
                   offsetFromSymbolStart = "288">
                </Location>
             </Locations>
@@ -1767,8 +1767,8 @@
             filePath = "BookIt/Support Files/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "898"
-            endingLineNumber = "898"
+            startingLineNumber = "899"
+            endingLineNumber = "899"
             landmarkName = "updateBookingData(booking:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1783,13 +1783,13 @@
             filePath = "BookIt/Support Files/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "896"
-            endingLineNumber = "896"
+            startingLineNumber = "897"
+            endingLineNumber = "897"
             landmarkName = "updateBookingData(booking:completion:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "A7CBA569-CCCE-498C-969A-5C1F7B23FB6D - 6abddf078d8fadbc"
+                  uuid = "A7CBA569-CCCE-498C-969A-5C1F7B23FB6D - 6abddf078d8fad9f"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1799,12 +1799,12 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "896"
-                  endingLineNumber = "896"
+                  startingLineNumber = "897"
+                  endingLineNumber = "897"
                   offsetFromSymbolStart = "176">
                </Location>
                <Location
-                  uuid = "A7CBA569-CCCE-498C-969A-5C1F7B23FB6D - 6abddf078d8fadbc"
+                  uuid = "A7CBA569-CCCE-498C-969A-5C1F7B23FB6D - 6abddf078d8fad9f"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1814,8 +1814,8 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Support%20Files/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "896"
-                  endingLineNumber = "896"
+                  startingLineNumber = "897"
+                  endingLineNumber = "897"
                   offsetFromSymbolStart = "244">
                </Location>
             </Locations>
@@ -1831,8 +1831,8 @@
             filePath = "BookIt/Support Files/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "894"
-            endingLineNumber = "894"
+            startingLineNumber = "895"
+            endingLineNumber = "895"
             landmarkName = "updateBookingData(booking:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1847,8 +1847,8 @@
             filePath = "BookIt/Support Files/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "904"
-            endingLineNumber = "904"
+            startingLineNumber = "905"
+            endingLineNumber = "905"
             landmarkName = "updateBookingData(booking:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1863,8 +1863,8 @@
             filePath = "BookIt/Support Files/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "902"
-            endingLineNumber = "902"
+            startingLineNumber = "903"
+            endingLineNumber = "903"
             landmarkName = "updateBookingData(booking:completion:)"
             landmarkType = "7">
          </BreakpointContent>
