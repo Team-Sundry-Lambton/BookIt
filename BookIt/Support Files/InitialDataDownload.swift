@@ -1116,5 +1116,3 @@ extension InitialDataDownloadManager {
         return nil
     }
 }
-
-

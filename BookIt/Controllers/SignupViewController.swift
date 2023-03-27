@@ -124,6 +124,7 @@ class SignupViewController: UIViewController {
             vendor.picture = nil
             vendor.contactNumber = user.contactNumber
             vendor.bannerURL = nil
+            vendor.password = passwordTxt.text
             saveUser()
      
                 LoadingHudManager.shared.showSimpleHUD(title: "Inserting...", view: self.view)
@@ -141,6 +142,7 @@ class SignupViewController: UIViewController {
             client.picture = nil
             client.contactNumber = user.contactNumber
             client.isPremium = false
+            client.password = passwordTxt.text
             saveUser()
                 LoadingHudManager.shared.showSimpleHUD(title: "Inserting...", view: self.view)
                 InitialDataDownloadManager.shared.addClientData(client: client){ status in

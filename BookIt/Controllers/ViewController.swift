@@ -17,6 +17,8 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var vendorStatus: UISegmentedControl!{
         didSet{
+            let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.appThemeColor]
+            vendorStatus.setTitleTextAttributes(titleTextAttributes, for: .normal)
         }
     }
     

@@ -330,6 +330,8 @@ class CoreDataManager : NSObject{
        return vendorReview
     }
     
+
+    
     func deleteVendors() {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName:"Vendor")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)

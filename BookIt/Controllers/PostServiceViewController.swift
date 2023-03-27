@@ -343,26 +343,26 @@ class PostServiceViewController: UIViewController {
     //MARK: - Core data interaction methods
     
     func saveService(){
-        if let serivice = selectedService {
-            serivice.parent_Category = selectedCategory
-            serivice.serviceTitle = titleTextField.text
+        if let service = selectedService {
+            service.parent_Category = selectedCategory
+            service.serviceTitle = titleTextField.text
             if placeHolder != descriptionTextView.text {
-                serivice.serviceDescription = descriptionTextView.text
+                service.serviceDescription = descriptionTextView.text
             }
             
-            serivice.cancelPolicy = cancelPolicyTextField.text
+            service.cancelPolicy = cancelPolicyTextField.text
             
             //        selectedLocation?.parentService = service
             
-            serivice.price = priceTextField.text
-            serivice.priceType = priceTypeTextField.text
-            serivice.equipment = isEquipmentNeed
+            service.price = priceTextField.text
+            service.priceType = priceTypeTextField.text
+            service.equipment = isEquipmentNeed
             let user =  UserDefaultsManager.shared.getUserData()
-            serivice.parent_Vendor = CoreDataManager.shared.getVendor(email: user.email)
+            service.parent_Vendor = CoreDataManager.shared.getVendor(email: user.email)
             if editMode{
                 LoadingHudManager.shared.showSimpleHUD(title: "Uploading...", view: self.view)
                     Task {
-                        await InitialDataDownloadManager.shared.updateServiceData(service: serivice){ status in
+                        await InitialDataDownloadManager.shared.updateServiceData(service: service){ status in
                             DispatchQueue.main.async {
                                 LoadingHudManager.shared.dissmissHud()
                                 if let status = status {
@@ -378,7 +378,7 @@ class PostServiceViewController: UIViewController {
             }else{
             LoadingHudManager.shared.showSimpleHUD(title: "Uploading...", view: self.view)
                 Task {
-                    await InitialDataDownloadManager.shared.addServiceData(service: serivice){ status in
+                    await InitialDataDownloadManager.shared.addServiceData(service: service){ status in
                         DispatchQueue.main.async {
                             LoadingHudManager.shared.dissmissHud()
                             if let status = status {
