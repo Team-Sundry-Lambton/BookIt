@@ -22,10 +22,14 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var emailTxt: UITextField!
     @IBOutlet weak var passwordTxt: UITextField!
-
+    @IBOutlet weak var signUpBtn: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         NetworkMonitor.shared.setObserve(viewController: self)
+        
+        let signupText = NSMutableAttributedString(string: "Don't have an account? Register Now")
+        signupText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.appThemeColor, range: NSRange(location: 22,length: 13))
+        signUpBtn.setAttributedTitle(signupText, for: .normal)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,6 +46,15 @@ class LoginViewController: UIViewController {
             return
         }else{
             redirectUser(email: emailTxt.text ?? "")
+        }
+    }
+    
+    @IBAction func signUpButtonClicked(_ sender: Any) {
+        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SignupViewController") as? SignupViewController {
+            if let navigator = navigationController {
+                viewController.isVendor = isVendor
+                navigator.pushViewController(viewController, animated: true)
+            }
         }
     }
     

@@ -391,6 +391,18 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v5L-7q-B24">
+                                <rect key="frame" x="109" y="783" width="175" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="w6A-A9-wde"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Continue as a guest"/>
+                                <connections>
+                                    <action selector="loginButtonClicked:" destination="JZf-vq-TWR" eventType="touchUpInside" id="maK-0f-5S2"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Eob-cM-viP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -400,10 +412,12 @@
                             <constraint firstItem="xOp-Aq-e6Z" firstAttribute="top" secondItem="iiC-pz-Gac" secondAttribute="bottom" constant="30" id="9rx-rD-ja6"/>
                             <constraint firstItem="xOp-Aq-e6Z" firstAttribute="leading" secondItem="Eob-cM-viP" secondAttribute="leading" constant="20" id="BvJ-Za-274"/>
                             <constraint firstItem="iiC-pz-Gac" firstAttribute="leading" secondItem="Eob-cM-viP" secondAttribute="leading" constant="20" id="DFK-jy-jTW"/>
+                            <constraint firstItem="Eob-cM-viP" firstAttribute="bottom" secondItem="v5L-7q-B24" secondAttribute="bottom" constant="10" id="HXt-mk-diJ"/>
                             <constraint firstItem="Eob-cM-viP" firstAttribute="trailing" secondItem="iiC-pz-Gac" secondAttribute="trailing" constant="20" id="McZ-aa-WaA"/>
                             <constraint firstItem="W4T-ax-1tr" firstAttribute="leading" secondItem="PFf-EA-5VK" secondAttribute="leading" constant="20" id="Nl0-Ob-w2c"/>
                             <constraint firstItem="hae-0d-Q4H" firstAttribute="top" secondItem="Eob-cM-viP" secondAttribute="top" constant="10" id="QIT-JE-diN"/>
                             <constraint firstItem="Eob-cM-viP" firstAttribute="trailing" secondItem="xOp-Aq-e6Z" secondAttribute="trailing" constant="20" id="TRn-fm-9ah"/>
+                            <constraint firstItem="v5L-7q-B24" firstAttribute="centerX" secondItem="Eob-cM-viP" secondAttribute="centerX" id="WEv-Si-HYX"/>
                             <constraint firstItem="hae-0d-Q4H" firstAttribute="leading" secondItem="PFf-EA-5VK" secondAttribute="leading" constant="20" id="ZVW-Hz-Lqw"/>
                             <constraint firstItem="Eob-cM-viP" firstAttribute="trailing" secondItem="hae-0d-Q4H" secondAttribute="trailing" constant="20" id="fOM-BH-NFi"/>
                             <constraint firstItem="iiC-pz-Gac" firstAttribute="top" secondItem="ljy-Jz-aIu" secondAttribute="bottom" constant="35" id="jA8-2i-Kcx"/>
@@ -418,6 +432,7 @@
                         <outlet property="emailTxt" destination="gEV-Fj-cFc" id="wgE-gA-qYS"/>
                         <outlet property="firstNameTxt" destination="xUK-dx-nr2" id="1NX-BO-sHC"/>
                         <outlet property="lastNameTxt" destination="2eh-Ot-veY" id="uSh-7D-grD"/>
+                        <outlet property="loginBtn" destination="v5L-7q-B24" id="ESO-gg-XNi"/>
                         <outlet property="passwordTxt" destination="e4t-c0-3DD" id="dGj-ep-KHI"/>
                         <outlet property="phoneNumberTxt" destination="KsY-1u-6Ic" id="Ipi-qG-9Av"/>
                     </connections>
@@ -642,6 +657,18 @@
                                     <action selector="forgotPassword" destination="6aG-Kx-hM8" eventType="touchUpInside" id="Eq1-ti-ui3"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hWI-VA-XRl">
+                                <rect key="frame" x="109" y="783" width="175" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="WG2-f7-0ie"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Continue as a guest"/>
+                                <connections>
+                                    <action selector="signUpButtonClicked:" destination="6aG-Kx-hM8" eventType="touchUpInside" id="qcb-VD-KXu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="AyV-a4-aXm"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -656,9 +683,11 @@
                             <constraint firstItem="NB0-nN-vjT" firstAttribute="leading" secondItem="AyV-a4-aXm" secondAttribute="leading" constant="20" id="ZKz-nw-vnc"/>
                             <constraint firstItem="ASe-O3-6bw" firstAttribute="top" secondItem="hl9-tj-ADb" secondAttribute="bottom" constant="30" id="e26-VB-HPq"/>
                             <constraint firstItem="hl9-tj-ADb" firstAttribute="leading" secondItem="AyV-a4-aXm" secondAttribute="leading" constant="20" id="g8c-Uy-K2S"/>
+                            <constraint firstItem="AyV-a4-aXm" firstAttribute="bottom" secondItem="hWI-VA-XRl" secondAttribute="bottom" constant="10" id="gQV-iv-RwD"/>
                             <constraint firstItem="rXc-0Y-k6H" firstAttribute="top" secondItem="NB0-nN-vjT" secondAttribute="bottom" constant="35" id="hXf-Ai-gb2"/>
                             <constraint firstItem="9fK-Jr-oiH" firstAttribute="top" secondItem="rXc-0Y-k6H" secondAttribute="bottom" constant="20" id="kRv-pu-fhq"/>
                             <constraint firstItem="9IF-6Q-Mn6" firstAttribute="top" secondItem="ASe-O3-6bw" secondAttribute="bottom" constant="20" id="lbO-XL-IW2"/>
+                            <constraint firstItem="hWI-VA-XRl" firstAttribute="centerX" secondItem="AyV-a4-aXm" secondAttribute="centerX" id="mwt-B2-fvK"/>
                             <constraint firstItem="AyV-a4-aXm" firstAttribute="trailing" secondItem="9IF-6Q-Mn6" secondAttribute="trailing" constant="20" id="nlL-zF-ZEj"/>
                             <constraint firstItem="AyV-a4-aXm" firstAttribute="trailing" secondItem="ASe-O3-6bw" secondAttribute="trailing" constant="20" id="ssS-vA-uX7"/>
                             <constraint firstItem="ASe-O3-6bw" firstAttribute="leading" secondItem="AyV-a4-aXm" secondAttribute="leading" constant="20" id="uUt-xE-xXg"/>
@@ -669,6 +698,7 @@
                     <connections>
                         <outlet property="emailTxt" destination="WNH-ND-3LN" id="724-bV-DaY"/>
                         <outlet property="passwordTxt" destination="Hed-eo-0kp" id="fjQ-QJ-j4d"/>
+                        <outlet property="signUpBtn" destination="hWI-VA-XRl" id="veN-X7-qtL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yov-6z-tyO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
