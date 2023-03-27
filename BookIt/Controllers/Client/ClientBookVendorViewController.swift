@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 import JGProgressHUD
 
-class ClientBookVendorViewController: UIViewController {
+class ClientBookVendorViewController: UIViewController, UITextViewDelegate {
     
     var selectedService: Service?
     var vendor : Vendor?
@@ -23,7 +23,7 @@ class ClientBookVendorViewController: UIViewController {
     let datePicker = UIDatePicker()
     let timePicker = UIDatePicker()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
+    var placeholderText = "Describe the problem"
     override func viewDidLoad() {
         super.viewDidLoad()
         createDatePicker()
@@ -55,6 +55,10 @@ class ClientBookVendorViewController: UIViewController {
         }
         
         btnImmediately.isSelected = true
+        describeProblemTextView.delegate = self
+        // Set the placeholder text
+        describeProblemTextView.text = placeholderText
+        describeProblemTextView.textColor = UIColor.lightGray
     }
     
     func createDatePicker(){
@@ -255,6 +259,25 @@ class ClientBookVendorViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        // Check if the text view's text matches the placeholder text
+        if textView.text == "Describe the problem" {
+            // Clear the text view
+            textView.text = ""
+            textView.textColor = UIColor.black
+        }else{
+            
+        }
+    }
+        
+    func textViewDidEndEditing(_ textView: UITextView) {
+        // Check if the text view's text is empty
+        if textView.text.isEmpty {
+            // Set the placeholder text
+            textView.text = placeholderText
+            textView.textColor = UIColor.lightGray
+            textView.selectedRange = NSMakeRange(0, 0) // Remove cursor
+        }
+    }
     
-
 }
