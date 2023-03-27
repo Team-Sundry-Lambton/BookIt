@@ -125,6 +125,21 @@ extension VendorHomeViewController: UITableViewDelegate , UITableViewDataSource 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //go to service detail page.
         print("selected" + "\(indexPath.row)")
+        
+        
+        var booking:Booking? = nil
+        if segmentSelectedIndex == 0 && bookingListOngoing.count > 0 {
+            booking = bookingListOngoing[indexPath.row]
+        } else if segmentSelectedIndex == 1 && bookingListHistory.count > 0 {
+            booking = bookingListHistory[indexPath.row]
+        }
+        if let viewController = UIStoryboard(name: "VendorBookingDetail", bundle: nil).instantiateViewController(withIdentifier: "VendorBookingDetail") as? VendorBookingDetailController {
+            if let navigator = navigationController {
+                viewController.booking = booking
+                navigator.pushViewController(viewController, animated: true)
+                
+            }
+        }
     }
 }
 
