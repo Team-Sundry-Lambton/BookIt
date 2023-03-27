@@ -56,13 +56,8 @@ class VendorBookingDetailController: UIViewController{
         }
         
         bookingIdLbl.text = "Booking number is \(booking)"
-        
         serviceNameLbl.text = service.serviceTitle
-        
         customerNameLbl.text = "\(client.firstName) + \(client.lastName)"
-        
-        
-        
         
     }
     
@@ -79,8 +74,12 @@ class VendorBookingDetailController: UIViewController{
                             if let status = status {
                                 if status {
                                     self.saveAllContextCoreData()
-                                    let viewController:VendorBookingConfirmationController = UIStoryboard(name: "VendorBookingConfirmation", bundle: nil).instantiateViewController(withIdentifier: "VendorBookingConfirmation") as? VendorBookingConfirmationController ?? VendorBookingConfirmationController()
-                                    self.navigationController?.pushViewController(viewController, animated: true)
+                                    let storyboard = UIStoryboard(name: "VendorBookingConfirmation", bundle: nil)
+                                    let mainTabBarController = storyboard.instantiateViewController(identifier: "VendorBookingConfirmation")
+                                    mainTabBarController.modalPresentationStyle = .fullScreen
+                                    if let navigator = self.navigationController {
+                                        navigator.pushViewController(mainTabBarController, animated: true)
+                                    }
                                 }else{
                                     UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
                                 }
