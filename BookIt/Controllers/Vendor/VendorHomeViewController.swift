@@ -9,10 +9,12 @@ import UIKit
 import CoreData
 
 class VendorHomeViewController: UIViewController {
-    var loginUser : LoginUser?
+    var vendor : Vendor?
     var bookingList = [Booking]()
     var bookingListOngoing = [Booking]()
     var bookingListHistory = [Booking]()
+    @IBOutlet weak var emptyView: UIView!
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBOutlet weak var tableView: UITableView!
@@ -31,6 +33,7 @@ class VendorHomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view.
         interfaceSegmented.delegate = self
         tableView.register(UINib(nibName: "ServiceStatusTableViewCell", bundle: nil), forCellReuseIdentifier: "ServiceStatusTableViewCell")
@@ -42,19 +45,39 @@ class VendorHomeViewController: UIViewController {
     }
     
     private func loadData() {
+        getVendor()
         loadBookingList()
+        tableView.isHidden = true
+        emptyView.isHidden = true
+        if segmentSelectedIndex == 0 {
+            if bookingListOngoing.count > 0 {
+                tableView.isHidden = false
+            } else {
+                emptyView.isHidden = false
+            }
+        } else {
+            if bookingListHistory.count > 0 {
+                tableView.isHidden = false
+            } else {
+                emptyView.isHidden = false
+            }
+        }
         tableView.reloadData()
     }
     
     private func loadBookingList(){
-
-        bookingList = CoreDataManager.shared.loadBookingList(email: loginUser?.email ?? "")
+        bookingList = CoreDataManager.shared.loadBookingList(email: vendor?.email ?? "")
             bookingListOngoing = bookingList.filter({
-                $0.status == "new" || $0.status == "pending" || $0.status == "inprogress"
+                $0.status == "New" || $0.status == "Pending" || $0.status == "Inprogress"
             })
             bookingListHistory = bookingList.filter({
-                $0.status == "cancel" || $0.status == "completed"
+                $0.status == "Cancel" || $0.status == "Completed"
             })
+    }
+    
+    func getVendor(){
+        let user =  UserDefaultsManager.shared.getUserData()
+        vendor = CoreDataManager.shared.getVendor(email: user.email)
     }
     
     @IBAction func filterAction(_ sender: Any) {
@@ -96,7 +119,7 @@ extension VendorHomeViewController: UITableViewDelegate , UITableViewDataSource 
         } else if segmentSelectedIndex == 1 && bookingListHistory.count > 0 {
             return bookingListHistory.count
         } else {
-            return 10 //dummy
+            return 0 //dummy
         }
     }
     
@@ -126,13 +149,13 @@ extension VendorHomeViewController: UITableViewDelegate , UITableViewDataSource 
         //go to service detail page.
         print("selected" + "\(indexPath.row)")
         
-        
         var booking:Booking? = nil
         if segmentSelectedIndex == 0 && bookingListOngoing.count > 0 {
             booking = bookingListOngoing[indexPath.row]
         } else if segmentSelectedIndex == 1 && bookingListHistory.count > 0 {
             booking = bookingListHistory[indexPath.row]
         }
+        
         if let viewController = UIStoryboard(name: "VendorBookingDetail", bundle: nil).instantiateViewController(withIdentifier: "VendorBookingDetail") as? VendorBookingDetailController {
             if let navigator = navigationController {
                 viewController.booking = booking
