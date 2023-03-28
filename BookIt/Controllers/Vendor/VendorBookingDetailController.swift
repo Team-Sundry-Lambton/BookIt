@@ -68,20 +68,23 @@ class VendorBookingDetailController: UIViewController{
                 Task {
                     booking.status = "Accepted"
                     await
-                    InitialDataDownloadManager.shared.updateBookingData(booking:booking){ status in
+                    InitialDataDownloadManager.shared.updateBookingData(booking:booking){[weak self] status in
                         DispatchQueue.main.async {
                             LoadingHudManager.shared.dissmissHud()
+                            guard let strongSelf = self else {
+                                return
+                            }
                             if let status = status {
                                 if status {
-                                    self.saveAllContextCoreData()
+                                    strongSelf.saveAllContextCoreData()
                                     let storyboard = UIStoryboard(name: "VendorBookingConfirmation", bundle: nil)
                                     let mainTabBarController = storyboard.instantiateViewController(identifier: "VendorBookingConfirmation")
                                     mainTabBarController.modalPresentationStyle = .fullScreen
-                                    if let navigator = self.navigationController {
+                                    if let navigator = strongSelf.navigationController {
                                         navigator.pushViewController(mainTabBarController, animated: true)
                                     }
                                 }else{
-                                    UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
+                                    UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: strongSelf)
                                 }
                             }
                         }
@@ -107,15 +110,18 @@ class VendorBookingDetailController: UIViewController{
                 Task {
                     booking.status = "Rejected"
                     await
-                    InitialDataDownloadManager.shared.updateBookingData(booking:booking){ status in
+                    InitialDataDownloadManager.shared.updateBookingData(booking:booking){[weak self] status in
                         DispatchQueue.main.async {
                             LoadingHudManager.shared.dissmissHud()
+                            guard let strongSelf = self else {
+                                return
+                            }
                             if let status = status {
                                 if status {
-                                    self.saveAllContextCoreData()
+                                    strongSelf.saveAllContextCoreData()
                                     //go back
                                 }else{
-                                    UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
+                                    UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: strongSelf)
                                 }
                             }
                         }

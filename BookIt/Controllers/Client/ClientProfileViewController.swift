@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import SwiftUI
 class ClientProfileViewController: UIViewController {
 
     @IBOutlet weak var faceIDStatus: UISwitch!
@@ -37,6 +38,10 @@ class ClientProfileViewController: UIViewController {
             emailLbl.text = ""
             logoutTextLbl.text = "Register"
         }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
     }
     
     func addBorder() {
@@ -116,11 +121,22 @@ class ClientProfileViewController: UIViewController {
     func clearUserData(){
         UserDefaultsManager.shared.removeUserLogin()
         UserDefaultsManager.shared.removeUserData()
-
-        if let navigator = self.navigationController {
-            navigator.popViewController(animated: true)
-        }
+        var targetVC : UIViewController?
+        targetVC = navigationController?.viewControllers.first(where: {$0 is ViewController})
+        if let targetVC = targetVC {
+                 navigationController?.popToViewController(targetVC, animated: true)
+              }
     }
+    
+    @IBAction func aboutUs() {
+        
+//        let swiftUIViewController = UIHostingController(rootView: AboutUs())
+//              self.navigationController?.pushViewController(swiftUIViewController, animated: true)
+        let swiftUIViewController = UIHostingController(rootView: AboutUs(navigationController: self.navigationController))
+                self.navigationController?.pushViewController(swiftUIViewController, animated: true)
+    }
+    
+    
     
     /*
     // MARK: - Navigation

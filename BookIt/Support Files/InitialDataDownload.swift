@@ -57,6 +57,7 @@ class InitialDataDownloadManager : NSObject{
                         client.firstName = data["firstName"] as? String ?? ""
                         client.lastName =  data["lastName"] as? String ?? ""
                         client.email =  data["email"] as? String ?? ""
+                        client.password =  data["password"] as? String ?? ""
                         if let picture =  data["picture"] as? String{
                             client.picture = self.urlToData(path: picture)
                         }
@@ -79,6 +80,7 @@ class InitialDataDownloadManager : NSObject{
                     vendor.firstName = data["firstName"] as? String ?? ""
                     vendor.lastName =  data["lastName"] as? String ?? ""
                     vendor.email =  data["email"] as? String ?? ""
+                    vendor.password =  data["password"] as? String ?? ""
                     if let picture =  data["picture"] as? String{
                         vendor.picture = self.urlToData(path: picture)
                     }
@@ -106,6 +108,7 @@ class InitialDataDownloadManager : NSObject{
                 service.priceType =  data["priceType"]  as? String ?? ""
                 service.equipment = data["equipment"]  as? Bool ?? false
                 service.serviceId = data["serviceId"]  as? Int16 ?? -1
+                service.createdDate = data["createdDate"] as? Date ?? Date()
                 if let parentVendor = data["parentVendor"]  as? String {
                     if parentVendor != "" {
                         if  let vendor = CoreDataManager.shared.getVendor(email: parentVendor){
@@ -343,9 +346,8 @@ extension InitialDataDownloadManager {
     
     func addClientData(client : Client,completion: @escaping (_ status: Bool?) -> Void){
         var picturePath : String?
-
+        var ref: DocumentReference? = nil
         if let imageData = client.picture {
-            var ref: DocumentReference? = nil
             self.db.collection("client")
                 .whereField("email", isEqualTo: client.email ?? "")
                 .getDocuments(){ (document, error) in
@@ -363,13 +365,14 @@ extension InitialDataDownloadManager {
                                     "firstName": client.firstName ?? "",
                                     "isPremium": client.isPremium,
                                     "picture":  picturePath ?? "",
+                                    "password" : client.password ?? "",
                                     
                                 ]) { err in
                                     if let err = err {
                                         print("Error adding document: \(err)")
                                         completion(false)
                                     } else {
-                                        print("Document added with ID: \(ref!.documentID)")
+                                        print("Document added with ID: \(ref?.documentID)")
                                         CoreDataManager.shared.deleteClients()
                                         Task { await self.getAllClientData() }
                                         completion(true)
@@ -388,13 +391,14 @@ extension InitialDataDownloadManager {
                                 "firstName": client.firstName ?? "",
                                 "isPremium": client.isPremium,
                                 "picture":  picturePath ?? "",
+                                "password" : client.password ?? "",
                                 
                             ]) { err in
                                 if let err = err {
                                     print("Error adding document: \(err)")
                                     completion(false)
                                 } else {
-                                    print("Document added with ID: \(ref!.documentID)")
+                                    print("Document added with ID: \(ref?.documentID)")
                                     CoreDataManager.shared.deleteClients()
                                     Task { await self.getAllClientData() }
                                     completion(true)
@@ -404,13 +408,33 @@ extension InitialDataDownloadManager {
                     }
             }
 
+        }else{
+            ref = self.db.collection("client").addDocument(data: [
+                "contactNumber": client.contactNumber ?? "",
+                "email": client.email ?? "",
+                "lastName": client.lastName ?? "",
+                "firstName": client.firstName ?? "",
+                "isPremium": client.isPremium,
+                "picture":  "",
+                "password" : client.password ?? "",
+                
+            ]) { err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                    completion(false)
+                } else {
+                    print("Document added with ID: \(ref?.documentID)")
+                    CoreDataManager.shared.deleteClients()
+                    Task { await self.getAllClientData() }
+                    completion(true)
+                }
+            }
         }
     }
     
     func addVendorData(vendor : Vendor,completion: @escaping (_ status: Bool?) -> Void){
-        
+        var ref: DocumentReference? = nil
         if let imageData = vendor.picture {
-            var ref: DocumentReference? = nil
             self.db.collection("vendor")
                 .whereField("email", isEqualTo: vendor.email ?? "")
                 .getDocuments(){ (document, error) in
@@ -427,13 +451,14 @@ extension InitialDataDownloadManager {
                                     "firstName": vendor.firstName ?? "",
                                     "bannerURL": vendor.bannerURL ?? "",
                                     "picture": url ?? "",
+                                    "password" : vendor.password ?? "",
                                     
                                 ]) { err in
                                     if let err = err {
                                         print("Error adding document: \(err)")
                                         completion(false)
                                     } else {
-                                        print("Document added with ID: \(ref!.documentID)")
+                                        print("Document added with ID: \(ref?.documentID)")
                                         CoreDataManager.shared.deleteVendors()
                                         Task { await  self.getAllVendorData() }
                                         completion(true)
@@ -451,13 +476,14 @@ extension InitialDataDownloadManager {
                                 "firstName": vendor.firstName ?? "",
                                 "bannerURL": vendor.bannerURL ?? "",
                                 "picture": url ?? "",
+                                "password" : vendor.password ?? "",
                                 
                             ]) { err in
                                 if let err = err {
                                     print("Error adding document: \(err)")
                                     completion(false)
                                 } else {
-                                    print("Document added with ID: \(ref!.documentID)")
+                                    print("Document added with ID: \(ref?.documentID)")
                                     CoreDataManager.shared.deleteVendors()
                                     Task { await  self.getAllVendorData() }
                                     completion(true)
@@ -466,7 +492,49 @@ extension InitialDataDownloadManager {
                         }
                     }
                 }
+        }else{
+            ref = self.db.collection("vendor").addDocument(data: [
+                "contactNumber": vendor.contactNumber ?? "",
+                "email": vendor.email ?? "",
+                "lastName": vendor.lastName ?? "",
+                "firstName": vendor.firstName ?? "",
+                "bannerURL": vendor.bannerURL ?? "",
+                "picture": "",
+                "password" : vendor.password ?? "",
+                
+            ]) { err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                    completion(false)
+                } else {
+                    print("Document added with ID: \(ref?.documentID)")
+                    CoreDataManager.shared.deleteVendors()
+                    Task { await  self.getAllVendorData() }
+                    completion(true)
+                }
+            }
         }
+    }
+        
+        func chedkUserData(email : String, isVendor : Bool,completion: @escaping (_ status: Bool?) -> Void){
+            var dataCollection = "client"
+            if isVendor {
+                dataCollection = "vendor"
+            }
+                self.db.collection(dataCollection)
+                    .whereField("email", isEqualTo: email)
+                    .getDocuments(){ (document, error) in
+                        if let document = document {
+                            if document.count >= 1 {
+                                completion(true)
+                            }else{
+                                completion(false)
+                            }
+                        }else{
+                            completion(false)
+                        }
+            }
+    
     }
     
     func addServiceData(service : Service,completion: @escaping (_ status: Bool?) -> Void) async {
@@ -504,13 +572,14 @@ extension InitialDataDownloadManager {
             "parentCategory":  service.parent_Category?.name ?? "",
             "parentVendor":  service.parent_Vendor?.email ?? "",
             "serviceId":  service.serviceId ,
+            "createdDate" : service.createdDate ?? Date()
             
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
                 completion(false)
             } else {
-                print("Document added with ID: \(ref!.documentID)")
+                print("Document added with ID: \(ref?.documentID)")
                 completion(true)
             }
         }
@@ -542,18 +611,19 @@ extension InitialDataDownloadManager {
                     print("Error adding document: \(err)")
                     completion(false)
                 } else {
-                    print("Document added with ID: \(ref!.documentID)")
+                    print("Document added with ID: \(ref?.documentID)")
                     completion(true)
                 }
             }
     }
     
-        func addMediaData(media : MediaFile,completion: @escaping (_ url: String?) -> Void){
+    func addMediaData(media : MediaFile,completion: @escaping (_ url: String?) -> Void){
 
-            var serviceId = -1
-            if let service = media.parent_Service{
-                serviceId = Int(service.serviceId)
-            }
+        var serviceId = -1
+        if let service = media.parent_Service{
+            serviceId = Int(service.serviceId)
+        }
+        
         if let imageData = media.mediaContent {
             uploadMedia(name:media.mediaName ?? "", media: imageData) { url in
                 var ref: DocumentReference? = nil
@@ -568,7 +638,7 @@ extension InitialDataDownloadManager {
                         print("Error adding document: \(err)")
                         completion(nil)
                     } else {
-                        print("Document added with ID: \(ref!.documentID)")
+                        print("Document added with ID: \(ref?.documentID)")
                         let media = CoreDataManager.shared.getMedia(name: media.mediaName ?? "", serviceId: serviceId)
                         media?.mediaPath = url
                         self.saveData()
@@ -605,7 +675,7 @@ extension InitialDataDownloadManager {
                 print("Error adding document: \(err)")
                 completion(false)
             } else {
-                print("Document added with ID: \(ref!.documentID)")
+                print("Document added with ID: \(ref?.documentID)")
                 completion(true)
             }
         }
@@ -635,7 +705,7 @@ extension InitialDataDownloadManager {
                 print("Error adding document: \(err)")
                 completion(false)
             } else {
-                print("Document added with ID: \(ref!.documentID)")
+                print("Document added with ID: \(ref?.documentID)")
                 completion(true)
             }
         }
@@ -671,7 +741,7 @@ extension InitialDataDownloadManager {
                 print("Error adding document: \(err)")
                 completion(false)
             } else {
-                print("Document added with ID: \(ref!.documentID)")
+                print("Document added with ID: \(ref?.documentID)")
                 completion(true)
             }
         }
@@ -697,7 +767,7 @@ extension InitialDataDownloadManager {
                 print("Error adding document: \(err)")
                 completion(false)
             } else {
-                print("Document added with ID: \(ref!.documentID)")
+                print("Document added with ID: \(ref?.documentID)")
                 completion(true)
             }
         }
@@ -736,11 +806,11 @@ extension InitialDataDownloadManager{
                             if let err = err {
                                 // Some error occured
                                 completion(false)
-                            } else if querySnapshot!.documents.count != 1 {
+                            } else if querySnapshot!.documents.count == 0 {
                                 // Perhaps this is an error for you?
                                 completion(false)
                             } else {
-                                if let number = client.contactNumber,let lastName = client.lastName,let firstName = client.firstName{
+                                if let number = client.contactNumber,let lastName = client.lastName,let firstName = client.firstName,let password = client.password{
                                     if let document = querySnapshot!.documents.first{
                                         document.reference.updateData([
                                             "contactNumber": number,
@@ -749,6 +819,7 @@ extension InitialDataDownloadManager{
                                             "firstName": firstName,
                                             "isPremium": client.isPremium,
                                             "picture": picturePath ?? "",
+                                            "password" : password,
                                         ])
                                         completion(true)
                                     }
@@ -771,11 +842,11 @@ extension InitialDataDownloadManager{
                         .getDocuments() { (querySnapshot, err) in
                             if let err = err {
                                 completion(false)
-                            } else if querySnapshot!.documents.count != 1 {
+                            } else if querySnapshot!.documents.count == 0 {
                                 // Perhaps this is an error for you?
                                 completion(false)
                             } else {
-                                if let number = vendor.contactNumber,let lastName = vendor.lastName,let firstName = vendor.firstName {
+                                if let number = vendor.contactNumber,let lastName = vendor.lastName,let firstName = vendor.firstName,let password = vendor.password {
                                     if let document = querySnapshot!.documents.first{
                                         document.reference.updateData([
                                             "contactNumber": number,
@@ -784,6 +855,7 @@ extension InitialDataDownloadManager{
                                             "firstName": firstName,
                                             "bannerURL": vendor.bannerURL ?? "",
                                             "picture": picturePath ?? "",
+                                            "password" : password,
                                         ])
                                         completion(true)
                                     }
@@ -825,7 +897,7 @@ extension InitialDataDownloadManager{
                         // Some error occured
                         
                         completion(false)
-                    } else if querySnapshot!.documents.count != 1 {
+                    } else if querySnapshot!.documents.count == 0 {
                         // Perhaps this is an error for you?
                         completion(false)
                     } else {
@@ -901,7 +973,7 @@ extension InitialDataDownloadManager{
                     // Some error occured
                     
                     completion(false)
-                } else if querySnapshot!.documents.count != 1 {
+                } else if querySnapshot!.documents.count == 0 {
                     // Perhaps this is an error for you?
                     completion(false)
                 } else {
@@ -913,8 +985,6 @@ extension InitialDataDownloadManager{
                     }
                 }
             }
-
-        
     }
     
     func updateServiceData(service : Service,completion: @escaping (_ status: Bool?) -> Void) async {
@@ -957,7 +1027,7 @@ extension InitialDataDownloadManager{
                         // Some error occured
                         
                         completion(false)
-                    } else if querySnapshot!.documents.count != 1 {
+                    } else if querySnapshot!.documents.count == 0 {
                         // Perhaps this is an error for you?
                         completion(false)
                     } else {
@@ -989,7 +1059,7 @@ extension InitialDataDownloadManager{
                             if let err = err {
                                 // Some error occured
                                 completion(false)
-                            } else if querySnapshot!.documents.count != 1 {
+                            } else if querySnapshot!.documents.count == 0 {
                                 // Perhaps this is an error for you?
                                 completion(false)
                             } else {
@@ -1046,5 +1116,3 @@ extension InitialDataDownloadManager {
         return nil
     }
 }
-
-

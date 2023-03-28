@@ -76,10 +76,13 @@ class VendorBankAccountViewController: UIViewController {
         saveBankAccount()
         
         LoadingHudManager.shared.showSimpleHUD(title: "Inserting...", view: self.view)
-        InitialDataDownloadManager.shared.addBankAccountData(account: account){ status in
+        InitialDataDownloadManager.shared.addBankAccountData(account: account){ [weak self] status in
             DispatchQueue.main.async {
                 LoadingHudManager.shared.dissmissHud()
-                self.displayErrorMessage(status: status)
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.displayErrorMessage(status: status)
             }
         }
     }

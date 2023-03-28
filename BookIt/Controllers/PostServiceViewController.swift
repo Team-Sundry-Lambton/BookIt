@@ -60,11 +60,7 @@ class PostServiceViewController: UIViewController {
     var categoryList = [Category]()
     var mediaList = [MediaFile]()
     var selectedLocation: Address?
-    var selectedService : Service? {
-        didSet {
-            editMode = true
-        }
-    }
+    var selectedService : Service?
 //    var vendor : Vendor?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -81,12 +77,14 @@ class PostServiceViewController: UIViewController {
             navigationController?.navigationBar.titleTextAttributes = textAttributes
         }
       
-        if editMode{
+        if selectedService != nil {
+            editMode = true
             loadServiceData()
             mediaList = CoreDataManager.shared.getMediaList(serviceId: Int(selectedService?.serviceId ?? -1))
             mediaFileCollectionView.reloadData()
             self.title = "Edit Service"
         }else{
+            editMode = false
             self.title = "Post Service"
             selectedService = Service(context: context)
             selectedService?.serviceId = CoreDataManager.shared.getServiceID()
@@ -300,13 +298,16 @@ class PostServiceViewController: UIViewController {
                     let mediaFile = MediaFile(context: strongSelf.context)
                     mediaFile.mediaName = object.fileName
                     mediaFile.mediaPath = ""
-                    mediaFile.mediaContent = object.image?.pngData()
+                    mediaFile.mediaContent = object.image?.jpeg(.lowest)
                     mediaFile.parent_Service = self?.selectedService
                   
                     LoadingHudManager.shared.showSimpleHUD(title: "Uploading...", view: strongSelf.view)
-                    InitialDataDownloadManager.shared.addMediaData(media: mediaFile){ url in
+                    InitialDataDownloadManager.shared.addMediaData(media: mediaFile){ [weak self] url in
                         DispatchQueue.main.async {
                             LoadingHudManager.shared.dissmissHud()
+                            guard let strongSelf = self else {
+                                return
+                            }
                             if let path = url {
                                 mediaFile.mediaPath = path
                                 strongSelf.mediaList.append(mediaFile)
@@ -343,33 +344,36 @@ class PostServiceViewController: UIViewController {
     //MARK: - Core data interaction methods
     
     func saveService(){
-        if let serivice = selectedService {
-            serivice.parent_Category = selectedCategory
-            serivice.serviceTitle = titleTextField.text
+        if let service = selectedService {
+            service.parent_Category = selectedCategory
+            service.serviceTitle = titleTextField.text
             if placeHolder != descriptionTextView.text {
-                serivice.serviceDescription = descriptionTextView.text
+                service.serviceDescription = descriptionTextView.text
             }
             
-            serivice.cancelPolicy = cancelPolicyTextField.text
+            service.cancelPolicy = cancelPolicyTextField.text
             
             //        selectedLocation?.parentService = service
-            
-            serivice.price = priceTextField.text
-            serivice.priceType = priceTypeTextField.text
-            serivice.equipment = isEquipmentNeed
+            service.createdDate = Date()
+            service.price = priceTextField.text
+            service.priceType = priceTypeTextField.text
+            service.equipment = isEquipmentNeed
             let user =  UserDefaultsManager.shared.getUserData()
-            serivice.parent_Vendor = CoreDataManager.shared.getVendor(email: user.email)
+            service.parent_Vendor = CoreDataManager.shared.getVendor(email: user.email)
             if editMode{
                 LoadingHudManager.shared.showSimpleHUD(title: "Uploading...", view: self.view)
                     Task {
-                        await InitialDataDownloadManager.shared.updateServiceData(service: serivice){ status in
+                        await InitialDataDownloadManager.shared.updateServiceData(service: service){[weak self] status in
                             DispatchQueue.main.async {
                                 LoadingHudManager.shared.dissmissHud()
+                                guard let strongSelf = self else {
+                                    return
+                                }
                                 if let status = status {
                                     if status {
-                                        self.saveAllContextCoreData()
+                                        strongSelf.saveAllContextCoreData()
                                     }else{
-                                        UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
+                                        UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: strongSelf)
                                     }
                                 }
                             }
@@ -378,14 +382,17 @@ class PostServiceViewController: UIViewController {
             }else{
             LoadingHudManager.shared.showSimpleHUD(title: "Uploading...", view: self.view)
                 Task {
-                    await InitialDataDownloadManager.shared.addServiceData(service: serivice){ status in
+                    await InitialDataDownloadManager.shared.addServiceData(service: service){[weak self] status in
                         DispatchQueue.main.async {
                             LoadingHudManager.shared.dissmissHud()
+                            guard let strongSelf = self else {
+                                return
+                            }
                             if let status = status {
                                 if status {
-                                    self.saveAllContextCoreData()
+                                    strongSelf.saveAllContextCoreData()
                                 }else{
-                                    UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
+                                    UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: strongSelf)
                                 }
                             }
                         }
@@ -401,13 +408,16 @@ class PostServiceViewController: UIViewController {
         context.delete(mediaFile)
         mediaFileCollectionView.reloadData()
         LoadingHudManager.shared.showSimpleHUD(title: "Deleting...", view: self.view)
-        InitialDataDownloadManager.shared.deleteMediaData(media: mediaFile){ status in
+        InitialDataDownloadManager.shared.deleteMediaData(media: mediaFile){ [weak self]status in
             DispatchQueue.main.async {
                 LoadingHudManager.shared.dissmissHud()
+                guard let strongSelf = self else {
+                    return
+                }
                 if let status = status{
                     if status == false {
                         DispatchQueue.main.async {
-                            self.deleteMediaFile(mediaFile: mediaFile)
+                            strongSelf.deleteMediaFile(mediaFile: mediaFile)
                         }
                     }
                 }

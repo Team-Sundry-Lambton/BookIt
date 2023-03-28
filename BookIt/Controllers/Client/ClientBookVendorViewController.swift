@@ -204,18 +204,19 @@ class ClientBookVendorViewController: UIViewController, UITextViewDelegate {
             booking.vendor = vendor
             let user =  UserDefaultsManager.shared.getUserData()
             booking.client = CoreDataManager.shared.getClient(email: user.email)
-                let hud = JGProgressHUD()
-                hud.textLabel.text = "Booking..."
-                hud.show(in: self.view)
+        LoadingHudManager.shared.showSimpleHUD(title: "Booking...", view: self.view)
                 Task {
-                    await InitialDataDownloadManager.shared.addBookingData(booking:booking){ status in
+                    await InitialDataDownloadManager.shared.addBookingData(booking:booking){ [weak self] status in
                         DispatchQueue.main.async {
-                            hud.dismiss(animated: true)
+                            LoadingHudManager.shared.dissmissHud()
+                            guard let strongSelf = self else {
+                                return
+                            }
                             if let status = status {
                                 if status {
-                                    self.saveAllContextCoreData()
+                                    strongSelf.saveAllContextCoreData()
                                 }else{
-                                    UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
+                                    UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: strongSelf)
                                 }
                             }
                         }

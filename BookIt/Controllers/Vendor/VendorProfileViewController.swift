@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import SwiftUI
 
 class VendorProfileViewController: UIViewController {
     
@@ -151,9 +152,16 @@ class VendorProfileViewController: UIViewController {
         UserDefaultsManager.shared.removeUserLogin()
         UserDefaultsManager.shared.removeUserData()
 
-        if let navigator = self.navigationController {
-            navigator.popViewController(animated: true)
-        }
+        var targetVC : UIViewController?
+        targetVC = navigationController?.viewControllers.first(where: {$0 is ViewController})
+        if let targetVC = targetVC {
+                 navigationController?.popToViewController(targetVC, animated: true)
+              }
+    }
+    
+    @IBAction func aboutUs() {
+        let swiftUIViewController = UIHostingController(rootView: AboutUs(navigationController: self.navigationController))
+                self.navigationController?.pushViewController(swiftUIViewController, animated: true)
     }
     
     /*

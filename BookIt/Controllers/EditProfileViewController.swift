@@ -19,7 +19,7 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var lastNameTxt: UITextField!
     @IBOutlet weak var firstNameTxt: UITextField!
     
-    var imagePath : URL?
+//    var imagePath : URL?
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var isVendor = false
@@ -39,7 +39,7 @@ class EditProfileViewController: UIViewController {
             phoneNumberTxt.text = user.contactNumber
             isVendor = user.isVendor
             if let path = user.picture{
-                imagePath = path
+               // imagePath = path
                 imageView.downloaded(from: path)
             }
             emailTxt.isUserInteractionEnabled = true
@@ -71,9 +71,9 @@ class EditProfileViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        if newUser {
-            delegate?.openDashBoard(user : loginUser)
-        }
+//        if newUser {
+//            delegate?.openDashBoard(user : loginUser)
+//        }
     }
     
     func getClient(){
@@ -137,7 +137,7 @@ class EditProfileViewController: UIViewController {
         {
             let loginUser = LoginUser(firstName: firstNameTxt.text ?? "", lastName: lastNameTxt.text ?? "", email: emailTxt.text ?? "", contactNumber: phoneNumberTxt.text ?? "",isVendor: isVendor)
             
-            if (CoreDataManager.shared.checkUserInDB(user: loginUser,isVendor: isVendor)){
+            if (CoreDataManager.shared.checkUserInDB(email: loginUser.email,isVendor: isVendor)){
                     CoreDataManager.shared.deleteUser(user: loginUser,isVendor: isVendor)
                     UserDefaultsManager.shared.saveUserData(user: loginUser)
                     setUserObject(isEdit: true)
@@ -163,16 +163,16 @@ class EditProfileViewController: UIViewController {
     
     func setUserObject(isEdit : Bool) {
         var picData : Data?
-        do {
-            if let path = imagePath {
-                picData = try Data(contentsOf: path as URL)
-            }
-            
-        } catch {
-            print("Unable to load data: \(error)")
-        }
+//        do {
+//            if let path = imagePath {
+//                picData = try Data(contentsOf: path as URL)
+//            }
+//
+//        } catch {
+//            print("Unable to load data: \(error)")
+//        }
         if picData == nil {
-            picData = imageView.image?.pngData()
+            picData = imageView.image?.jpeg(.lowest)
         }
         
         if (isVendor){
@@ -186,18 +186,24 @@ class EditProfileViewController: UIViewController {
             saveUser()
             if(isEdit){
                 LoadingHudManager.shared.showSimpleHUD(title: "Updating...", view: self.view)
-                InitialDataDownloadManager.shared.updateVendorData(vendor: vendor){ status in
+                InitialDataDownloadManager.shared.updateVendorData(vendor: vendor){ [weak self] status in
                     DispatchQueue.main.async {
                         LoadingHudManager.shared.dissmissHud()
-                        self.displayErrorMessage(status: status)
+                        guard let strongSelf = self else {
+                            return
+                        }
+                        strongSelf.displayErrorMessage(status: status)
                     }
                 }
             }else{
                 LoadingHudManager.shared.showSimpleHUD(title: "Inserting...", view: self.view)
-                InitialDataDownloadManager.shared.addVendorData(vendor: vendor){ status in
+                InitialDataDownloadManager.shared.addVendorData(vendor: vendor){ [weak self] status in
                     DispatchQueue.main.async {
                         LoadingHudManager.shared.dissmissHud()
-                        self.displayErrorMessage(status: status)
+                        guard let strongSelf = self else {
+                            return
+                        }
+                        strongSelf.displayErrorMessage(status: status)
                     }
                 }
             }
@@ -212,18 +218,24 @@ class EditProfileViewController: UIViewController {
             saveUser()
             if(isEdit){
                 LoadingHudManager.shared.showSimpleHUD(title: "Updating...", view: self.view)
-                InitialDataDownloadManager.shared.updateClientData(client: client){ status in
+                InitialDataDownloadManager.shared.updateClientData(client: client){[weak self] status in
                     DispatchQueue.main.async {
                         LoadingHudManager.shared.dissmissHud()
-                        self.displayErrorMessage(status: status)
+                        guard let strongSelf = self else {
+                            return
+                        }
+                        strongSelf.displayErrorMessage(status: status)
                     }
                 }
             }else{
                 LoadingHudManager.shared.showSimpleHUD(title: "Inserting...", view: self.view)
-                InitialDataDownloadManager.shared.addClientData(client: client){ status in
+                InitialDataDownloadManager.shared.addClientData(client: client){ [weak self]status in
                     DispatchQueue.main.async {
                         LoadingHudManager.shared.dissmissHud()
-                        self.displayErrorMessage(status: status)
+                        guard let strongSelf = self else {
+                            return
+                        }
+                        strongSelf.displayErrorMessage(status: status)
                     }
                 }
             }
@@ -248,24 +260,6 @@ class EditProfileViewController: UIViewController {
         }
     }
     
-//    func loadDashBoard(user : LoginUser?){
-//        
-//        UserDefaultsManager.shared.setUserLogin(status: true)
-//        UserDefaultsManager.shared.setIsVendor(status: isVendor)
-//
-//        if let loginUser = user {
-//            UserDefaultsManager.shared.saveUserData(user: loginUser)
-//        }
-//        
-//        Task {
-//            await InitialDataDownloadManager.shared.downloadAllData(){
-//                DispatchQueue.main.async {
-//                    self.navigationController?.popViewController(animated: true)
-//                }
-//            }
-//        }
-//    }
-    
     private func addProfilePic() {
         MediaManager.shared.pickMediaFile(title: "Choose Profile Picture",self) { [weak self] mediaObject in
             guard let strongSelf = self else {
@@ -275,9 +269,9 @@ class EditProfileViewController: UIViewController {
             if let object = mediaObject {
                 self?.imageView.image = object.image
                 
-                if let url = URL(string: object.fileName) {
-                    self?.imagePath = url
-                }
+//                if let url = URL(string: object.fileName) {
+//                    self?.imagePath = url
+//                }
             }
         }
     }
@@ -293,25 +287,4 @@ class EditProfileViewController: UIViewController {
     */
 
 
-}
-
-extension UIImageView {
-    func downloaded(from url: URL, contentMode mode: ContentMode = .scaleAspectFit) {
-        contentMode = mode
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard
-                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
-                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
-                let data = data, error == nil,
-                let image = UIImage(data: data)
-                else { return }
-            DispatchQueue.main.async() { [weak self] in
-                self?.image = image
-            }
-        }.resume()
-    }
-    func downloaded(from link: String, contentMode mode: ContentMode = .scaleAspectFit) {
-        guard let url = URL(string: link) else { return }
-        downloaded(from: url, contentMode: mode)
-    }
 }
