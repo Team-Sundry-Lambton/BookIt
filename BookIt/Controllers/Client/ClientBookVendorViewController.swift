@@ -196,6 +196,7 @@ class ClientBookVendorViewController: UIViewController, UITextViewDelegate {
     func saveBooking(date: Date, description: String){
            var booking = Booking(context: context)
             booking.date = date
+            booking.bookingId  = CoreDataManager.shared.getBookingID()
             booking.problemDescription = describeProblemTextView.text
             booking.status = "New"
             booking.service = selectedService

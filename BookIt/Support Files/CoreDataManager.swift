@@ -80,10 +80,10 @@ class CoreDataManager : NSObject{
         return media
     }
     
-    func getBooking(client : String, serviceId : Int,vendor : String) -> Booking?{
+    func getBooking( bookingId : Int) -> Booking?{
         var booking : Booking?
         let fetchRequest: NSFetchRequest<Booking> = Booking.fetchRequest()
-            let folderPredicate = NSPredicate(format: "service.serviceId=%i AND client.email=%@ AND vendor.email=%@", serviceId,client,vendor)
+            let folderPredicate = NSPredicate(format: "bookingId=%i", bookingId)
         fetchRequest.predicate = folderPredicate
         do {
             let bookings = try context.fetch(fetchRequest)
@@ -94,10 +94,10 @@ class CoreDataManager : NSObject{
         return booking
     }
     
-    func getPayment(amount : Double, serviceId : Int) -> Payment?{
+    func getPayment(bookingId : Int) -> Payment?{
         var payment : Payment?
         let fetchRequest: NSFetchRequest<Payment> = Payment.fetchRequest()
-            let folderPredicate = NSPredicate(format: "booking.service.serviceId=%i AND amount=%@", serviceId,amount)
+            let folderPredicate = NSPredicate(format: "booking.bookingId=%i", bookingId)
         fetchRequest.predicate = folderPredicate
         do {
             let payments = try context.fetch(fetchRequest)
@@ -227,6 +227,21 @@ class CoreDataManager : NSObject{
              let serviceList = try context.fetch(request)
             if serviceList.count > 0 {
                 count = Int((serviceList.last?.serviceId ?? 0) + 1)
+            }
+        } catch {
+            print("Error loading Service \(error.localizedDescription)")
+        }
+        return Int16(count)
+    }
+    
+    func getBookingID() -> Int16 {
+        var count = 0
+        let request: NSFetchRequest<Booking> = Booking.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "bookingId", ascending: true)]
+        do {
+             let serviceList = try context.fetch(request)
+            if serviceList.count > 0 {
+                count = Int((serviceList.last?.bookingId ?? 0) + 1)
             }
         } catch {
             print("Error loading Service \(error.localizedDescription)")

@@ -205,18 +205,19 @@ class InitialDataDownloadManager : NSObject{
             let snapshot = try await db.collection("booking").getDocuments();
             snapshot.documents.forEach { documentSnapshot in
                 let data = documentSnapshot.data()
-                let boobking = Booking(context: self.context)
+                let booking = Booking(context: self.context)
                 if let postTimestamp = data["date"] as? Timestamp{
-                    boobking.date =  postTimestamp.dateValue()
+                    booking.date =  postTimestamp.dateValue()
                 }
-
-                boobking.status =  data["status"] as? String ?? ""
-                boobking.problemDescription = data["problemDescription"] as? String ?? ""
+                booking.bookingId = data["bookingId"]  as? Int16 ?? -1
+                
+                booking.status =  data["status"] as? String ?? ""
+                booking.problemDescription = data["problemDescription"] as? String ?? ""
                 
                 if let parentService = data["parentService"]  as? Int {
                     if parentService != -1 {
                         if let service = CoreDataManager.shared.getService(serviceId: parentService){
-                            boobking.service = service
+                            booking.service = service
                         }
                     }
                 }
@@ -224,14 +225,14 @@ class InitialDataDownloadManager : NSObject{
                 if let clientEmail = data["clientEmailAddress"]  as? String {
                     if clientEmail != "" {
                         if let client = CoreDataManager.shared.getClient(email: clientEmail){
-                            boobking.client = client
+                            booking.client = client
                         }
                     }
                 }
                 if let vendorEmail = data["vendorEmailAddress"]  as? String {
                     if vendorEmail != "" {
                         if let vendor = CoreDataManager.shared.getVendor(email: vendorEmail){
-                            boobking.vendor = vendor
+                            booking.vendor = vendor
                         }
                     }
                 }
@@ -257,9 +258,9 @@ class InitialDataDownloadManager : NSObject{
                 }
                 payment.status =  data["status"] as? String ?? ""
                 
-                if let client = data["clientEmailAddress"]  as? String, let vendor = data["vendorEmailAddress"]  as? String, let serviceId = data["serviceId"] as? Int {
-                    if client != ""  && vendor != ""  && serviceId != -1 {
-                        if let booking = CoreDataManager.shared.getBooking(client: client, serviceId: serviceId, vendor: vendor){
+                if let bookingId = data["bookingId"] as? Int {
+                    if bookingId != -1 {
+                        if let booking = CoreDataManager.shared.getBooking(bookingId: bookingId){
                             payment.booking = booking
                         }
                     }
@@ -670,6 +671,7 @@ extension InitialDataDownloadManager {
             "clientEmailAddress": clientEmail ?? "",
             "vendorEmailAddress": vendorEmail ?? "",
             "problemDescription" : booking.problemDescription ?? "",
+            "bookingId":  booking.bookingId ,
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
@@ -683,13 +685,9 @@ extension InitialDataDownloadManager {
     
     func addPaymentData(payment:Payment,completion: @escaping (_ status: Bool?) -> Void){
 
-        var vendorEmail : String?
-        var clientEmail : String?
-        var serviceId = -1
+        var bookingId = -1
         if let booking = payment.booking {
-            vendorEmail = booking.vendor?.email
-            clientEmail = booking.client?.email
-            serviceId = Int(booking.service?.serviceId ?? -1)
+            bookingId = Int(booking.bookingId)
         }
         
         var ref: DocumentReference? = nil
@@ -697,9 +695,7 @@ extension InitialDataDownloadManager {
             "amount": payment.amount,
             "date": payment.date ?? Date(),
             "status": payment.status ?? "",
-            "clientEmailAddress": clientEmail ?? "",
-            "vendorEmailAddress": vendorEmail ?? "",
-            "serviceId" :serviceId ,
+            "bookingId" :bookingId ,
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
@@ -953,21 +949,10 @@ extension InitialDataDownloadManager{
         }
     
     func updateBookingData(booking : Booking,completion: @escaping (_ status: Bool?) -> Void){
-        var serviceId = -1
-        if let service = booking.service {
-            serviceId = Int(service.serviceId)
-        }
-        var clientEmail = ""
-        if let client = booking.client {
-            clientEmail = client.email ?? ""
-        }
-        var vendorEmail = ""
-        if let vendor = booking.vendor {
-            vendorEmail = vendor.email ?? ""
-        }
+        var bookingId = Int(booking.bookingId)
 
         db.collection("booking")
-            .whereField("parentService", isEqualTo: serviceId).whereField("clientEmailAddress", isEqualTo: clientEmail).whereField("vendorEmailAddress", isEqualTo: vendorEmail)
+            .whereField("bookingId", isEqualTo: bookingId)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     // Some error occured
