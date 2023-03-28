@@ -25,6 +25,38 @@
                                     <outlet property="delegate" destination="bom-U8-HEJ" id="zjS-SH-yia"/>
                                 </connections>
                             </tableView>
+                            <view hidden="YES" contentMode="scaleToFill" id="m1Q-JI-aXK">
+                                <rect key="frame" x="0.0" y="32" width="414" height="672"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No service booked yet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x9P-3h-piy">
+                                        <rect key="frame" x="76" y="217" width="263" height="68"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                        <color key="textColor" red="0.49019607840000001" green="0.57254901960000004" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="We will always be ready to serve you, at the moment there are no bookings." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="LMj-m3-OLF">
+                                        <rect key="frame" x="28" y="263" width="359" height="128"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="128" id="Cci-Bp-7cY"/>
+                                        </constraints>
+                                        <color key="textColor" red="0.49019607840000001" green="0.57254901960000004" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="x9P-3h-piy" firstAttribute="leading" secondItem="m1Q-JI-aXK" secondAttribute="leading" constant="76" id="0xE-9X-SMz"/>
+                                    <constraint firstAttribute="trailing" secondItem="LMj-m3-OLF" secondAttribute="trailing" constant="27" id="IiO-Rd-iAo"/>
+                                    <constraint firstAttribute="trailing" secondItem="x9P-3h-piy" secondAttribute="trailing" constant="75" id="Uax-jl-Xg4"/>
+                                    <constraint firstItem="LMj-m3-OLF" firstAttribute="leading" secondItem="m1Q-JI-aXK" secondAttribute="leading" constant="28" id="Wie-Vn-kuA"/>
+                                    <constraint firstItem="LMj-m3-OLF" firstAttribute="top" secondItem="x9P-3h-piy" secondAttribute="bottom" constant="-22" id="d4P-NX-uke"/>
+                                    <constraint firstItem="LMj-m3-OLF" firstAttribute="top" secondItem="m1Q-JI-aXK" secondAttribute="top" constant="263" id="p3W-Ni-Ult"/>
+                                    <constraint firstItem="x9P-3h-piy" firstAttribute="top" secondItem="m1Q-JI-aXK" secondAttribute="top" constant="217" id="skn-1w-ETt"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dfP-4v-w0r" userLabel="Header">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="88"/>
                                 <subviews>
@@ -81,13 +113,14 @@
                         <color key="badgeColor" red="0.23921568630000001" green="0.38823529410000002" blue="0.61568627450000002" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBarItem>
                     <connections>
+                        <outlet property="emptyView" destination="m1Q-JI-aXK" id="QuG-Ot-d29"/>
                         <outlet property="interfaceSegmented" destination="Nmq-8c-0fM" id="VqZ-I4-t0H"/>
                         <outlet property="tableView" destination="8tn-KT-b2u" id="v10-GE-O7f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TpS-7E-Vhk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2646.5648854961833" y="-942.25352112676057"/>
+            <point key="canvasLocation" x="2646.376811594203" y="-942.39130434782612"/>
         </scene>
         <!--Home-->
         <scene sceneID="s0d-6b-0kx">
