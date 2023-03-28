@@ -50,15 +50,63 @@ class VendorBookingDetailController: UIViewController{
         
         guard let service = booking?.service,
               let client = booking?.client,
-              let payment = booking?.payment,
-              let vendor = booking?.vendor else {
+              let payment = booking?.payment
+        else {
             return
         }
         
-        bookingIdLbl.text = "Booking number is \(booking)"
-        serviceNameLbl.text = service.serviceTitle
-        customerNameLbl.text = "\(client.firstName) + \(client.lastName)"
+        let status = String(describing: booking.status)
         
+        bookingIdLbl.text = "Booking number is \(booking)"
+        
+        serviceNameLbl.text = service.serviceTitle
+        if let media = CoreDataManager.shared.getServiceFirstMedia(serviceId: Int(service.serviceId)) {
+            if let imageData = media.mediaContent {
+                    self.serviceImg.image = UIImage(data: imageData)
+                }
+        }
+        customerNameLbl.text = "\(client.firstName) + \(client.lastName)"
+        bookingDateLbl.text = booking?.date?.dateAndTimetoString()
+        customerLocationLbl.text =  client.address?.address
+        
+        if let price = service.price, let type = service.priceType {
+            servicePriceLbl.text = "$ " + price + " / " + type
+        }
+        
+        bookingLocationLbl.text = status
+        let price = payment.amount
+        let discount = 0.0
+        let totalPrice = price - discount
+        let applicationFee = 0.1*price
+        let earningAmount = totalPrice - applicationFee
+        orderPriceLbl.text = "$\(price)"
+        deliveryPriceLbl.text = "$\(discount)"
+        totalOrderPriceLbl.text = "$\(totalPrice)"
+        applicationFeePriceLbl.text = "$\(applicationFee)"
+        
+        totalIncomeBtn.setTitle("Total Income : $\(earningAmount)", for: .normal)
+    
+        if(status == "New"){
+            acceptBtn.isHidden = false
+            declineBtn.isHidden = false
+        }
+        else{
+            acceptBtn.isHidden = true
+            declineBtn.isHidden = true
+        }
+        
+    }
+    
+    @IBAction func viewServiceDetail(_ sender: Any) {
+        if let service = service{
+            if let viewController = UIStoryboard(name: "ServiceDetail", bundle: nil).instantiateViewController(withIdentifier: "ClientServiceDetailViewController") as? ClientServiceDetailViewController {
+                if let navigator = navigationController {
+                    viewController.selectedService = service
+                    navigator.pushViewController(viewController, animated: true)
+                    
+                }
+            }
+        }
     }
     
     @IBAction func acceptBooking(_ sender: Any) {
