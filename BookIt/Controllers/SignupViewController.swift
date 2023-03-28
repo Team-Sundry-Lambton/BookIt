@@ -24,6 +24,8 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var passwordTxt: UITextField!
     @IBOutlet weak var confirmPasswordTxt: UITextField!
     @IBOutlet weak var loginBtn: UIButton!
+    @IBOutlet weak var scrollView: UIScrollView!
+    var activeField: UITextField?
     override func viewDidLoad() {
         super.viewDidLoad()
         NetworkMonitor.shared.setObserve(viewController: self)
@@ -31,6 +33,14 @@ class SignupViewController: UIViewController {
         let loginText = NSMutableAttributedString(string: "Already have an account? Login Now")
         loginText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.appThemeColor, range: NSRange(location: 24,length: 10))
         loginBtn.setAttributedTitle(loginText, for: .normal)
+        
+        //MARK: dismiss keyboard
+        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+         view.addGestureRecognizer(tapGesture)
+        tapGesture.cancelsTouchesInView = false
+
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -96,6 +106,7 @@ class SignupViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        deregisterFromKeyboardNotifications()
     }
     
     func redirectUser(email : String){
@@ -335,5 +346,53 @@ extension SignupViewController: ASAuthorizationControllerDelegate, ASAuthorizati
         default:
             break
         }
+    }
+}
+
+extension SignupViewController {
+    @objc func keyboardWillShow(notification: NSNotification) {
+        self.scrollView.isScrollEnabled = true
+           let info = notification.userInfo!
+           let keyboardSize = (info[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+           let contentInsets : UIEdgeInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize!.height, right: 0.0)
+
+           self.scrollView.contentInset = contentInsets
+           self.scrollView.scrollIndicatorInsets = contentInsets
+
+           var aRect : CGRect = self.view.frame
+           aRect.size.height -= keyboardSize!.height
+           if let activeField = self.activeField {
+               if (!aRect.contains(activeField.frame.origin)){
+                   self.scrollView.scrollRectToVisible(activeField.frame, animated: true)
+               }
+           }
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        //Once keyboard disappears, restore original positions
+        let info : NSDictionary = notification.userInfo! as NSDictionary
+        let keyboardSize = (info[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+        let contentInsets : UIEdgeInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: -keyboardSize!.height, right: 0.0)
+        self.scrollView.contentInset = contentInsets
+        self.scrollView.scrollIndicatorInsets = contentInsets
+        self.view.endEditing(true)
+        self.scrollView.isScrollEnabled = false
+    }
+    
+    func deregisterFromKeyboardNotifications()
+    {
+        //Removing notifies on keyboard appearing
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+}
+
+extension SignupViewController : UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        activeField = textField
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        activeField = nil
     }
 }

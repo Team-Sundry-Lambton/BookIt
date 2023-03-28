@@ -200,6 +200,9 @@
                                                                 <rect key="frame" x="0.0" y="30.333333333333371" width="353" height="34"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
+                                                                <connections>
+                                                                    <outlet property="delegate" destination="JZf-vq-TWR" id="0NS-gs-FKO"/>
+                                                                </connections>
                                                             </textField>
                                                         </subviews>
                                                     </stackView>
@@ -216,6 +219,9 @@
                                                                 <rect key="frame" x="0.0" y="30.333333333333314" width="353" height="34"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
+                                                                <connections>
+                                                                    <outlet property="delegate" destination="JZf-vq-TWR" id="llH-fE-fRj"/>
+                                                                </connections>
                                                             </textField>
                                                         </subviews>
                                                     </stackView>
@@ -232,6 +238,9 @@
                                                                 <rect key="frame" x="0.0" y="30.333333333333371" width="353" height="34"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
+                                                                <connections>
+                                                                    <outlet property="delegate" destination="JZf-vq-TWR" id="1hc-Ow-KBI"/>
+                                                                </connections>
                                                             </textField>
                                                         </subviews>
                                                     </stackView>
@@ -428,7 +437,7 @@
                                             <constraint firstItem="xOp-Aq-e6Z" firstAttribute="top" secondItem="iiC-pz-Gac" secondAttribute="bottom" constant="30" id="esv-q9-uaU"/>
                                             <constraint firstItem="v5L-7q-B24" firstAttribute="centerX" secondItem="doO-tD-4bD" secondAttribute="centerX" id="lti-Um-7zy"/>
                                             <constraint firstAttribute="trailing" secondItem="hae-0d-Q4H" secondAttribute="trailing" constant="20" id="ngQ-ac-I09"/>
-                                            <constraint firstAttribute="height" constant="780" id="r2n-jz-Ava"/>
+                                            <constraint firstAttribute="height" constant="780" id="p4a-yD-Ub9"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -439,6 +448,11 @@
                                     <constraint firstAttribute="trailing" secondItem="doO-tD-4bD" secondAttribute="trailing" id="O3o-h5-VYz"/>
                                     <constraint firstAttribute="bottom" secondItem="doO-tD-4bD" secondAttribute="bottom" id="W2q-1K-wHw"/>
                                 </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="3sW-NL-08o"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="WAZ-vT-eeI"/>
+                                <connections>
+                                    <outlet property="delegate" destination="JZf-vq-TWR" id="BfN-TS-9yy"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Eob-cM-viP"/>
@@ -459,6 +473,7 @@
                         <outlet property="loginBtn" destination="v5L-7q-B24" id="ESO-gg-XNi"/>
                         <outlet property="passwordTxt" destination="e4t-c0-3DD" id="dGj-ep-KHI"/>
                         <outlet property="phoneNumberTxt" destination="KsY-1u-6Ic" id="Ipi-qG-9Av"/>
+                        <outlet property="scrollView" destination="3iC-P9-XsO" id="VI0-tG-AFT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Zj-DK-Xux" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

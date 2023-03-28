@@ -30,6 +30,11 @@ class LoginViewController: UIViewController {
         let signupText = NSMutableAttributedString(string: "Don't have an account? Register Now")
         signupText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.appThemeColor, range: NSRange(location: 22,length: 13))
         signUpBtn.setAttributedTitle(signupText, for: .normal)
+        
+        //MARK: dismiss keyboard        
+        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+         view.addGestureRecognizer(tapGesture)
+        tapGesture.cancelsTouchesInView = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
