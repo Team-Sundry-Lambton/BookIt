@@ -234,21 +234,27 @@ class CoreDataManager : NSObject{
         return Int16(count)
     }
     
-    func loadBookingList(email : String) -> [Booking]{
-        var bookingList = [Booking]()
-        let request: NSFetchRequest<Booking> = Booking.fetchRequest()
-        let folderPredicate = NSPredicate(format: "vendor.email=%@", email ?? "")
-        request.predicate = folderPredicate
-        request.sortDescriptors = [NSSortDescriptor(key: "status", ascending: true)]
-//        request.fetchLimit = 10
-        do {
-            bookingList = try context.fetch(request)
+    func loadBookingList(email : String, isClient:Bool = false) -> [Booking]{
+            var bookingList = [Booking]()
+            let request: NSFetchRequest<Booking> = Booking.fetchRequest()
+            var predictString: String = "vendor.email=%@"
+            if isClient {
+                predictString = "client.email=%@"
+            } else {
+                predictString = "vendor.email=%@"
+            }
+            let folderPredicate = NSPredicate(format: predictString, email ?? "")
+            request.predicate = folderPredicate
+            request.sortDescriptors = [NSSortDescriptor(key: "status", ascending: true)]
+    //        request.fetchLimit = 10
+            do {
+                bookingList = try context.fetch(request)
 
-        } catch {
-            print("Error loading Service \(error.localizedDescription)")
+            } catch {
+                print("Error loading Service \(error.localizedDescription)")
+            }
+            return bookingList
         }
-        return bookingList
-    }
     
     func loadServices() -> [Service]{
         var serviceList = [Service]()

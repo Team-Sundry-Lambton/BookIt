@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 
 class ClientBookingViewController: UIViewController {
-    var loginUser : LoginUser?
+    var client : Client?
     var bookingList = [Booking]()
     var bookingListOngoing = [Booking]()
     var bookingListHistory = [Booking]()
@@ -32,6 +32,7 @@ class ClientBookingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        getClient()
         // Do any additional setup after loading the view.
         interfaceSegmented.delegate = self
         tableView.register(UINib(nibName: "ServiceStatusTableViewCell", bundle: nil), forCellReuseIdentifier: "ServiceStatusTableViewCell")
@@ -48,13 +49,19 @@ class ClientBookingViewController: UIViewController {
     }
         
     private func loadBookingList(){
-            bookingList = CoreDataManager.shared.loadBookingList(email: loginUser?.email ?? "")
+            bookingList = CoreDataManager.shared.loadBookingList(email: client!.email ?? "", isClient: true)
+            print(bookingList)
             bookingListOngoing = bookingList.filter({
-                $0.status == "new" || $0.status == "pending" || $0.status == "inprogress"
+                $0.status == "New" || $0.status == "pending" || $0.status == "inprogress"
             })
             bookingListHistory = bookingList.filter({
                 $0.status == "cancel" || $0.status == "completed"
             })
+    }
+    
+    func getClient(){
+        let user =  UserDefaultsManager.shared.getUserData()
+        client = CoreDataManager.shared.getClient(email: user.email)
     }
         
     @IBAction func filterAction(_ sender: Any) {
