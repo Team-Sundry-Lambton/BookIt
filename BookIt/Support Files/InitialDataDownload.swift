@@ -203,7 +203,10 @@ class InitialDataDownloadManager : NSObject{
             snapshot.documents.forEach { documentSnapshot in
                 let data = documentSnapshot.data()
                 let boobking = Booking(context: self.context)
-                boobking.date =  data["date"] as? Date
+                if let postTimestamp = data["date"] as? Timestamp{
+                    boobking.date =  postTimestamp.dateValue()
+                }
+
                 boobking.status =  data["status"] as? String ?? ""
                 boobking.problemDescription = data["problemDescription"] as? String ?? ""
                 
@@ -246,7 +249,9 @@ class InitialDataDownloadManager : NSObject{
                 let data = documentSnapshot.data()
                 let payment = Payment(context: self.context)
                 payment.amount =  data["amount"] as? Double ?? 0
-                payment.date =  data["date"] as? Date
+                if let postTimestamp = data["date"] as? Timestamp{
+                    payment.date =  postTimestamp.dateValue()
+                }
                 payment.status =  data["status"] as? String ?? ""
                 
                 if let client = data["clientEmailAddress"]  as? String, let vendor = data["vendorEmailAddress"]  as? String, let serviceId = data["serviceId"] as? Int {
@@ -272,7 +277,9 @@ class InitialDataDownloadManager : NSObject{
                 let data = documentSnapshot.data()
                 let review = VendorReview(context: self.context)
                 review.comment =  data["comment"] as? String ?? ""
-                review.date =  data["date"] as? Date
+                if let postTimestamp = data["date"] as? Timestamp{
+                    review.date =  postTimestamp.dateValue()
+                }
                 review.rating = Int16(data["rating"] as? Int ?? 0)
                 review.vendorRating = data["vendorRating"] as? Bool ?? false
                 if let clientEmail = data["clientEmailAddress"]  as? String {
