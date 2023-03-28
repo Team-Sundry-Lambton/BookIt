@@ -49,13 +49,15 @@ class ClientBookingViewController: UIViewController {
     }
         
     private func loadBookingList(){
-            bookingList = CoreDataManager.shared.loadBookingList(email: client!.email ?? "", isClient: true)
+        if let client = client{
+            bookingList = CoreDataManager.shared.loadBookingList(email: client.email ?? "", isClient: true)
             bookingListOngoing = bookingList.filter({
                 $0.status == "New" || $0.status == "Pending" || $0.status == "Inprogress"
             })
             bookingListHistory = bookingList.filter({
                 $0.status == "Cancel" || $0.status == "Completed"
             })
+        }
     }
     
     func getClient(){
@@ -146,7 +148,8 @@ extension ClientBookingViewController: UITableViewDelegate , UITableViewDataSour
     }
 }
 
-extension ClientBookingViewController: FilterCallBackProtocal {        func applySortBy(selectedSort: SortType) {
+extension ClientBookingViewController: FilterCallBackProtocal {
+    func applySortBy(selectedSort: SortType) {
         print("sort by" + "\(selectedSort)")
     }
 }
