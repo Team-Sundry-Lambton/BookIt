@@ -98,7 +98,6 @@ class ClientBookVendorViewController: UIViewController, UITextViewDelegate {
         timePicker.datePickerMode = .time
         timePicker.frame.size = CGSize(width: 0, height: 300)
         timePicker.preferredDatePickerStyle = .wheels
-        timePicker.minimumDate = Date()
         timeTextField.inputView = timePicker
         
     }
