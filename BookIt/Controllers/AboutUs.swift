@@ -11,10 +11,10 @@ struct AboutUs: View {
     weak var navigationController: UINavigationController?
     var body: some View {
         ZStack {
-                VStack(spacing: 25) {
+                VStack(spacing: 15) {
                     Image(systemName: "AppIconImage").font(.largeTitle)
                     Text("BookIt").font(.largeTitle).bold().foregroundColor(Color(UIColor.appThemeColor))
-                    Text("Hi we're TeamSundry").font(.system(size: 21.0)).foregroundColor(.gray)
+                    Text("Hi! we're TeamSundry").font(.system(size: 21.0)).foregroundColor(.gray)
                     Text("Contact Us").font(.system(size: 21.0))
                                         .frame(maxWidth: .infinity)
                                         .padding()
@@ -42,7 +42,7 @@ struct AboutUs: View {
             }.navigationBarTitle(Text("About Us"), displayMode: .inline)
             .edgesIgnoringSafeArea(.bottom)
             // Hide the system back button
-            .navigationBarBackButtonHidden(true)
+            .navigationBarBackButtonHidden(false)
         }
     }
 struct AboutUs_Previews: PreviewProvider {
