@@ -124,9 +124,12 @@ class SignupViewController: UIViewController {
         dbCheck = CoreDataManager.shared.checkUserInDB(email: email,isVendor: isVendor)
         if !dbCheck {
             LoadingHudManager.shared.showSimpleHUD(title: "Validating...", view: self.view)
-            InitialDataDownloadManager.shared.chedkUserData(email: email ,isVendor: isVendor ){ status in
+            InitialDataDownloadManager.shared.chedkUserData(email: email ,isVendor: isVendor ){ [weak self] status in
                 DispatchQueue.main.async {
                     LoadingHudManager.shared.dissmissHud()
+                    guard let strongSelf = self else {
+                        return
+                    }
                     if let user = status {
                         if user{
                             dbCheck = true
@@ -154,10 +157,13 @@ class SignupViewController: UIViewController {
             saveUser()
      
                 LoadingHudManager.shared.showSimpleHUD(title: "Inserting...", view: self.view)
-                InitialDataDownloadManager.shared.addVendorData(vendor: vendor){ status in
+                InitialDataDownloadManager.shared.addVendorData(vendor: vendor){ [weak self] status in
                     DispatchQueue.main.async {
                         LoadingHudManager.shared.dissmissHud()
-                        self.displayErrorMessage(status: status)
+                        guard let strongSelf = self else {
+                            return
+                        }
+                        strongSelf.displayErrorMessage(status: status)
                     }
                 }
         }else{
@@ -171,10 +177,13 @@ class SignupViewController: UIViewController {
             client.password = passwordTxt.text
             saveUser()
                 LoadingHudManager.shared.showSimpleHUD(title: "Inserting...", view: self.view)
-                InitialDataDownloadManager.shared.addClientData(client: client){ status in
+                InitialDataDownloadManager.shared.addClientData(client: client){[weak self] status in
                     DispatchQueue.main.async {
                         LoadingHudManager.shared.dissmissHud()
-                        self.displayErrorMessage(status: status)
+                        guard let strongSelf = self else {
+                            return
+                        }
+                        strongSelf.displayErrorMessage(status: status)
                     }
                 }
         }

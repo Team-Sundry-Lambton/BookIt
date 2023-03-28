@@ -116,9 +116,12 @@ class LoginViewController: UIViewController {
          let dbCheck = CoreDataManager.shared.checkUserInDB(email: email,isVendor: isVendor)
         if !dbCheck {
             LoadingHudManager.shared.showSimpleHUD(title: "Validating...", view: self.view)
-            InitialDataDownloadManager.shared.chedkUserData(email: email ,isVendor: isVendor ){ status in
+            InitialDataDownloadManager.shared.chedkUserData(email: email ,isVendor: isVendor ){ [weak self] status in
                 DispatchQueue.main.async {
                     LoadingHudManager.shared.dissmissHud()
+                    guard let strongSelf = self else {
+                        return
+                    }
                     if let user = status {
                         if user{
                             completion(true)
@@ -173,18 +176,20 @@ class LoginViewController: UIViewController {
     }
     
     func setUser(user : LoginUser){
+       var loginUser :LoginUser?
         if (isVendor){
             if let user = CoreDataManager.shared.getVendor(email: user.email) {
                 
-                let loginUser = LoginUser(firstName: user.firstName ?? "", lastName: user.lastName ?? "", email: user.email ?? "", contactNumber: user.contactNumber ?? "",isVendor: isVendor)
-                UserDefaultsManager.shared.saveUserData(user: loginUser)
+                loginUser = LoginUser(firstName: user.firstName ?? "", lastName: user.lastName ?? "", email: user.email ?? "", contactNumber: user.contactNumber ?? "",isVendor: isVendor)
                 
             }
         }else{
             if let user = CoreDataManager.shared.getClient(email: user.email){
-                let loginUser = LoginUser(firstName: user.firstName ?? "", lastName: user.lastName ?? "", email: user.email ?? "", contactNumber: user.contactNumber ?? "",isVendor: isVendor)
-                UserDefaultsManager.shared.saveUserData(user: loginUser)
+                loginUser = LoginUser(firstName: user.firstName ?? "", lastName: user.lastName ?? "", email: user.email ?? "", contactNumber: user.contactNumber ?? "",isVendor: isVendor)
             }
+        }
+        if let user = loginUser {
+            UserDefaultsManager.shared.saveUserData(user: user)
         }
     }
 }
@@ -196,7 +201,12 @@ extension LoginViewController{
     func fetchFacebookFields(){
         
         LoginManager().logIn(permissions: ["email","public_profile"], from: nil) {
-            (result, error) -> Void in
+            [weak self](result, error) -> Void in
+            
+            guard let strongSelf = self else {
+                return
+            }
+            
             if let error = error {
                 print(error.localizedDescription)
                 return
@@ -225,12 +235,12 @@ extension LoginViewController{
                         print("email -> \(email)")
                         print("facebookProfileUrl -> \(facebookProfileUrl)")
                         
-                        self.loginUser = LoginUser(firstName: firstName, lastName: lastName, email: email, contactNumber: "",isVendor: self.isVendor)
+                        strongSelf.loginUser = LoginUser(firstName: firstName, lastName: lastName, email: email, contactNumber: "",isVendor: strongSelf.isVendor)
                         if let url = URL(string: facebookProfileUrl) {
-                            self.loginUser?.picture = url
+                            strongSelf.loginUser?.picture = url
                         }
                         
-                        self.redirectUser(email: email)
+                        strongSelf.redirectUser(email: email)
                         
                     }
                 }
@@ -243,7 +253,10 @@ extension LoginViewController{
 extension LoginViewController{
     
     func getGoogleUser(){
-        GIDSignIn.sharedInstance.signIn(withPresenting: self) { signInResult, error in
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [weak self] signInResult, error in
+            guard let strongSelf = self else {
+                return
+            }
             guard error == nil else { return }
             guard let signInResult = signInResult else { return }
             
@@ -256,9 +269,9 @@ extension LoginViewController{
             
             let profilePicUrl = user.profile?.imageURL(withDimension: 320) ?? nil
             
-            self.loginUser = LoginUser(firstName: givenName, lastName: familyName, email: emailAddress, contactNumber: "",isVendor: self.isVendor)
-            self.loginUser?.picture = profilePicUrl
-            self.redirectUser(email: emailAddress)
+            strongSelf.loginUser = LoginUser(firstName: givenName, lastName: familyName, email: emailAddress, contactNumber: "",isVendor: strongSelf.isVendor)
+            strongSelf.loginUser?.picture = profilePicUrl
+            strongSelf.redirectUser(email: emailAddress)
         }
     }
 }
@@ -307,13 +320,18 @@ extension LoginViewController {
             }
             
             biometricIDAuth.evaluate { [weak self] (success, error) in
+                
+                guard let strongSelf = self else {
+                    return
+                }
+                
                 guard success else {
                     return
                 }
                 
                 let loginUser =  UserDefaultsManager.shared.getUserData()
-                self?.loadDashBoard(user: loginUser)
-                UIAlertViewExtention.shared.showBasicAlertView(title: "Success", message:  "You have a free pass, now", okActionTitle: "OK", view: self ?? ViewController())
+                strongSelf.loadDashBoard(user: loginUser)
+                UIAlertViewExtention.shared.showBasicAlertView(title: "Success", message:  "You have a free pass, now", okActionTitle: "OK", view: strongSelf)
             }
         }
     }

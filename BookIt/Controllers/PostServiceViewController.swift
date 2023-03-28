@@ -302,9 +302,12 @@ class PostServiceViewController: UIViewController {
                     mediaFile.parent_Service = self?.selectedService
                   
                     LoadingHudManager.shared.showSimpleHUD(title: "Uploading...", view: strongSelf.view)
-                    InitialDataDownloadManager.shared.addMediaData(media: mediaFile){ url in
+                    InitialDataDownloadManager.shared.addMediaData(media: mediaFile){ [weak self] url in
                         DispatchQueue.main.async {
                             LoadingHudManager.shared.dissmissHud()
+                            guard let strongSelf = self else {
+                                return
+                            }
                             if let path = url {
                                 mediaFile.mediaPath = path
                                 strongSelf.mediaList.append(mediaFile)
@@ -360,14 +363,17 @@ class PostServiceViewController: UIViewController {
             if editMode{
                 LoadingHudManager.shared.showSimpleHUD(title: "Uploading...", view: self.view)
                     Task {
-                        await InitialDataDownloadManager.shared.updateServiceData(service: service){ status in
+                        await InitialDataDownloadManager.shared.updateServiceData(service: service){[weak self] status in
                             DispatchQueue.main.async {
                                 LoadingHudManager.shared.dissmissHud()
+                                guard let strongSelf = self else {
+                                    return
+                                }
                                 if let status = status {
                                     if status {
-                                        self.saveAllContextCoreData()
+                                        strongSelf.saveAllContextCoreData()
                                     }else{
-                                        UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
+                                        UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: strongSelf)
                                     }
                                 }
                             }
@@ -376,14 +382,17 @@ class PostServiceViewController: UIViewController {
             }else{
             LoadingHudManager.shared.showSimpleHUD(title: "Uploading...", view: self.view)
                 Task {
-                    await InitialDataDownloadManager.shared.addServiceData(service: service){ status in
+                    await InitialDataDownloadManager.shared.addServiceData(service: service){[weak self] status in
                         DispatchQueue.main.async {
                             LoadingHudManager.shared.dissmissHud()
+                            guard let strongSelf = self else {
+                                return
+                            }
                             if let status = status {
                                 if status {
-                                    self.saveAllContextCoreData()
+                                    strongSelf.saveAllContextCoreData()
                                 }else{
-                                    UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
+                                    UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: strongSelf)
                                 }
                             }
                         }
@@ -399,13 +408,16 @@ class PostServiceViewController: UIViewController {
         context.delete(mediaFile)
         mediaFileCollectionView.reloadData()
         LoadingHudManager.shared.showSimpleHUD(title: "Deleting...", view: self.view)
-        InitialDataDownloadManager.shared.deleteMediaData(media: mediaFile){ status in
+        InitialDataDownloadManager.shared.deleteMediaData(media: mediaFile){ [weak self]status in
             DispatchQueue.main.async {
                 LoadingHudManager.shared.dissmissHud()
+                guard let strongSelf = self else {
+                    return
+                }
                 if let status = status{
                     if status == false {
                         DispatchQueue.main.async {
-                            self.deleteMediaFile(mediaFile: mediaFile)
+                            strongSelf.deleteMediaFile(mediaFile: mediaFile)
                         }
                     }
                 }

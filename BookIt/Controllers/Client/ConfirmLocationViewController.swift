@@ -83,24 +83,30 @@ class ConfirmLocationViewController: UIViewController {
         saveLocation()
         if isUpdate {
             LoadingHudManager.shared.showSimpleHUD(title: "Updating...", view: self.view)
-            InitialDataDownloadManager.shared.updateAddressData(addressObject: selectedLocation){ status in
+            InitialDataDownloadManager.shared.updateAddressData(addressObject: selectedLocation){[weak self] status in
                 DispatchQueue.main.async {
                     LoadingHudManager.shared.dissmissHud()
+                    guard let strongSelf = self else {
+                        return
+                    }
                     if let status = status{
                         if status == false {
-                            UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
+                            UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: strongSelf)
                         }
                     }
                 }
             }
         }else{
             LoadingHudManager.shared.showSimpleHUD(title: "Inserting...", view: self.view)
-            InitialDataDownloadManager.shared.addAddressData(address: selectedLocation){ status in
+            InitialDataDownloadManager.shared.addAddressData(address: selectedLocation){ [weak self] status in
                 DispatchQueue.main.async {
                     LoadingHudManager.shared.dissmissHud()
+                    guard let strongSelf = self else {
+                        return
+                    }
                     if let status = status{
                         if status == false {
-                            UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
+                            UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: strongSelf)
                         }
                     }
                 }

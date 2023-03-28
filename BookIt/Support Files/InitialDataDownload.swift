@@ -372,7 +372,7 @@ extension InitialDataDownloadManager {
                                         print("Error adding document: \(err)")
                                         completion(false)
                                     } else {
-                                        print("Document added with ID: \(ref!.documentID)")
+                                        print("Document added with ID: \(ref?.documentID)")
                                         CoreDataManager.shared.deleteClients()
                                         Task { await self.getAllClientData() }
                                         completion(true)
@@ -398,7 +398,7 @@ extension InitialDataDownloadManager {
                                     print("Error adding document: \(err)")
                                     completion(false)
                                 } else {
-                                    print("Document added with ID: \(ref!.documentID)")
+                                    print("Document added with ID: \(ref?.documentID)")
                                     CoreDataManager.shared.deleteClients()
                                     Task { await self.getAllClientData() }
                                     completion(true)
@@ -423,7 +423,7 @@ extension InitialDataDownloadManager {
                     print("Error adding document: \(err)")
                     completion(false)
                 } else {
-                    print("Document added with ID: \(ref!.documentID)")
+                    print("Document added with ID: \(ref?.documentID)")
                     CoreDataManager.shared.deleteClients()
                     Task { await self.getAllClientData() }
                     completion(true)
@@ -458,7 +458,7 @@ extension InitialDataDownloadManager {
                                         print("Error adding document: \(err)")
                                         completion(false)
                                     } else {
-                                        print("Document added with ID: \(ref!.documentID)")
+                                        print("Document added with ID: \(ref?.documentID)")
                                         CoreDataManager.shared.deleteVendors()
                                         Task { await  self.getAllVendorData() }
                                         completion(true)
@@ -483,7 +483,7 @@ extension InitialDataDownloadManager {
                                     print("Error adding document: \(err)")
                                     completion(false)
                                 } else {
-                                    print("Document added with ID: \(ref!.documentID)")
+                                    print("Document added with ID: \(ref?.documentID)")
                                     CoreDataManager.shared.deleteVendors()
                                     Task { await  self.getAllVendorData() }
                                     completion(true)
@@ -507,7 +507,7 @@ extension InitialDataDownloadManager {
                     print("Error adding document: \(err)")
                     completion(false)
                 } else {
-                    print("Document added with ID: \(ref!.documentID)")
+                    print("Document added with ID: \(ref?.documentID)")
                     CoreDataManager.shared.deleteVendors()
                     Task { await  self.getAllVendorData() }
                     completion(true)
@@ -579,7 +579,7 @@ extension InitialDataDownloadManager {
                 print("Error adding document: \(err)")
                 completion(false)
             } else {
-                print("Document added with ID: \(ref!.documentID)")
+                print("Document added with ID: \(ref?.documentID)")
                 completion(true)
             }
         }
@@ -611,7 +611,7 @@ extension InitialDataDownloadManager {
                     print("Error adding document: \(err)")
                     completion(false)
                 } else {
-                    print("Document added with ID: \(ref!.documentID)")
+                    print("Document added with ID: \(ref?.documentID)")
                     completion(true)
                 }
             }
@@ -638,7 +638,7 @@ extension InitialDataDownloadManager {
                         print("Error adding document: \(err)")
                         completion(nil)
                     } else {
-                        print("Document added with ID: \(ref!.documentID)")
+                        print("Document added with ID: \(ref?.documentID)")
                         let media = CoreDataManager.shared.getMedia(name: media.mediaName ?? "", serviceId: serviceId)
                         media?.mediaPath = url
                         self.saveData()
@@ -675,7 +675,7 @@ extension InitialDataDownloadManager {
                 print("Error adding document: \(err)")
                 completion(false)
             } else {
-                print("Document added with ID: \(ref!.documentID)")
+                print("Document added with ID: \(ref?.documentID)")
                 completion(true)
             }
         }
@@ -705,7 +705,7 @@ extension InitialDataDownloadManager {
                 print("Error adding document: \(err)")
                 completion(false)
             } else {
-                print("Document added with ID: \(ref!.documentID)")
+                print("Document added with ID: \(ref?.documentID)")
                 completion(true)
             }
         }
@@ -741,7 +741,7 @@ extension InitialDataDownloadManager {
                 print("Error adding document: \(err)")
                 completion(false)
             } else {
-                print("Document added with ID: \(ref!.documentID)")
+                print("Document added with ID: \(ref?.documentID)")
                 completion(true)
             }
         }
@@ -767,7 +767,7 @@ extension InitialDataDownloadManager {
                 print("Error adding document: \(err)")
                 completion(false)
             } else {
-                print("Document added with ID: \(ref!.documentID)")
+                print("Document added with ID: \(ref?.documentID)")
                 completion(true)
             }
         }

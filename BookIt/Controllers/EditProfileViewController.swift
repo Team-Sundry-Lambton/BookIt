@@ -186,18 +186,24 @@ class EditProfileViewController: UIViewController {
             saveUser()
             if(isEdit){
                 LoadingHudManager.shared.showSimpleHUD(title: "Updating...", view: self.view)
-                InitialDataDownloadManager.shared.updateVendorData(vendor: vendor){ status in
+                InitialDataDownloadManager.shared.updateVendorData(vendor: vendor){ [weak self] status in
                     DispatchQueue.main.async {
                         LoadingHudManager.shared.dissmissHud()
-                        self.displayErrorMessage(status: status)
+                        guard let strongSelf = self else {
+                            return
+                        }
+                        strongSelf.displayErrorMessage(status: status)
                     }
                 }
             }else{
                 LoadingHudManager.shared.showSimpleHUD(title: "Inserting...", view: self.view)
-                InitialDataDownloadManager.shared.addVendorData(vendor: vendor){ status in
+                InitialDataDownloadManager.shared.addVendorData(vendor: vendor){ [weak self] status in
                     DispatchQueue.main.async {
                         LoadingHudManager.shared.dissmissHud()
-                        self.displayErrorMessage(status: status)
+                        guard let strongSelf = self else {
+                            return
+                        }
+                        strongSelf.displayErrorMessage(status: status)
                     }
                 }
             }
@@ -212,18 +218,24 @@ class EditProfileViewController: UIViewController {
             saveUser()
             if(isEdit){
                 LoadingHudManager.shared.showSimpleHUD(title: "Updating...", view: self.view)
-                InitialDataDownloadManager.shared.updateClientData(client: client){ status in
+                InitialDataDownloadManager.shared.updateClientData(client: client){[weak self] status in
                     DispatchQueue.main.async {
                         LoadingHudManager.shared.dissmissHud()
-                        self.displayErrorMessage(status: status)
+                        guard let strongSelf = self else {
+                            return
+                        }
+                        strongSelf.displayErrorMessage(status: status)
                     }
                 }
             }else{
                 LoadingHudManager.shared.showSimpleHUD(title: "Inserting...", view: self.view)
-                InitialDataDownloadManager.shared.addClientData(client: client){ status in
+                InitialDataDownloadManager.shared.addClientData(client: client){ [weak self]status in
                     DispatchQueue.main.async {
                         LoadingHudManager.shared.dissmissHud()
-                        self.displayErrorMessage(status: status)
+                        guard let strongSelf = self else {
+                            return
+                        }
+                        strongSelf.displayErrorMessage(status: status)
                     }
                 }
             }
