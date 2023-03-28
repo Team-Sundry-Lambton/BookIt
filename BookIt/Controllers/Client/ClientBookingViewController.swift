@@ -15,7 +15,7 @@ class ClientBookingViewController: UIViewController {
     var bookingListHistory = [Booking]()
     var selectedService: Service?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        
+    @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var tableView: UITableView!
         
     @IBOutlet weak var interfaceSegmented: CustomSegmentedControl! {
@@ -50,12 +50,11 @@ class ClientBookingViewController: UIViewController {
         
     private func loadBookingList(){
             bookingList = CoreDataManager.shared.loadBookingList(email: client!.email ?? "", isClient: true)
-            print(bookingList)
             bookingListOngoing = bookingList.filter({
-                $0.status == "New" || $0.status == "pending" || $0.status == "inprogress"
+                $0.status == "New" || $0.status == "Pending" || $0.status == "Inprogress"
             })
             bookingListHistory = bookingList.filter({
-                $0.status == "cancel" || $0.status == "completed"
+                $0.status == "Cancel" || $0.status == "Completed"
             })
     }
     
@@ -97,12 +96,25 @@ extension ClientBookingViewController: CustomSegmentedControlDelegate {
 
 extension ClientBookingViewController: UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if segmentSelectedIndex == 0 && bookingListOngoing.count > 0 {
-            return bookingListOngoing.count
-        } else if segmentSelectedIndex == 1 && bookingListHistory.count > 0 {
-            return bookingListHistory.count
-        } else {
-            return 10 //dummy
+        if segmentSelectedIndex == 0{
+            let rowCount = bookingListOngoing.count
+            if rowCount == 0 {
+                emptyView.isHidden = false
+                tableView.backgroundView = emptyView
+            }else{
+                 tableView.backgroundView = nil
+            }
+            return rowCount
+            
+        }else{
+            let rowCount = bookingListHistory.count
+            if rowCount == 0 {
+                emptyView.isHidden = false
+                tableView.backgroundView = emptyView
+            }else{
+                 tableView.backgroundView = nil
+            }
+            return rowCount
         }
     }
         
