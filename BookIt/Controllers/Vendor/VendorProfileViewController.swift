@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import SwiftUI
 
 class VendorProfileViewController: UIViewController {
     
@@ -159,11 +160,8 @@ class VendorProfileViewController: UIViewController {
     }
     
     @IBAction func aboutUs() {
-        if let viewController = UIStoryboard(name: "AboutUs", bundle: nil).instantiateViewController(withIdentifier: "AoubtUsViewController") as? AoubtUsViewController {
-            if let navigator = navigationController {
-                navigator.pushViewController(viewController, animated: true)
-            }
-        }
+        let swiftUIViewController = UIHostingController(rootView: AboutUs(navigationController: self.navigationController))
+                self.navigationController?.pushViewController(swiftUIViewController, animated: true)
     }
     
     /*
