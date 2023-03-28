@@ -190,7 +190,7 @@ class SignupViewController: UIViewController {
             UserDefaultsManager.shared.removeUserLogin()
             UserDefaultsManager.shared.removeUserData()
         }
-        LoadingHudManager.shared.showSimpleHUD(title: "Downloading...", view: self.view)
+        LoadingHudManager.shared.showSimpleHUD(title: "Loading...", view: self.view)
         Task {
             await InitialDataDownloadManager.shared.downloadAllData{
                 DispatchQueue.main.async {
