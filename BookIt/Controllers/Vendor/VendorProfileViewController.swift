@@ -160,7 +160,7 @@ class VendorProfileViewController: UIViewController {
     }
     
     @IBAction func aboutUs() {
-        let swiftUIViewController = UIHostingController(rootView: AboutUs(navigationController: self.navigationController))
+        let swiftUIViewController = UIHostingController(rootView: AboutUs())
                 self.navigationController?.pushViewController(swiftUIViewController, animated: true)
     }
     
