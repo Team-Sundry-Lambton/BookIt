@@ -66,7 +66,7 @@ class VendorBookingDetailController: UIViewController{
         if let booking = booking{
             LoadingHudManager.shared.showSimpleHUD(title: "Accepting...", view: self.view)
                 Task {
-                    booking.status = "Accepted"
+                    booking.status = "Pending"
                     await
                     InitialDataDownloadManager.shared.updateBookingData(booking:booking){[weak self] status in
                         DispatchQueue.main.async {
