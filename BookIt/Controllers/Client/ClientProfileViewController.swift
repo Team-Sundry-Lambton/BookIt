@@ -40,9 +40,9 @@ class ClientProfileViewController: UIViewController {
         }
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = false
-    }
+//    override func viewDidDisappear(_ animated: Bool) {
+//        self.navigationController?.navigationBar.isHidden = false
+//    }
     
     func addBorder() {
         imageView.layer.borderColor = UIColor.white.cgColor

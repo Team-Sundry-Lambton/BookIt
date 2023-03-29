@@ -9,6 +9,8 @@ import SwiftUI
 
 struct AboutUs: View {
 //    weak var navigationController: UINavigationController?
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+      
     var version = "App Version : " + (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.0")
     var aboutUs = "About Us : "
     var aboutUsURL  = "https://www.freeprivacypolicy.com/live/5edf96ed-0b84-4fc0-955e-bc578ff82da4"
@@ -61,6 +63,21 @@ struct AboutUs: View {
         }.navigationBarTitle(Text("About Us"), displayMode: .inline)
             .edgesIgnoringSafeArea(.bottom)
             .navigationBarBackButtonHidden(false)
+            .toolbar {
+                           ToolbarItem(placement: .navigationBarLeading) {
+                               Button {
+                                   print("Custom Action")
+                                   // 2
+                                   self.mode.wrappedValue.dismiss()
+
+                               } label: {
+                                   HStack {
+                                       Image("backIcon")
+                                       Text("Back")
+                                   }
+                               }
+                           }
+            }.background(Color.blue)
     }
 }
 struct AboutUs_Previews: PreviewProvider {
