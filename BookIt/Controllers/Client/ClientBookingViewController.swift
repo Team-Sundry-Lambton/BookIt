@@ -55,7 +55,7 @@ class ClientBookingViewController: UIViewController {
                 $0.status == "New" || $0.status == "Pending" || $0.status == "Inprogress"
             })
             bookingListHistory = bookingList.filter({
-                $0.status == "Cancel" || $0.status == "Completed"
+                $0.status == "Rejected" || $0.status == "Completed" || $0.status == "cancelled"
             })
         }
     }
