@@ -52,6 +52,7 @@ class ClientHomeViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationItem.backBarButtonItem?.isEnabled = false;
         self.navigationController?.navigationBar.isHidden = true
         bannerTableView.reloadData()
     }

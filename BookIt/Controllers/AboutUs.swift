@@ -20,7 +20,7 @@ struct AboutUs: View {
             VStack(alignment: .center, spacing: 10) {
                 Image("AppIconImage").resizable().frame(width: 150 , height: 150, alignment: .center).padding(.top, 15)
                 Text("BookIt").font(.system(size: 40.0)).bold().foregroundColor(Color(UIColor.appThemeColor)).padding(.bottom, 20)
-                Text("Hi! we're TeamSundry").font(.system(size: 20.0)).foregroundColor(.gray)
+                Text("Hi! We're TeamSundry").font(.system(size: 20.0)).foregroundColor(.gray)
                 Text(version).font(.system(size: 20.0)).foregroundColor(.gray).padding(.bottom, 20)
                 Text(contactUs).font(.system(size: 18.0))
                     .frame(maxWidth: .infinity)

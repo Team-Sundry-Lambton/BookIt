@@ -40,6 +40,8 @@ class VendorHomeViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationItem.backBarButtonItem?.isEnabled = false;
+        self.navigationController?.navigationBar.isHidden = true
         loadData()
         resetSegment()
     }
