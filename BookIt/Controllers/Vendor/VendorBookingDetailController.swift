@@ -227,7 +227,15 @@ class VendorBookingDetailController: UIViewController{
             
         case ServiceStatus.COMPLETED.title:
             //goto review page
-            serviceStatusBtn.isEnabled = true
+            if let viewController = UIStoryboard(name: "Rating", bundle: nil).instantiateViewController(withIdentifier: "Rating") as? RatingController {
+                if let navigator = navigationController {
+                    viewController.client = booking?.client
+                    viewController.vendor = booking?.vendor
+                    viewController.service = booking?.service
+                    viewController.vendorRating = false
+                    navigator.pushViewController(viewController, animated: true)
+                }
+            }
         default:
             //nothing
             serviceStatusBtn.isEnabled = false
