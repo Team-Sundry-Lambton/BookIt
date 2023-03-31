@@ -10,4 +10,9 @@ import UIKit
 
 class VendorBookingConfirmationController : UIViewController{
     
+    @IBAction func goToDashboard(_ sender: Any) {
+        if let navigator = self.navigationController {
+            navigator.popViewController(animated: true)
+        }
+    }
 }
