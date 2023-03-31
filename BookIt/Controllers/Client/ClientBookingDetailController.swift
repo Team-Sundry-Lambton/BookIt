@@ -21,7 +21,7 @@ class ClientBookingDetailController : UIViewController{
     @IBOutlet weak var serviceTitleLbl: UILabel!
     @IBOutlet weak var bookingIdLbl: UILabel!
     @IBOutlet weak var locationDescLbl: UILabel!
-    @IBOutlet weak var statusDescLbl: UILabel!
+    @IBOutlet weak var commentsDescLbl: UILabel!
     @IBOutlet weak var totalPriceBtn: UIButton!
     @IBOutlet weak var discountLbl: UILabel!
     @IBOutlet weak var priceLbl: UILabel!
@@ -29,6 +29,16 @@ class ClientBookingDetailController : UIViewController{
     
     override func viewDidLoad() {
         loadDetails()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.tintColor = UIColor.black
+        self.navigationController?.navigationBar.isHidden = false
+        let titleLabel = UILabel()
+        titleLabel.text = "Booking Details"
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
+        titleLabel.sizeToFit()
+        self.navigationItem.titleView = titleLabel
     }
     
     func loadDetails(){
@@ -50,7 +60,7 @@ class ClientBookingDetailController : UIViewController{
         else{
             bookingId = "N/A"
         }
-        bookingIdLbl.text = "Booking number is \(bookingId)"
+        bookingIdLbl.text = "Booking number is #\(bookingId)"
         
         serviceTitleLbl.text = service.serviceTitle
         if let media = CoreDataManager.shared.getServiceFirstMedia(serviceId: Int(service.serviceId)) {
@@ -76,7 +86,6 @@ class ClientBookingDetailController : UIViewController{
             servicePriceLbl.text = "$ " + price + " / " + type
         }
         
-        statusDescLbl.text = status
         locationDescLbl.text =  client.address?.address ?? "N/A"
         
         let price:Double = Double(service.price ?? "") ?? 0.0
