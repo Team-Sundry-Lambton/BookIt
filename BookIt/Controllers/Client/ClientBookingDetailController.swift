@@ -150,11 +150,14 @@ class ClientBookingDetailController : NavigationBaseViewController{
         case ServiceStatus.NEW.title:
             
             let alertController: UIAlertController = {
-                
-                let controller = UIAlertController(title: "Cancel booking", message: "Are you sure ?", preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "Yes", style: .default){
-                    UIAlertAction in
-                    
+                let controller = UIAlertController(title: "Confirm Cancellation", message: "Are you sure you want to cancel this service?", preferredStyle: .alert)
+
+                let rescheduleAction = UIAlertAction(title: "Reschedule", style: .default) { (_) in
+                    // Handle Reschedule action
+                }
+
+                let cancelAction = UIAlertAction(title: "No! Just Cancel", style: .destructive) { (_) in
+                    // Handle Cancel action
                     if let booking = self.booking {
                         LoadingHudManager.shared.showSimpleHUD(title: "Cancelling...", view: self.view)
                             Task {
@@ -181,17 +184,19 @@ class ClientBookingDetailController : NavigationBaseViewController{
                                 }
                             }
                     }
-                    
                 }
-                let cancelAction = UIAlertAction(title: "No", style: .cancel){
-                    UIAlertAction in
+
+                let ignoreAction = UIAlertAction(title: "Ignore", style: .cancel) { (_) in
+                    // Handle Ignore action
                     self.dismiss(animated: true)
                 }
-                controller.addAction(okAction)
+
+                controller.addAction(rescheduleAction)
                 controller.addAction(cancelAction)
+                controller.addAction(ignoreAction)
                 return controller
             }()
-            self.present(alertController, animated: true)
+            self.present(alertController, animated: true, completion: nil)
             
         case ServiceStatus.PENDING.title:
             //make a payment
