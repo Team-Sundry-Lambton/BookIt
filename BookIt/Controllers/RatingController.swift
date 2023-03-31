@@ -21,11 +21,6 @@ class RatingController : UIViewController{
     var service : Service?
     var vendorRating: Bool = true
     
-    override func viewDidLoad() {
-        
-    }
-    
-    
     @IBAction func submitReview(_ sender: Any) {
         let rating = rating.rating
         let review = reviewTextArea.text ?? ""
@@ -56,8 +51,6 @@ class RatingController : UIViewController{
                     }
                 }
             }
-        
-        
     }
     
     private func saveAllContextCoreData() {
