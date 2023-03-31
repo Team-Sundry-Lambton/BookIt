@@ -20,11 +20,12 @@ class ClientBookingDetailController : NavigationBaseViewController{
     @IBOutlet weak var serviceTitleLbl: UILabel!
     @IBOutlet weak var bookingIdLbl: UILabel!
     @IBOutlet weak var locationDescLbl: UILabel!
-    @IBOutlet weak var commentsDescLbl: UILabel!
+    @IBOutlet weak var problemDescLbl: UILabel!
     @IBOutlet weak var totalPriceBtn: UIButton!
     @IBOutlet weak var discountLbl: UILabel!
     @IBOutlet weak var priceLbl: UILabel!
     @IBOutlet weak var serviceStatusBtn: UIButton!
+    @IBOutlet weak var statusLbl: UILabel!
     
     override func viewDidLoad() {
         loadDetails()
@@ -59,7 +60,8 @@ class ClientBookingDetailController : NavigationBaseViewController{
             bookingId = "N/A"
         }
         bookingIdLbl.text = "Booking number is #\(bookingId)"
-        
+        statusLbl.text = status
+        problemDescLbl.text = booking?.problemDescription ?? "N/A"
         serviceTitleLbl.text = service.serviceTitle
         if let media = CoreDataManager.shared.getServiceFirstMedia(serviceId: Int(service.serviceId)) {
             if let imageData = media.mediaContent {
