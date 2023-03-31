@@ -124,9 +124,9 @@ extension ClientBookingViewController: UITableViewDelegate , UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: "ServiceStatusTableViewCell", for: indexPath) as? ServiceStatusTableViewCell
             
         var booking:Booking? = nil
-        if segmentSelectedIndex == 0 && bookingListOngoing.count > 0 {
+        if segmentSelectedIndex == 0 && bookingListOngoing.count > 0 && indexPath.row < bookingListOngoing.count {
             booking = bookingListOngoing[indexPath.row]
-        } else if segmentSelectedIndex == 1 && bookingListHistory.count > 0 {
+        } else if segmentSelectedIndex == 1 && bookingListHistory.count > 0 && indexPath.row < bookingListHistory.count{
             booking = bookingListHistory[indexPath.row]
         }
             
