@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AboutUs: View {
-//    weak var navigationController: UINavigationController?
+    weak var navigationController: UINavigationController?
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
       
     var version = "App Version : " + (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.0")
@@ -18,6 +18,16 @@ struct AboutUs: View {
     var privacy = "Privacy Policy :"
     var privacyURL =  "https://www.freeprivacypolicy.com/live/5edf96ed-0b84-4fc0-955e-bc578ff82da4"
     var body: some View {
+        VStack(alignment: .leading, spacing: 10){
+            Button(action: {
+                navigationController?.popViewController(animated: true)
+            }) {
+                Text("Back")
+                    .font(.system(size: 18.0))
+                    .frame(width: 100, height: 10, alignment: .leading)
+            }.foregroundColor(.black).background(Color.blue)
+        }
+
         ZStack {
             VStack(alignment: .center, spacing: 10) {
                 Image("AppIconImage").resizable().frame(width: 150 , height: 150, alignment: .center).padding(.top, 15)
@@ -77,7 +87,7 @@ struct AboutUs: View {
                                    }
                                }
                            }
-            }.background(Color.blue)
+            }.background(Color.white)
     }
 }
 struct AboutUs_Previews: PreviewProvider {
