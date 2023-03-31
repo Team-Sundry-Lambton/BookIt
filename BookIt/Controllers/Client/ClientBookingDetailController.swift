@@ -153,7 +153,14 @@ class ClientBookingDetailController : NavigationBaseViewController{
                 let controller = UIAlertController(title: "Confirm Cancellation", message: "Are you sure you want to cancel this service?", preferredStyle: .alert)
 
                 let rescheduleAction = UIAlertAction(title: "Reschedule", style: .default) { (_) in
-                    // Handle Reschedule action
+                    //Redirect to service booking page
+                        if let clientBook = UIStoryboard(name: "ClientDashBoard", bundle: nil).instantiateViewController(withIdentifier: "ClientBookVendorViewController") as? ClientBookVendorViewController {
+                            if let navigator = self.navigationController {
+                                clientBook.selectedService = self.booking?.service
+                                clientBook.vendor = self.booking?.vendor
+                                navigator.pushViewController(clientBook, animated: true)
+                            }
+                        }
                 }
 
                 let cancelAction = UIAlertAction(title: "No! Just Cancel", style: .destructive) { (_) in
