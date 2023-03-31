@@ -92,6 +92,11 @@ class VendorBookingDetailController: UIViewController{
         
         totalIncomeBtn.setTitle("Total Income : $\(earningAmount)", for: .normal)
     
+        updateButtons(status: status)
+        
+    }
+    
+    func updateButtons(status:String){
         switch status {
             case ServiceStatus.NEW.title:
                 acceptBtn.isHidden = false
@@ -132,7 +137,6 @@ class VendorBookingDetailController: UIViewController{
             declineBtn.isHidden = true
             serviceStatusBtn.isHidden = true
         }
-        
     }
     
     @IBAction func viewServiceDetail(_ sender: Any) {

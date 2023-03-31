@@ -12,9 +12,7 @@ import UIKit
 class ClientBookingDetailController : UIViewController{
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
     var booking:Booking?
-    
     
     @IBOutlet weak var serviceImg: UIImageView!
     @IBOutlet weak var servicePriceLbl: UILabel!
@@ -22,16 +20,11 @@ class ClientBookingDetailController : UIViewController{
     @IBOutlet weak var vendorNameLbl: UILabel!
     @IBOutlet weak var serviceTitleLbl: UILabel!
     @IBOutlet weak var bookingIdLbl: UILabel!
-    
-    
     @IBOutlet weak var locationDescLbl: UILabel!
     @IBOutlet weak var statusDescLbl: UILabel!
-    
-    
     @IBOutlet weak var totalPriceBtn: UIButton!
     @IBOutlet weak var discountLbl: UILabel!
     @IBOutlet weak var priceLbl: UILabel!
-    
     @IBOutlet weak var serviceStatusBtn: UIButton!
     
     override func viewDidLoad() {
@@ -94,6 +87,10 @@ class ClientBookingDetailController : UIViewController{
         
         totalPriceBtn.setTitle("Total Price : $\(totalPrice)", for: .normal)
         
+        updateButton(status: status)
+    }
+    
+    func updateButton(status:String){
         switch status {
             case ServiceStatus.NEW.title:
             serviceStatusBtn.setTitle(ServiceStatus.NEW.nextStep.forClient, for: .normal)
@@ -178,12 +175,6 @@ class ClientBookingDetailController : UIViewController{
                             }
                     }
                     
-                    
-                    if let navigator = self.navigationController {
-                        navigator.popViewController(animated: true)
-                    }else{
-                        self.dismiss(animated: true)
-                    }
                 }
                 let cancelAction = UIAlertAction(title: "No", style: .cancel){
                     UIAlertAction in

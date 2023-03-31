@@ -48,13 +48,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func continueGuest() {
-//        loadDashBoard(user: nil)
-        let lastName = "Admin"
-        let email = "admin@gmail.com"
-        let firstName = "Admin"
-        var loginUser = LoginUser(firstName: firstName, lastName: lastName, email: email, contactNumber: "123456789",isVendor: self.isVendor)
-        loginUser.picture = nil
-        self.checkUserAvailablility(user: loginUser)
+        loadDashBoard(user: nil)
     }
    
     
