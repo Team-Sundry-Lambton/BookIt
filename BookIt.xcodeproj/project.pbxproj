@@ -11,6 +11,9 @@
 		413CF83629C51A5C00A174D3 /* VendorBookingConfirmationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413CF83529C51A5C00A174D3 /* VendorBookingConfirmationController.swift */; };
 		413CF83C29C51ADF00A174D3 /* VendorServiceListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 413CF83B29C51ADF00A174D3 /* VendorServiceListTableViewCell.xib */; };
 		413CF83E29C51B6200A174D3 /* VendorServiceListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413CF83D29C51B6200A174D3 /* VendorServiceListTableViewCell.swift */; };
+		4174DFB429D6A0F900FDB0D7 /* Rating.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4174DFB329D6A0F900FDB0D7 /* Rating.storyboard */; };
+		4174DFC029D6AC5500FDB0D7 /* RatingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4174DFBF29D6AC5500FDB0D7 /* RatingController.swift */; };
+		4174DFCB29D6B31C00FDB0D7 /* Cosmos in Frameworks */ = {isa = PBXBuildFile; productRef = 4174DFCA29D6B31C00FDB0D7 /* Cosmos */; };
 		4186200F29D6486700C35346 /* ServiceStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4186200E29D6486700C35346 /* ServiceStatus.swift */; };
 		4186201129D66B3700C35346 /* ClientBookingDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4186201029D66B3700C35346 /* ClientBookingDetail.storyboard */; };
 		4186201329D66EF700C35346 /* ClientBookingDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4186201229D66EF700C35346 /* ClientBookingDetailController.swift */; };
@@ -137,6 +140,8 @@
 		413CF83529C51A5C00A174D3 /* VendorBookingConfirmationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorBookingConfirmationController.swift; sourceTree = "<group>"; };
 		413CF83B29C51ADF00A174D3 /* VendorServiceListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VendorServiceListTableViewCell.xib; sourceTree = "<group>"; };
 		413CF83D29C51B6200A174D3 /* VendorServiceListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorServiceListTableViewCell.swift; sourceTree = "<group>"; };
+		4174DFB329D6A0F900FDB0D7 /* Rating.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Rating.storyboard; sourceTree = "<group>"; };
+		4174DFBF29D6AC5500FDB0D7 /* RatingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingController.swift; sourceTree = "<group>"; };
 		4186200E29D6486700C35346 /* ServiceStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceStatus.swift; sourceTree = "<group>"; };
 		4186201029D66B3700C35346 /* ClientBookingDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ClientBookingDetail.storyboard; sourceTree = "<group>"; };
 		4186201229D66EF700C35346 /* ClientBookingDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientBookingDetailController.swift; sourceTree = "<group>"; };
@@ -262,6 +267,7 @@
 				BB7A1DEA29C2A4DC003CB894 /* FirebaseAuth in Frameworks */,
 				BB7A1DEE29C2A4DC003CB894 /* FirebaseCrashlytics in Frameworks */,
 				BB7A1DFA29C2A4DC003CB894 /* FirebaseFirestoreSwift in Frameworks */,
+				4174DFCB29D6B31C00FDB0D7 /* Cosmos in Frameworks */,
 				BB7A1DF229C2A4DC003CB894 /* FirebaseDatabaseSwift in Frameworks */,
 				BB7A1E0629C2A4DC003CB894 /* FirebaseMLModelDownloader in Frameworks */,
 				BB7A1DE629C2A4DC003CB894 /* FirebaseAppCheck in Frameworks */,
@@ -336,6 +342,7 @@
 				41B85CFB29C3E0A3007CAF1C /* VendorBookingConfirmation.storyboard */,
 				BB51470029D1EE0C001F4DB0 /* AboutUs.storyboard */,
 				4186201029D66B3700C35346 /* ClientBookingDetail.storyboard */,
+				4174DFB329D6A0F900FDB0D7 /* Rating.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -354,6 +361,7 @@
 				BB0D6B6329D0AA97000752BD /* LoginViewController.swift */,
 				BB0D6B6529D0AAAA000752BD /* SignupViewController.swift */,
 				BB9ED57429D349F7002C59E2 /* AboutUs.swift */,
+				4174DFBF29D6AC5500FDB0D7 /* RatingController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -509,6 +517,7 @@
 				BB7A1E0F29C2A4DC003CB894 /* FirebaseStorage */,
 				BB7A1E1129C2A4DC003CB894 /* FirebaseStorageCombine-Community */,
 				BB7524F829C908BF004C4837 /* JGProgressHUD */,
+				4174DFCA29D6B31C00FDB0D7 /* Cosmos */,
 			);
 			productName = BookIt;
 			productReference = 99AB0DC929AD95B300B096BB /* BookIt.app */;
@@ -544,6 +553,7 @@
 				BBE832B229BD245800C58BF1 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				BB7A1DDC29C2A4DC003CB894 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				BB7524F729C908BF004C4837 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
+				4174DFC929D6B31C00FDB0D7 /* XCRemoteSwiftPackageReference "Cosmos" */,
 			);
 			productRefGroup = 99AB0DCA29AD95B300B096BB /* Products */;
 			projectDirPath = "";
@@ -581,6 +591,7 @@
 				995B2F7729C68C8700745992 /* ServiceStatusTableViewCell.xib in Resources */,
 				BDA8015829D0EC31009A1570 /* VendorBankAccount.storyboard in Resources */,
 				BB7524F429C8EC6E004C4837 /* NewVendorCollectionViewCell.xib in Resources */,
+				4174DFB429D6A0F900FDB0D7 /* Rating.storyboard in Resources */,
 				99AB0DD429AD95B300B096BB /* Main.storyboard in Resources */,
 				996588BE29C7B87D00A7D796 /* FilterPopup.storyboard in Resources */,
 				BD36696F29C946C000C83AA6 /* Onboarding.storyboard in Resources */,
@@ -653,6 +664,7 @@
 				BB7524F329C8EC6E004C4837 /* NewVendorCollectionViewCell.swift in Sources */,
 				BD89B73829CB73B000F26546 /* ClientServiceDetailViewController.swift in Sources */,
 				BBEC1C4829B5595E00B58D41 /* UIColorExtension.swift in Sources */,
+				4174DFC029D6AC5500FDB0D7 /* RatingController.swift in Sources */,
 				99AB0DD729AD95B300B096BB /* BookIt.xcdatamodeld in Sources */,
 				BBE7433629B41D440087DC74 /* BiometricIDAuth.swift in Sources */,
 				BB7A1E1B29C3BF61003CB894 /* CoreDataManager.swift in Sources */,
@@ -885,6 +897,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4174DFC929D6B31C00FDB0D7 /* XCRemoteSwiftPackageReference "Cosmos" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/Cosmos.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		BB7524F729C908BF004C4837 /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
@@ -928,6 +948,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4174DFCA29D6B31C00FDB0D7 /* Cosmos */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4174DFC929D6B31C00FDB0D7 /* XCRemoteSwiftPackageReference "Cosmos" */;
+			productName = Cosmos;
+		};
 		BB7524F829C908BF004C4837 /* JGProgressHUD */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BB7524F729C908BF004C4837 /* XCRemoteSwiftPackageReference "JGProgressHUD" */;

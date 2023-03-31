@@ -139,7 +139,7 @@ class ClientBookingDetailController : UIViewController{
                 if let navigator = navigationController {
                     viewController.selectedService = service
                     navigator.pushViewController(viewController, animated: true)
-                    
+
                 }
             }
         }
@@ -202,7 +202,16 @@ class ClientBookingDetailController : UIViewController{
         case ServiceStatus.COMPLETED.title:
             
             //if user has left review then just show button else redirect to rating page
-            serviceStatusBtn.isHidden = false
+            if let viewController = UIStoryboard(name: "Rating", bundle: nil).instantiateViewController(withIdentifier: "Rating") as? RatingController {
+                if let navigator = navigationController {
+                    viewController.client = booking?.client
+                    viewController.vendor = booking?.vendor
+                    viewController.service = booking?.service
+                    viewController.vendorRating = true
+                    navigator.pushViewController(viewController, animated: true)
+                }
+            }
+            
             
         default:
             print(booking?.status)
