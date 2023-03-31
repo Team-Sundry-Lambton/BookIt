@@ -3,8 +3,8 @@
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -97,7 +97,7 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="bg_offset"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="eWQ-zW-9jq" secondAttribute="trailing" constant="8" id="1Y9-fl-00Y"/>
                                                     <constraint firstItem="MO5-20-CbY" firstAttribute="leading" secondItem="eTz-4t-bZ6" secondAttribute="trailing" constant="8" symbolic="YES" id="2og-6c-e4D"/>
@@ -260,8 +260,5 @@
         <namedColor name="color_price">
             <color red="0.0" green="0.7686274509803922" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>
