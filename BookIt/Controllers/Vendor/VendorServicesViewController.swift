@@ -6,15 +6,17 @@
 //
 
 import UIKit
+import CoreData
 
 class VendorServicesViewController: UIViewController {
 
     var services = [Service]()
     @IBOutlet weak var tableView: UITableView!
     
-    var loginUser : LoginUser?
+    var vendor : Vendor?
     override func viewDidLoad() {
         super.viewDidLoad()
+        getVendor()
         tableView.delegate = self
         tableView.dataSource = self
         registerCell()
@@ -27,12 +29,17 @@ class VendorServicesViewController: UIViewController {
         tableView.reloadData()
     }
     
+    func getVendor(){
+        let user =  UserDefaultsManager.shared.getUserData()
+        vendor = CoreDataManager.shared.getVendor(email: user.email)
+    }
+    
     func registerCell(){
         tableView.register(UINib.init(nibName: "VendorServiceListTableViewCell", bundle: nil), forCellReuseIdentifier: "VendorServiceListTableViewCell")
     }
     
     func loadMyServices(){
-        services = CoreDataManager.shared.loadServicesByVendor(email: loginUser?.email ?? "")
+        services = CoreDataManager.shared.loadServicesByVendor(email: vendor?.email ?? "")
     }
     
     func deleteService(service:Service){
