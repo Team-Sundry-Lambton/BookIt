@@ -45,20 +45,18 @@ class EditProfileViewController: UIViewController {
             emailTxt.isUserInteractionEnabled = true
             emailTxt.isEnabled = true
         }else{
-            navigationController?.navigationBar.tintColor = UIColor.white
-            
-            if var textAttributes = navigationController?.navigationBar.titleTextAttributes {
-                textAttributes[NSAttributedString.Key.foregroundColor] = UIColor.white
-                navigationController?.navigationBar.titleTextAttributes = textAttributes
-            }
+//            navigationController?.navigationBar.tintColor = UIColor.white
+//            
+//            if var textAttributes = navigationController?.navigationBar.titleTextAttributes {
+//                textAttributes[NSAttributedString.Key.foregroundColor] = UIColor.white
+//                navigationController?.navigationBar.titleTextAttributes = textAttributes
+//            }
             self.title = "Edit Profile"
             emailTxt.isUserInteractionEnabled = false
             emailTxt.isEnabled = false
             self.navigationController?.navigationBar.isHidden = false
+            navigationController?.navigationBar.tintColor = UIColor.white
             newUser = false
-            let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-            self.navigationItem.backBarButtonItem = backBarButtonItem
-            self.navigationItem.setHidesBackButton(false, animated: true)
             let user =  UserDefaultsManager.shared.getUserData()
             if(user.isVendor){
                 getVendor()
@@ -68,12 +66,6 @@ class EditProfileViewController: UIViewController {
            
         }
         // Do any additional setup after loading the view.
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-//        if newUser {
-//            delegate?.openDashBoard(user : loginUser)
-//        }
     }
     
     func getClient(){

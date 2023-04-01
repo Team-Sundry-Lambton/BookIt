@@ -8,18 +8,15 @@
 import UIKit
 import SnapKit
 import CoreLocation
-import CoreData
 
-class ClientHomeViewController: UIViewController {
-    var loginUser : LoginUser?
+class ClientHomeViewController: BaseViewController {
     
     @IBOutlet weak var bannerTableView: UITableView!
     @IBOutlet weak var searchService: UISearchBar!
     @IBOutlet weak var categoryCollectioView: UICollectionView!
     @IBOutlet weak var newVendersCollectionView: UICollectionView!
     @IBOutlet weak var serviceListTableView: UITableView!
-    @IBOutlet weak var addressLbl: UILabel!
-    
+    @IBOutlet weak var addressLbl: UILabel!    
     @IBOutlet weak var serviceListHeightConstrain: NSLayoutConstraint!
     let fullSizeWidth = UIScreen.main.bounds.width
     var bannerViews: [UIImageView] = []
@@ -38,7 +35,6 @@ class ClientHomeViewController: UIViewController {
     var vendorList = [Vendor]()
     var serviceList = [Service]()
     var currentAddress : PlaceObject?
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,12 +43,10 @@ class ClientHomeViewController: UIViewController {
         tabBarAppearance()
         getUserLocation()
         loadData()
-        
-       
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = true
+        super.viewWillAppear(animated)
         bannerTableView.reloadData()
     }
     
@@ -111,7 +105,7 @@ class ClientHomeViewController: UIViewController {
         categoryList = CoreDataManager.shared.loadCategories()
         categoryCollectioView.reloadData()
         
-        loadNewVendors()
+        vendorList =  CoreDataManager.shared.loadNewVendors()
         newVendersCollectionView.reloadData()
         
         serviceList = CoreDataManager.shared.loadServices()
@@ -424,22 +418,6 @@ extension ClientHomeViewController :UICollectionViewDataSource, UICollectionView
             }
         }
     }    
-}
-
-//MARK: - Core data interaction methods
-extension ClientHomeViewController {
-    
-    func loadNewVendors(){
-        let request: NSFetchRequest<Vendor> = Vendor.fetchRequest()      
-        request.sortDescriptors = [NSSortDescriptor(key: "firstName", ascending: true)]
-        request.fetchLimit = 5
-//        request.returnsObjectsAsFaults = false
-        do {
-            vendorList = try context.fetch(request)
-        } catch {
-            print("Error loading Vendor \(error.localizedDescription)")
-        }
-    }
 }
 
 extension ClientHomeViewController : UISearchBarDelegate{

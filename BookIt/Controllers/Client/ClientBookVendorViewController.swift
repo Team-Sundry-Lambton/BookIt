@@ -6,10 +6,8 @@
 //
 
 import UIKit
-import CoreData
-import JGProgressHUD
 
-class ClientBookVendorViewController: UIViewController, UITextViewDelegate {
+class ClientBookVendorViewController: NavigationBaseViewController, UITextViewDelegate {
     
     var selectedService: Service?
     var vendor : Vendor?
@@ -22,8 +20,8 @@ class ClientBookVendorViewController: UIViewController, UITextViewDelegate {
     
     let datePicker = UIDatePicker()
     let timePicker = UIDatePicker()
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var placeholderText = "Describe the problem"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         createDatePicker()
@@ -33,12 +31,6 @@ class ClientBookVendorViewController: UIViewController, UITextViewDelegate {
         // Do any additional setup after loading the view.
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.tintColor = UIColor.black
-        self.navigationController?.navigationBar.isHidden = false
-    }
-    
-
     func customDesign(){
         let titleLabel = UILabel()
         if let service = selectedService{

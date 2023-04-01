@@ -12,7 +12,7 @@ protocol MapViewDelegate {
     func setServiceLocation(place:PlaceObject)
 }
 
-class MapViewController: UIViewController,CLLocationManagerDelegate, UISearchBarDelegate {
+class MapViewController: NavigationBaseViewController,CLLocationManagerDelegate, UISearchBarDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     var locationMnager = CLLocationManager()
@@ -26,7 +26,6 @@ class MapViewController: UIViewController,CLLocationManagerDelegate, UISearchBar
     @IBOutlet weak var searchBar: UISearchBar!
     var places : [PlaceObject] = []
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var delegate: MapViewDelegate?
     
     @IBOutlet var currentLocationBtn: UIButton!
@@ -52,14 +51,13 @@ class MapViewController: UIViewController,CLLocationManagerDelegate, UISearchBar
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.tintColor = UIColor.black
+        super.viewWillAppear(animated)
         
         if var textAttributes = navigationController?.navigationBar.titleTextAttributes {
             textAttributes[NSAttributedString.Key.foregroundColor] = UIColor.black
             navigationController?.navigationBar.titleTextAttributes = textAttributes
         }
         navigationController?.title = "Select Location"
-        self.navigationController?.navigationBar.isHidden = false
     }
     
     func setUpforSearch() {

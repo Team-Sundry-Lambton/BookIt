@@ -8,14 +8,11 @@
 import UIKit
 import SnapKit
 import CoreLocation
-import CoreData
 import MapKit
-import JGProgressHUD
 
-class ClientServiceDetailViewController: UIViewController, CLLocationManagerDelegate{
+class ClientServiceDetailViewController: BaseViewController, CLLocationManagerDelegate{
   
     weak var delegate: ClientServiceDetailViewController!
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var selectedService: Service?
     @IBOutlet weak var interfaceSegmented: CustomSegmentedControl!{
         didSet{
@@ -52,13 +49,13 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
             bannerTableView.reloadData()
         }
     }
-
     // create location manager
     var locationMnager = CLLocationManager()
     var openMap = false
     var vendorReviewList = [VendorReview]()
     var vendor : Vendor?
     var isVendor = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -88,7 +85,7 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = true
+        super.viewWillAppear(animated)
         mapView.isZoomEnabled = false
         locationMnager.delegate = self
         locationMnager.desiredAccuracy = kCLLocationAccuracyBest
@@ -98,7 +95,6 @@ class ClientServiceDetailViewController: UIViewController, CLLocationManagerDele
         loadMap()
         tvReviews.reloadData()
     }
-    
     
     func loadServiceDetail(){
         if let title = selectedService?.serviceTitle {

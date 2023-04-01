@@ -6,15 +6,14 @@
 //
 
 import UIKit
-import CoreData
 
-class ServiceSearchTableViewController: UITableViewController {
+class ServiceSearchTableViewController: BaseTableViewController {
 
     var serviceList = [Service]()
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var searchText = ""
     var isFiltered = false
     let search = UISearchController(searchResultsController: nil)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,25 +34,10 @@ class ServiceSearchTableViewController: UITableViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.tintColor = UIColor.black
-        self.navigationController?.navigationBar.isHidden = false
+        super.viewWillAppear(animated)
         self.search.searchBar.becomeFirstResponder()
     }
-    
-    func loadServices(){
-        let request: NSFetchRequest<Service> = Service.fetchRequest()
-        if !searchText.isEmpty{
-            let predicate = NSPredicate(format: "serviceTitle CONTAINS[cd] %@ OR serviceDescription CONTAINS[cd] %@", searchText, searchText)
-            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate])
-        }
-        request.sortDescriptors = [NSSortDescriptor(key: "serviceTitle", ascending: true)]
-        do {
-            serviceList = try context.fetch(request)
-            self.tableView.reloadData()
-        } catch {
-            print("Error loading Service \(error.localizedDescription)")
-        }
-    }
+
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -65,7 +49,6 @@ class ServiceSearchTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return serviceList.count
     }
-
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ServiceDetailTableViewCell", for: indexPath) as? ServiceDetailTableViewCell
@@ -157,6 +140,7 @@ extension ServiceSearchTableViewController: UISearchBarDelegate {
     }
     
     func searchChange(){
-        loadServices()
+        serviceList = CoreDataManager.shared.loadServicesWithSerch(searchText: searchText)
+        self.tableView.reloadData()
     }
 }

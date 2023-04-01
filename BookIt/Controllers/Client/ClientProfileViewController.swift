@@ -6,30 +6,25 @@
 //
 
 import UIKit
-import CoreData
 import SwiftUI
-class ClientProfileViewController: UIViewController {
+
+class ClientProfileViewController: BaseViewController {
 
     @IBOutlet weak var faceIDStatus: UISwitch!
-    
     @IBOutlet weak var notificationStatus: UISwitch!
-    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var emailLbl: UILabel!
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var logoutTextLbl: UILabel!
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-      
     override func viewDidLoad() {
         super.viewDidLoad()
         addBorder()
+        setContent()
         // Do any additional setup after loading the view.
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = true
-        
+    func setContent(){
         if (UserDefaultsManager.shared.getUserLogin()){
             logoutTextLbl.text = "Logout"
             getClient()
@@ -41,6 +36,7 @@ class ClientProfileViewController: UIViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
+        self.navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationController?.navigationBar.isHidden = false
     }
     
@@ -130,9 +126,8 @@ class ClientProfileViewController: UIViewController {
     
     @IBAction func aboutUs() {
         
-//        let swiftUIViewController = UIHostingController(rootView: AboutUs())
-//              self.navigationController?.pushViewController(swiftUIViewController, animated: true)
-        let swiftUIViewController = UIHostingController(rootView: AboutUs(navigationController: self.navigationController))
+//        let swiftUIViewController = UIHostingController(rootView: AboutUs(navigationController: self.navigationController))
+        let swiftUIViewController = UIHostingController(rootView: AboutUs())
                 self.navigationController?.pushViewController(swiftUIViewController, animated: true)
     }
     

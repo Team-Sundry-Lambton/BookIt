@@ -7,11 +7,9 @@
 
 import UIKit
 import AuthenticationServices
-import JGProgressHUD
 
-class ViewController: UIViewController {
-      
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+class ViewController: BaseViewController {
+
     var isVendor = false
     private let biometricIDAuth = BiometricIDAuth()
 
@@ -64,17 +62,14 @@ class ViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = true
+        super.viewWillAppear(animated)
         if ( UserDefaultsManager.shared.getUserLogin()){
             if (  UserDefaultsManager.shared.getFaceIdEnable()){
                 bioMetricVerification()
             }
         }
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        
-    }
+
     func checkUserAvailablility(user : LoginUser){
         if (CoreDataManager.shared.checkUserInDB(email: user.email,isVendor: isVendor)){
             loadDashBoard(user: user)

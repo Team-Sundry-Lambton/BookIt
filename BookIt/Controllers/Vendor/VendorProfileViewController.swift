@@ -6,27 +6,21 @@
 //
 
 import UIKit
-import CoreData
 import SwiftUI
 
-class VendorProfileViewController: UIViewController {
+class VendorProfileViewController: BaseViewController {
     
     @IBOutlet weak var faceIDStatus: UISwitch!
-    
     @IBOutlet weak var notificationStatus: UISwitch!
-    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var emailLbl: UILabel!
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var logoutTextLbl: UILabel!
-    
     @IBOutlet weak var tacnsactionView: UIView!
     @IBOutlet weak var bankView: UIView!
     
     var vendor : Vendor?
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-  
     override func viewDidLoad() {
         super.viewDidLoad()
         addBorder()
@@ -34,7 +28,7 @@ class VendorProfileViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = true
+        super.viewWillAppear(animated)
         if (UserDefaultsManager.shared.getUserLogin()){
             logoutTextLbl.text = "Logout"
             getVendor()
@@ -47,6 +41,11 @@ class VendorProfileViewController: UIViewController {
             tacnsactionView.isHidden = true
             bankView.isHidden = true
         }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.navigationController?.navigationBar.tintColor = UIColor.black
+        self.navigationController?.navigationBar.isHidden = false
     }
     
     func addBorder() {
@@ -160,7 +159,7 @@ class VendorProfileViewController: UIViewController {
     }
     
     @IBAction func aboutUs() {
-        let swiftUIViewController = UIHostingController(rootView: AboutUs(navigationController: self.navigationController))
+        let swiftUIViewController = UIHostingController(rootView: AboutUs())
                 self.navigationController?.pushViewController(swiftUIViewController, animated: true)
     }
     

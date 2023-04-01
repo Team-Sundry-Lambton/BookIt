@@ -6,31 +6,12 @@
 //
 
 import UIKit
-import CoreData
 
-class ClientCategoryListViewController: UIViewController {
+class ClientCategoryListViewController: BaseViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
     var categories: [Category] = []
-    
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    var managedObjectContext: NSManagedObjectContext!
-    
-    let categoriesList = [
-            ["name": "Repair", "imageName": "repair"],
-            ["name": "Cleaning", "imageName": "cleaning"],
-            ["name": "Plumbing", "imageName": "plumbing"],
-            ["name": "Logistics", "imageName": "logistics"],
-            ["name": "Pest Control", "imageName": "pestControl"],
-            ["name": "Electrical", "imageName": "electrical"],
-            ["name": "Pet Services", "imageName": "petServices"],
-            ["name": "Beauty", "imageName": "beautyAndWellness"],
-            ["name": "Interior", "imageName": "interiorDesign"],
-            ["name": "Tutoring", "imageName": "tutoring"],
-            ["name": "Accounting", "imageName": "accounting"],
-            ["name": "Fitness", "imageName": "fitness"]
-        ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,9 +25,6 @@ class ClientCategoryListViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = true
-    }
 //    func loadCategories() {
 //        let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest()
 //        let count = try! context.count(for: fetchRequest)

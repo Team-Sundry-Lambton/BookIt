@@ -6,14 +6,14 @@
 //
 
 import UIKit
-import CoreData
 
-class VendorServicesViewController: UIViewController {
+class VendorServicesViewController: BaseViewController {
 
     var services = [Service]()
-    @IBOutlet weak var tableView: UITableView!
-    
     var vendor : Vendor?
+    
+    @IBOutlet weak var tableView: UITableView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         getVendor()
@@ -23,9 +23,8 @@ class VendorServicesViewController: UIViewController {
         loadMyServices()
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = true
+        super.viewWillAppear(animated)
         tableView.reloadData()
     }
     

@@ -6,12 +6,10 @@
 //
 
 import UIKit
-import CoreData
 
-class CategoryServiceListTableViewController: UITableViewController {
+class CategoryServiceListTableViewController: BaseTableViewController {
     
     var serviceList = [Service]()
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let search = UISearchController(searchResultsController: nil)
     var searchText = ""
     var isFiltered = false
@@ -42,11 +40,6 @@ class CategoryServiceListTableViewController: UITableViewController {
         customDesign()
         
         
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.tintColor = UIColor.black
-        self.navigationController?.navigationBar.isHidden = false
     }
     
     func customDesign(){
@@ -97,31 +90,16 @@ class CategoryServiceListTableViewController: UITableViewController {
     }
     
     func loadServices(){
-        let request: NSFetchRequest<Service> = Service.fetchRequest()
         if let category = selectedCategory{
             if let categoryName = category.name{
-                var categoryPredicate = NSPredicate(format: "parent_Category.name == %@", categoryName)
-                if !searchText.isEmpty{
-                    categoryPredicate = NSPredicate(format: "parent_Category.name == %@ AND ( serviceTitle CONTAINS[cd] %@ OR serviceDescription CONTAINS[cd] %@ )", categoryName, searchText, searchText)
-                }
-                request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate])
+                serviceList =  CoreDataManager.shared.loadServicesForSelectedCategory(category: categoryName, searchText: searchText)
             }
         }else if let vendor = selectedVendor{
             if let vendorName = vendor.email{
-                var categoryPredicate = NSPredicate(format: "parent_Vendor.email == %@", vendorName)
-                if !searchText.isEmpty{
-                    categoryPredicate = NSPredicate(format: "parent_Vendor.email == %@ AND ( serviceTitle CONTAINS[cd] %@ OR serviceDescription CONTAINS[cd] %@ )", vendorName, searchText, searchText)
-                }
-                request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate])
+                serviceList =  CoreDataManager.shared.loadServicesForSelectedVendor(email: vendorName, searchText: searchText)
             }
         }
-        request.sortDescriptors = [NSSortDescriptor(key: "serviceTitle", ascending: true)]
-        do {
-            serviceList = try context.fetch(request)
-            self.tableView.reloadData()
-        } catch {
-            print("Error loading Service \(error.localizedDescription)")
-        }
+      self.tableView.reloadData()
     }
 
     // MARK: - Table view data source

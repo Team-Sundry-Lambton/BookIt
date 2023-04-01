@@ -345,7 +345,70 @@ class CoreDataManager : NSObject{
        return vendorReview
     }
     
-
+    func loadNewVendors() -> [Vendor]{
+        var vendorList = [Vendor]()
+        let request: NSFetchRequest<Vendor> = Vendor.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "firstName", ascending: true)]
+        request.fetchLimit = 5
+        do {
+            vendorList = try context.fetch(request)
+        } catch {
+            print("Error loading Vendor \(error.localizedDescription)")
+        }
+        return vendorList
+    }
+    
+    func loadServicesWithSerch(searchText : String) -> [Service]{
+        var serviceList = [Service]()
+        let request: NSFetchRequest<Service> = Service.fetchRequest()
+        if !searchText.isEmpty{
+            let predicate = NSPredicate(format: "serviceTitle CONTAINS[cd] %@ OR serviceDescription CONTAINS[cd] %@", searchText, searchText)
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate])
+        }
+        request.sortDescriptors = [NSSortDescriptor(key: "serviceTitle", ascending: true)]
+        do {
+            serviceList = try context.fetch(request)
+        } catch {
+            print("Error loading Service \(error.localizedDescription)")
+        }
+        return serviceList
+    }
+    
+    func loadServicesForSelectedCategory(category : String, searchText : String) -> [Service]{
+        var serviceList = [Service]()
+        let request: NSFetchRequest<Service> = Service.fetchRequest()
+                var categoryPredicate = NSPredicate(format: "parent_Category.name == %@", category)
+                if !searchText.isEmpty{
+                    categoryPredicate = NSPredicate(format: "parent_Category.name == %@ AND ( serviceTitle CONTAINS[cd] %@ OR serviceDescription CONTAINS[cd] %@ )", category, searchText, searchText)
+                }
+                request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate])
+        request.sortDescriptors = [NSSortDescriptor(key: "serviceTitle", ascending: true)]
+        do {
+            serviceList = try context.fetch(request)
+            
+        } catch {
+            print("Error loading Service \(error.localizedDescription)")
+        }
+        return serviceList
+    }
+    
+    func loadServicesForSelectedVendor(email : String, searchText : String) -> [Service]{
+        var serviceList = [Service]()
+        let request: NSFetchRequest<Service> = Service.fetchRequest()
+                var categoryPredicate = NSPredicate(format: "parent_Vendor.email == %@", email)
+                if !searchText.isEmpty{
+                    categoryPredicate = NSPredicate(format: "parent_Vendor.email == %@ AND ( serviceTitle CONTAINS[cd] %@ OR serviceDescription CONTAINS[cd] %@ )", email, searchText, searchText)
+                }
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate])
+        request.sortDescriptors = [NSSortDescriptor(key: "serviceTitle", ascending: true)]
+        do {
+            serviceList = try context.fetch(request)
+            
+        } catch {
+            print("Error loading Service \(error.localizedDescription)")
+        }
+        return serviceList
+    }
     
     func deleteVendors() {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName:"Vendor")
