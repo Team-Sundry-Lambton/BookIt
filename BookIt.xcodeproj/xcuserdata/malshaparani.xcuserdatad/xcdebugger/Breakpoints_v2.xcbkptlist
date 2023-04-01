@@ -302,8 +302,8 @@
             filePath = "BookIt/Controllers/Client/ClientProfileViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
             landmarkName = "notificationStatus(sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -318,8 +318,8 @@
             filePath = "BookIt/Controllers/Client/ClientProfileViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "notificationStatus(sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1992,38 +1992,6 @@
             endingLineNumber = "107"
             landmarkName = "rejectBooking(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "5B9E83FE-D647-4227-8186-FEFB3F15AC98 - 70d754c334dda17d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "BookIt.VendorBookingDetailController.rejectBooking(Any) -&gt; ()"
-                  moduleName = "BookIt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Controllers/Vendor/VendorBookingDetailController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "108"
-                  endingLineNumber = "108"
-                  offsetFromSymbolStart = "140">
-               </Location>
-               <Location
-                  uuid = "5B9E83FE-D647-4227-8186-FEFB3F15AC98 - 70d754c334dda17d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "BookIt.VendorBookingDetailController.rejectBooking(Any) -&gt; ()"
-                  moduleName = "BookIt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Controllers/Vendor/VendorBookingDetailController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "108"
-                  endingLineNumber = "108"
-                  offsetFromSymbolStart = "192">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2040,38 +2008,6 @@
             endingLineNumber = "65"
             landmarkName = "acceptBooking(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "5211ACA1-4170-4DEA-A840-17EB321F4F51 - fa1b84cba8611b7c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "BookIt.VendorBookingDetailController.acceptBooking(Any) -&gt; ()"
-                  moduleName = "BookIt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Controllers/Vendor/VendorBookingDetailController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "66"
-                  endingLineNumber = "66"
-                  offsetFromSymbolStart = "140">
-               </Location>
-               <Location
-                  uuid = "5211ACA1-4170-4DEA-A840-17EB321F4F51 - fa1b84cba8611b7c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "BookIt.VendorBookingDetailController.acceptBooking(Any) -&gt; ()"
-                  moduleName = "BookIt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Controllers/Vendor/VendorBookingDetailController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "66"
-                  endingLineNumber = "66"
-                  offsetFromSymbolStart = "192">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2104,6 +2040,38 @@
             endingLineNumber = "69"
             landmarkName = "acceptBooking(_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1AC579EF-5777-4A1A-AD18-6E389B24C0DF - b5c80dfed0aa7601"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BookIt.VendorBookingDetailController.loadDetails() -&gt; ()"
+                  moduleName = "BookIt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Controllers/Vendor/VendorBookingDetailController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "69"
+                  endingLineNumber = "69"
+                  offsetFromSymbolStart = "2628">
+               </Location>
+               <Location
+                  uuid = "1AC579EF-5777-4A1A-AD18-6E389B24C0DF - b5c80dfed0aa7601"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BookIt.VendorBookingDetailController.loadDetails() -&gt; ()"
+                  moduleName = "BookIt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Controllers/Vendor/VendorBookingDetailController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "69"
+                  endingLineNumber = "69"
+                  offsetFromSymbolStart = "2676">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2218,7 +2186,7 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "4AA13302-2F1F-4467-96C8-EB4C2F839AE1 - b5c80dfed0aa7053"
+                  uuid = "4AA13302-2F1F-4467-96C8-EB4C2F839AE1 - b5c80dfed0aa708c"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -2228,12 +2196,12 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Controllers/Vendor/VendorBookingDetailController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "51"
-                  endingLineNumber = "51"
-                  offsetFromSymbolStart = "112">
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "432">
                </Location>
                <Location
-                  uuid = "4AA13302-2F1F-4467-96C8-EB4C2F839AE1 - b5c80dfed0aa7053"
+                  uuid = "4AA13302-2F1F-4467-96C8-EB4C2F839AE1 - b5c80dfed0aa708c"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -2243,9 +2211,9 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Controllers/Vendor/VendorBookingDetailController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "51"
-                  endingLineNumber = "51"
-                  offsetFromSymbolStart = "256">
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "584">
                </Location>
             </Locations>
          </BreakpointContent>

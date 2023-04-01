@@ -49,6 +49,11 @@ class VendorProfileViewController: BaseViewController {
         }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        self.navigationController?.navigationBar.tintColor = UIColor.black
+        self.navigationController?.navigationBar.isHidden = false
+    }
+    
     func addBorder() {
         imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.masksToBounds = true

@@ -38,6 +38,7 @@ class ClientProfileViewController: BaseViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
+        self.navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationController?.navigationBar.isHidden = false
     }
     
