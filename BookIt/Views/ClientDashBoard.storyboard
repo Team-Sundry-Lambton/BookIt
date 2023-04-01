@@ -134,7 +134,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CtD-1h-xqT">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="869"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="879"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Rm1-AW-F4X">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="240"/>
@@ -285,13 +285,13 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cXT-Tz-bFR">
-                                                <rect key="frame" x="0.0" y="544" width="414" height="75"/>
+                                                <rect key="frame" x="0.0" y="544" width="414" height="85"/>
                                                 <subviews>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dfy-7A-Lhj">
-                                                        <rect key="frame" x="20" y="4.6666666666666288" width="374" height="66"/>
+                                                        <rect key="frame" x="20" y="2.6666666666666288" width="374" height="80"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="66" id="JwH-SV-OFp"/>
+                                                            <constraint firstAttribute="height" constant="80" id="JwH-SV-OFp"/>
                                                         </constraints>
                                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="glF-T3-4Ki">
                                                             <size key="itemSize" width="128" height="128"/>
@@ -311,11 +311,11 @@
                                                     <constraint firstItem="dfy-7A-Lhj" firstAttribute="leading" secondItem="cXT-Tz-bFR" secondAttribute="leading" constant="20" id="Sd6-RS-uDH"/>
                                                     <constraint firstItem="dfy-7A-Lhj" firstAttribute="centerY" secondItem="cXT-Tz-bFR" secondAttribute="centerY" id="bta-wS-ln2"/>
                                                     <constraint firstAttribute="trailing" secondItem="dfy-7A-Lhj" secondAttribute="trailing" constant="20" id="iTi-k2-sdx"/>
-                                                    <constraint firstAttribute="height" constant="75" id="rWt-wc-04f"/>
+                                                    <constraint firstAttribute="height" constant="85" id="rWt-wc-04f"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LrC-xr-Vd6">
-                                                <rect key="frame" x="0.0" y="629" width="414" height="30"/>
+                                                <rect key="frame" x="0.0" y="639" width="414" height="30"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trending Services" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbt-iO-xS1">
                                                         <rect key="frame" x="20" y="5.3333333333333712" width="136.33333333333334" height="19.333333333333332"/>
@@ -332,7 +332,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NNU-S6-Gb6">
-                                                <rect key="frame" x="0.0" y="669" width="414" height="200"/>
+                                                <rect key="frame" x="0.0" y="679" width="414" height="200"/>
                                                 <subviews>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="RCj-hR-LdV">
                                                         <rect key="frame" x="15" y="0.0" width="384" height="200"/>
