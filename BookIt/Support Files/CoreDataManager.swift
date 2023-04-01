@@ -274,6 +274,8 @@ class CoreDataManager : NSObject{
     func loadServices() -> [Service]{
         var serviceList = [Service]()
         let request: NSFetchRequest<Service> = Service.fetchRequest()
+        let predicate = NSPredicate(format: "accepted=true")
+        request.predicate = predicate
         request.sortDescriptors = [NSSortDescriptor(key: "serviceTitle", ascending: true)]
         do {
             serviceList = try context.fetch(request)

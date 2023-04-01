@@ -22,6 +22,9 @@ class ViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let loginUser =  UserDefaultsManager.shared.getUserData()
+        isVendor = loginUser.isVendor
+        setvendorStatus()
         NetworkMonitor.shared.setObserve(viewController: self)
     }
 
@@ -61,11 +64,21 @@ class ViewController: BaseViewController {
         }
     }
     
+    func setvendorStatus(){
+        if isVendor{
+            vendorStatus.selectedSegmentIndex = 1
+        }else{
+            vendorStatus.selectedSegmentIndex = 0
+        }
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if ( UserDefaultsManager.shared.getUserLogin()){
-            if (  UserDefaultsManager.shared.getFaceIdEnable()){
+            if (UserDefaultsManager.shared.getFaceIdEnable()){
                 bioMetricVerification()
+            }else{
+                let loginUser =  UserDefaultsManager.shared.getUserData()
+                self.loadDashBoard(user: loginUser)
             }
         }
     }

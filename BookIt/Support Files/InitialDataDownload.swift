@@ -109,6 +109,7 @@ class InitialDataDownloadManager : NSObject{
                 service.equipment = data["equipment"]  as? Bool ?? false
                 service.serviceId = data["serviceId"]  as? Int16 ?? -1
                 service.createdDate = data["createdDate"] as? Date ?? Date()
+                service.accepted = data["accepted"]  as? Bool ?? false
                 if let parentVendor = data["parentVendor"]  as? String {
                     if parentVendor != "" {
                         if  let vendor = CoreDataManager.shared.getVendor(email: parentVendor){
@@ -573,8 +574,8 @@ extension InitialDataDownloadManager {
             "parentCategory":  service.parent_Category?.name ?? "",
             "parentVendor":  service.parent_Vendor?.email ?? "",
             "serviceId":  service.serviceId ,
-            "createdDate" : service.createdDate ?? Date()
-            
+            "createdDate" : service.createdDate ?? Date(),
+            "accepted" : service.accepted,
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
@@ -1025,6 +1026,7 @@ extension InitialDataDownloadManager{
                                 "serviceDescription": service.serviceDescription ?? "",
                                 "parentCategory":  category,
                                 "serviceTitle":  title,
+                                "accepted" : service.accepted
                                 //"parentVendor":  service.parent_Vendor?.email ?? "",
                             ])
                             completion(true)
