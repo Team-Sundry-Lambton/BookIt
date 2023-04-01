@@ -10,27 +10,22 @@ import UIKit
 class PostServiceViewController: NavigationBaseViewController {
     
     @IBOutlet weak var pageTitleLbl: UILabel!
-    
     @IBOutlet weak var nextButtonUploadPhoto: UIButton!
     @IBOutlet weak var nextButtonDetails: UIButton!
     @IBOutlet weak var nextButtonPrice: UIButton!
     @IBOutlet weak var confirmButton: UIButton!
-    
     @IBOutlet weak var mediaFileCollectionView: UICollectionView!
     @IBOutlet weak var uploadPhotoView: UIView!
     @IBOutlet weak var detailsView: UIView!
     @IBOutlet weak var priceView: UIView!
     @IBOutlet weak var confirmView: UIView!
-    
     @IBOutlet weak var uploadPhotoImageView: UIImageView!
     @IBOutlet weak var detailsImageView: UIImageView!
     @IBOutlet weak var priceImageView: UIImageView!
     @IBOutlet weak var confirmImageView: UIImageView!
-    
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var titleWordCountLbl: UILabel!
     @IBOutlet weak var deleteImageLbl: UILabel!
-    
     @IBOutlet weak var categoryTypeTextField: UITextField!
     @IBOutlet weak var locationTextField: UITextField!
     @IBOutlet weak var descriptionTextView: UITextView!
@@ -38,11 +33,8 @@ class PostServiceViewController: NavigationBaseViewController {
     @IBOutlet weak var equipmentCheckboxButton: UIButton!
     @IBOutlet weak var equipmentCheckboxImageView: UIImageView!
     @IBOutlet weak var descriptionWordCountLbl: UILabel!
-    
     @IBOutlet weak var priceTextField: UITextField!
     @IBOutlet weak var priceTypeTextField: UITextField!
-    
-    
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var descriptionLbl: UILabel!
     @IBOutlet weak var pricetLbl: UILabel!
@@ -54,21 +46,17 @@ class PostServiceViewController: NavigationBaseViewController {
     var isEquipmentNeed = false
     let placeHolder = "Type Here...."
     var editMode: Bool = false
-    
     var selectedCategory: Category?
     var categoryList = [Category]()
     var mediaList = [MediaFile]()
     var selectedLocation: Address?
     var selectedService : Service?
 //    var vendor : Vendor?
-    
     let categoryPicker = UIPickerView()
     let priceTypePicker = UIPickerView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationController?.navigationBar.tintColor = UIColor.black
         
         if var textAttributes = navigationController?.navigationBar.titleTextAttributes {
             textAttributes[NSAttributedString.Key.foregroundColor] = UIColor.black

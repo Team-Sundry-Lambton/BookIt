@@ -21,6 +21,7 @@ class ClientBookVendorViewController: NavigationBaseViewController, UITextViewDe
     let datePicker = UIDatePicker()
     let timePicker = UIDatePicker()
     var placeholderText = "Describe the problem"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         createDatePicker()

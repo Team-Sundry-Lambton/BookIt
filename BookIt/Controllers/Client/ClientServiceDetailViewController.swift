@@ -13,7 +13,6 @@ import MapKit
 class ClientServiceDetailViewController: BaseViewController, CLLocationManagerDelegate{
   
     weak var delegate: ClientServiceDetailViewController!
-//    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var selectedService: Service?
     @IBOutlet weak var interfaceSegmented: CustomSegmentedControl!{
         didSet{
@@ -50,13 +49,13 @@ class ClientServiceDetailViewController: BaseViewController, CLLocationManagerDe
             bannerTableView.reloadData()
         }
     }
-
     // create location manager
     var locationMnager = CLLocationManager()
     var openMap = false
     var vendorReviewList = [VendorReview]()
     var vendor : Vendor?
     var isVendor = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.

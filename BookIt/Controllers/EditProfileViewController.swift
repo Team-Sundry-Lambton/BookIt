@@ -70,12 +70,6 @@ class EditProfileViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-//        if newUser {
-//            delegate?.openDashBoard(user : loginUser)
-//        }
-    }
-    
     func getClient(){
         let user =  UserDefaultsManager.shared.getUserData()
         if let user = CoreDataManager.shared.getClient(email: user.email){

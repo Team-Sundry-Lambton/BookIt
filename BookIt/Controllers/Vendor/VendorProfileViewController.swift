@@ -11,21 +11,16 @@ import SwiftUI
 class VendorProfileViewController: BaseViewController {
     
     @IBOutlet weak var faceIDStatus: UISwitch!
-    
     @IBOutlet weak var notificationStatus: UISwitch!
-    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var emailLbl: UILabel!
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var logoutTextLbl: UILabel!
-    
     @IBOutlet weak var tacnsactionView: UIView!
     @IBOutlet weak var bankView: UIView!
     
     var vendor : Vendor?
     
-//    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-  
     override func viewDidLoad() {
         super.viewDidLoad()
         addBorder()

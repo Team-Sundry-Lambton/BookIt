@@ -16,7 +16,6 @@ class VendorBookingDetailController: UIViewController{
     var service:Service?
     
     @IBOutlet weak var bookingIdLbl: UILabel!
-    
     @IBOutlet weak var serviceNameLbl: UILabel!
     @IBOutlet weak var servicePriceLbl: UILabel!
     @IBOutlet weak var customerLocationLbl: UILabel!
@@ -24,17 +23,13 @@ class VendorBookingDetailController: UIViewController{
     @IBOutlet weak var customerNameLbl: UILabel!
     @IBOutlet weak var viewServiceDetailsBtn: UIButton!
     @IBOutlet weak var serviceImg: UIImageView!
-    
     @IBOutlet weak var bookingLocationLbl: UILabel!
     @IBOutlet weak var bookingCommentLbl: UILabel!
-    
     @IBOutlet weak var orderPriceLbl: UILabel!
     @IBOutlet weak var applicationFeePriceLbl: UILabel!
     @IBOutlet weak var totalOrderPriceLbl: UILabel!
     @IBOutlet weak var deliveryPriceLbl: UILabel!
-    
     @IBOutlet weak var totalIncomeBtn: UIButton!
-    
     @IBOutlet weak var serviceStatusBtn: UIButton!
     @IBOutlet weak var acceptBtn: UIButton!
     @IBOutlet weak var declineBtn: UIButton!

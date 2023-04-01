@@ -9,7 +9,7 @@ import UIKit
 import AuthenticationServices
 
 class ViewController: BaseViewController {
-//    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
     var isVendor = false
     private let biometricIDAuth = BiometricIDAuth()
 

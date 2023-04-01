@@ -13,9 +13,6 @@ class ClientCategoryListViewController: BaseViewController {
     
     var categories: [Category] = []
     
-//    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-//    var managedObjectContext: NSManagedObjectContext!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

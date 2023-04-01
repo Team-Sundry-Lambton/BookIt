@@ -17,8 +17,6 @@ class ClientProfileViewController: BaseViewController {
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var logoutTextLbl: UILabel!
     
-//    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-      
     override func viewDidLoad() {
         super.viewDidLoad()
         addBorder()

@@ -10,9 +10,10 @@ import UIKit
 class VendorServicesViewController: BaseViewController {
 
     var services = [Service]()
-    @IBOutlet weak var tableView: UITableView!
-    
     var vendor : Vendor?
+    
+    @IBOutlet weak var tableView: UITableView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         getVendor()

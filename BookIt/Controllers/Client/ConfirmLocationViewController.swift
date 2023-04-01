@@ -15,11 +15,11 @@ class ConfirmLocationViewController: UIViewController {
     @IBOutlet weak var confirmBtn: UIButton!
     var selectedLocation: Address?
     weak var delegate: ClientHomeViewController!
-    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var currentAddress : PlaceObject?
     var client : Client?
     var openMap = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         getClient()
