@@ -357,7 +357,6 @@
 			isa = PBXGroup;
 			children = (
 				BD36697029C946C800C83AA6 /* OnboardingViewController.swift */,
-				BB7A1DD829C1023B003CB894 /* PostServiceViewController.swift */,
 				BB7A1DCD29C0C7EB003CB894 /* Vendor */,
 				BBC9F83A29BFC73400985AAA /* MapView */,
 				BBA6356D29BA62B800702A62 /* Client */,
@@ -381,7 +380,6 @@
 				BB0FF26829BAA73800E26A71 /* BorderTextField.swift */,
 				BB0FF26929BAA73800E26A71 /* BorderTextView.swift */,
 				BBE7433529B41D440087DC74 /* BiometricIDAuth.swift */,
-				BBE7433729B41EE60087DC74 /* UserDefaultsManager.swift */,
 				993181BF29CD2B15003D82E5 /* NetworkMonitor.swift */,
 				BBEC1C4729B5595E00B58D41 /* UIColorExtension.swift */,
 				BBEC1C4929B55A6800B58D41 /* UIAlertViewExtention.swift */,
@@ -391,9 +389,7 @@
 				996588C129C7C01B00A7D796 /* BaseButton.swift */,
 				996588C329C7C05400A7D796 /* BaseCustomButton.swift */,
 				BB7A1E1529C3AB36003CB894 /* InitialDataDownload.swift */,
-				BB7A1E1A29C3BF61003CB894 /* CoreDataManager.swift */,
 				993F476D29CE70DA00BC857D /* String+Extension.swift */,
-				BB7524FB29C931F4004C4837 /* LoadingHudManager.swift */,
 				B42235F829CFFBAC00B3C84D /* CustomRadioButton.swift */,
 				B41E729D29D0ADEB00552859 /* IconTextField.swift */,
 				BB5146FE29D1E679001F4DB0 /* Image+Extension.swift */,
@@ -428,6 +424,7 @@
 		BB7A1DCD29C0C7EB003CB894 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				BB7A1DD829C1023B003CB894 /* PostServiceViewController.swift */,
 				BB7A1DCE29C0C870003CB894 /* VendorHomeViewController.swift */,
 				BB7A1DD029C0C87E003CB894 /* VendorProfileViewController.swift */,
 				BB7A1DD229C0C88D003CB894 /* VendorServicesViewController.swift */,
@@ -468,6 +465,9 @@
 		BBE7433229B3DD950087DC74 /* ManagerFiles */ = {
 			isa = PBXGroup;
 			children = (
+				BBE7433729B41EE60087DC74 /* UserDefaultsManager.swift */,
+				BB7A1E1A29C3BF61003CB894 /* CoreDataManager.swift */,
+				BB7524FB29C931F4004C4837 /* LoadingHudManager.swift */,
 				BBE7433329B3DDB00087DC74 /* MediaManager.swift */,
 			);
 			path = ManagerFiles;
