@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 import SwiftUI
 
-class VendorProfileViewController: UIViewController {
+class VendorProfileViewController: BaseViewController {
     
     @IBOutlet weak var faceIDStatus: UISwitch!
     
@@ -25,7 +25,7 @@ class VendorProfileViewController: UIViewController {
     
     var vendor : Vendor?
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +34,7 @@ class VendorProfileViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = true
+        super.viewWillAppear(animated)
         if (UserDefaultsManager.shared.getUserLogin()){
             logoutTextLbl.text = "Logout"
             getVendor()
@@ -160,7 +160,7 @@ class VendorProfileViewController: UIViewController {
     }
     
     @IBAction func aboutUs() {
-        let swiftUIViewController = UIHostingController(rootView: AboutUs(navigationController: self.navigationController))
+        let swiftUIViewController = UIHostingController(rootView: AboutUs())
                 self.navigationController?.pushViewController(swiftUIViewController, animated: true)
     }
     

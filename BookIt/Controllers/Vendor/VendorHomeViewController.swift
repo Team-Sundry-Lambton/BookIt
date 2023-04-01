@@ -8,15 +8,12 @@
 import UIKit
 import CoreData
 
-class VendorHomeViewController: UIViewController {
+class VendorHomeViewController: BaseViewController {
     var vendor : Vendor?
     var bookingList = [Booking]()
     var bookingListOngoing = [Booking]()
     var bookingListHistory = [Booking]()
-    @IBOutlet weak var emptyView: UIView!
-    
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
+    @IBOutlet weak var emptyView: UIView!   
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var interfaceSegmented: CustomSegmentedControl! {
@@ -40,8 +37,7 @@ class VendorHomeViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationItem.backBarButtonItem?.isEnabled = false;
-        self.navigationController?.navigationBar.isHidden = true
+        super.viewWillAppear(animated)
         loadData()
         resetSegment()
     }

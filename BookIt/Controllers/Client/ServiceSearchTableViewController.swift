@@ -8,10 +8,10 @@
 import UIKit
 import CoreData
 
-class ServiceSearchTableViewController: UITableViewController {
+class ServiceSearchTableViewController: BaseTableViewController {
 
     var serviceList = [Service]()
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
     var searchText = ""
     var isFiltered = false
     let search = UISearchController(searchResultsController: nil)
@@ -35,8 +35,7 @@ class ServiceSearchTableViewController: UITableViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.tintColor = UIColor.black
-        self.navigationController?.navigationBar.isHidden = false
+        super.viewWillAppear(animated)
         self.search.searchBar.becomeFirstResponder()
     }
     

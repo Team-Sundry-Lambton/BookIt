@@ -8,10 +8,9 @@
 import UIKit
 import CoreData
 
-class CategoryServiceListTableViewController: UITableViewController {
+class CategoryServiceListTableViewController: BaseTableViewController {
     
     var serviceList = [Service]()
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let search = UISearchController(searchResultsController: nil)
     var searchText = ""
     var isFiltered = false
@@ -42,11 +41,6 @@ class CategoryServiceListTableViewController: UITableViewController {
         customDesign()
         
         
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.tintColor = UIColor.black
-        self.navigationController?.navigationBar.isHidden = false
     }
     
     func customDesign(){

@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 import JGProgressHUD
-class PostServiceViewController: UIViewController {
+class PostServiceViewController: NavigationBaseViewController {
     
     @IBOutlet weak var pageTitleLbl: UILabel!
     
@@ -62,7 +62,6 @@ class PostServiceViewController: UIViewController {
     var selectedLocation: Address?
     var selectedService : Service?
 //    var vendor : Vendor?
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     let categoryPicker = UIPickerView()
     let priceTypePicker = UIPickerView()
@@ -114,11 +113,6 @@ class PostServiceViewController: UIViewController {
         priceTypeTextField.inputView = priceTypePicker
         // Do any additional setup after loading the view.
         locationTextField.delegate = self
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.tintColor = UIColor.black
-        self.navigationController?.navigationBar.isHidden = false
     }
     
     func uiViewsDesign() {

@@ -8,26 +8,16 @@
 import SwiftUI
 
 struct AboutUs: View {
-    weak var navigationController: UINavigationController?
+//    weak var navigationController: UINavigationController?
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
       
     var version = "App Version : " + (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.0")
     var aboutUs = "About Us : "
-    var aboutUsURL  = "https://www.freeprivacypolicy.com/live/5edf96ed-0b84-4fc0-955e-bc578ff82da4"
+    var aboutUsURL  = "hhttps://sonia364.github.io/bookit_web/about-us.html"
     var contactUs = " Contact Us : \n teamsundry@gmail.com"
     var privacy = "Privacy Policy :"
     var privacyURL =  "https://www.freeprivacypolicy.com/live/5edf96ed-0b84-4fc0-955e-bc578ff82da4"
     var body: some View {
-        VStack(alignment: .leading, spacing: 10){
-            Button(action: {
-                navigationController?.popViewController(animated: true)
-            }) {
-                Text("Back")
-                    .font(.system(size: 18.0))
-                    .frame(width: 100, height: 10, alignment: .leading)
-            }.foregroundColor(.black).background(Color.blue)
-        }
-
         ZStack {
             VStack(alignment: .center, spacing: 10) {
                 Image("AppIconImage").resizable().frame(width: 150 , height: 150, alignment: .center).padding(.top, 15)
@@ -73,21 +63,6 @@ struct AboutUs: View {
         }.navigationBarTitle(Text("About Us"), displayMode: .inline)
             .edgesIgnoringSafeArea(.bottom)
             .navigationBarBackButtonHidden(false)
-            .toolbar {
-                           ToolbarItem(placement: .navigationBarLeading) {
-                               Button {
-                                   print("Custom Action")
-                                   // 2
-                                   self.mode.wrappedValue.dismiss()
-
-                               } label: {
-                                   HStack {
-                                       Image("backIcon")
-                                       Text("Back")
-                                   }
-                               }
-                           }
-            }.background(Color.white)
     }
 }
 struct AboutUs_Previews: PreviewProvider {

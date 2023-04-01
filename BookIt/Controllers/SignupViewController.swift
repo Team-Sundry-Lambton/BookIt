@@ -12,11 +12,9 @@ import GoogleSignIn
 import AuthenticationServices
 import JGProgressHUD
 
-class SignupViewController: UIViewController {
+class SignupViewController: NavigationBaseViewController {
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var isVendor = false
-    var loginUser : LoginUser?
     @IBOutlet weak var phoneNumberTxt: UITextField!
     @IBOutlet weak var emailTxt: UITextField!
     @IBOutlet weak var lastNameTxt: UITextField!
@@ -41,11 +39,6 @@ class SignupViewController: UIViewController {
 
 //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.tintColor = UIColor.black
-        self.navigationController?.navigationBar.isHidden = false
     }
 
     @IBAction func facebookLogin(_ sender: Any) {

@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class VendorServicesViewController: UIViewController {
+class VendorServicesViewController: BaseViewController {
 
     var services = [Service]()
     @IBOutlet weak var tableView: UITableView!
@@ -23,9 +23,8 @@ class VendorServicesViewController: UIViewController {
         loadMyServices()
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = true
+        super.viewWillAppear(animated)
         tableView.reloadData()
     }
     

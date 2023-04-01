@@ -8,13 +8,13 @@
 import UIKit
 import CoreData
 
-class ClientBookingViewController: UIViewController {
+class ClientBookingViewController: BaseViewController {
     var client : Client?
     var bookingList = [Booking]()
     var bookingListOngoing = [Booking]()
     var bookingListHistory = [Booking]()
     var selectedService: Service?
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var tableView: UITableView!
         
@@ -39,10 +39,14 @@ class ClientBookingViewController: UIViewController {
     }
         
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = true
+        super.viewWillAppear(animated)
         loadData()
         resetSegment()
     }
+    
+//    override func viewDidAppear(_ animated: Bool) {
+//        self.navigationController?.navigationBar.isHidden = true
+//    }
         
     private func loadData() {
         loadBookingList()

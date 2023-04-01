@@ -12,13 +12,11 @@ import GoogleSignIn
 import AuthenticationServices
 import JGProgressHUD
 
-class LoginViewController: UIViewController {
+class LoginViewController: NavigationBaseViewController {
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var isVendor = false
     private let biometricIDAuth = BiometricIDAuth()
     var loginSuccess = false
-    var loginUser : LoginUser?
     
     @IBOutlet weak var emailTxt: UITextField!
     @IBOutlet weak var passwordTxt: UITextField!
@@ -35,11 +33,6 @@ class LoginViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
          view.addGestureRecognizer(tapGesture)
         tapGesture.cancelsTouchesInView = false
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.tintColor = UIColor.black
-        self.navigationController?.navigationBar.isHidden = false
     }
     
     @IBAction func loginBtnClicked() {

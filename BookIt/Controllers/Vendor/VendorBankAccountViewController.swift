@@ -7,7 +7,7 @@
 
 import UIKit
 
-class VendorBankAccountViewController: UIViewController {
+class VendorBankAccountViewController: NavigationBaseViewController {
 
     @IBOutlet weak var txtRecipient: UITextField!
     @IBOutlet weak var txtRecipientName: UITextField!
@@ -16,10 +16,8 @@ class VendorBankAccountViewController: UIViewController {
     @IBOutlet weak var txtInstitutionNumber: UITextField!
     @IBOutlet weak var btnAddToVerify: UIButton!
     
-    var loginUser : LoginUser?
     var vendor: Vendor?
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         if var textAttributes = navigationController?.navigationBar.titleTextAttributes {
@@ -28,11 +26,6 @@ class VendorBankAccountViewController: UIViewController {
         }
         getBankAccount()
         // Do any additional setup after loading the view.
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.tintColor = UIColor.black
-        self.navigationController?.navigationBar.isHidden = false
     }
 
     @IBAction func saveBankAccount(_ sender: Any) {
