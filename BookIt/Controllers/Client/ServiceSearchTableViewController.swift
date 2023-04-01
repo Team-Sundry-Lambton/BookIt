@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import CoreData
 
 class ServiceSearchTableViewController: BaseTableViewController {
 
@@ -38,21 +37,7 @@ class ServiceSearchTableViewController: BaseTableViewController {
         super.viewWillAppear(animated)
         self.search.searchBar.becomeFirstResponder()
     }
-    
-    func loadServices(){
-        let request: NSFetchRequest<Service> = Service.fetchRequest()
-        if !searchText.isEmpty{
-            let predicate = NSPredicate(format: "serviceTitle CONTAINS[cd] %@ OR serviceDescription CONTAINS[cd] %@", searchText, searchText)
-            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate])
-        }
-        request.sortDescriptors = [NSSortDescriptor(key: "serviceTitle", ascending: true)]
-        do {
-            serviceList = try context.fetch(request)
-            self.tableView.reloadData()
-        } catch {
-            print("Error loading Service \(error.localizedDescription)")
-        }
-    }
+
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -156,6 +141,7 @@ extension ServiceSearchTableViewController: UISearchBarDelegate {
     }
     
     func searchChange(){
-        loadServices()
+        serviceList = CoreDataManager.shared.loadServicesWithSerch(searchText: searchText)
+        self.tableView.reloadData()
     }
 }

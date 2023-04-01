@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import JGProgressHUD
 
 class BaseViewController: UIViewController {
     var loginUser : LoginUser?

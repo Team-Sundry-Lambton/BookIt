@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import CoreData
-import JGProgressHUD
 
 class ClientBookVendorViewController: NavigationBaseViewController, UITextViewDelegate {
     

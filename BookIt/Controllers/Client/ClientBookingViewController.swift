@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import CoreData
 
 class ClientBookingViewController: BaseViewController {
     var client : Client?

@@ -7,10 +7,8 @@
 
 import UIKit
 import FacebookLogin
-import CoreData
 import GoogleSignIn
 import AuthenticationServices
-import JGProgressHUD
 
 class LoginViewController: NavigationBaseViewController {
     

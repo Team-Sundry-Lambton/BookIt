@@ -6,8 +6,7 @@
 //
 
 import UIKit
-import CoreData
-import JGProgressHUD
+
 class PostServiceViewController: NavigationBaseViewController {
     
     @IBOutlet weak var pageTitleLbl: UILabel!

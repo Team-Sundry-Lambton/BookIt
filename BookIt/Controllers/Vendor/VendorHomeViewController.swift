@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import CoreData
 
 class VendorHomeViewController: BaseViewController {
     var vendor : Vendor?

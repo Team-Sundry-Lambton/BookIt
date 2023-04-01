@@ -6,8 +6,8 @@
 //
 
 import UIKit
-import CoreData
 import SwiftUI
+
 class ClientProfileViewController: BaseViewController {
 
     @IBOutlet weak var faceIDStatus: UISwitch!

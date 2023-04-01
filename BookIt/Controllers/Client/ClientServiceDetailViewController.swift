@@ -8,9 +8,7 @@
 import UIKit
 import SnapKit
 import CoreLocation
-import CoreData
 import MapKit
-import JGProgressHUD
 
 class ClientServiceDetailViewController: BaseViewController, CLLocationManagerDelegate{
   

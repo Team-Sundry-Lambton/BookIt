@@ -8,7 +8,6 @@
 import UIKit
 import SnapKit
 import CoreLocation
-import CoreData
 
 class ClientHomeViewController: BaseViewController {
     
@@ -106,7 +105,7 @@ class ClientHomeViewController: BaseViewController {
         categoryList = CoreDataManager.shared.loadCategories()
         categoryCollectioView.reloadData()
         
-        loadNewVendors()
+        vendorList =  CoreDataManager.shared.loadNewVendors()
         newVendersCollectionView.reloadData()
         
         serviceList = CoreDataManager.shared.loadServices()
@@ -419,22 +418,6 @@ extension ClientHomeViewController :UICollectionViewDataSource, UICollectionView
             }
         }
     }    
-}
-
-//MARK: - Core data interaction methods
-extension ClientHomeViewController {
-    
-    func loadNewVendors(){
-        let request: NSFetchRequest<Vendor> = Vendor.fetchRequest()      
-        request.sortDescriptors = [NSSortDescriptor(key: "firstName", ascending: true)]
-        request.fetchLimit = 5
-//        request.returnsObjectsAsFaults = false
-        do {
-            vendorList = try context.fetch(request)
-        } catch {
-            print("Error loading Vendor \(error.localizedDescription)")
-        }
-    }
 }
 
 extension ClientHomeViewController : UISearchBarDelegate{
