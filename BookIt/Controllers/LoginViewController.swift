@@ -71,6 +71,7 @@ class LoginViewController: NavigationBaseViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     func redirectUser(email : String){

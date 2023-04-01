@@ -98,6 +98,7 @@ class SignupViewController: NavigationBaseViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         deregisterFromKeyboardNotifications()
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     func redirectUser(email : String){

@@ -512,7 +512,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3yb-Oe-VJu">
-                                <rect key="frame" x="30" y="79" width="333" height="58"/>
+                                <rect key="frame" x="30" y="77" width="333" height="58"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First name " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4At-94-4Mi">
                                         <rect key="frame" x="0.0" y="0.0" width="333" height="40"/>
@@ -536,16 +536,15 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="3yb-Oe-VJu" firstAttribute="leading" secondItem="Y1c-VK-tqs" secondAttribute="leading" constant="30" id="4uA-Jr-y7Z"/>
-                            <constraint firstItem="cYW-M3-G8a" firstAttribute="top" secondItem="3yb-Oe-VJu" secondAttribute="bottom" constant="33" id="GT8-Ax-uXZ"/>
                             <constraint firstItem="cYW-M3-G8a" firstAttribute="centerX" secondItem="Y1c-VK-tqs" secondAttribute="centerX" id="Gdt-PP-cfW"/>
                             <constraint firstItem="Y1c-VK-tqs" firstAttribute="trailing" secondItem="Tdt-1p-l5Q" secondAttribute="trailing" id="LAe-yi-fh8"/>
                             <constraint firstItem="Y1c-VK-tqs" firstAttribute="trailing" secondItem="XLM-RU-F4v" secondAttribute="trailing" constant="20" id="QMs-N9-eQK"/>
                             <constraint firstItem="Y1c-VK-tqs" firstAttribute="trailing" secondItem="3yb-Oe-VJu" secondAttribute="trailing" constant="30" id="V24-BZ-9tV"/>
                             <constraint firstItem="XLM-RU-F4v" firstAttribute="leading" secondItem="Y1c-VK-tqs" secondAttribute="leading" id="c3A-ea-Tpt"/>
+                            <constraint firstItem="cYW-M3-G8a" firstAttribute="top" secondItem="3yb-Oe-VJu" secondAttribute="bottom" constant="35" id="cdq-2c-xjf"/>
                             <constraint firstItem="cYW-M3-G8a" firstAttribute="top" secondItem="Tdt-1p-l5Q" secondAttribute="bottom" constant="-130" id="gCo-FH-4la"/>
                             <constraint firstItem="Tdt-1p-l5Q" firstAttribute="top" secondItem="NTi-gu-N15" secondAttribute="top" id="gK0-o9-LhK"/>
                             <constraint firstItem="XLM-RU-F4v" firstAttribute="top" secondItem="cYW-M3-G8a" secondAttribute="bottom" constant="30" id="giP-IN-ZMN"/>
-                            <constraint firstItem="3yb-Oe-VJu" firstAttribute="top" secondItem="Y1c-VK-tqs" secondAttribute="top" constant="20" id="gsb-z7-hGc"/>
                             <constraint firstItem="Tdt-1p-l5Q" firstAttribute="leading" secondItem="Y1c-VK-tqs" secondAttribute="leading" id="zdn-Mu-U83"/>
                         </constraints>
                     </view>

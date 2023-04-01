@@ -368,9 +368,7 @@
 				BB0D6B6529D0AAAA000752BD /* SignupViewController.swift */,
 				BB9ED57429D349F7002C59E2 /* AboutUs.swift */,
 				4174DFBF29D6AC5500FDB0D7 /* RatingController.swift */,
-				BB12B6DC29D7A78D00A42CA2 /* BaseViewController.swift */,
-				BB12B6DE29D7B2A000A42CA2 /* NavigationBaseViewController.swift */,
-				BB12B6E029D7B40B00A42CA2 /* BaseTableViewController.swift */,
+				BBFFD3A329D8E9D4004B76FD /* Base */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -473,6 +471,16 @@
 				BBE7433329B3DDB00087DC74 /* MediaManager.swift */,
 			);
 			path = ManagerFiles;
+			sourceTree = "<group>";
+		};
+		BBFFD3A329D8E9D4004B76FD /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				BB12B6E029D7B40B00A42CA2 /* BaseTableViewController.swift */,
+				BB12B6DE29D7B2A000A42CA2 /* NavigationBaseViewController.swift */,
+				BB12B6DC29D7A78D00A42CA2 /* BaseViewController.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
