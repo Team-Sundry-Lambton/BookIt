@@ -17,7 +17,7 @@ class VendorServiceListTableViewCell : UITableViewCell{
     
     @IBOutlet weak var ratingLbl: UILabel!
     @IBOutlet weak var locationLbl: UILabel!
-    
+    @IBOutlet weak var statusLabel: UILabel!
     
     func configureCell(service: Service) {
         
@@ -44,6 +44,14 @@ class VendorServiceListTableViewCell : UITableViewCell{
         }
         
         dipalyServiceReview(serviceId :Int(service.serviceId))
+        
+        if service.accepted {
+            statusLabel.text = "Accepted"
+            statusLabel.textColor = UIColor.acceptedColor
+        }else{
+            statusLabel.text = "Rejected"
+            statusLabel.textColor = UIColor.rejectedColor
+        }
         
     }
     

@@ -392,7 +392,7 @@ extension ClientHomeViewController :UICollectionViewDataSource, UICollectionView
             return CGSize.init(width: 82, height: 82)
         }
         else{
-            return CGSize.init(width: 66, height: 66)
+            return CGSize.init(width: 80, height: 80)
         }
     }
     

@@ -556,7 +556,7 @@
                         <outlet property="emailLbl" destination="D4b-bT-ha7" id="IHq-Bh-jT4"/>
                         <outlet property="faceIDStatus" destination="C0S-gM-6uy" id="KZS-T3-Xk5"/>
                         <outlet property="imageView" destination="cYW-M3-G8a" id="cdw-Cw-jgl"/>
-                        <outlet property="logoutTextLbl" destination="ZgD-pe-Pkt" id="I0d-5c-S1E"/>
+                        <outlet property="logoutTextLbl" destination="0Wd-zH-jrd" id="SmG-of-1Bh"/>
                         <outlet property="nameLbl" destination="4At-94-4Mi" id="VBT-ZR-lLV"/>
                         <outlet property="notificationStatus" destination="is0-19-tV5" id="kkj-Uk-x2f"/>
                         <outlet property="tacnsactionView" destination="hVT-Uk-oiN" id="rX1-PS-50F"/>

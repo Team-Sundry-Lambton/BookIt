@@ -37,7 +37,6 @@ class ServiceSearchTableViewController: BaseTableViewController {
         super.viewWillAppear(animated)
         self.search.searchBar.becomeFirstResponder()
     }
-
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
