@@ -42,6 +42,10 @@ class CategoryServiceListTableViewController: BaseTableViewController {
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
     func customDesign(){
         let titleLabel = UILabel()
         if let category = selectedCategory{

@@ -339,7 +339,7 @@ class PostServiceViewController: NavigationBaseViewController {
             service.price = priceTextField.text
             service.priceType = priceTypeTextField.text
             service.equipment = isEquipmentNeed
-            service.accepted = false
+            service.status = "Pending"
             let user =  UserDefaultsManager.shared.getUserData()
             service.parent_Vendor = CoreDataManager.shared.getVendor(email: user.email)
             if editMode{

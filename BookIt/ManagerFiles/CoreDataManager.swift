@@ -274,7 +274,7 @@ class CoreDataManager : NSObject{
     func loadServices() -> [Service]{
         var serviceList = [Service]()
         let request: NSFetchRequest<Service> = Service.fetchRequest()
-        let predicate = NSPredicate(format: "accepted=true")
+        let predicate = NSPredicate(format: "status=%@ " ,"Accepted")
         request.predicate = predicate
         request.sortDescriptors = [NSSortDescriptor(key: "serviceTitle", ascending: true)]
         do {
@@ -363,9 +363,12 @@ class CoreDataManager : NSObject{
     func loadServicesWithSerch(searchText : String) -> [Service]{
         var serviceList = [Service]()
         let request: NSFetchRequest<Service> = Service.fetchRequest()
+        let statusPredicate = NSPredicate(format: "status=%@ " ,"Accepted")
         if !searchText.isEmpty{
             let predicate = NSPredicate(format: "serviceTitle CONTAINS[cd] %@ OR serviceDescription CONTAINS[cd] %@", searchText, searchText)
-            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate])
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate,statusPredicate])
+        }else{
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [statusPredicate])
         }
         request.sortDescriptors = [NSSortDescriptor(key: "serviceTitle", ascending: true)]
         do {
@@ -380,10 +383,11 @@ class CoreDataManager : NSObject{
         var serviceList = [Service]()
         let request: NSFetchRequest<Service> = Service.fetchRequest()
                 var categoryPredicate = NSPredicate(format: "parent_Category.name == %@", category)
+        let statusPredicate = NSPredicate(format: "status=%@ " ,"Accepted")
                 if !searchText.isEmpty{
                     categoryPredicate = NSPredicate(format: "parent_Category.name == %@ AND ( serviceTitle CONTAINS[cd] %@ OR serviceDescription CONTAINS[cd] %@ )", category, searchText, searchText)
                 }
-                request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate])
+                request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate,statusPredicate])
         request.sortDescriptors = [NSSortDescriptor(key: "serviceTitle", ascending: true)]
         do {
             serviceList = try context.fetch(request)
@@ -397,11 +401,12 @@ class CoreDataManager : NSObject{
     func loadServicesForSelectedVendor(email : String, searchText : String) -> [Service]{
         var serviceList = [Service]()
         let request: NSFetchRequest<Service> = Service.fetchRequest()
-                var categoryPredicate = NSPredicate(format: "parent_Vendor.email == %@", email)
+                var vendorPredicate = NSPredicate(format: "parent_Vendor.email == %@", email)
+        let statusPredicate = NSPredicate(format: "status=%@ " ,"Accepted")
                 if !searchText.isEmpty{
-                    categoryPredicate = NSPredicate(format: "parent_Vendor.email == %@ AND ( serviceTitle CONTAINS[cd] %@ OR serviceDescription CONTAINS[cd] %@ )", email, searchText, searchText)
+                    vendorPredicate = NSPredicate(format: "parent_Vendor.email == %@ AND ( serviceTitle CONTAINS[cd] %@ OR serviceDescription CONTAINS[cd] %@ )", email, searchText, searchText)
                 }
-        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate])
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [vendorPredicate,statusPredicate])
         request.sortDescriptors = [NSSortDescriptor(key: "serviceTitle", ascending: true)]
         do {
             serviceList = try context.fetch(request)

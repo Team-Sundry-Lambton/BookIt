@@ -44,13 +44,13 @@ class VendorServiceListTableViewCell : UITableViewCell{
         }
         
         dipalyServiceReview(serviceId :Int(service.serviceId))
-        
-        if service.accepted {
-            statusLabel.text = "Accepted"
+        statusLabel.text = service.status
+        if service.status == "Accepted" {
             statusLabel.textColor = UIColor.acceptedColor
-        }else{
-            statusLabel.text = "Rejected"
+        }else if service.status == "Rejected" {
             statusLabel.textColor = UIColor.rejectedColor
+        }else{
+            statusLabel.textColor = UIColor.pendingColor
         }
         
     }
