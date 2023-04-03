@@ -159,6 +159,7 @@ class ClientBookingDetailController : NavigationBaseViewController{
                         if let clientBook = UIStoryboard(name: "ClientDashBoard", bundle: nil).instantiateViewController(withIdentifier: "ClientBookVendorViewController") as? ClientBookVendorViewController {
                             if let navigator = self.navigationController {
                                 clientBook.selectedService = self.booking?.service
+                                clientBook.selectedBooking = self.booking
                                 clientBook.vendor = self.booking?.vendor
                                 navigator.pushViewController(clientBook, animated: true)
                             }

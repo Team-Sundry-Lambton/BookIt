@@ -11,6 +11,7 @@ class ClientBookVendorViewController: NavigationBaseViewController, UITextViewDe
     
     var selectedService: Service?
     var vendor : Vendor?
+    var selectedBooking : Booking?
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var timeTextField: UITextField!
     @IBOutlet weak var priceTextField: UIButton!
@@ -188,6 +189,9 @@ class ClientBookVendorViewController: NavigationBaseViewController, UITextViewDe
     func saveBooking(date: Date, description: String){
            var booking = Booking(context: context)
             booking.date = date
+            if let selectedBooking = selectedBooking{
+                CoreDataManager.shared.deleteSelectedBooking(bookingId: selectedBooking.bookingId)
+            }
             booking.bookingId  = CoreDataManager.shared.getBookingID()
             booking.problemDescription = describeProblemTextView.text
             booking.status = "New"
