@@ -20,11 +20,12 @@ class ClientBookingDetailController : NavigationBaseViewController{
     @IBOutlet weak var serviceTitleLbl: UILabel!
     @IBOutlet weak var bookingIdLbl: UILabel!
     @IBOutlet weak var locationDescLbl: UILabel!
-    @IBOutlet weak var commentsDescLbl: UILabel!
+    @IBOutlet weak var problemDescLbl: UILabel!
     @IBOutlet weak var totalPriceBtn: UIButton!
     @IBOutlet weak var discountLbl: UILabel!
     @IBOutlet weak var priceLbl: UILabel!
     @IBOutlet weak var serviceStatusBtn: UIButton!
+    @IBOutlet weak var statusLbl: UILabel!
     
     override func viewDidLoad() {
         loadDetails()
@@ -59,7 +60,8 @@ class ClientBookingDetailController : NavigationBaseViewController{
             bookingId = "N/A"
         }
         bookingIdLbl.text = "Booking number is #\(bookingId)"
-        
+        statusLbl.text = status
+        problemDescLbl.text = booking?.problemDescription ?? "N/A"
         serviceTitleLbl.text = service.serviceTitle
         if let media = CoreDataManager.shared.getServiceFirstMedia(serviceId: Int(service.serviceId)) {
             if let imageData = media.mediaContent {
@@ -150,11 +152,22 @@ class ClientBookingDetailController : NavigationBaseViewController{
         case ServiceStatus.NEW.title:
             
             let alertController: UIAlertController = {
-                
-                let controller = UIAlertController(title: "Cancel booking", message: "Are you sure ?", preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "Yes", style: .default){
-                    UIAlertAction in
-                    
+                let controller = UIAlertController(title: "Confirm Cancellation", message: "Are you sure you want to cancel this service?", preferredStyle: .alert)
+
+                let rescheduleAction = UIAlertAction(title: "Reschedule", style: .default) { (_) in
+                    //Redirect to service booking page
+                        if let clientBook = UIStoryboard(name: "ClientDashBoard", bundle: nil).instantiateViewController(withIdentifier: "ClientBookVendorViewController") as? ClientBookVendorViewController {
+                            if let navigator = self.navigationController {
+                                clientBook.selectedService = self.booking?.service
+                                clientBook.selectedBooking = self.booking
+                                clientBook.vendor = self.booking?.vendor
+                                navigator.pushViewController(clientBook, animated: true)
+                            }
+                        }
+                }
+
+                let cancelAction = UIAlertAction(title: "No! Just Cancel", style: .destructive) { (_) in
+                    // Handle Cancel action
                     if let booking = self.booking {
                         LoadingHudManager.shared.showSimpleHUD(title: "Cancelling...", view: self.view)
                             Task {
@@ -181,17 +194,19 @@ class ClientBookingDetailController : NavigationBaseViewController{
                                 }
                             }
                     }
-                    
                 }
-                let cancelAction = UIAlertAction(title: "No", style: .cancel){
-                    UIAlertAction in
+
+                let ignoreAction = UIAlertAction(title: "Ignore", style: .cancel) { (_) in
+                    // Handle Ignore action
                     self.dismiss(animated: true)
                 }
-                controller.addAction(okAction)
+
+                controller.addAction(rescheduleAction)
                 controller.addAction(cancelAction)
+                controller.addAction(ignoreAction)
                 return controller
             }()
-            self.present(alertController, animated: true)
+            self.present(alertController, animated: true, completion: nil)
             
         case ServiceStatus.PENDING.title:
             //make a payment

@@ -539,4 +539,17 @@ class CoreDataManager : NSObject{
         }
         return account
     }
+    
+    func deleteSelectedBooking(bookingId : Int16) {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Booking")
+        fetchRequest.predicate = NSPredicate(format: "bookingId=%i", bookingId)
+        do {
+            let booking = try context.fetch(fetchRequest)
+            if let slectedBooking = booking.first as? NSManagedObject {
+                context.delete(slectedBooking)
+            }
+        } catch {
+            print(error)
+        }
+    }
 }

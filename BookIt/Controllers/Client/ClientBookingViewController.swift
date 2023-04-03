@@ -138,7 +138,7 @@ extension ClientBookingViewController: UITableViewDelegate , UITableViewDataSour
             cell?.bookDateTimeLabel.text = booking.date?.dateAndTimetoString()
             cell?.customerNameLabel.text = booking.client?.firstName
             cell?.locationLabel.text = booking.client?.address?.address
-            cell?.priceLabel.text = booking.service?.price
+            cell?.priceLabel.text = "$ \(booking.service?.price ?? "") "
             cell?.statusLabel.text = booking.status
         }
             
