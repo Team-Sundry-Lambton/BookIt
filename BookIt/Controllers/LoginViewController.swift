@@ -110,7 +110,6 @@ class LoginViewController: NavigationBaseViewController {
             LoadingHudManager.shared.showSimpleHUD(title: "Validating...", view: self.view)
             InitialDataDownloadManager.shared.chedkUserData(email: email ,isVendor: isVendor ){ [weak self] status in
                 DispatchQueue.main.async {
-                    LoadingHudManager.shared.dissmissHud()
                     guard let strongSelf = self else {
                         return
                     }

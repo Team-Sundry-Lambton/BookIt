@@ -40,8 +40,8 @@ class InitialDataDownloadManager : NSObject{
                 let category = Category(context: self.context)
                 category.name = data["name"] as? String ?? ""
                 category.picture =  data["picture"] as? String ?? ""
-                self.saveData()
             }
+            self.saveData()
         }
         catch{
             print("Error loading location data \(error.localizedDescription)")
@@ -63,9 +63,8 @@ class InitialDataDownloadManager : NSObject{
                         }
                         client.contactNumber =  data["contactNumber"] as? String ?? ""
                         client.isPremium =  data["isPremium"] as? Bool ?? false
-                        
-                        self.saveData()
                     }
+            self.saveData()
         }catch{
             print("Error loading location data \(error.localizedDescription)")
         }
@@ -86,9 +85,8 @@ class InitialDataDownloadManager : NSObject{
                     }
                     vendor.contactNumber =  data["contactNumber"] as? String ?? ""
                     vendor.bannerURL =  data["bannerURL"]  as? String ?? ""
-                    
-                    self.saveData()
             }
+            self.saveData()
         }catch{
             print("Error loading location data \(error.localizedDescription)")
         }
@@ -125,9 +123,8 @@ class InitialDataDownloadManager : NSObject{
                         }
                     }
                 }
-                
-                self.saveData()
             }
+            self.saveData()
         }catch{
             print("Error loading location data \(error.localizedDescription)")
         }
@@ -165,8 +162,8 @@ class InitialDataDownloadManager : NSObject{
                         }
                     }
                 }
-                self.saveData()
             }
+            self.saveData()
             }catch{
                 print("Error loading location data \(error.localizedDescription)")
             }
@@ -193,8 +190,8 @@ class InitialDataDownloadManager : NSObject{
                         }
                     }
                 }
-                self.saveData()
             }
+            self.saveData()
         }catch{
             print("Error loading location data \(error.localizedDescription)")
         }
@@ -237,9 +234,8 @@ class InitialDataDownloadManager : NSObject{
                         }
                     }
                 }
-                
-                self.saveData()
             }
+            self.saveData()
         }catch{
             print("Error loading location data \(error.localizedDescription)")
         }
@@ -266,8 +262,8 @@ class InitialDataDownloadManager : NSObject{
                         }
                     }
                 }
-                self.saveData()
             }
+            self.saveData()
         }catch{
             print("Error loading location data \(error.localizedDescription)")
         }
@@ -308,8 +304,8 @@ class InitialDataDownloadManager : NSObject{
                         }
                     }
                 }
-                self.saveData()
             }
+            self.saveData()
         }catch{
             print("Error loading location data \(error.localizedDescription)")
         }
@@ -336,8 +332,8 @@ class InitialDataDownloadManager : NSObject{
                         }
                     }
                 }
-                self.saveData()
             }
+            self.saveData()
         }catch{
             print("Error loading location data \(error.localizedDescription)")
         }
