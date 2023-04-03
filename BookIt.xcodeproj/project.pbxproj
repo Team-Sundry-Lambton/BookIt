@@ -226,7 +226,7 @@
 		BBE832AB29BD20C600C58BF1 /* BannerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerTableViewCell.swift; sourceTree = "<group>"; };
 		BBE832B929BD3B7300C58BF1 /* ServiceDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailTableViewCell.swift; sourceTree = "<group>"; };
 		BBE832BA29BD3B7300C58BF1 /* ServiceDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServiceDetailTableViewCell.xib; sourceTree = "<group>"; };
-		BBEC1C4729B5595E00B58D41 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIColorExtension.swift; path = BookIt/ManagerFiles/UIColorExtension.swift; sourceTree = SOURCE_ROOT; };
+		BBEC1C4729B5595E00B58D41 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIColorExtension.swift; path = "BookIt/Support Files/Extension/UIColorExtension.swift"; sourceTree = SOURCE_ROOT; };
 		BBEC1C4929B55A6800B58D41 /* UIAlertViewExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIAlertViewExtention.swift; path = BookIt/ManagerFiles/UIAlertViewExtention.swift; sourceTree = SOURCE_ROOT; };
 		BD36696E29C946C000C83AA6 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		BD36697029C946C800C83AA6 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -333,22 +333,9 @@
 		99AB0DE429AD95CD00B096BB /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				BD36696E29C946C000C83AA6 /* Onboarding.storyboard */,
-				BB0FF27729BAAB4400E26A71 /* VendorDashBoard.storyboard */,
-				BB0FF27929BAAB5F00E26A71 /* PostService.storyboard */,
-				99AB0DD229AD95B300B096BB /* Main.storyboard */,
-				BBA6356B29BA510500702A62 /* ClientDashBoard.storyboard */,
-				BBC9F83829BFC70900985AAA /* MapView.storyboard */,
-				B4D56B5B29C105B9005A2C63 /* CategoryCollectionViewCell.xib */,
-				996588BD29C7B87D00A7D796 /* FilterPopup.storyboard */,
-				BD3CE98029CBCE2700408AEE /* ServiceDetail.storyboard */,
-				993181C129CD3767003D82E5 /* VendorTransaction.storyboard */,
-				BDA8015729D0EC31009A1570 /* VendorBankAccount.storyboard */,
-				41B85CF929C3E082007CAF1C /* VendorBookingDetail.storyboard */,
-				41B85CFB29C3E0A3007CAF1C /* VendorBookingConfirmation.storyboard */,
-				BB51470029D1EE0C001F4DB0 /* AboutUs.storyboard */,
-				4186201029D66B3700C35346 /* ClientBookingDetail.storyboard */,
-				4174DFB329D6A0F900FDB0D7 /* Rating.storyboard */,
+				BBE5184B29DB55A700FA010A /* Common */,
+				BB7719EC29DB550700D123F5 /* Client */,
+				BB7719EB29DB54E800D123F5 /* Vendor */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -356,17 +343,10 @@
 		99AB0DE529AD95D200B096BB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				BD36697029C946C800C83AA6 /* OnboardingViewController.swift */,
+				BB7719EA29DB54C600D123F5 /* Common */,
 				BB7A1DCD29C0C7EB003CB894 /* Vendor */,
 				BBC9F83A29BFC73400985AAA /* MapView */,
 				BBA6356D29BA62B800702A62 /* Client */,
-				99AB0DD029AD95B300B096BB /* ViewController.swift */,
-				BB9BB53629AEA05E0004244E /* EditProfileViewController.swift */,
-				996588C729C7D03500A7D796 /* FilterPopupViewController.swift */,
-				BB0D6B6329D0AA97000752BD /* LoginViewController.swift */,
-				BB0D6B6529D0AAAA000752BD /* SignupViewController.swift */,
-				BB9ED57429D349F7002C59E2 /* AboutUs.swift */,
-				4174DFBF29D6AC5500FDB0D7 /* RatingController.swift */,
 				BBFFD3A329D8E9D4004B76FD /* Base */,
 			);
 			path = Controllers;
@@ -375,24 +355,17 @@
 		99AB0DE629AD95DA00B096BB /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				996588BB29C7B0E100A7D796 /* Date+Extension.swift */,
+				BB7719E929DB542600D123F5 /* Extension */,
 				BB7A1E1329C2AFB0003CB894 /* GoogleService-Info.plist */,
 				BB0FF26829BAA73800E26A71 /* BorderTextField.swift */,
 				BB0FF26929BAA73800E26A71 /* BorderTextView.swift */,
-				BBE7433529B41D440087DC74 /* BiometricIDAuth.swift */,
-				993181BF29CD2B15003D82E5 /* NetworkMonitor.swift */,
-				BBEC1C4729B5595E00B58D41 /* UIColorExtension.swift */,
 				BBEC1C4929B55A6800B58D41 /* UIAlertViewExtention.swift */,
 				996588B929C79F1400A7D796 /* CustomSegmentedControl.swift */,
-				B4D56B5D29C10639005A2C63 /* CategoryCollectionViewCell.swift */,
-				996588BF29C7BE6A00A7D796 /* GradientColorExtension.swift */,
 				996588C129C7C01B00A7D796 /* BaseButton.swift */,
 				996588C329C7C05400A7D796 /* BaseCustomButton.swift */,
 				BB7A1E1529C3AB36003CB894 /* InitialDataDownload.swift */,
-				993F476D29CE70DA00BC857D /* String+Extension.swift */,
 				B42235F829CFFBAC00B3C84D /* CustomRadioButton.swift */,
 				B41E729D29D0ADEB00552859 /* IconTextField.swift */,
-				BB5146FE29D1E679001F4DB0 /* Image+Extension.swift */,
 			);
 			path = "Support Files";
 			sourceTree = "<group>";
@@ -417,8 +390,59 @@
 				993181C429CD3DAA003D82E5 /* TransactionTableViewCell.xib */,
 				413CF83B29C51ADF00A174D3 /* VendorServiceListTableViewCell.xib */,
 				413CF83D29C51B6200A174D3 /* VendorServiceListTableViewCell.swift */,
+				B4D56B5D29C10639005A2C63 /* CategoryCollectionViewCell.swift */,
+				B4D56B5B29C105B9005A2C63 /* CategoryCollectionViewCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		BB7719E929DB542600D123F5 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				996588BB29C7B0E100A7D796 /* Date+Extension.swift */,
+				993F476D29CE70DA00BC857D /* String+Extension.swift */,
+				996588BF29C7BE6A00A7D796 /* GradientColorExtension.swift */,
+				BBEC1C4729B5595E00B58D41 /* UIColorExtension.swift */,
+				BB5146FE29D1E679001F4DB0 /* Image+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		BB7719EA29DB54C600D123F5 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				99AB0DD029AD95B300B096BB /* ViewController.swift */,
+				BB9BB53629AEA05E0004244E /* EditProfileViewController.swift */,
+				996588C729C7D03500A7D796 /* FilterPopupViewController.swift */,
+				BB0D6B6329D0AA97000752BD /* LoginViewController.swift */,
+				BB0D6B6529D0AAAA000752BD /* SignupViewController.swift */,
+				BB9ED57429D349F7002C59E2 /* AboutUs.swift */,
+				4174DFBF29D6AC5500FDB0D7 /* RatingController.swift */,
+				BD36697029C946C800C83AA6 /* OnboardingViewController.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		BB7719EB29DB54E800D123F5 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				BB0FF27729BAAB4400E26A71 /* VendorDashBoard.storyboard */,
+				BB0FF27929BAAB5F00E26A71 /* PostService.storyboard */,
+				993181C129CD3767003D82E5 /* VendorTransaction.storyboard */,
+				BDA8015729D0EC31009A1570 /* VendorBankAccount.storyboard */,
+				41B85CF929C3E082007CAF1C /* VendorBookingDetail.storyboard */,
+				41B85CFB29C3E0A3007CAF1C /* VendorBookingConfirmation.storyboard */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		BB7719EC29DB550700D123F5 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				BBA6356B29BA510500702A62 /* ClientDashBoard.storyboard */,
+				4186201029D66B3700C35346 /* ClientBookingDetail.storyboard */,
+			);
+			path = Client;
 			sourceTree = "<group>";
 		};
 		BB7A1DCD29C0C7EB003CB894 /* Vendor */ = {
@@ -462,12 +486,28 @@
 			path = MapView;
 			sourceTree = "<group>";
 		};
+		BBE5184B29DB55A700FA010A /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				BD36696E29C946C000C83AA6 /* Onboarding.storyboard */,
+				99AB0DD229AD95B300B096BB /* Main.storyboard */,
+				BBC9F83829BFC70900985AAA /* MapView.storyboard */,
+				996588BD29C7B87D00A7D796 /* FilterPopup.storyboard */,
+				BD3CE98029CBCE2700408AEE /* ServiceDetail.storyboard */,
+				BB51470029D1EE0C001F4DB0 /* AboutUs.storyboard */,
+				4174DFB329D6A0F900FDB0D7 /* Rating.storyboard */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		BBE7433229B3DD950087DC74 /* ManagerFiles */ = {
 			isa = PBXGroup;
 			children = (
 				BBE7433729B41EE60087DC74 /* UserDefaultsManager.swift */,
 				BB7A1E1A29C3BF61003CB894 /* CoreDataManager.swift */,
 				BB7524FB29C931F4004C4837 /* LoadingHudManager.swift */,
+				993181BF29CD2B15003D82E5 /* NetworkMonitor.swift */,
+				BBE7433529B41D440087DC74 /* BiometricIDAuth.swift */,
 				BBE7433329B3DDB00087DC74 /* MediaManager.swift */,
 			);
 			path = ManagerFiles;
