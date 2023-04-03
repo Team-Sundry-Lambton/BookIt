@@ -37,6 +37,11 @@ class ServiceSearchTableViewController: BaseTableViewController {
         super.viewWillAppear(animated)
         self.search.searchBar.becomeFirstResponder()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {

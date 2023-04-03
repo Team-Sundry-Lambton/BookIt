@@ -8,9 +8,7 @@
 import Foundation
 import UIKit
 
-class VendorBookingDetailController: UIViewController{
-    
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+class VendorBookingDetailController: NavigationBaseViewController{
     
     var booking:Booking?
     var service:Service?
@@ -89,6 +87,15 @@ class VendorBookingDetailController: UIViewController{
     
         updateButtons(status: status)
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+       super.viewWillAppear(animated)
+        let titleLabel = UILabel()
+        titleLabel.text = "Booking Details"
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
+        titleLabel.sizeToFit()
+        self.navigationItem.titleView = titleLabel
     }
     
     func updateButtons(status:String){

@@ -9,9 +9,8 @@ import Foundation
 import UIKit
 
 
-class ClientBookingDetailController : UIViewController{
+class ClientBookingDetailController : NavigationBaseViewController{
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var booking:Booking?
     
     @IBOutlet weak var serviceImg: UIImageView!
@@ -32,8 +31,7 @@ class ClientBookingDetailController : UIViewController{
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.tintColor = UIColor.black
-        self.navigationController?.navigationBar.isHidden = false
+       super.viewWillAppear(animated)
         let titleLabel = UILabel()
         titleLabel.text = "Booking Details"
         titleLabel.font = UIFont.boldSystemFont(ofSize: 20.0)

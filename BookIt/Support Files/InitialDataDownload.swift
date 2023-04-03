@@ -109,7 +109,7 @@ class InitialDataDownloadManager : NSObject{
                 service.equipment = data["equipment"]  as? Bool ?? false
                 service.serviceId = data["serviceId"]  as? Int16 ?? -1
                 service.createdDate = data["createdDate"] as? Date ?? Date()
-                service.accepted = data["accepted"]  as? Bool ?? false
+                service.status = data["status"]  as? String ?? ""
                 if let parentVendor = data["parentVendor"]  as? String {
                     if parentVendor != "" {
                         if  let vendor = CoreDataManager.shared.getVendor(email: parentVendor){
@@ -425,7 +425,7 @@ extension InitialDataDownloadManager {
                     print("Error adding document: \(err)")
                     completion(false)
                 } else {
-                    print("Document added with ID: \(ref?.documentID)")
+                    print("Document added with ID: \(ref?.documentID ?? "")")
                     CoreDataManager.shared.deleteClients()
                     Task { await self.getAllClientData() }
                     completion(true)
@@ -575,7 +575,7 @@ extension InitialDataDownloadManager {
             "parentVendor":  service.parent_Vendor?.email ?? "",
             "serviceId":  service.serviceId ,
             "createdDate" : service.createdDate ?? Date(),
-            "accepted" : service.accepted,
+            "status" : service.status ?? "",
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
@@ -1005,6 +1005,11 @@ extension InitialDataDownloadManager{
         if let st = service.serviceTitle {
             title = st
         }
+        
+        var status = ""
+        if let serviceStatus = service.status {
+            status = serviceStatus
+        }
          
             db.collection("service")
             .whereField("serviceId", isEqualTo: service.serviceId)
@@ -1026,7 +1031,7 @@ extension InitialDataDownloadManager{
                                 "serviceDescription": service.serviceDescription ?? "",
                                 "parentCategory":  category,
                                 "serviceTitle":  title,
-                                "accepted" : service.accepted
+                                "status" : status
                                 //"parentVendor":  service.parent_Vendor?.email ?? "",
                             ])
                             completion(true)
