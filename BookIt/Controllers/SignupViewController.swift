@@ -118,7 +118,6 @@ class SignupViewController: NavigationBaseViewController {
             LoadingHudManager.shared.showSimpleHUD(title: "Validating...", view: self.view)
             InitialDataDownloadManager.shared.chedkUserData(email: email ,isVendor: isVendor ){ [weak self] status in
                 DispatchQueue.main.async {
-                    LoadingHudManager.shared.dissmissHud()
                     guard let strongSelf = self else {
                         return
                     }
@@ -151,7 +150,6 @@ class SignupViewController: NavigationBaseViewController {
                 LoadingHudManager.shared.showSimpleHUD(title: "Inserting...", view: self.view)
                 InitialDataDownloadManager.shared.addVendorData(vendor: vendor){ [weak self] status in
                     DispatchQueue.main.async {
-                        LoadingHudManager.shared.dissmissHud()
                         guard let strongSelf = self else {
                             return
                         }
@@ -171,7 +169,6 @@ class SignupViewController: NavigationBaseViewController {
                 LoadingHudManager.shared.showSimpleHUD(title: "Inserting...", view: self.view)
                 InitialDataDownloadManager.shared.addClientData(client: client){[weak self] status in
                     DispatchQueue.main.async {
-                        LoadingHudManager.shared.dissmissHud()
                         guard let strongSelf = self else {
                             return
                         }
