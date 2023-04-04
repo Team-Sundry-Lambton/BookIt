@@ -12,8 +12,12 @@ import GoogleSignIn
 import FirebaseCore
 import PayPalCheckout
 
+import Firebase
+import FirebaseMessaging
+import UserNotifications
+
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -38,6 +42,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
            Checkout.set(config: config)
         
         NetworkMonitor.shared.startMonitoring()
+        
+        
+        // Request notification authorization
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+            print("Notification permission granted: \(granted)")
+        }
+        
+        // Set the notification delegate
+        UNUserNotificationCenter.current().delegate = self
+        
+        // Register for remote notifications
+        application.registerForRemoteNotifications()
         
         return true
     }
@@ -125,6 +141,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
+    
+    //MARK: - Notification Handler
+    
+    // Receive the FCM token
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        guard let fcmToken = fcmToken else { return }
+        print("FCM token: \(fcmToken)")
+        
+        // Store the FCM token for the current vendor
+        UserDefaultsManager.shared.setFCM(fcmKey: fcmToken)
+    }
+    
+    // Handle registration for remote notifications
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        // Update the FCM token
+        Messaging.messaging().apnsToken = deviceToken
+    }
+    
+    // Handle remote notification registration errors
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Failed to register for remote notifications: \(error.localizedDescription)")
+    }
+    
+    // Handle notifications when the app is in the foreground
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.banner, .sound])
+    }
+    
+    // Handle user interaction with notifications
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
+        
+        // Perform any action based on the notification data
+        // For example, navigate to a specific view controller in your app
+//        if let bookingId = userInfo["booking_id"] as? String {
+//            print("Booking ID from notification: \(bookingId)")
+            
+            // Navigate to the appropriate view controller in your app
+//        }
+        
+        completionHandler()
+    }
 }
-

@@ -369,7 +369,7 @@ extension InitialDataDownloadManager {
                                     "isPremium": client.isPremium,
                                     "picture":  picturePath ?? "",
                                     "password" : client.password ?? "",
-                                    
+                                    "fcmToken" : UserDefaultsManager.shared.getFCM(),
                                 ]) { err in
                                     if let err = err {
                                         print("Error adding document: \(err)")
@@ -395,7 +395,7 @@ extension InitialDataDownloadManager {
                                 "isPremium": client.isPremium,
                                 "picture":  picturePath ?? "",
                                 "password" : client.password ?? "",
-                                
+                                "fcmToken" : UserDefaultsManager.shared.getFCM(),
                             ]) { err in
                                 if let err = err {
                                     print("Error adding document: \(err)")
@@ -420,7 +420,7 @@ extension InitialDataDownloadManager {
                 "isPremium": client.isPremium,
                 "picture":  "",
                 "password" : client.password ?? "",
-                
+                "fcmToken" : UserDefaultsManager.shared.getFCM(),
             ]) { err in
                 if let err = err {
                     print("Error adding document: \(err)")
@@ -455,6 +455,7 @@ extension InitialDataDownloadManager {
                                     "bannerURL": vendor.bannerURL ?? "",
                                     "picture": url ?? "",
                                     "password" : vendor.password ?? "",
+                                    "fcmToken" : UserDefaultsManager.shared.getFCM(),
                                     
                                 ]) { err in
                                     if let err = err {
@@ -480,7 +481,7 @@ extension InitialDataDownloadManager {
                                 "bannerURL": vendor.bannerURL ?? "",
                                 "picture": url ?? "",
                                 "password" : vendor.password ?? "",
-                                
+                                "fcmToken" : UserDefaultsManager.shared.getFCM(),
                             ]) { err in
                                 if let err = err {
                                     print("Error adding document: \(err)")
@@ -504,7 +505,7 @@ extension InitialDataDownloadManager {
                 "bannerURL": vendor.bannerURL ?? "",
                 "picture": "",
                 "password" : vendor.password ?? "",
-                
+                "fcmToken" : UserDefaultsManager.shared.getFCM(),
             ]) { err in
                 if let err = err {
                     print("Error adding document: \(err)")
@@ -836,6 +837,7 @@ extension InitialDataDownloadManager{
                                             "isPremium": client.isPremium,
                                             "picture": picturePath ?? "",
                                             "password" : password,
+                                            "fcmToken" : UserDefaultsManager.shared.getFCM(),
                                         ])
                                         completion(true)
                                     }
@@ -872,6 +874,7 @@ extension InitialDataDownloadManager{
                                             "bannerURL": vendor.bannerURL ?? "",
                                             "picture": picturePath ?? "",
                                             "password" : password,
+                                            "fcmToken" : UserDefaultsManager.shared.getFCM(),
                                         ])
                                         completion(true)
                                     }
