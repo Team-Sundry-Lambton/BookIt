@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-
+import PayPalCheckout
 
 class ClientBookingDetailController : NavigationBaseViewController{
     
@@ -253,7 +253,7 @@ class ClientBookingDetailController : NavigationBaseViewController{
         actionSheet.addAction(actionApplePay)
 
         let actionPayPal = UIAlertAction(title: "PayPal", style: .default) { _ in
-            self.paymentAPICall()
+            self.triggerPayPalCheckout(self.price:priceLbl.text ?? "0")
         }
         actionSheet.addAction(actionPayPal)
 
@@ -289,4 +289,52 @@ extension ClientBookingDetailController {
             }
         }
     }
+}
+
+extension ClientBookingDetailController{
+    func triggerPayPalCheckout(price : String) {
+        Checkout.start(
+            createOrder: { createOrderAction in
+
+                let amount = PurchaseUnit.Amount(currencyCode: .cad, value: price)
+                let purchaseUnit = PurchaseUnit(amount: amount)
+                let order = OrderRequest(intent: .capture, purchaseUnits: [purchaseUnit])
+
+                createOrderAction.create(order: order)
+
+            }, onApprove: { approval in
+
+                approval.actions.capture { (response, error) in
+                    self.paymentAPICall()
+                    print("Order successfully captured: \(response?.data)")
+                }
+
+            }, onCancel: {
+
+                // Optionally use this closure to respond to the user canceling the paysheet
+
+            }, onError: { error in
+
+                // Optionally use this closure to respond to the user experiencing an error in
+                // the payment experience
+
+            }
+        )
+    }
+    
+//    private func configurePayPalCheckout() {
+//            Checkout.setCreateOrderCallback { action in
+//                let amount = PurchaseUnit.Amount(currencyCode: .usd, value: "10.00")
+//                let purchaseUnit = PurchaseUnit(amount: amount)
+//                let order = OrderRequest(intent: .capture, purchaseUnits: [purchaseUnit])
+//
+//                action.create(order: order)
+//            }
+//            Checkout.setOnApproveCallback { approval in
+//                approval.actions.capture { response, error in
+//                    print("Order successfully captured: \(response?.data)")
+//                }
+//            }
+//        }
+
 }

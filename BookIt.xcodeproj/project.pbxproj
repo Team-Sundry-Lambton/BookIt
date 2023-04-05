@@ -51,6 +51,7 @@
 		BB084DE129DCD897006169F8 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BB084DE029DCD897006169F8 /* Alamofire */; };
 		BB084DE329DCD8A8006169F8 /* ServiceRequestObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB084DE229DCD8A8006169F8 /* ServiceRequestObjects.swift */; };
 		BB084DE529DCD8B8006169F8 /* ServiceResponseObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB084DE429DCD8B8006169F8 /* ServiceResponseObjects.swift */; };
+		BB084DE829DE19F1006169F8 /* PayPalCheckout in Frameworks */ = {isa = PBXBuildFile; productRef = BB084DE729DE19F1006169F8 /* PayPalCheckout */; };
 		BB0D6B6429D0AA97000752BD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0D6B6329D0AA97000752BD /* LoginViewController.swift */; };
 		BB0D6B6629D0AAAA000752BD /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0D6B6529D0AAAA000752BD /* SignupViewController.swift */; };
 		BB0FF26A29BAA73800E26A71 /* BorderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0FF26829BAA73800E26A71 /* BorderTextField.swift */; };
@@ -273,6 +274,7 @@
 				BB9BB52C29AE7CAF0004244E /* FacebookCore in Frameworks */,
 				BB7A1E0429C2A4DC003CB894 /* FirebaseInstallations in Frameworks */,
 				BB7A1E0829C2A4DC003CB894 /* FirebaseMessaging in Frameworks */,
+				BB084DE829DE19F1006169F8 /* PayPalCheckout in Frameworks */,
 				BB9BB53029AE7CAF0004244E /* FacebookShare in Frameworks */,
 				BB7A1E1229C2A4DC003CB894 /* FirebaseStorageCombine-Community in Frameworks */,
 				BB7A1DF829C2A4DC003CB894 /* FirebaseFirestoreCombine-Community in Frameworks */,
@@ -587,6 +589,7 @@
 				BB7524F829C908BF004C4837 /* JGProgressHUD */,
 				4174DFCA29D6B31C00FDB0D7 /* Cosmos */,
 				BB084DE029DCD897006169F8 /* Alamofire */,
+				BB084DE729DE19F1006169F8 /* PayPalCheckout */,
 			);
 			productName = BookIt;
 			productReference = 99AB0DC929AD95B300B096BB /* BookIt.app */;
@@ -624,6 +627,7 @@
 				BB7524F729C908BF004C4837 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 				4174DFC929D6B31C00FDB0D7 /* XCRemoteSwiftPackageReference "Cosmos" */,
 				BB084DDF29DCD897006169F8 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				BB084DE629DE19F1006169F8 /* XCRemoteSwiftPackageReference "paypalcheckout-ios" */,
 			);
 			productRefGroup = 99AB0DCA29AD95B300B096BB /* Products */;
 			projectDirPath = "";
@@ -989,6 +993,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		BB084DE629DE19F1006169F8 /* XCRemoteSwiftPackageReference "paypalcheckout-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/paypal/paypalcheckout-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.99.0;
+			};
+		};
 		BB7524F729C908BF004C4837 /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
@@ -1041,6 +1053,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BB084DDF29DCD897006169F8 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		BB084DE729DE19F1006169F8 /* PayPalCheckout */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BB084DE629DE19F1006169F8 /* XCRemoteSwiftPackageReference "paypalcheckout-ios" */;
+			productName = PayPalCheckout;
 		};
 		BB7524F829C908BF004C4837 /* JGProgressHUD */ = {
 			isa = XCSwiftPackageProductDependency;
