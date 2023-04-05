@@ -145,7 +145,10 @@ class PostServiceViewController: NavigationBaseViewController {
             self.cancelPolicyTextField.text = service.cancelPolicy
             self.priceTextField.text = service.price
             self.priceTypeTextField.text = service.priceType
-            selectedLocation =  CoreDataManager.shared.getServiceLocationData(serviceId: Int(service.serviceId))
+            if let address = service.address {
+                selectedLocation = CoreDataManager.shared.getLocationData(addressId: Int(address.addressId))
+            }
+           // CoreDataManager.shared.getServiceLocationData(serviceId: Int(service.serviceId))
             self.locationTextField.text = selectedLocation?.address
             self.isEquipmentNeed = service.equipment
             if(isEquipmentNeed){
@@ -335,6 +338,7 @@ class PostServiceViewController: NavigationBaseViewController {
             service.cancelPolicy = cancelPolicyTextField.text
             
             //        selectedLocation?.parentService = service
+            service.address = selectedLocation
             service.createdDate = Date()
             service.price = priceTextField.text
             service.priceType = priceTypeTextField.text
@@ -610,11 +614,13 @@ extension PostServiceViewController: MapViewDelegate {
     }
     
     func setServiceLocation(place : PlaceObject){
-        selectedLocation = Address(context: context)
+        if selectedLocation == nil {
+            selectedLocation = Address(context: context)
+            selectedLocation?.addressId = CoreDataManager.shared.getAddressID()
+        }
         selectedLocation?.addressLatitude = place.coordinate.latitude
         selectedLocation?.addressLongitude = place.coordinate.longitude
         selectedLocation?.address = place.title
-        selectedLocation?.parentService = selectedService
         locationTextField.text = place.title
     }
 }

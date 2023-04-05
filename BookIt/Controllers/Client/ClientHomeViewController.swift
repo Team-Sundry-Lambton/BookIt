@@ -343,10 +343,80 @@ extension ClientHomeViewController:  CLLocationManagerDelegate{
                         self.currentAddress = PlaceObject(title: addressString , subtitle: "", coordinate: CLLocationCoordinate2DMake(latitude , longitude ))
                         self.addressLbl.text = addressString;
                         print(addressString)
+                        self.saveAddress()
                   }
             })
 
         }
+    
+    func saveAddress(){
+        if (UserDefaultsManager.shared.getUserLogin()){
+            let user =  UserDefaultsManager.shared.getUserData()
+            if let client = CoreDataManager.shared.getClient(email: user.email) {
+                if (CoreDataManager.shared.checkClientLocationInDB(email: client.email ?? "")){
+//                    CoreDataManager.shared.deleteClientLocation(email: client.email ?? "")
+                    setLocationObject(isUpdate: true,client: client)
+                    
+                }else{
+                    
+                    setLocationObject(isUpdate: false,client: client)
+                }
+            }
+        }
+    }
+    
+    //MARK: - Core data interaction methods
+    func setLocationObject(isUpdate : Bool, client : Client) {
+        DispatchQueue.global(qos: .background).async {
+        var selectedLocation: Address?
+           selectedLocation = CoreDataManager.shared.getUserLocationData(email: client.email ?? "")
+            if selectedLocation == nil {
+                selectedLocation = Address(context: self.context)
+                selectedLocation?.addressId = CoreDataManager.shared.getAddressID()
+            }
+        selectedLocation?.addressLatitude = self.currentAddress?.coordinate.latitude ?? 0
+            selectedLocation?.addressLongitude = self.currentAddress?.coordinate.longitude ?? 0
+            selectedLocation?.address = self.currentAddress?.title
+            selectedLocation?.clientAddress = client
+            self.saveLocation()
+            if let location = selectedLocation {
+                if isUpdate {
+                    InitialDataDownloadManager.shared.updateAddressData(addressObject: location){[weak self] status in
+                        DispatchQueue.main.async {
+                            guard let strongSelf = self else {
+                                return
+                            }
+                            if let status = status{
+                                if status == false {
+                                }
+                            }
+                        }
+                    }
+                }else{
+                    InitialDataDownloadManager.shared.addAddressData(address: location){ [weak self] status in
+                        DispatchQueue.main.async {
+                            guard let strongSelf = self else {
+                                return
+                            }
+                            if let status = status{
+                                if status == false {
+                                }
+                            }
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }
+    
+    func saveLocation() {
+        do {
+            try context.save()
+        } catch {
+            print("Error saving the notes \(error.localizedDescription)")
+        }
+    }
     
 }
 
