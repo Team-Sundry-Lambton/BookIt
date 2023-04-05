@@ -253,7 +253,7 @@ class ClientBookingDetailController : NavigationBaseViewController{
         actionSheet.addAction(actionApplePay)
 
         let actionPayPal = UIAlertAction(title: "PayPal", style: .default) { _ in
-            self.triggerPayPalCheckout(self.price:priceLbl.text ?? "0")
+            self.triggerPayPalCheckout(price:self.priceLbl.text ?? "0")
         }
         actionSheet.addAction(actionPayPal)
 
