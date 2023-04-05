@@ -13,6 +13,7 @@ class ClientBookingViewController: BaseViewController {
     var bookingListOngoing = [Booking]()
     var bookingListHistory = [Booking]()
     var selectedService: Service?
+    var clientAddress: Address?
     @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var tableView: UITableView!
         
@@ -137,7 +138,10 @@ extension ClientBookingViewController: UITableViewDelegate , UITableViewDataSour
             cell?.serviceName.text = booking.service?.serviceTitle
             cell?.bookDateTimeLabel.text = booking.date?.dateAndTimetoString()
             cell?.customerNameLabel.text = booking.client?.firstName
-            cell?.locationLabel.text = booking.client?.address?.address
+            if let email = booking.client?.email{
+                clientAddress =  CoreDataManager.shared.getUserLocationData(email:email)
+                cell?.locationLabel.text = clientAddress?.address
+            }
             cell?.priceLabel.text = "$ \(booking.service?.price ?? "") "
             cell?.statusLabel.text = booking.status
         }
