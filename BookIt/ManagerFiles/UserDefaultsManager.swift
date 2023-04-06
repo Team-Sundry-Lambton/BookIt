@@ -68,4 +68,12 @@ class UserDefaultsManager : NSObject{
     func getNotificationEnable() -> Bool{
         return defaults.bool(forKey: "EnableNotification")
     }
+    
+    func setFCM(fcmKey : String){
+        defaults.set(fcmKey, forKey: "FCM")
+    }
+    
+    func getFCM() -> String{
+        return defaults.string(forKey: "FCM") ?? ""
+    }
 }
