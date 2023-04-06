@@ -270,13 +270,13 @@ extension ClientBookingDetailController {
     //User payment service call
     func paymentAPICall()
     {
-        let param = UserPaymentParam(clientEmail: booking?.client?.email ?? "", bookingId: String(describing:booking?.bookingId), vendorEmail: booking?.vendor?.email ?? "")
-        let urlPath: String = "user/signin"
+        let param = UserPaymentParam(bookingId: String(describing:booking?.bookingId))
+        let urlPath: String = "email/send/"
         
         NetworkManager.shared.makePayment(urlStr: urlPath, postData: param.toJSON()) { (success, rsponse) in
             if success == true
             {DispatchQueue.main.async {
-                print(rsponse?.userEmail)
+                print(rsponse?.message)
                 if let booking = self.booking {
                     booking.status = ServiceStatus.IN_PROGRESS.title
                     self.saveAllContextCoreData()

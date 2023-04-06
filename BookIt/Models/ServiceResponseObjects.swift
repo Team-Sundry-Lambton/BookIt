@@ -9,11 +9,11 @@ import Foundation
 
 //Response object for user payment
 struct UserPayment: Decodable {
-    let userEmail: String
-    let status : Bool
+    let message: String
+    let result : Bool
     
     enum CodingKeys: String, CodingKey {
-    case userEmail
-    case status
+    case message
+    case result
   }
 }
