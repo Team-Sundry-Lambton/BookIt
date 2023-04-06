@@ -1022,6 +1022,8 @@ extension InitialDataDownloadManager{
                     if let document = querySnapshot!.documents.first{
                         document.reference.updateData([
                             "status": booking.status ?? "",
+                            "date": booking.date ?? Date(),
+                            "problemDescription" : booking.problemDescription ?? "",
                         ])
                         completion(true)
                     }
