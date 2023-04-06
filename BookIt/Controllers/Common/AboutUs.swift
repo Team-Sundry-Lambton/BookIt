@@ -12,10 +12,10 @@ struct AboutUs: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
       
     var version = "App Version : " + (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.0")
-    var aboutUs = "About Us : "
+    var aboutUs = "About Us"
     var aboutUsURL  = "hhttps://sonia364.github.io/bookit_web/about-us.html"
     var contactUs = " Contact Us : \n teamsundry@gmail.com"
-    var privacy = "Privacy Policy :"
+    var privacy = "Privacy Policy"
     var privacyURL =  "https://www.freeprivacypolicy.com/live/5edf96ed-0b84-4fc0-955e-bc578ff82da4"
     var body: some View {
         ZStack {
@@ -34,28 +34,25 @@ struct AboutUs: View {
 //                    .padding()
 //                    .background(Color.gray)
 //                    .foregroundColor(Color.white).multilineTextAlignment(.center).padding(.bottom, 15)
-                VStack(alignment: .center) {
-                    Text(aboutUs).font(.system(size: 18.0))
-                        .frame(maxWidth: .infinity)
-                        .foregroundColor(Color.white)
-                        .multilineTextAlignment(.center).padding(.top, 15)
-                    Link(aboutUsURL, destination: URL(string: aboutUsURL)!)
-                        .font(.system(size: 16.0)).underline(true, color: .white)
-                        .frame(maxWidth: .infinity)
-                        .foregroundColor(Color.white)
-                        .multilineTextAlignment(.center).padding(.bottom, 15)
-                }.background(Color.gray).frame(maxWidth: .infinity).padding(.bottom, 15)
-                VStack(alignment: .center) {
-                    Text(privacy).font(.system(size: 18.0))
-                        .frame(maxWidth: .infinity)
-                        .foregroundColor(Color.white)
-                        .multilineTextAlignment(.center).padding(.top, 15)
-                    Link(privacyURL, destination: URL(string: privacyURL)!)
-                        .font(.system(size: 16.0)).underline(true, color: .white)
-                        .frame(maxWidth: .infinity)
-                        .foregroundColor(Color.white)
-                        .multilineTextAlignment(.center).padding(.bottom, 15)
-                }.background(Color.gray).frame(maxWidth: .infinity)
+                HStack(alignment: .bottom) {
+                    HStack(alignment: .center) {
+                        Image("aboutUs").resizable().frame(width: 30 , height: 30, alignment: .center).padding(.top,15).padding(.bottom,15).padding(.leading,20)
+                        Link(aboutUs, destination: URL(string: aboutUsURL)!)
+                            .font(.system(size: 18.0)).underline(true, color: .white)
+                            .foregroundColor(Color.white)
+                        }
+                    Spacer()
+                    HStack(alignment: .center) {
+                        //                    Text(privacy).font(.system(size: 18.0))
+                        //                        .frame(maxWidth: .infinity)
+                        //                        .foregroundColor(Color.white)
+                        //                        .multilineTextAlignment(.center).padding(.top, 15)
+                        Image("PrivacyPolicy").resizable().frame(width: 30 , height: 30, alignment: .center).padding(.top,15).padding(.bottom,15)
+                        Link(privacy, destination: URL(string: privacyURL)!)
+                            .font(.system(size: 18.0)).underline(true, color: .white)
+                            .foregroundColor(Color.white).padding(.trailing,20)
+                        }
+                }.frame(minWidth: UIScreen.main.bounds.width).background(Color.gray).padding()
                 
                 Spacer()
             }

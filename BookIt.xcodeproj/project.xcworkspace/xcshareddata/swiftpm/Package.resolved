@@ -10,6 +10,15 @@
       }
     },
     {
+      "identity" : "alamofire",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Alamofire/Alamofire.git",
+      "state" : {
+        "revision" : "78424be314842833c04bc3bef5b72e85fff99204",
+        "version" : "5.6.4"
+      }
+    },
+    {
       "identity" : "appauth-ios",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/openid/AppAuth-iOS.git",
@@ -142,6 +151,15 @@
       "state" : {
         "revision" : "819d0a2173aff699fb8c364b6fb906f7cdb1a692",
         "version" : "2.30909.0"
+      }
+    },
+    {
+      "identity" : "paypalcheckout-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/paypal/paypalcheckout-ios.git",
+      "state" : {
+        "revision" : "229f0b8b88970b04d13becd4a8c64e95f5969cab",
+        "version" : "0.110.0"
       }
     },
     {

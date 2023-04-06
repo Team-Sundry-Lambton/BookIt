@@ -45,6 +45,8 @@
 					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
 					<key>UISceneStoryboardFile</key>
 					<string>Main</string>
+					<key>Base url</key>
+					<string>http://34.201.209.204:8009/</string>
 				</dict>
 			</array>
 		</dict>

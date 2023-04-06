@@ -16,17 +16,15 @@ class InitialDataDownloadManager : NSObject{
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     func downloadAllData(completion: @escaping () -> Void)  async{
-
-           await getAllCategoryData()
-            await getAllClientData()
-            await getAllVendorData()
-            await getAllServiceData()
-            await getAllAddressData()
-            await getAllMediaData()
-            await getAllBookingData()
-            await getAllPaymentData()
-           
-            await getAllVendorReviewData()
+        await getAllCategoryData()
+        await getAllClientData()
+        await getAllVendorData()
+        await getAllAddressData()
+        await getAllServiceData()
+        await getAllMediaData()
+        await getAllBookingData()
+        await getAllPaymentData()
+        await getAllVendorReviewData()
         
         completion()
     }
@@ -123,6 +121,14 @@ class InitialDataDownloadManager : NSObject{
                         }
                     }
                 }
+                
+                if let addressId = data["parentAddress"]  as? Int {
+                    if addressId != -1 {
+                        if let address = CoreDataManager.shared.getLocationData(addressId: addressId){
+                            service.address = address
+                        }
+                    }
+                }
             }
             self.saveData()
         }catch{
@@ -138,16 +144,16 @@ class InitialDataDownloadManager : NSObject{
                 let address = Address(context: self.context)
                 address.addressLongitude = data["longitude"] as? Double ?? 0
                 address.addressLatitude =  data["latitude"] as? Double ?? 0
-
+                address.addressId = data["addressId"] as? Int16 ?? -1
                 address.address =  data["address"] as? String ?? ""
                 
-                if let parentService = data["parentService"]  as? Int {
-                    if parentService != -1 {
-                        if let service = CoreDataManager.shared.getService(serviceId: parentService){
-                            address.parentService = service
-                        }
-                    }
-                }
+//                if let parentService = data["parentService"]  as? Int {
+//                    if parentService != -1 {
+//                        if let service = CoreDataManager.shared.getService(serviceId: parentService){
+//                            address.parentService = service
+//                        }
+//                    }
+//                }
                 if let clientEmail = data["clientEmailAddress"]  as? String {
                     if clientEmail != "" {
                         if let client = CoreDataManager.shared.getClient(email: clientEmail){
@@ -309,7 +315,6 @@ class InitialDataDownloadManager : NSObject{
         }catch{
             print("Error loading location data \(error.localizedDescription)")
         }
-
     }
     
     func getAllAccountData() async{
@@ -548,9 +553,10 @@ extension InitialDataDownloadManager {
                 }
             }
         }
-        
+        var addressID = -1
         if let address = service.address {
-            self.addAddressData(address: address){ status in
+            addressID = Int(address.addressId)
+            self.addAddressDataForService(address: address, serviceId: Int(service.serviceId)){ status in
                 if let status = status {
                     if status == false {
                         completion(false)
@@ -572,6 +578,7 @@ extension InitialDataDownloadManager {
             "serviceId":  service.serviceId ,
             "createdDate" : service.createdDate ?? Date(),
             "status" : service.status ?? "",
+            "parentAddress" : addressID,
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
@@ -584,10 +591,6 @@ extension InitialDataDownloadManager {
     }
     
     func addAddressData(address: Address,completion: @escaping (_ status: Bool?) -> Void){
-        var serviceId : Int?
-        if let service = address.parentService {
-            serviceId = Int(service.serviceId)
-        }
         var clientEmail : String?
         if let client = address.clientAddress {
             clientEmail = client.email
@@ -601,9 +604,29 @@ extension InitialDataDownloadManager {
                 "longitude": address.addressLongitude,
                 "latitude": address.addressLatitude,
                 "address": address.address ?? "",
-                "parentService": serviceId ?? -1,
+                "addressId" : address.addressId ,
+//                "parentService": serviceId ?? -1,
                 "clientEmailAddress": clientEmail ?? "",
                 "vendorEmailAddress": vendorEmail ?? "",
+            ]) { err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                    completion(false)
+                } else {
+                    print("Document added with ID: \(ref?.documentID)")
+                    completion(true)
+                }
+            }
+    }
+    
+    func addAddressDataForService(address: Address, serviceId : Int ,completion: @escaping (_ status: Bool?) -> Void){
+            var ref: DocumentReference? = nil
+            ref = db.collection("address").addDocument(data: [
+                "longitude": address.addressLongitude,
+                "latitude": address.addressLatitude,
+                "address": address.address ?? "",
+                "addressId" : address.addressId ,
+                "parentService": serviceId ,
             ]) { err in
                 if let err = err {
                     print("Error adding document: \(err)")
@@ -864,12 +887,7 @@ extension InitialDataDownloadManager{
         if let address = addressObject.address {
             var filterField = ""
             var filterText = ""
-            var serviceId = -1
-            if let service = addressObject.parentService {
-                serviceId = Int(service.serviceId)
-                filterField = "serviceId"
-                filterText =  String(serviceId)
-            }
+
             var clientEmail : String?
             if let client = addressObject.clientAddress {
                 clientEmail = client.email
@@ -885,6 +903,7 @@ extension InitialDataDownloadManager{
             
             db.collection("address")
                 .whereField(filterField, isEqualTo: filterText)
+                .whereField("addressId", isEqualTo: addressObject.addressId)
                 .getDocuments() { (querySnapshot, err) in
                     if let err = err {
                         // Some error occured
@@ -907,6 +926,47 @@ extension InitialDataDownloadManager{
                         }
                     }
                 }
+        }
+    }
+    
+    func updateAddressDataForService(addressObject : Address , serviceId : Int ,completion: @escaping (_ status: Bool?) -> Void){
+        var addressLat = 0.0
+        var addressLog = 0.0
+        var address = ""
+        if let serviceAddress = addressObject.address {
+            address = serviceAddress
+        }
+            if let service = addressObject.parentService {
+                addressLat = addressObject.addressLatitude
+                addressLog = addressObject.addressLongitude
+//                addressLat = String(addressObject.addressLatitude)
+//                addressLog = String(addressObject.addressLongitude)
+            }
+            
+            db.collection("address")
+                .whereField("parentService", isEqualTo: serviceId)
+                .whereField("addressId", isEqualTo: addressObject.addressId)
+                .getDocuments() { (querySnapshot, err) in
+                    if let err = err {
+                        // Some error occured
+                        
+                        completion(false)
+                    } else if querySnapshot!.documents.count == 0 {
+                        // Perhaps this is an error for you?
+                        completion(false)
+                    } else {
+                        if let document = querySnapshot!.documents.first{
+                            document.reference.updateData([
+                                "longitude": addressLat,
+                                "latitude": addressLog,
+                                "address": address
+                                //                                "parentService": serviceId ?? -1,
+                                //                                "clientEmailAddress": clientEmail ?? "",
+                                //                                "vendorEmailAddress": vendorEmail ?? "",
+                            ])
+                            completion(true)
+                        }
+                    }
         }
     }
         
@@ -962,6 +1022,8 @@ extension InitialDataDownloadManager{
                     if let document = querySnapshot!.documents.first{
                         document.reference.updateData([
                             "status": booking.status ?? "",
+                            "date": booking.date ?? Date(),
+                            "problemDescription" : booking.problemDescription ?? "",
                         ])
                         completion(true)
                     }
@@ -981,9 +1043,10 @@ extension InitialDataDownloadManager{
                     }
                 }
             }
-            
+        var addressID = -1
             if let address = service.address {
-                self.updateAddressData(addressObject: address){ status in
+                addressID = Int(address.addressId)
+                self.updateAddressDataForService(addressObject: address, serviceId: Int(service.serviceId)){ status in
                     if let status = status {
                         if status == false {
                             completion(false)
@@ -1027,7 +1090,9 @@ extension InitialDataDownloadManager{
                                 "serviceDescription": service.serviceDescription ?? "",
                                 "parentCategory":  category,
                                 "serviceTitle":  title,
-                                "status" : status
+                                "status" : status,
+                                "parentAddress" : addressID,
+                                
                                 //"parentVendor":  service.parent_Vendor?.email ?? "",
                             ])
                             completion(true)

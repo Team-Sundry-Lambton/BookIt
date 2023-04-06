@@ -10,6 +10,7 @@ import CoreData
 import FacebookCore
 import GoogleSignIn
 import FirebaseCore
+import PayPalCheckout
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -29,6 +30,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
            }
          }
 
+        let config = CheckoutConfig(
+               clientID: "AVb6aKMYigI1h2LEFAZHG-zXwNVJzUqiLvYOcIUGht0WBq_O7Usz9xOVmLIh7Zc85Ynzsu3jBBE8uuSE",
+               environment: .sandbox
+           )
+
+           Checkout.set(config: config)
+        
         NetworkMonitor.shared.startMonitoring()
         
         return true

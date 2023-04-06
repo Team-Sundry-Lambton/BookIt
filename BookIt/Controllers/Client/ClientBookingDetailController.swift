@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-
+import PayPalCheckout
 
 class ClientBookingDetailController : NavigationBaseViewController{
     
@@ -172,7 +172,6 @@ class ClientBookingDetailController : NavigationBaseViewController{
                         LoadingHudManager.shared.showSimpleHUD(title: "Cancelling...", view: self.view)
                             Task {
                                 booking.status = ServiceStatus.CANCELLED.title
-                                await
                                 InitialDataDownloadManager.shared.updateBookingData(booking:booking){[weak self] status in
                                     DispatchQueue.main.async {
                                         LoadingHudManager.shared.dissmissHud()
@@ -209,7 +208,7 @@ class ClientBookingDetailController : NavigationBaseViewController{
             self.present(alertController, animated: true, completion: nil)
             
         case ServiceStatus.PENDING.title:
-            //make a payment
+            makePayment()
             serviceStatusBtn.isHidden = false
             
         case ServiceStatus.COMPLETED.title:
@@ -239,4 +238,103 @@ class ClientBookingDetailController : NavigationBaseViewController{
             print("Error saving the data \(error.localizedDescription)")
         }
     }
+    
+    private func makePayment(){
+        let actionSheet = UIAlertController(title: "Payment Options", message: "Select the payment option you want tp proceed.", preferredStyle: .actionSheet)
+
+        let actionCredit = UIAlertAction(title: "Credit/Debit", style: .default) { _ in
+            self.paymentAPICall()
+        }
+        actionSheet.addAction(actionCredit)
+        
+        let actionApplePay = UIAlertAction(title: "Apple Pay", style: .default) { _ in
+            self.paymentAPICall()
+        }
+        actionSheet.addAction(actionApplePay)
+
+        let actionPayPal = UIAlertAction(title: "PayPal", style: .default) { _ in
+            self.triggerPayPalCheckout(price:self.priceLbl.text ?? "0")
+        }
+        actionSheet.addAction(actionPayPal)
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        actionSheet.addAction(cancelAction)
+
+        present(actionSheet, animated: true)
+    }
+}
+
+// MARK: - Service Calls
+extension ClientBookingDetailController {
+    
+    //User payment service call
+    func paymentAPICall()
+    {
+        let param = UserPaymentParam(clientEmail: booking?.client?.email ?? "", bookingId: String(describing:booking?.bookingId), vendorEmail: booking?.vendor?.email ?? "")
+        let urlPath: String = "user/signin"
+        
+        NetworkManager.shared.makePayment(urlStr: urlPath, postData: param.toJSON()) { (success, rsponse) in
+            if success == true
+            {DispatchQueue.main.async {
+                print(rsponse?.userEmail)
+                if let booking = self.booking {
+                    booking.status = ServiceStatus.IN_PROGRESS.title
+                    self.saveAllContextCoreData()
+                }
+                //go to home.
+            }
+ 
+            }else{
+                UIAlertViewExtention.shared.showBasicAlertView(title: "Payment Failed", message: "Sonmething went wrong please try again.", okActionTitle: "OK", view: self)
+            }
+        }
+    }
+}
+
+extension ClientBookingDetailController{
+    func triggerPayPalCheckout(price : String) {
+        Checkout.start(
+            createOrder: { createOrderAction in
+
+                let amount = PurchaseUnit.Amount(currencyCode: .cad, value: price)
+                let purchaseUnit = PurchaseUnit(amount: amount)
+                let order = OrderRequest(intent: .capture, purchaseUnits: [purchaseUnit])
+
+                createOrderAction.create(order: order)
+
+            }, onApprove: { approval in
+
+                approval.actions.capture { (response, error) in
+                    self.paymentAPICall()
+                    print("Order successfully captured: \(response?.data)")
+                }
+
+            }, onCancel: {
+
+                // Optionally use this closure to respond to the user canceling the paysheet
+
+            }, onError: { error in
+
+                // Optionally use this closure to respond to the user experiencing an error in
+                // the payment experience
+
+            }
+        )
+    }
+    
+//    private func configurePayPalCheckout() {
+//            Checkout.setCreateOrderCallback { action in
+//                let amount = PurchaseUnit.Amount(currencyCode: .usd, value: "10.00")
+//                let purchaseUnit = PurchaseUnit(amount: amount)
+//                let order = OrderRequest(intent: .capture, purchaseUnits: [purchaseUnit])
+//
+//                action.create(order: order)
+//            }
+//            Checkout.setOnApproveCallback { approval in
+//                approval.actions.capture { response, error in
+//                    print("Order successfully captured: \(response?.data)")
+//                }
+//            }
+//        }
+
 }

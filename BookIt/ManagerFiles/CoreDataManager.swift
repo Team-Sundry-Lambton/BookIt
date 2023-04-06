@@ -148,21 +148,6 @@ class CoreDataManager : NSObject{
        return vendorReview
     }
     
-    func getServiceLocationData(serviceId : Int) -> Address? {
-        var selectedLocation : Address?
-        let request: NSFetchRequest<Address> = Address.fetchRequest()
-        let folderPredicate = NSPredicate(format: "parentService.serviceId=%i", serviceId)
-        request.predicate = folderPredicate
-        do {
-            let location = try context.fetch(request)
-            selectedLocation = location.first
-        } catch {
-            print("Error loading location data \(error.localizedDescription)")
-        }
-        
-        return selectedLocation
-    }
-    
     func getUserLocationData(email : String) -> Address? {
         var selectedLocation : Address?
         let request: NSFetchRequest<Address> = Address.fetchRequest()
@@ -249,6 +234,21 @@ class CoreDataManager : NSObject{
         return Int16(count)
     }
     
+    func getAddressID() -> Int16 {
+        var count = 0
+        let request: NSFetchRequest<Address> = Address.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "addressId", ascending: true)]
+        do {
+             let addressIdList = try context.fetch(request)
+            if addressIdList.count > 0 {
+                count = Int((addressIdList.last?.addressId ?? 0) + 1)
+            }
+        } catch {
+            print("Error loading Service \(error.localizedDescription)")
+        }
+        return Int16(count)
+    }
+    
     func loadBookingList(email : String, isClient:Bool = false) -> [Booking]{
             var bookingList = [Booking]()
             let request: NSFetchRequest<Booking> = Booking.fetchRequest()
@@ -284,6 +284,7 @@ class CoreDataManager : NSObject{
         }
         return serviceList
     }
+    
     func loadServicesByVendor(email:String) -> [Service]{
         var serviceList = [Service]()
         let request: NSFetchRequest<Service> = Service.fetchRequest()
@@ -426,6 +427,21 @@ class CoreDataManager : NSObject{
         } catch let error as NSError {
             debugPrint(error)
         }
+    }
+    
+    func getLocationData(addressId: Int)-> Address? {
+        var selectedLocation : Address?
+        let request: NSFetchRequest<Address> = Address.fetchRequest()
+        let folderPredicate = NSPredicate(format: "addressId=%i", addressId)
+        request.predicate = folderPredicate
+        do {
+            let location = try context.fetch(request)
+            selectedLocation = location.first
+        } catch {
+            print("Error loading location data \(error.localizedDescription)")
+        }
+        
+        return selectedLocation
     }
     
     func deleteClients() {

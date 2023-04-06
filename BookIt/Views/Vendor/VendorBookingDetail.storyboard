@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_0" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -14,7 +14,7 @@
             <objects>
                 <viewController storyboardIdentifier="VendorBookingDetail" id="Y6W-OH-hqX" customClass="VendorBookingDetailController" customModule="BookIt" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nw3-ad-mm8">
@@ -33,7 +33,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PxR-qg-Whn">
-                                                <rect key="frame" x="0.0" y="36.333333333333329" width="358" height="135"/>
+                                                <rect key="frame" x="0.0" y="36.333333333333343" width="358" height="135"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ctZ-Ku-cxw">
                                                         <rect key="frame" x="8" y="7.9999999999999982" width="342" height="19.333333333333329"/>
@@ -42,7 +42,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test-image.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="lwC-r4-Cpm">
-                                                        <rect key="frame" x="8" y="37.333333333333329" width="54" height="54"/>
+                                                        <rect key="frame" x="8" y="37.333333333333343" width="54" height="54"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="54" id="fUT-np-sUY"/>
                                                             <constraint firstAttribute="width" constant="54" id="ubq-Z8-Chd"/>
@@ -54,7 +54,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iNo-Gj-mGB">
-                                                        <rect key="frame" x="70" y="37.333333333333329" width="280" height="19.333333333333329"/>
+                                                        <rect key="frame" x="70" y="37.333333333333336" width="280" height="19.333333333333336"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -67,19 +67,19 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Book date and time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYK-Yl-K6c">
-                                                        <rect key="frame" x="86" y="59.000000000000014" width="264" height="17"/>
+                                                        <rect key="frame" x="86" y="59" width="264" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customer location for service" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EDA-Jj-td1">
-                                                        <rect key="frame" x="86" y="78.000000000000014" width="264" height="14.333333333333329"/>
+                                                        <rect key="frame" x="86" y="78" width="264" height="14.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ 0 / hr" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kM2-XM-cTZ">
-                                                        <rect key="frame" x="7.9999999999999964" y="103.33333333333333" width="52.666666666666657" height="19.333333333333329"/>
+                                                        <rect key="frame" x="7.9999999999999964" y="103.33333333333331" width="52.666666666666657" height="19.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -156,7 +156,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="location desc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RD7-jV-mkj">
-                                                <rect key="frame" x="0.0" y="222.66666666666669" width="358" height="17"/>
+                                                <rect key="frame" x="0.0" y="222.66666666666666" width="358" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -248,7 +248,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hrL-76-GBW">
-                                        <rect key="frame" x="43" y="677" width="304" height="34.333333333333371"/>
+                                        <rect key="frame" x="43" y="616" width="304" height="34.333333333333371"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="gray" title="Total Income : $0" cornerStyle="capsule">
@@ -273,7 +273,7 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="lCx-4t-Xsa"/>
                             </scrollView>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" role="cancel" translatesAutoresizingMaskIntoConstraints="NO" id="Q3c-ZV-H4G">
-                                <rect key="frame" x="16" y="775" width="172" height="35"/>
+                                <rect key="frame" x="16" y="701" width="172" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="XTx-Z6-9N0"/>
                                     <constraint firstAttribute="width" constant="172" id="Yei-1U-iKJ"/>
@@ -292,7 +292,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vuH-9W-RxD">
-                                <rect key="frame" x="202" y="775" width="172" height="35"/>
+                                <rect key="frame" x="-81" y="701" width="172" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="AaU-Bl-4Kt"/>
                                     <constraint firstAttribute="width" constant="172" id="stE-d6-gJE"/>
@@ -311,7 +311,7 @@
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mhQ-Ju-sGM">
-                                <rect key="frame" x="16" y="775" width="358" height="35"/>
+                                <rect key="frame" x="16" y="701" width="75" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="9eV-TC-cyW"/>
                                     <constraint firstAttribute="width" constant="358" id="d6S-Vj-myc"/>

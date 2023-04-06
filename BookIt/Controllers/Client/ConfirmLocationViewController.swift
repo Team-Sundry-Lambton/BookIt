@@ -59,7 +59,8 @@ class ConfirmLocationViewController: UIViewController {
       
         if (UserDefaultsManager.shared.getUserLogin()){
             if (CoreDataManager.shared.checkClientLocationInDB(email: client?.email ?? "")){
-                CoreDataManager.shared.deleteClientLocation(email: client?.email ?? "")
+                selectedLocation = CoreDataManager.shared.getUserLocationData(email: client?.email ?? "")
+//                CoreDataManager.shared.deleteClientLocation(email: client?.email ?? "")
                 setLocationObject(isUpdate: true)
                 UIAlertViewExtention.shared.showBasicAlertView(title: "Success",message: "Location updated successfully.", okActionTitle: "OK", view: self)
                 
@@ -75,42 +76,47 @@ class ConfirmLocationViewController: UIViewController {
     
     //MARK: - Core data interaction methods
     func setLocationObject(isUpdate : Bool) {
-        var selectedLocation = Address(context: context)
-        selectedLocation.addressLatitude = currentAddress?.coordinate.latitude ?? 0
-        selectedLocation.addressLongitude = currentAddress?.coordinate.longitude ?? 0
-        selectedLocation.address = currentAddress?.title
-        selectedLocation.clientAddress = client
+        if selectedLocation == nil {
+            selectedLocation = Address(context: context)
+            selectedLocation?.addressId = CoreDataManager.shared.getAddressID()
+        }
+        selectedLocation?.addressLatitude = currentAddress?.coordinate.latitude ?? 0
+        selectedLocation?.addressLongitude = currentAddress?.coordinate.longitude ?? 0
+        selectedLocation?.address = currentAddress?.title
+        selectedLocation?.clientAddress = client
         saveLocation()
-        if isUpdate {
-            LoadingHudManager.shared.showSimpleHUD(title: "Updating...", view: self.view)
-            InitialDataDownloadManager.shared.updateAddressData(addressObject: selectedLocation){[weak self] status in
-                DispatchQueue.main.async {
-                    LoadingHudManager.shared.dissmissHud()
-                    guard let strongSelf = self else {
-                        return
-                    }
-                    if let status = status{
-                        if status == false {
-                            UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: strongSelf)
+        if let location = selectedLocation {
+            if isUpdate {
+                LoadingHudManager.shared.showSimpleHUD(title: "Updating...", view: self.view)
+                InitialDataDownloadManager.shared.updateAddressData(addressObject: location){[weak self] status in
+                    DispatchQueue.main.async {
+                        LoadingHudManager.shared.dissmissHud()
+                        guard let strongSelf = self else {
+                            return
+                        }
+                        if let status = status{
+                            if status == false {
+                                UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: strongSelf)
+                            }
                         }
                     }
                 }
-            }
-        }else{
-            LoadingHudManager.shared.showSimpleHUD(title: "Inserting...", view: self.view)
-            InitialDataDownloadManager.shared.addAddressData(address: selectedLocation){ [weak self] status in
-                DispatchQueue.main.async {
-                    LoadingHudManager.shared.dissmissHud()
-                    guard let strongSelf = self else {
-                        return
-                    }
-                    if let status = status{
-                        if status == false {
-                            UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: strongSelf)
+            }else{
+                LoadingHudManager.shared.showSimpleHUD(title: "Inserting...", view: self.view)
+                InitialDataDownloadManager.shared.addAddressData(address: location){ [weak self] status in
+                    DispatchQueue.main.async {
+                        LoadingHudManager.shared.dissmissHud()
+                        guard let strongSelf = self else {
+                            return
+                        }
+                        if let status = status{
+                            if status == false {
+                                UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: strongSelf)
+                            }
                         }
                     }
+                    
                 }
-                
             }
         }
     }
@@ -153,7 +159,10 @@ extension ConfirmLocationViewController: MapViewDelegate {
     }
     
     func setServiceLocation(place : PlaceObject){
-        selectedLocation = Address(context: context)
+        if selectedLocation == nil {
+            selectedLocation = Address(context: context)
+            selectedLocation?.addressId = CoreDataManager.shared.getAddressID()
+        }
         selectedLocation?.addressLatitude = place.coordinate.latitude
         selectedLocation?.addressLongitude = place.coordinate.longitude
         selectedLocation?.address = place.title

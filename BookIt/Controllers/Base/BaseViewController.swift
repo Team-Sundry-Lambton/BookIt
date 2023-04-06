@@ -15,6 +15,7 @@ class BaseViewController: UIViewController {
     var managedObjectContext: NSManagedObjectContext!
     
     override func viewDidLoad() {
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
