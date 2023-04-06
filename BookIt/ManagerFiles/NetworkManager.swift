@@ -27,7 +27,7 @@ class NetworkManager: NSObject {
                 print(error)
             }
         }
-        return "http://34.201.209.204:8009/"
+        return "http://34.201.209.204:8009/admin/api/"
     }
     
     //User make the payment
@@ -43,7 +43,7 @@ class NetworkManager: NSObject {
                 
                 do {
                     let payment = try JSONDecoder().decode(UserPayment.self, from: data)
-                    print(payment.userEmail)
+                    print(payment.message)
                     completionHandler(true,payment)
                 }
                 catch {
