@@ -144,7 +144,9 @@ class SignupViewController: NavigationBaseViewController {
             vendor.picture = nil
             vendor.contactNumber = user.contactNumber
             vendor.bannerURL = nil
-            vendor.password = passwordTxt.text
+            if let password = passwordTxt.text {
+                vendor.password = encryptString(test: password)
+            }
             saveUser()
      
                 LoadingHudManager.shared.showSimpleHUD(title: "Inserting...", view: self.view)
@@ -164,7 +166,9 @@ class SignupViewController: NavigationBaseViewController {
             client.picture = nil
             client.contactNumber = user.contactNumber
             client.isPremium = false
-            client.password = passwordTxt.text
+            if let password = passwordTxt.text {
+                client.password = encryptString(test: password)
+            }
             saveUser()
                 LoadingHudManager.shared.showSimpleHUD(title: "Inserting...", view: self.view)
                 InitialDataDownloadManager.shared.addClientData(client: client){[weak self] status in
