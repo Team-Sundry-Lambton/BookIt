@@ -103,6 +103,7 @@ class LoginViewController: NavigationBaseViewController {
                             self.loadDashBoard(user: self.loginUser)
                         }else{
                             UIAlertViewExtention.shared.showBasicAlertView(title: "Error",message: "Password miss match.", okActionTitle: "OK", view: self)
+                            LoadingHudManager.shared.dissmissHud()
                         }
                     }
                 }else{

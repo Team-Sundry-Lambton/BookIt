@@ -234,6 +234,7 @@ class SignupViewController: NavigationBaseViewController {
     func displayErrorMessage(status : Bool?){
         if let status = status {
             if status == false {
+                LoadingHudManager.shared.dissmissHud()
                 UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
             }else{
                 loadDashBoard()
