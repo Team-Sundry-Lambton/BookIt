@@ -145,7 +145,9 @@ class SignupViewController: NavigationBaseViewController {
             vendor.contactNumber = user.contactNumber
             vendor.bannerURL = nil
             if let password = passwordTxt.text {
-                vendor.password = encryptString(test: password)
+                if password.count > 0 {
+                    vendor.password = encryptString(test: password)
+                }
             }
             saveUser()
      
@@ -167,7 +169,9 @@ class SignupViewController: NavigationBaseViewController {
             client.contactNumber = user.contactNumber
             client.isPremium = false
             if let password = passwordTxt.text {
-                client.password = encryptString(test: password)
+                if password.count > 0 {
+                    client.password = encryptString(test: password)
+                }
             }
             saveUser()
                 LoadingHudManager.shared.showSimpleHUD(title: "Inserting...", view: self.view)

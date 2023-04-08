@@ -7,19 +7,31 @@
 
 import CryptoSwift
 
-let encryptionKey:String = "2tC2H19lkVDGRTWkxcrtNMQdd0FloLyw";
-let encryptionIV:String = "bbC2H19lRE3gwbQDfak";
+let encryptionKey = "2tC2H19lkVbQDfakxcrtNMQdd0FloLyw"
+ let encryptionIV = "bbC2H19lkVbQDfak"
 
 public func encryptString(test : String) -> String{
-    let encryptedString:String = try! test.aesEncrypt(key: encryptionKey, iv: encryptionIV)
-    print("Test : ", test)
-    print("Encrypted Test : ", encryptedString)
+    var encryptedString = ""
+    do {
+    encryptedString = try test.aesEncrypt(key: encryptionKey, iv: encryptionIV)
+        print("Test : ", test)
+        print("Encrypted Test : ", encryptedString)
+       
+    } catch {
+        print("ERROR")
+    }
     return encryptedString
 }
 
 public func dencryptString(encyrptedString : String) ->String {
-    let dencryptedString:String = try! encyrptedString.aesDecrypt(key: encryptionKey, iv: encryptionIV)
+    var dencryptedString = ""
+    do {
+        dencryptedString = try encyrptedString.aesDecrypt(key: encryptionKey, iv: encryptionIV)
     print("Encrypted Test : ", encyrptedString )
     print("Decrypted Test : ",dencryptedString)
+    
+} catch {
+    print("ERROR")
+}
     return dencryptedString
 }

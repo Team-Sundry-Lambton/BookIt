@@ -18,17 +18,29 @@ extension String {
 extension String {
 
     func aesEncrypt(key: String, iv: String) throws -> String {
+        var encryptedString = ""
         let data = self.data(using: .utf8)!
-        let encrypted = try! AES(key: key, iv: iv, padding: .pkcs7).encrypt([UInt8](data))
-        let encryptedData = Data(encrypted)
-        return encryptedData.toHexString()
+        do {
+            let encrypted = try AES(key: key, iv: iv, padding: .pkcs7).encrypt([UInt8](data))
+            let encryptedData = Data(encrypted)
+            encryptedString = encryptedData.toHexString()
+        } catch {
+            print("ERROR")
+        }
+        return encryptedString
     }
 
     func aesDecrypt(key: String, iv: String) throws -> String {
-        let data = self.dataFromHexadecimalString()!
-        let decrypted = try! AES(key: key, iv: iv, padding:.pkcs7).decrypt([UInt8](data))
-        let decryptedData = Data(decrypted)
-        return String(bytes: decryptedData.bytes, encoding: .utf8) ?? "Could not decrypt"
+        var decryptedString = ""
+        do {
+            let data = self.dataFromHexadecimalString()!
+            let decrypted = try AES(key: key, iv: iv, padding:.pkcs7).decrypt([UInt8](data))
+            let decryptedData = Data(decrypted)
+            decryptedString = String(bytes: decryptedData.bytes, encoding: .utf8) ?? "Could not decrypt"
+        } catch {
+            print("ERROR")
+        }
+        return decryptedString
     }
 
     func dataFromHexadecimalString() -> Data? {

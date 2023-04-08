@@ -2108,22 +2108,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "39871ECC-54F0-47F7-919E-FBF8419C9F40"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BookIt/Controllers/Common/LoginViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
-            landmarkName = "redirectUser(email:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "57B18840-9B7F-4970-BD96-F79334CBFB48"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -2131,8 +2115,8 @@
             filePath = "BookIt/ManagerFiles/CryptoManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
             landmarkName = "dencryptString(encyrptedString:)"
             landmarkType = "9">
          </BreakpointContent>
@@ -2147,8 +2131,8 @@
             filePath = "BookIt/ManagerFiles/CryptoManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "14"
-            endingLineNumber = "14"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
             landmarkName = "encryptString(test:)"
             landmarkType = "9">
          </BreakpointContent>
@@ -2204,86 +2188,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0923FD30-6287-480F-BF2B-B2D8E36DE7C6"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BookIt/Controllers/Common/LoginViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
-            landmarkName = "redirectUser(email:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "0923FD30-6287-480F-BF2B-B2D8E36DE7C6 - c23cbb22162ec79f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 (Swift.Optional&lt;Swift.Bool&gt;) -&gt; () in BookIt.LoginViewController.redirectUser(email: Swift.String) -&gt; ()"
-                  moduleName = "BookIt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Controllers/Common/LoginViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "94"
-                  endingLineNumber = "94"
-                  offsetFromSymbolStart = "3612">
-               </Location>
-               <Location
-                  uuid = "0923FD30-6287-480F-BF2B-B2D8E36DE7C6 - c23cbb22162ec79f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 (Swift.Optional&lt;Swift.Bool&gt;) -&gt; () in BookIt.LoginViewController.redirectUser(email: Swift.String) -&gt; ()"
-                  moduleName = "BookIt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Controllers/Common/LoginViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "94"
-                  endingLineNumber = "94"
-                  offsetFromSymbolStart = "3660">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "BBA1A507-0E26-40AC-981B-BF84150CE551"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BookIt/Controllers/Common/LoginViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
-            landmarkName = "redirectUser(email:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "98392453-C6AA-4725-83B0-9EFBAFE7A9DD"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BookIt/Controllers/Common/LoginViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "redirectUser(email:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "9EF362D1-C53C-4F53-B785-96FAAE5CB0AC"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -2294,6 +2198,182 @@
             startingLineNumber = "105"
             endingLineNumber = "105"
             landmarkName = "redirectUser(email:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CBAE49AE-11FD-4212-B5CF-782D2D6BCB92"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BookIt/Controllers/Common/SignupViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "setUserObject(user:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "CBAE49AE-11FD-4212-B5CF-782D2D6BCB92 - 2e93a0c1dafe27ab"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BookIt.SignupViewController.setUserObject(user: BookIt.LoginUser) -&gt; ()"
+                  moduleName = "BookIt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Controllers/Common/SignupViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "147"
+                  endingLineNumber = "147"
+                  offsetFromSymbolStart = "604">
+               </Location>
+               <Location
+                  uuid = "CBAE49AE-11FD-4212-B5CF-782D2D6BCB92 - 2e93a0c1dafe27ab"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BookIt.SignupViewController.setUserObject(user: BookIt.LoginUser) -&gt; ()"
+                  moduleName = "BookIt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Controllers/Common/SignupViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "147"
+                  endingLineNumber = "147"
+                  offsetFromSymbolStart = "800">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8BCC1777-8BE2-4FB2-993D-934725AF5D6F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BookIt/Controllers/Common/SignupViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "setUserObject(user:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F91BA147-2E5E-46F0-B875-E59F1A3F436F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BookIt/Controllers/Common/SignupViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
+            landmarkName = "setUserObject(user:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "39E2F5A3-66CD-4FD8-AB6A-0DB86F5D6DC8"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BookIt/Controllers/Common/SignupViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
+            landmarkName = "setUserObject(user:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "284407F0-B2D2-424D-90A9-0095256090E8"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BookIt/Controllers/Common/SignupViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
+            landmarkName = "setUserObject(user:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "284407F0-B2D2-424D-90A9-0095256090E8 - 2e93a0c1dafe22d3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BookIt.SignupViewController.setUserObject(user: BookIt.LoginUser) -&gt; ()"
+                  moduleName = "BookIt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Controllers/Common/SignupViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "171"
+                  endingLineNumber = "171"
+                  offsetFromSymbolStart = "1984">
+               </Location>
+               <Location
+                  uuid = "284407F0-B2D2-424D-90A9-0095256090E8 - 2e93a0c1dafe22d3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BookIt.SignupViewController.setUserObject(user: BookIt.LoginUser) -&gt; ()"
+                  moduleName = "BookIt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Controllers/Common/SignupViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "171"
+                  endingLineNumber = "171"
+                  offsetFromSymbolStart = "2180">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E6539EBD-D81F-46B2-84B6-9EE7E00E9C00"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BookIt/Controllers/Common/SignupViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
+            landmarkName = "setUserObject(user:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4CA6005E-BB2D-4EFD-BFDB-418EF50CCD2D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BookIt/Support Files/Extension/String+Extension.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "aesEncrypt(key:iv:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
