@@ -105,7 +105,7 @@ class ClientHomeViewController: BaseViewController {
         categoryList = CoreDataManager.shared.loadCategories()
         categoryCollectioView.reloadData()
         
-        vendorList =  CoreDataManager.shared.loadNewVendors()
+        vendorList =  CoreDataManager.shared.getMostRatedVendor()
         newVendersCollectionView.reloadData()
         
         serviceList = CoreDataManager.shared.loadServices()

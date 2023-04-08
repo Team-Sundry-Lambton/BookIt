@@ -190,6 +190,8 @@ class LoginViewController: NavigationBaseViewController {
         }
         if let user = loginUser {
             UserDefaultsManager.shared.saveUserData(user: user)
+        }else{
+            UserDefaultsManager.shared.saveUserData(user: user)
         }
     }
 }
