@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ClientBookVendorViewController: NavigationBaseViewController, UITextViewDelegate {
     
@@ -18,7 +19,7 @@ class ClientBookVendorViewController: NavigationBaseViewController, UITextViewDe
     @IBOutlet weak var btnImmediately: CustomRadioButton!
     @IBOutlet weak var btnAccordingToMe: CustomRadioButton!
     @IBOutlet weak var describeProblemTextView: BorderTextView!
-    
+
     let datePicker = UIDatePicker()
     let timePicker = UIDatePicker()
     var placeholderText = "Describe the problem"
@@ -169,12 +170,11 @@ class ClientBookVendorViewController: NavigationBaseViewController, UITextViewDe
 
             // Combine the date and time components
             let calendar = Calendar.current
-            let finalDate = calendar.date(bySettingHour: calendar.component(.hour, from: time), minute: calendar.component(.minute, from: time), second: 0, of: date)
-
+            finalDate = calendar.date(bySettingHour: calendar.component(.hour, from: time), minute: calendar.component(.minute, from: time), second: 0, of: date) ?? Date()
         }
         
         let description = describeProblemTextView.text ?? ""
-        saveBooking(date: finalDate, description: description)
+        saveBooking(selectedDate: finalDate, description: description)
         
     }
     
@@ -186,23 +186,16 @@ class ClientBookVendorViewController: NavigationBaseViewController, UITextViewDe
         }
     }
     
-    func saveBooking(date: Date, description: String){
-           var booking = Booking(context: context)
-            booking.date = date
-            if let selectedBooking = selectedBooking{
-                CoreDataManager.shared.deleteSelectedBooking(bookingId: selectedBooking.bookingId)
-            }
-            booking.bookingId  = CoreDataManager.shared.getBookingID()
-            booking.problemDescription = describeProblemTextView.text
-            booking.status = "New"
-            booking.service = selectedService
-            getVendor()
-            booking.vendor = vendor
-            let user =  UserDefaultsManager.shared.getUserData()
-            booking.client = CoreDataManager.shared.getClient(email: user.email)
-        LoadingHudManager.shared.showSimpleHUD(title: "Booking...", view: self.view)
+    func saveBooking(selectedDate: Date, description: String){
+        var booking = Booking(context: context)
+        if let bookingId = selectedBooking?.bookingId{
+            if let selectedBooking = CoreDataManager.shared.fetchSelectedBooking(bookingId: bookingId){
+                booking = selectedBooking
+                booking.date = selectedDate
+                booking.problemDescription = describeProblemTextView.text
+                LoadingHudManager.shared.showSimpleHUD(title: "Rescheduling...", view: self.view)
                 Task {
-                    await InitialDataDownloadManager.shared.addBookingData(booking:booking){ [weak self] status in
+                    await InitialDataDownloadManager.shared.updateBookingData(booking:booking){ [weak self] status in
                         DispatchQueue.main.async {
                             LoadingHudManager.shared.dissmissHud()
                             guard let strongSelf = self else {
@@ -211,6 +204,7 @@ class ClientBookVendorViewController: NavigationBaseViewController, UITextViewDe
                             if let status = status {
                                 if status {
                                     strongSelf.saveAllContextCoreData()
+                                    strongSelf.showAlert(title: "Service Rescheduled!", message: "The previously scheduled service appointment has been rescheduled to a new date or time")
                                 }else{
                                     UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: strongSelf)
                                 }
@@ -219,36 +213,64 @@ class ClientBookVendorViewController: NavigationBaseViewController, UITextViewDe
                     }
                     
                 }
-        }
-        
-        private func saveAllContextCoreData() {
-            do {
-                try context.save()
-                showAlert()
-            } catch {
-                print("Error saving the data \(error.localizedDescription)")
             }
-        }
-        
-        private func showAlert(){
-        
-            var message = "Successfully Booked.."
-        
-            let alertController: UIAlertController = {
-                let controller = UIAlertController(title: "Success", message: message, preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "OK", style: .default){
-                    UIAlertAction in
-                    if let navigator = self.navigationController {
-                        navigator.popViewController(animated: true)
-                    }else{
-                        self.dismiss(animated: true)
+        }else{
+            booking.bookingId  = CoreDataManager.shared.getBookingID()
+            booking.date = selectedDate
+            booking.problemDescription = describeProblemTextView.text
+            booking.status = "New"
+            booking.service = selectedService
+            getVendor()
+            booking.vendor = vendor
+            let user =  UserDefaultsManager.shared.getUserData()
+            booking.client = CoreDataManager.shared.getClient(email: user.email)
+            LoadingHudManager.shared.showSimpleHUD(title: "Booking...", view: self.view)
+            Task {
+                await InitialDataDownloadManager.shared.addBookingData(booking:booking){ [weak self] status in
+                    DispatchQueue.main.async {
+                        LoadingHudManager.shared.dissmissHud()
+                        guard let strongSelf = self else {
+                            return
+                        }
+                        if let status = status {
+                            if status {
+                                strongSelf.saveAllContextCoreData()
+                                strongSelf.showAlert(title: "Service Booked!", message: "Your service appointment has been successfully booked")
+                            }else{
+                                UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: strongSelf)
+                            }
+                        }
                     }
                 }
-                controller.addAction(okAction)
-                return controller
-            }()
-            self.present(alertController, animated: true)
+                
+            }
         }
+    }
+        
+    private func saveAllContextCoreData() {
+        do {
+            try context.save()
+        } catch {
+            print("Error saving the data \(error.localizedDescription)")
+        }
+    }
+        
+    private func showAlert(title: String, message: String){
+        let alertController: UIAlertController = {
+            let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default){
+                UIAlertAction in
+                if let navigator = self.navigationController {
+                    navigator.popViewController(animated: true)
+                }else{
+                    self.dismiss(animated: true)
+                }
+            }
+            controller.addAction(okAction)
+            return controller
+        }()
+        self.present(alertController, animated: true)
+    }
     
     func showErrorMessage(_ message: String) {
         let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
@@ -276,5 +298,20 @@ class ClientBookVendorViewController: NavigationBaseViewController, UITextViewDe
             textView.selectedRange = NSMakeRange(0, 0) // Remove cursor
         }
     }
+    
+    private func fetchSelectedBooking(bookingId : Int16) -> Booking? {
+        var selectedBooking : Booking?
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Booking")
+        fetchRequest.predicate = NSPredicate(format: "bookingId=%i", bookingId)
+        do {
+            let booking = try context.fetch(fetchRequest)
+            selectedBooking = booking.first as? Booking
+        } catch {
+            print(error)
+        }
+        return selectedBooking
+    }
+    
+    
     
 }

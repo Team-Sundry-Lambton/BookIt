@@ -556,16 +556,16 @@ class CoreDataManager : NSObject{
         return account
     }
     
-    func deleteSelectedBooking(bookingId : Int16) {
+    func fetchSelectedBooking(bookingId : Int16) -> Booking? {
+        var selectedBooking : Booking?
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Booking")
         fetchRequest.predicate = NSPredicate(format: "bookingId=%i", bookingId)
         do {
             let booking = try context.fetch(fetchRequest)
-            if let slectedBooking = booking.first as? NSManagedObject {
-                context.delete(slectedBooking)
-            }
+            selectedBooking = booking.first as? Booking
         } catch {
             print(error)
         }
+        return selectedBooking
     }
 }
