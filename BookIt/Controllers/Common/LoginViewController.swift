@@ -82,12 +82,16 @@ class LoginViewController: NavigationBaseViewController {
                     if (self.isVendor){
                         if let vendor = CoreDataManager.shared.getVendor(email: email){
                             self.loginUser = LoginUser(firstName: vendor.firstName ?? "", lastName: vendor.lastName ?? "", email: vendor.email ?? "", contactNumber: vendor.contactNumber ?? "",isVendor: self.isVendor)
-                            password = vendor.password ?? ""
+                            if let pw = vendor.password {
+                                password = dencryptString(encyrptedString:pw)
+                            }
                         }
                     }else{
                         if let client = CoreDataManager.shared.getClient(email: email){
                             self.loginUser = LoginUser(firstName: client.firstName ?? "", lastName: client.lastName ?? "", email: client.email ?? "", contactNumber: client.contactNumber ?? "",isVendor: self.isVendor)
-                            password = client.password ?? ""
+                            if let pw = client.password {
+                                password = dencryptString(encyrptedString:pw)
+                            }
                         }
                     }
                     if let enterdPassword = self.passwordTxt.text {

@@ -113,6 +113,8 @@
 		BB9BB53029AE7CAF0004244E /* FacebookShare in Frameworks */ = {isa = PBXBuildFile; productRef = BB9BB52F29AE7CAF0004244E /* FacebookShare */; };
 		BB9BB53529AE9B290004244E /* LoginUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9BB53429AE9B290004244E /* LoginUser.swift */; };
 		BB9BB53729AEA05E0004244E /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9BB53629AEA05E0004244E /* EditProfileViewController.swift */; };
+		BB9DCE9A29E0920D005C2E63 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BB9DCE9929E0920D005C2E63 /* CryptoSwift */; };
+		BB9DCE9C29E09248005C2E63 /* CryptoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9DCE9B29E09248005C2E63 /* CryptoManager.swift */; };
 		BB9ED57529D349F7002C59E2 /* AboutUs.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9ED57429D349F7002C59E2 /* AboutUs.swift */; };
 		BBA6356C29BA510500702A62 /* ClientDashBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBA6356B29BA510500702A62 /* ClientDashBoard.storyboard */; };
 		BBA6356F29BA62D700702A62 /* ClientHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA6356E29BA62D700702A62 /* ClientHomeViewController.swift */; };
@@ -219,6 +221,7 @@
 		BB9BB53129AE7F900004244E /* BookIt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BookIt.entitlements; sourceTree = "<group>"; };
 		BB9BB53429AE9B290004244E /* LoginUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginUser.swift; path = BookIt/Models/LoginUser.swift; sourceTree = SOURCE_ROOT; };
 		BB9BB53629AEA05E0004244E /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		BB9DCE9B29E09248005C2E63 /* CryptoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoManager.swift; sourceTree = "<group>"; };
 		BB9ED57429D349F7002C59E2 /* AboutUs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUs.swift; sourceTree = "<group>"; };
 		BBA6356B29BA510500702A62 /* ClientDashBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ClientDashBoard.storyboard; sourceTree = "<group>"; };
 		BBA6356E29BA62D700702A62 /* ClientHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientHomeViewController.swift; sourceTree = "<group>"; };
@@ -270,6 +273,7 @@
 				BB7A1DFC29C2A4DC003CB894 /* FirebaseFunctions in Frameworks */,
 				BB7A1E0029C2A4DC003CB894 /* FirebaseInAppMessaging-Beta in Frameworks */,
 				BBE7432A29B3A6E50087DC74 /* GoogleSignIn in Frameworks */,
+				BB9DCE9A29E0920D005C2E63 /* CryptoSwift in Frameworks */,
 				BBE832B429BD245800C58BF1 /* SnapKit in Frameworks */,
 				BB9BB52C29AE7CAF0004244E /* FacebookCore in Frameworks */,
 				BB7A1E0429C2A4DC003CB894 /* FirebaseInstallations in Frameworks */,
@@ -522,6 +526,7 @@
 				BBE7433529B41D440087DC74 /* BiometricIDAuth.swift */,
 				BBE7433329B3DDB00087DC74 /* MediaManager.swift */,
 				BB084DDD29DCD824006169F8 /* NetworkManager.swift */,
+				BB9DCE9B29E09248005C2E63 /* CryptoManager.swift */,
 			);
 			path = ManagerFiles;
 			sourceTree = "<group>";
@@ -590,6 +595,7 @@
 				4174DFCA29D6B31C00FDB0D7 /* Cosmos */,
 				BB084DE029DCD897006169F8 /* Alamofire */,
 				BB084DE729DE19F1006169F8 /* PayPalCheckout */,
+				BB9DCE9929E0920D005C2E63 /* CryptoSwift */,
 			);
 			productName = BookIt;
 			productReference = 99AB0DC929AD95B300B096BB /* BookIt.app */;
@@ -628,6 +634,7 @@
 				4174DFC929D6B31C00FDB0D7 /* XCRemoteSwiftPackageReference "Cosmos" */,
 				BB084DDF29DCD897006169F8 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				BB084DE629DE19F1006169F8 /* XCRemoteSwiftPackageReference "paypalcheckout-ios" */,
+				BB9DCE9829E0920D005C2E63 /* XCRemoteSwiftPackageReference "CryptoSwift" */,
 			);
 			productRefGroup = 99AB0DCA29AD95B300B096BB /* Products */;
 			projectDirPath = "";
@@ -708,6 +715,7 @@
 				99AB0DD129AD95B300B096BB /* ViewController.swift in Sources */,
 				996588BC29C7B0E100A7D796 /* Date+Extension.swift in Sources */,
 				BB9ED57529D349F7002C59E2 /* AboutUs.swift in Sources */,
+				BB9DCE9C29E09248005C2E63 /* CryptoManager.swift in Sources */,
 				996588C029C7BE6A00A7D796 /* GradientColorExtension.swift in Sources */,
 				BB12B6E129D7B40B00A42CA2 /* BaseTableViewController.swift in Sources */,
 				996588C829C7D03500A7D796 /* FilterPopupViewController.swift in Sources */,
@@ -1025,6 +1033,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		BB9DCE9829E0920D005C2E63 /* XCRemoteSwiftPackageReference "CryptoSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/krzyzanowskim/CryptoSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		BBE7432829B3A6E50087DC74 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
@@ -1213,6 +1229,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BB9BB52A29AE7CAF0004244E /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
 			productName = FacebookShare;
+		};
+		BB9DCE9929E0920D005C2E63 /* CryptoSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BB9DCE9829E0920D005C2E63 /* XCRemoteSwiftPackageReference "CryptoSwift" */;
+			productName = CryptoSwift;
 		};
 		BBE7432929B3A6E50087DC74 /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
