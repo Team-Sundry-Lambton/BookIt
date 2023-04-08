@@ -30,10 +30,10 @@ class SignupViewController: NavigationBaseViewController {
         loginText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.appThemeColor, range: NSRange(location: 24,length: 10))
         loginBtn.setAttributedTitle(loginText, for: .normal)
         
-        //MARK: dismiss keyboard
-        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
-         view.addGestureRecognizer(tapGesture)
-        tapGesture.cancelsTouchesInView = false
+//        //MARK: dismiss keyboard
+//        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+//         view.addGestureRecognizer(tapGesture)
+//        tapGesture.cancelsTouchesInView = false
 
 //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)

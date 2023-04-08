@@ -17,6 +17,10 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         super.viewDidLoad()
+        //MARK: dismiss keyboard
+        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+         view.addGestureRecognizer(tapGesture)
+        tapGesture.cancelsTouchesInView = false
         // Do any additional setup after loading the view.
     }
     
