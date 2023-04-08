@@ -168,7 +168,8 @@ class ClientBookingDetailController : NavigationBaseViewController{
 
                 let cancelAction = UIAlertAction(title: "No! Just Cancel", style: .destructive) { (_) in
                     // Handle Cancel action
-                    if let booking = self.booking {
+                    self.firestoreUpdate(title: "Cancelling....", status: ServiceStatus.CANCELLED)
+             /*       if let booking = self.booking {
                         LoadingHudManager.shared.showSimpleHUD(title: "Cancelling...", view: self.view)
                             Task {
                                 booking.status = ServiceStatus.CANCELLED.title
@@ -192,7 +193,7 @@ class ClientBookingDetailController : NavigationBaseViewController{
                                     }
                                 }
                             }
-                    }
+                    }*/
                 }
 
                 let ignoreAction = UIAlertAction(title: "Ignore", style: .cancel) { (_) in
@@ -277,15 +278,44 @@ extension ClientBookingDetailController {
             if success == true
             {DispatchQueue.main.async {
                 print(rsponse?.message)
-                if let booking = self.booking {
-                    booking.status = ServiceStatus.IN_PROGRESS.title
-                    self.saveAllContextCoreData()
-                }
+                self.firestoreUpdate(title: "Processing....", status: ServiceStatus.IN_PROGRESS)
+//                if let booking = self.booking {
+//                    booking.status = ServiceStatus.IN_PROGRESS.title
+//                    self.saveAllContextCoreData()
+//                }
                 //go to home.
             }
  
             }else{
                 UIAlertViewExtention.shared.showBasicAlertView(title: "Payment Failed", message: "Sonmething went wrong please try again.", okActionTitle: "OK", view: self)
+            }
+        }
+    }
+    
+    func firestoreUpdate(title : String, status : ServiceStatus){
+        if let booking = self.booking {
+            LoadingHudManager.shared.showSimpleHUD(title: title, view: self.view)
+            Task {
+                booking.status = status.title
+                InitialDataDownloadManager.shared.updateBookingData(booking:booking){[weak self] status in
+                    DispatchQueue.main.async {
+                        LoadingHudManager.shared.dissmissHud()
+                        guard let strongSelf = self else {
+                            return
+                        }
+                        if let status = status {
+                            if status {
+                                strongSelf.saveAllContextCoreData()
+                                //go back
+                                if let navigator = self?.navigationController {
+                                    navigator.popViewController(animated: true)
+                                }
+                            }else{
+                                UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: strongSelf)
+                            }
+                        }
+                    }
+                }
             }
         }
     }
