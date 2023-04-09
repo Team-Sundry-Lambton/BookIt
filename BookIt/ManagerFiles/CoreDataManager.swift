@@ -527,21 +527,6 @@ class CoreDataManager : NSObject{
         }
     }
     
-    func deleteBooking(bookingId:Int) {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName:"Booking")
-        fetchRequest.predicate = NSPredicate(format: "bookingId=%i", bookingId)
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-
-        do {
-            let booking = try context.fetch(fetchRequest)
-            if let selectedBooking = booking.first as? NSManagedObject{
-                context.delete(selectedBooking)
-            }
-        } catch let error as NSError {
-            debugPrint(error)
-        }
-    }
-    
     func deleteMediaFiles() {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName:"MediaFile")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
