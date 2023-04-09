@@ -139,7 +139,9 @@ extension ClientBookingViewController: UITableViewDelegate , UITableViewDataSour
         if let booking = booking {
             cell?.serviceName.text = booking.service?.serviceTitle
             cell?.bookDateTimeLabel.text = booking.date?.dateAndTimetoString()
-            cell?.customerNameLabel.text = booking.client?.firstName
+            if let vendorFirstName = booking.vendor?.firstName, let vendorLastName = booking.vendor?.lastName{
+                cell?.customerNameLabel.text = vendorFirstName + " " + vendorLastName
+            }
             if let email = booking.client?.email{
                 clientAddress =  CoreDataManager.shared.getUserLocationData(email:email)
                 cell?.locationLabel.text = clientAddress?.address
