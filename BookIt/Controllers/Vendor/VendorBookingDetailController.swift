@@ -174,7 +174,6 @@ class VendorBookingDetailController: NavigationBaseViewController{
                             }
                             if let status = status {
                                 if status {
-                                    strongSelf.updateBookingData()
                                     strongSelf.saveAllContextCoreData()
                                     let storyboard = UIStoryboard(name: "VendorBookingConfirmation", bundle: nil)
                                     let mainTabBarController = storyboard.instantiateViewController(identifier: "VendorBookingConfirmation")
@@ -191,23 +190,6 @@ class VendorBookingDetailController: NavigationBaseViewController{
                 }
         }
         
-    }
-    
-    private func updateBookingData(){
-        guard let book = booking else {
-            return
-        }
-        let updatedData = Booking(context:context)
-        updatedData.client = book.client
-        updatedData.payment = book.payment
-        updatedData.service = book.service
-        updatedData.vendor = book.vendor
-        updatedData.bookingId = book.bookingId
-        updatedData.date = book.date
-        updatedData.problemDescription = book.problemDescription
-        updatedData.status = book.status
-        
-        CoreDataManager.shared.deleteBooking(bookingId: Int(book.bookingId))
     }
     
     private func saveAllContextCoreData() {
@@ -237,7 +219,6 @@ class VendorBookingDetailController: NavigationBaseViewController{
                             }
                             if let status = status {
                                 if status {
-                                    strongSelf.updateBookingData()
                                     strongSelf.saveAllContextCoreData()
                                     //go back
                                     if let navigator = self?.navigationController {
@@ -286,7 +267,6 @@ class VendorBookingDetailController: NavigationBaseViewController{
                             }
                             if let status = status {
                                 if status {
-                                    strongSelf.updateBookingData()
                                     strongSelf.saveAllContextCoreData()
                                     //go back
                                     if let navigator = self?.navigationController {
