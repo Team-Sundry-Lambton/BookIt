@@ -607,4 +607,20 @@ class CoreDataManager : NSObject{
         }
         return selectedBooking
     }
+    
+    func checkClientBooking(email : String , serviceId : Int16) -> Bool{
+        var success = false
+        let statusArray = ["New", "Pending", "In Progress"]
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Booking")
+        fetchRequest.predicate = NSPredicate(format: "client.email=%@ AND service.serviceId=%i AND status IN %@" ,email, serviceId, statusArray)
+        do {
+            let booking = try context.fetch(fetchRequest)
+            if booking.count >= 1 {
+                success = true
+            }
+        } catch {
+            print(error)
+        }
+        return success
+    }
 }
