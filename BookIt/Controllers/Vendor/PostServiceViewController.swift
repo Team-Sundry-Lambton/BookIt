@@ -62,7 +62,30 @@ class PostServiceViewController: NavigationBaseViewController {
             textAttributes[NSAttributedString.Key.foregroundColor] = UIColor.black
             navigationController?.navigationBar.titleTextAttributes = textAttributes
         }
-      
+        
+        descriptionTextView.delegate = self
+        descriptionTextView.text = placeHolder
+        descriptionTextView.textColor = UIColor.systemGray3
+        
+        uiViewsDesign()
+        registerNib()
+        uploadPhotoView.isHidden = false
+        detailsView.isHidden = true
+        priceView.isHidden = true
+        confirmView.isHidden = true
+        
+        pageTitleLbl.text = "Upload Photo"
+        uploadPhotoImageView.image = #imageLiteral(resourceName: "FilledLine")
+        
+        categoryList = CoreDataManager.shared.loadCategories()
+        
+        categoryPicker.delegate = self
+        priceTypePicker.delegate = self
+        categoryTypeTextField.inputView = categoryPicker
+        priceTypeTextField.inputView = priceTypePicker
+        // Do any additional setup after loading the view.
+        locationTextField.delegate = self
+        
         if selectedService != nil {
             editMode = true
             loadServiceData()
@@ -75,31 +98,6 @@ class PostServiceViewController: NavigationBaseViewController {
             selectedService = Service(context: context)
             selectedService?.serviceId = CoreDataManager.shared.getServiceID()
         }
-        
-        uiViewsDesign()
-        registerNib()
-        uploadPhotoView.isHidden = false
-        detailsView.isHidden = true
-        priceView.isHidden = true
-        confirmView.isHidden = true
-        
-        pageTitleLbl.text = "Upload Photo"
-        uploadPhotoImageView.image = #imageLiteral(resourceName: "FilledLine")
-        
-        descriptionTextView.delegate = self
-        descriptionTextView.text = placeHolder
-        descriptionTextView.textColor = UIColor.systemGray3
-        
-        categoryList = CoreDataManager.shared.loadCategories()
-        
-        titleTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        
-        categoryPicker.delegate = self
-        priceTypePicker.delegate = self
-        categoryTypeTextField.inputView = categoryPicker
-        priceTypeTextField.inputView = priceTypePicker
-        // Do any additional setup after loading the view.
-        locationTextField.delegate = self
     }
     
     func uiViewsDesign() {
@@ -140,7 +138,12 @@ class PostServiceViewController: NavigationBaseViewController {
     private func loadServiceData() {
         if let service = selectedService {
             self.titleTextField.text = service.serviceTitle
+            let wordCountTitle = getWordCount(string: service.serviceTitle ?? "")
+            self.titleWordCountLbl.text = String(wordCountTitle) + "/100"
             self.descriptionTextView.text = service.serviceDescription
+            let wordCount = getWordCount(string: service.serviceDescription ?? "")
+            self.descriptionWordCountLbl.text = String(wordCount) + "/500"
+            self.descriptionTextView.textColor = UIColor.black
             self.categoryTypeTextField.text = service.parent_Category?.name
             self.cancelPolicyTextField.text = service.cancelPolicy
             self.priceTextField.text = service.price
@@ -152,12 +155,12 @@ class PostServiceViewController: NavigationBaseViewController {
             self.locationTextField.text = selectedLocation?.address
             self.isEquipmentNeed = service.equipment
             if(isEquipmentNeed){
-                equipmentCheckboxImageView.image = #imageLiteral(resourceName: "CheckBox")
-            }else{
                 equipmentCheckboxImageView.image = #imageLiteral(resourceName: "CheckBoxFill")
+            }else{
+                equipmentCheckboxImageView.image = #imageLiteral(resourceName: "CheckBox")
             }
+            selectedCategory = service.parent_Category
         }
-        
     }
     
     @IBAction func nextButtonUploadPhotoAction(_ sender: Any) {
@@ -415,7 +418,7 @@ class PostServiceViewController: NavigationBaseViewController {
     private func saveAllContextCoreData() {
         do {
             try context.save()
-            clearFieldAndNavigateBack()
+//            clearFieldAndNavigateBack()
             showAlert()
         } catch {
             print("Error saving the data \(error.localizedDescription)")
@@ -522,45 +525,40 @@ extension PostServiceViewController : UITextViewDelegate{
         }
     }
     
-    func textViewDidChange(_ textView: UITextView) { //Handle the text changes here
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if textView == descriptionTextView {
-            let strings : String! = textView.text
-            let spaces = CharacterSet.whitespacesAndNewlines.union(.punctuationCharacters)
-            let words = strings.components(separatedBy: spaces)
-            
-            descriptionWordCountLbl.text = String(words.count) + "/500"
-            
+
+                let currentText = textView.text ?? ""
+                guard let stringRange = Range(range, in: currentText) else { return false }
+                let updatedText = currentText.replacingCharacters(in: stringRange, with: text)
+            descriptionWordCountLbl.text = String(updatedText.count) + "/500"
+                return updatedText.count <= 500
         }
+        return true
+
+    }
+    
+    func getWordCount(string:String) -> Int{
+        let spaces = CharacterSet.whitespacesAndNewlines.union(.punctuationCharacters)
+        let words = string.components(separatedBy: spaces)
+        return string.count
     }
     
 }
 
 extension PostServiceViewController : UITextFieldDelegate{
-    @objc func textFieldDidChange(_ textField: UITextField) {
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == titleTextField {
             let strings : String! = textField.text
-            let spaces = CharacterSet.whitespacesAndNewlines.union(.punctuationCharacters)
-            let words = strings.components(separatedBy: spaces)
-            
-            titleWordCountLbl.text = String(words.count) + "/100"
-            
+            let currentText = textField.text ?? ""
+                guard let stringRange = Range(range, in: currentText) else { return false }
+                let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+            titleWordCountLbl.text = String(updatedText.count) + "/100"
+                return updatedText.count <= 100
         }
+        return true
     }
-    
-//    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-//        if textField == locationTextField{
-//            openMapView()
-//        }
-//        return true
-//     }
-    
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        if textField == categoryTypeTextField{
-//            categoryPicker.isHidden = true
-//        }else if textField == priceTypeTextField{
-//            priceTypePicker.isHidden = true
-//        }
-//    }
 }
 
 // MARK: UIPickerView Delegation
