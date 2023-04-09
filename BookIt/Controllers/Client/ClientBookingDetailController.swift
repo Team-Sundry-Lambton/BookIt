@@ -67,6 +67,8 @@ class ClientBookingDetailController : NavigationBaseViewController{
             if let imageData = media.mediaContent {
                     self.serviceImg.image = UIImage(data: imageData)
                 }
+        } else {
+            self.serviceImg.image = UIImage(named: "Avatar.png")
         }
         vendorNameLbl.text = "\(String(describing:vendor.firstName ?? "")) \(String(describing:vendor.lastName ?? ""))"
         
