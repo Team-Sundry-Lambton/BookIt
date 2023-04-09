@@ -184,7 +184,7 @@
                             <constraint firstAttribute="trailing" secondItem="cwl-O5-H1f" secondAttribute="trailing" id="q2U-Fc-Ca1"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" image="BookingTabIcon" id="Xx8-1N-mgl"/>
+                    <tabBarItem key="tabBarItem" title="My Services" image="BookingTabIcon" id="Xx8-1N-mgl"/>
                     <connections>
                         <outlet property="tableView" destination="cwl-O5-H1f" id="742-iZ-ALt"/>
                     </connections>
