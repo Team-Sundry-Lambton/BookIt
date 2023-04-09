@@ -79,8 +79,6 @@ class PostServiceViewController: NavigationBaseViewController {
         
         categoryList = CoreDataManager.shared.loadCategories()
         
-        titleTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        
         categoryPicker.delegate = self
         priceTypePicker.delegate = self
         categoryTypeTextField.inputView = categoryPicker
@@ -527,38 +525,37 @@ extension PostServiceViewController : UITextViewDelegate{
         }
     }
     
-    func textViewDidChange(_ textView: UITextView) { //Handle the text changes here
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if textView == descriptionTextView {
-            let strings : String! = textView.text
-            let wordCount = getWordCount(string: strings)
-            descriptionWordCountLbl.text = String(wordCount) + "/500"
-            
+
+                let currentText = textView.text ?? ""
+                guard let stringRange = Range(range, in: currentText) else { return false }
+                let updatedText = currentText.replacingCharacters(in: stringRange, with: text)
+            descriptionWordCountLbl.text = String(updatedText.count) + "/500"
+                return updatedText.count <= 500
         }
+        return true
+
     }
     
     func getWordCount(string:String) -> Int{
         let spaces = CharacterSet.whitespacesAndNewlines.union(.punctuationCharacters)
         let words = string.components(separatedBy: spaces)
-        return words.count
+        return string.count
     }
     
 }
 
 extension PostServiceViewController : UITextFieldDelegate{
-    @objc func textFieldDidChange(_ textField: UITextField) {
-        if textField == titleTextField {
-            let strings : String! = textField.text
-            let wordCount = getWordCount(string: strings)
-            titleWordCountLbl.text = String(wordCount) + "/100"
-            
-        }
-    }
+
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == titleTextField {
             let strings : String! = textField.text
-            let wordCount = getWordCount(string: strings)
-            
-            return wordCount < 100
+            let currentText = textField.text ?? ""
+                guard let stringRange = Range(range, in: currentText) else { return false }
+                let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+            titleWordCountLbl.text = String(updatedText.count) + "/100"
+                return updatedText.count <= 100
         }
         return true
     }
