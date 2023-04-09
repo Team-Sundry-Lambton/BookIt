@@ -33,6 +33,12 @@ class OnboardingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if UserDefaults.standard.bool(forKey: "hasLaunchedBefore") == false {
+            UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
+        }else{
+            skip()
+        }
         setPageContent(at: currentIndex)
     }
 
