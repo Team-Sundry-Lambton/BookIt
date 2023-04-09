@@ -136,7 +136,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CtD-1h-xqT">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="879"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="804"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Rm1-AW-F4X">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="240"/>
@@ -334,10 +334,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NNU-S6-Gb6">
-                                                <rect key="frame" x="0.0" y="679" width="414" height="200"/>
+                                                <rect key="frame" x="0.0" y="679" width="414" height="125"/>
                                                 <subviews>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="RCj-hR-LdV">
-                                                        <rect key="frame" x="15" y="0.0" width="384" height="200"/>
+                                                        <rect key="frame" x="15" y="0.0" width="384" height="125"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <connections>
                                                             <outlet property="dataSource" destination="Y6W-OH-hqX" id="PUA-4Y-6zD"/>
@@ -351,7 +351,7 @@
                                                     <constraint firstItem="RCj-hR-LdV" firstAttribute="top" secondItem="NNU-S6-Gb6" secondAttribute="top" id="IoY-Gs-UtS"/>
                                                     <constraint firstAttribute="bottom" secondItem="RCj-hR-LdV" secondAttribute="bottom" id="Svu-YO-CLD"/>
                                                     <constraint firstItem="RCj-hR-LdV" firstAttribute="leading" secondItem="NNU-S6-Gb6" secondAttribute="leading" constant="15" id="cYe-dz-8m9"/>
-                                                    <constraint firstAttribute="height" constant="200" id="ksI-eE-ihM"/>
+                                                    <constraint firstAttribute="height" constant="125" id="ksI-eE-ihM"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -517,7 +517,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="GyY-pX-zRn">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="936"/>
+                                <rect key="frame" x="-1" y="0.0" width="414" height="935"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfileTabBG" translatesAutoresizingMaskIntoConstraints="NO" id="mrg-LZ-CL1">

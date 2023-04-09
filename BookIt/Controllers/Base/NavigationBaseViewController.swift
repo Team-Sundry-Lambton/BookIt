@@ -30,6 +30,11 @@ class NavigationBaseViewController: UIViewController {
         navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationController?.navigationBar.isHidden = false
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
 
     /*
     // MARK: - Navigation

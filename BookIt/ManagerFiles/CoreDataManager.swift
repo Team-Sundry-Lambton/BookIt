@@ -409,6 +409,47 @@ class CoreDataManager : NSObject{
         return vendorList
     }
     
+    func loadTopServices() -> [Service]{
+        var serviceList = [Service]()
+        let request: NSFetchRequest<Service> = Service.fetchRequest()
+        let predicate = NSPredicate(format: "status=%@ " ,"Accepted")
+        request.predicate = predicate
+        request.fetchLimit = 5
+        request.sortDescriptors = [NSSortDescriptor(key: "serviceTitle", ascending: true)]
+        do {
+            serviceList = try context.fetch(request)
+        } catch {
+            print("Error loading Service \(error.localizedDescription)")
+        }
+        return serviceList
+    }
+    
+    func getMostRatedServices() -> [Service]{
+        var serviceList = [Service]()
+        let fetchRequest: NSFetchRequest<VendorReview> = VendorReview.fetchRequest()
+        let predicate = NSPredicate(format: "vendorRating=true")
+        fetchRequest.predicate = predicate
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "rating", ascending: false)]
+        fetchRequest.fetchLimit = 5
+        do {
+            // Execute the fetch request and get the vendors
+            let vendorReview = try context.fetch(fetchRequest)
+            
+            if vendorReview.count > 0 {
+                for review in vendorReview {
+                    if let service = review.service {
+                        serviceList.append(service)
+                    }
+                }
+            }else{
+                serviceList = loadTopServices()
+            }
+        } catch {
+            print("Error fetching vendors: \(error.localizedDescription)")
+        }
+        return serviceList
+    }
+    
     func loadServicesWithSerch(searchText : String) -> [Service]{
         var serviceList = [Service]()
         let request: NSFetchRequest<Service> = Service.fetchRequest()

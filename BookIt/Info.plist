@@ -2,6 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>You must give permission in order to use the application</string>
+	<key>Privacy - Camera Usage Description </key>
+	<string>Please allow to use</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Please allow to use</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Please allow to use</string>
+	<key>Base url</key>
+	<string>http://34.201.209.204:8009/admin/api/</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -45,8 +55,6 @@
 					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
 					<key>UISceneStoryboardFile</key>
 					<string>Onboarding</string>
-					<key>Base url</key>
-					<string>http://34.201.209.204:8009/admin/api/</string>
 				</dict>
 			</array>
 		</dict>

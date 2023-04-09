@@ -33,8 +33,8 @@ class NetworkManager: NSObject {
     //User make the payment
     func makePayment(urlStr: String,postData: [String: Any],completionHandler:@escaping ( _ success: Bool, _ resultVal: UserPayment?) -> Void) {
         
-        let serviceURl = getBaseUrl() + urlStr
-        let request =  AF.request(serviceURl, method: .post, parameters: postData,
+        let serviceURL = getBaseUrl() + urlStr
+        let request =  AF.request(serviceURL, method: .post, parameters: postData,
                                   encoding: JSONEncoding.default)
         
         request.responseData { (response) in
