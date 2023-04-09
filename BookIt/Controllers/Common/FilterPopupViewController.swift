@@ -25,7 +25,7 @@ class FilterPopupViewController: UIViewController {
     @IBOutlet weak var checkBoxTitle: UIImageView!
     private var selectedSort: SortType = .byTitle
     var delegate: FilterCallBackProtocal?
-    
+    let sortByDefault = UserDefaults.standard.integer(forKey: "sortByValue")
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -57,8 +57,25 @@ class FilterPopupViewController: UIViewController {
             checkBoxTitle.image = UIImage(named: "CheckBoxFill")
             selectedSort = .byTitle
         default:
-            checkBoxTitle.image = UIImage(named: "CheckBoxFill")
-            selectedSort = .byTitle
+            if let sortByDefault = SortType(rawValue: sortByDefault){
+                switch sortByDefault {
+                case .byDate: //Date
+                    checkBoxDate.image = UIImage(named: "CheckBoxFill")
+                    selectedSort = .byDate
+                case .byPrice: //Price
+                    checkBoxPrice.image = UIImage(named: "CheckBoxFill")
+                    selectedSort = .byPrice
+                case .byTitle: //Title
+                    checkBoxTitle.image = UIImage(named: "CheckBoxFill")
+                    selectedSort = .byTitle
+                default:
+                    checkBoxTitle.image = UIImage(named: "CheckBoxFill")
+                    selectedSort = .byTitle
+                }
+            }else{
+                checkBoxTitle.image = UIImage(named: "CheckBoxFill")
+                selectedSort = .byTitle
+            }
         }
     }
     
