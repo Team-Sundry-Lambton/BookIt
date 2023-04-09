@@ -107,8 +107,9 @@ extension ClientBookingViewController: UITableViewDelegate , UITableViewDataSour
             if rowCount == 0 {
                 emptyView.isHidden = false
                 tableView.backgroundView = emptyView
+                tableView.backgroundView?.isHidden = false
             }else{
-                 tableView.backgroundView = nil
+                tableView.backgroundView?.isHidden = true
             }
             return rowCount
             
@@ -117,8 +118,9 @@ extension ClientBookingViewController: UITableViewDelegate , UITableViewDataSour
             if rowCount == 0 {
                 emptyView.isHidden = false
                 tableView.backgroundView = emptyView
+                tableView.backgroundView?.isHidden = false
             }else{
-                 tableView.backgroundView = nil
+                tableView.backgroundView?.isHidden = true
             }
             return rowCount
         }

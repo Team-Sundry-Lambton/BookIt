@@ -54,7 +54,8 @@ class ClientServiceDetailViewController: BaseViewController, CLLocationManagerDe
     var openMap = false
     var vendorReviewList = [VendorReview]()
     var vendor : Vendor?
-    var isVendor = false
+    var isVendor = UserDefaultsManager.shared.getIsVendor()
+    let user =  UserDefaultsManager.shared.getUserData()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,17 +64,7 @@ class ClientServiceDetailViewController: BaseViewController, CLLocationManagerDe
         addBorder()
         interfaceSegmented.delegate = self
         loadServiceDetail()
-        
-        if isVendor {
-            bookNowBtn.setTitle("Edit", for: .normal)
-            viewVendorDetails.isHidden = true
-            vendorDetailHeightConstrain.constant = 0
-        }else{
-            bookNowBtn.setTitle("Book Now", for: .normal)
-            viewVendorDetails.isHidden = false
-            vendorDetailHeightConstrain.constant = 85
-        }
-        
+        additionalInfoForVendorClient()
         tvReviews.delegate = self
         tvReviews.dataSource = self
         tvReviews.register(UINib(nibName: "ReviewTableViewCell", bundle: nil), forCellReuseIdentifier: "ReviewTableViewCell")
@@ -94,6 +85,7 @@ class ClientServiceDetailViewController: BaseViewController, CLLocationManagerDe
         mapView.delegate = self
         loadMap()
         tvReviews.reloadData()
+        additionalInfoForVendorClient()
     }
     
     func loadServiceDetail(){
@@ -124,6 +116,7 @@ class ClientServiceDetailViewController: BaseViewController, CLLocationManagerDe
         vendorReviewList = CoreDataManager.shared.getVendorReviewList(email: vendor?.email ?? "")
         dipalyServiceReview()
         dipalyVendorReview()
+        
     }
     
     func loadMap(){
@@ -249,6 +242,26 @@ class ClientServiceDetailViewController: BaseViewController, CLLocationManagerDe
         }
             else{
             UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Please regiter first to book a service. Please go to profile tab for register", okActionTitle: "OK", view: self)
+        }
+    }
+    
+    func additionalInfoForVendorClient(){
+        if isVendor {
+            bookNowBtn.setTitle("Edit", for: .normal)
+            viewVendorDetails.isHidden = true
+            vendorDetailHeightConstrain.constant = 0
+        }else{
+            let clientEmail = user.email
+            if let serviceId = selectedService?.serviceId {
+                if CoreDataManager.shared.checkClientBooking(email: clientEmail , serviceId: serviceId){
+                    bookNowBtn.isHidden = true
+                }else{
+                    bookNowBtn.isHidden = false
+                }
+            }
+            bookNowBtn.setTitle("Book Now", for: .normal)
+            viewVendorDetails.isHidden = false
+            vendorDetailHeightConstrain.constant = 85
         }
     }
 }

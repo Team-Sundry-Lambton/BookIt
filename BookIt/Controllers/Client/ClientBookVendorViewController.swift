@@ -195,7 +195,7 @@ class ClientBookVendorViewController: NavigationBaseViewController, UITextViewDe
                 booking.problemDescription = describeProblemTextView.text
                 LoadingHudManager.shared.showSimpleHUD(title: "Rescheduling...", view: self.view)
                 Task {
-                    await InitialDataDownloadManager.shared.updateBookingData(booking:booking){ [weak self] status in
+                    InitialDataDownloadManager.shared.updateBookingData(booking:booking){ [weak self] status in
                         DispatchQueue.main.async {
                             LoadingHudManager.shared.dissmissHud()
                             guard let strongSelf = self else {
@@ -226,7 +226,7 @@ class ClientBookVendorViewController: NavigationBaseViewController, UITextViewDe
             booking.client = CoreDataManager.shared.getClient(email: user.email)
             LoadingHudManager.shared.showSimpleHUD(title: "Booking...", view: self.view)
             Task {
-                await InitialDataDownloadManager.shared.addBookingData(booking:booking){ [weak self] status in
+                 InitialDataDownloadManager.shared.addBookingData(booking:booking){ [weak self] status in
                     DispatchQueue.main.async {
                         LoadingHudManager.shared.dissmissHud()
                         guard let strongSelf = self else {
@@ -298,20 +298,4 @@ class ClientBookVendorViewController: NavigationBaseViewController, UITextViewDe
             textView.selectedRange = NSMakeRange(0, 0) // Remove cursor
         }
     }
-    
-    private func fetchSelectedBooking(bookingId : Int16) -> Booking? {
-        var selectedBooking : Booking?
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Booking")
-        fetchRequest.predicate = NSPredicate(format: "bookingId=%i", bookingId)
-        do {
-            let booking = try context.fetch(fetchRequest)
-            selectedBooking = booking.first as? Booking
-        } catch {
-            print(error)
-        }
-        return selectedBooking
-    }
-    
-    
-    
 }
