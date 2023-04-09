@@ -299,9 +299,11 @@ extension ClientHomeViewController:  CLLocationManagerDelegate{
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.last {
-            getAddressFromLatLon(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-            addressLbl.text = "Lat : \(location.coordinate.latitude) \nLng : \(location.coordinate.longitude)"
+        if self.currentAddress == nil{
+            if let location = locations.last {
+                getAddressFromLatLon(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                addressLbl.text = "Lat : \(location.coordinate.latitude) \nLng : \(location.coordinate.longitude)"
+            }
         }
     }
     

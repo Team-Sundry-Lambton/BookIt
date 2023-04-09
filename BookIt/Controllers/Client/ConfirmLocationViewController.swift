@@ -33,6 +33,8 @@ class ConfirmLocationViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         if openMap {
             delegate?.openSelectedLocation()
+        }else{
+            delegate?.saveAddress()
         }
     }
     
@@ -61,13 +63,39 @@ class ConfirmLocationViewController: UIViewController {
             if (CoreDataManager.shared.checkClientLocationInDB(email: client?.email ?? "")){
                 selectedLocation = CoreDataManager.shared.getUserLocationData(email: client?.email ?? "")
 //                CoreDataManager.shared.deleteClientLocation(email: client?.email ?? "")
-                setLocationObject(isUpdate: true)
-                UIAlertViewExtention.shared.showBasicAlertView(title: "Success",message: "Location updated successfully.", okActionTitle: "OK", view: self)
+                setLocationObject(isUpdate: true){[weak self] status in
+                    DispatchQueue.main.async {
+                        
+                        guard let strongSelf = self else {
+                            return
+                        }
+                        
+                        if status == false {
+                            UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: strongSelf)
+                        }else{
+                            UIAlertViewExtention.shared.showBasicAlertView(title: "Success",message: "Location updated successfully.", okActionTitle: "OK", view: strongSelf)
+                            self?.dismiss(animated: true)
+                            
+                        }
+                    }
+                }
                 
             }else{
                 
-                setLocationObject(isUpdate: false)
-                UIAlertViewExtention.shared.showBasicAlertView(title: "Success",message: "Location save successfully.", okActionTitle: "OK", view: self)
+                setLocationObject(isUpdate: false){[weak self] status in
+                    DispatchQueue.main.async {
+                        
+                        guard let strongSelf = self else {
+                            return
+                        }
+                        if status == false {
+                            UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: strongSelf)
+                        }else{
+                            UIAlertViewExtention.shared.showBasicAlertView(title: "Success",message: "Location save successfully.", okActionTitle: "OK", view: strongSelf)
+                            self?.dismiss(animated: true)
+                        }
+                    }
+                }
             }
         }else{
             UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Please regiter first to continue. Please go to profile tab for register", okActionTitle: "OK", view: self)
@@ -75,7 +103,7 @@ class ConfirmLocationViewController: UIViewController {
     }
     
     //MARK: - Core data interaction methods
-    func setLocationObject(isUpdate : Bool) {
+    func setLocationObject(isUpdate : Bool,completion: @escaping (_ status: Bool?) -> Void){
         if selectedLocation == nil {
             selectedLocation = Address(context: context)
             selectedLocation?.addressId = CoreDataManager.shared.getAddressID()
@@ -91,13 +119,13 @@ class ConfirmLocationViewController: UIViewController {
                 InitialDataDownloadManager.shared.updateAddressData(addressObject: location){[weak self] status in
                     DispatchQueue.main.async {
                         LoadingHudManager.shared.dissmissHud()
+                       
                         guard let strongSelf = self else {
                             return
                         }
                         if let status = status{
-                            if status == false {
-                                UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: strongSelf)
-                            }
+                            completion(status)
+                           
                         }
                     }
                 }
@@ -110,9 +138,7 @@ class ConfirmLocationViewController: UIViewController {
                             return
                         }
                         if let status = status{
-                            if status == false {
-                                UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: strongSelf)
-                            }
+                            completion(status)
                         }
                     }
                     

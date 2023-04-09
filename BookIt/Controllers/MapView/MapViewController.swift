@@ -181,6 +181,7 @@ class MapViewController: NavigationBaseViewController,CLLocationManagerDelegate,
                 delegate?.setServiceLocation(place: place)
             }
         }
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     
