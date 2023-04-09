@@ -54,14 +54,6 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LA6-2B-twE">
                                         <rect key="frame" x="0.0" y="0.0" width="73" height="24"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wm3-xX-PmK">
-                                                <rect key="frame" x="0.0" y="0.0" width="73" height="24"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain"/>
-                                                <connections>
-                                                    <action selector="sortByAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="p9L-Fw-uNv"/>
-                                                </connections>
-                                            </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="eKa-yx-9Uf">
                                                 <rect key="frame" x="0.0" y="0.0" width="73" height="24"/>
                                                 <subviews>
@@ -80,6 +72,14 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wm3-xX-PmK">
+                                                <rect key="frame" x="0.0" y="0.0" width="73" height="24"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain"/>
+                                                <connections>
+                                                    <action selector="sortByAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="p9L-Fw-uNv"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -96,14 +96,6 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y4R-vY-7bx">
                                         <rect key="frame" x="0.0" y="34" width="73" height="24"/>
                                         <subviews>
-                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nHr-7Y-mWX">
-                                                <rect key="frame" x="0.0" y="0.0" width="73" height="24"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain"/>
-                                                <connections>
-                                                    <action selector="sortByAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="bFt-YG-Xf3"/>
-                                                </connections>
-                                            </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="b3h-Hb-2K6">
                                                 <rect key="frame" x="0.0" y="0.0" width="73" height="24"/>
                                                 <subviews>
@@ -122,6 +114,14 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nHr-7Y-mWX">
+                                                <rect key="frame" x="0.0" y="0.0" width="73" height="24"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain"/>
+                                                <connections>
+                                                    <action selector="sortByAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="bFt-YG-Xf3"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -138,14 +138,6 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C6Y-BS-oKz">
                                         <rect key="frame" x="0.0" y="68" width="73" height="24"/>
                                         <subviews>
-                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aZt-7h-TgJ">
-                                                <rect key="frame" x="0.0" y="0.0" width="73" height="24"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain"/>
-                                                <connections>
-                                                    <action selector="sortByAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="R8z-gZ-OrE"/>
-                                                </connections>
-                                            </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="P7f-Wg-G0M">
                                                 <rect key="frame" x="0.0" y="0.0" width="73" height="24"/>
                                                 <subviews>
@@ -164,6 +156,14 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aZt-7h-TgJ">
+                                                <rect key="frame" x="0.0" y="0.0" width="73" height="24"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain"/>
+                                                <connections>
+                                                    <action selector="sortByAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="R8z-gZ-OrE"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>

@@ -39,7 +39,7 @@ class ClientBookingViewController: BaseViewController {
         
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadData()
+        loadData(sortBy: .byTitle)
         resetSegment()
     }
     
@@ -47,14 +47,14 @@ class ClientBookingViewController: BaseViewController {
 //        self.navigationController?.navigationBar.isHidden = true
 //    }
         
-    private func loadData() {
-        loadBookingList()
+    private func loadData(sortBy:SortType) {
+        loadBookingList(sortBy:sortBy)
         tableView.reloadData()
     }
         
-    private func loadBookingList(){
+    private func loadBookingList(sortBy:SortType){
         if let client = client{
-            bookingList = CoreDataManager.shared.loadBookingList(email: client.email ?? "", isClient: true)
+            bookingList = CoreDataManager.shared.loadBookingList(email: client.email ?? "", isClient: true, sortBy: sortBy)
             bookingListOngoing = bookingList.filter({
                 $0.status == "New" || $0.status == "Pending" || $0.status == "Inprogress"
             })
@@ -139,7 +139,9 @@ extension ClientBookingViewController: UITableViewDelegate , UITableViewDataSour
         if let booking = booking {
             cell?.serviceName.text = booking.service?.serviceTitle
             cell?.bookDateTimeLabel.text = booking.date?.dateAndTimetoString()
-            cell?.customerNameLabel.text = booking.client?.firstName
+            if let vendorFirstName = booking.vendor?.firstName, let vendorLastName = booking.vendor?.lastName{
+                cell?.customerNameLabel.text = vendorFirstName + " " + vendorLastName
+            }
             if let email = booking.client?.email{
                 clientAddress =  CoreDataManager.shared.getUserLocationData(email:email)
                 cell?.locationLabel.text = clientAddress?.address
@@ -173,6 +175,8 @@ extension ClientBookingViewController: UITableViewDelegate , UITableViewDataSour
 
 extension ClientBookingViewController: FilterCallBackProtocal {
     func applySortBy(selectedSort: SortType) {
-        print("sort by" + "\(selectedSort)")
+       loadData(sortBy: selectedSort)
+        // Store the updated selected checkboxes array in UserDefaults
+        UserDefaults.standard.set(selectedSort.rawValue, forKey: "sortByValue")
     }
 }

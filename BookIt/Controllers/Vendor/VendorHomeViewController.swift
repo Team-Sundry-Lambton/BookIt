@@ -38,13 +38,13 @@ class VendorHomeViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadData()
+        loadData(sortBy: .byTitle)
         resetSegment()
     }
     
-    private func loadData() {
+    private func loadData(sortBy: SortType) {
         getVendor()
-        loadBookingList()
+        loadBookingList(sortBy: sortBy)
         tableView.isHidden = true
         emptyView.isHidden = true
         if segmentSelectedIndex == 0 {
@@ -63,8 +63,8 @@ class VendorHomeViewController: BaseViewController {
         tableView.reloadData()
     }
     
-    private func loadBookingList(){
-        bookingList = CoreDataManager.shared.loadBookingList(email: vendor?.email ?? "")
+    private func loadBookingList(sortBy: SortType){
+        bookingList = CoreDataManager.shared.loadBookingList(email: vendor?.email ?? "", sortBy: sortBy)
             bookingListOngoing = bookingList.filter({
                 $0.status == "New" || $0.status == "Pending" || $0.status == "Inprogress"
             })
@@ -169,6 +169,6 @@ extension VendorHomeViewController: UITableViewDelegate , UITableViewDataSource 
 
 extension VendorHomeViewController: FilterCallBackProtocal {
     func applySortBy(selectedSort: SortType) {
-        print("sort by" + "\(selectedSort)")
+        loadData(sortBy: selectedSort)
     }
 }

@@ -249,7 +249,7 @@ class CoreDataManager : NSObject{
         return Int16(count)
     }
     
-    func loadBookingList(email : String, isClient:Bool = false) -> [Booking]{
+    func loadBookingList(email : String, isClient:Bool = false, sortBy: SortType) -> [Booking]{
             var bookingList = [Booking]()
             let request: NSFetchRequest<Booking> = Booking.fetchRequest()
             var predictString: String = "vendor.email=%@"
@@ -260,8 +260,17 @@ class CoreDataManager : NSObject{
             }
             let folderPredicate = NSPredicate(format: predictString, email ?? "")
             request.predicate = folderPredicate
-            request.sortDescriptors = [NSSortDescriptor(key: "status", ascending: true)]
-    //        request.fetchLimit = 10
+            switch sortBy {
+            case .byTitle:
+                request.sortDescriptors = [NSSortDescriptor(key: "service.serviceTitle", ascending: true)]
+            case .byDate:
+                request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
+            case .byPrice:
+                request.sortDescriptors = [NSSortDescriptor(key: "service.price", ascending: true)]
+            default:
+                request.sortDescriptors = [NSSortDescriptor(key: "service.serviceTitle", ascending: true)]
+            }
+            
             do {
                 bookingList = try context.fetch(request)
 
