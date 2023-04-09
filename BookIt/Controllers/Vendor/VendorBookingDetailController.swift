@@ -39,6 +39,10 @@ class VendorBookingDetailController: NavigationBaseViewController{
     
     func loadDetails(){
         
+        if let id = booking?.bookingId {
+                    booking = CoreDataManager.shared.getBooking(bookingId: Int(id))
+                }
+        
         guard
             let service = booking?.service
                 ,let client = booking?.client
@@ -72,6 +76,7 @@ class VendorBookingDetailController: NavigationBaseViewController{
             servicePriceLbl.text = "$ " + price + " / " + type
         }
         
+        bookingCommentLbl.text = booking?.problemDescription ?? "N/A"
         bookingLocationLbl.text = status
         let price:Double = Double(service.price ?? "") ?? 0.0
         let discount = 0.0
@@ -91,6 +96,7 @@ class VendorBookingDetailController: NavigationBaseViewController{
     
     override func viewWillAppear(_ animated: Bool) {
        super.viewWillAppear(animated)
+        loadDetails()
         let titleLabel = UILabel()
         titleLabel.text = "Booking Details"
         titleLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
