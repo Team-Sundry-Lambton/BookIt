@@ -76,6 +76,7 @@ class VendorBookingDetailController: NavigationBaseViewController{
             servicePriceLbl.text = "$ " + price + " / " + type
         }
         
+        bookingCommentLbl.text = booking?.problemDescription ?? "N/A"
         bookingLocationLbl.text = status
         let price:Double = Double(service.price ?? "") ?? 0.0
         let discount = 0.0
