@@ -97,14 +97,17 @@ class SignupViewController: NavigationBaseViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         deregisterFromKeyboardNotifications()
-        self.navigationController?.navigationBar.isHidden = true
     }
     
     func redirectUser(email : String){
         if (checkUserAvailablility(email : email)){
-            loadDashBoard()
-            
+            if confirmPasswordTxt.text == "" {
+                loadDashBoard()
+            }else{
+                UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"User already exsist. Please login.", okActionTitle: "OK", view: self)
+            }
         }else{
             if let user = loginUser {
                 setUserObject(user: user)

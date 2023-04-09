@@ -108,7 +108,7 @@ class ClientHomeViewController: BaseViewController {
         vendorList =  CoreDataManager.shared.getMostRatedVendor()
         newVendersCollectionView.reloadData()
         
-        serviceList = CoreDataManager.shared.loadServices()
+        serviceList = CoreDataManager.shared.getMostRatedServices()
         serviceListHeightConstrain.constant = CGFloat((serviceList.count) * 125)
         serviceListTableView.reloadData()
     }

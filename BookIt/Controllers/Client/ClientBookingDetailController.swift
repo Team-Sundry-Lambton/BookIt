@@ -255,6 +255,7 @@ class ClientBookingDetailController : NavigationBaseViewController{
 
         let actionPayPal = UIAlertAction(title: "PayPal", style: .default) { _ in
             self.triggerPayPalCheckout(price:self.priceLbl.text ?? "0")
+            self.paymentAPICall()
         }
         actionSheet.addAction(actionPayPal)
 
@@ -271,23 +272,25 @@ extension ClientBookingDetailController {
     //User payment service call
     func paymentAPICall()
     {
-        let param = UserPaymentParam(bookingId: String(describing:booking?.bookingId))
-        let urlPath: String = "email/send/"
-        
-        NetworkManager.shared.makePayment(urlStr: urlPath, postData: param.toJSON()) { (success, rsponse) in
-            if success == true
-            {DispatchQueue.main.async {
-                print(rsponse?.message)
-                self.firestoreUpdate(title: "Processing....", status: ServiceStatus.IN_PROGRESS)
-//                if let booking = self.booking {
-//                    booking.status = ServiceStatus.IN_PROGRESS.title
-//                    self.saveAllContextCoreData()
-//                }
-                //go to home.
-            }
- 
-            }else{
-                UIAlertViewExtention.shared.showBasicAlertView(title: "Payment Failed", message: "Sonmething went wrong please try again.", okActionTitle: "OK", view: self)
+        if let bookingData = booking {
+            let param = UserPaymentParam(bookingId: String(bookingData.bookingId))
+            let urlPath: String = "email/send/"
+            
+            NetworkManager.shared.makePayment(urlStr: urlPath, postData: param.toJSON()) { (success, rsponse) in
+                if success == true
+                {DispatchQueue.main.async {
+                    print(rsponse?.message)
+                    self.firestoreUpdate(title: "Processing....", status: ServiceStatus.IN_PROGRESS)
+                    //                if let booking = self.booking {
+                    //                    booking.status = ServiceStatus.IN_PROGRESS.title
+                    //                    self.saveAllContextCoreData()
+                    //                }
+                    //go to home.
+                }
+                    
+                }else{
+                    UIAlertViewExtention.shared.showBasicAlertView(title: "Payment Failed", message: "Sonmething went wrong please try again.", okActionTitle: "OK", view: self)
+                }
             }
         }
     }
@@ -335,16 +338,15 @@ extension ClientBookingDetailController{
             }, onApprove: { approval in
 
                 approval.actions.capture { (response, error) in
-                    self.paymentAPICall()
                     print("Order successfully captured: \(response?.data)")
                 }
 
             }, onCancel: {
-
+                print("Order Cancel captured:")
                 // Optionally use this closure to respond to the user canceling the paysheet
 
             }, onError: { error in
-
+                print("Order Error captured: \(error)")
                 // Optionally use this closure to respond to the user experiencing an error in
                 // the payment experience
 

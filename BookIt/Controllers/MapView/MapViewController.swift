@@ -175,13 +175,13 @@ class MapViewController: NavigationBaseViewController,CLLocationManagerDelegate,
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         if selectLocation {
             if let destination = destination{
                 let place = PlaceObject(title: address , subtitle: "", coordinate: destination)
                 delegate?.setServiceLocation(place: place)
             }
         }
-        self.navigationController?.navigationBar.isHidden = true
     }
     
     

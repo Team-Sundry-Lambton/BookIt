@@ -74,7 +74,7 @@ class ConfirmLocationViewController: UIViewController {
                             UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: strongSelf)
                         }else{
                             UIAlertViewExtention.shared.showBasicAlertView(title: "Success",message: "Location updated successfully.", okActionTitle: "OK", view: strongSelf)
-                            self?.dismiss(animated: true)
+                            strongSelf.dismiss(animated: true)
                             
                         }
                     }
@@ -92,7 +92,7 @@ class ConfirmLocationViewController: UIViewController {
                             UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: strongSelf)
                         }else{
                             UIAlertViewExtention.shared.showBasicAlertView(title: "Success",message: "Location save successfully.", okActionTitle: "OK", view: strongSelf)
-                            self?.dismiss(animated: true)
+                            strongSelf.dismiss(animated: true)
                         }
                     }
                 }

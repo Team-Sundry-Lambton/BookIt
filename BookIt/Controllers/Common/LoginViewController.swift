@@ -70,10 +70,6 @@ class LoginViewController: NavigationBaseViewController {
         UIAlertViewExtention.shared.showBasicAlertView(title: "Forgot Password?",message: "Please contact us at teamsundry@gmail.com to send resent password link.", okActionTitle: "OK", view: self)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = true
-    }
-    
     func redirectUser(email : String){
         checkUserAvailablility(email : email){ status in
             DispatchQueue.main.async {

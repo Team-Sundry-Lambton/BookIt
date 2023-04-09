@@ -49,13 +49,15 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pld-Wm-Rd4">
-                                <rect key="frame" x="119.66666666666669" y="709" width="175" height="25"/>
+                                <rect key="frame" x="125.66666666666669" y="709" width="163" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="Sqz-2Y-Bgm"/>
                                 </constraints>
                                 <color key="tintColor" red="0.23921568627450979" green="0.38823529411764707" blue="0.61568627450980395" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Continue as a guest"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Continue as a guest">
+                                    <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="15"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="continueGuest" destination="BYZ-38-t0r" eventType="touchUpInside" id="2QD-bJ-4xw"/>
                                 </connections>
@@ -406,13 +408,15 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v5L-7q-B24">
-                                                <rect key="frame" x="119.66666666666669" y="745" width="175" height="25"/>
+                                                <rect key="frame" x="125.66666666666669" y="745" width="163" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="w6A-A9-wde"/>
                                                 </constraints>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Continue as a guest"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Continue as a guest">
+                                                    <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="15"/>
+                                                </buttonConfiguration>
                                                 <connections>
                                                     <action selector="loginButtonClicked:" destination="JZf-vq-TWR" eventType="touchUpInside" id="maK-0f-5S2"/>
                                                 </connections>
@@ -697,13 +701,15 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hWI-VA-XRl">
-                                <rect key="frame" x="119.66666666666669" y="701" width="175" height="25"/>
+                                <rect key="frame" x="125.66666666666669" y="701" width="163" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="WG2-f7-0ie"/>
                                 </constraints>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Continue as a guest"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Continue as a guest">
+                                    <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="15"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="signUpButtonClicked:" destination="6aG-Kx-hM8" eventType="touchUpInside" id="qcb-VD-KXu"/>
                                 </connections>
