@@ -44,7 +44,7 @@
 					<key>UISceneDelegateClassName</key>
 					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
 					<key>UISceneStoryboardFile</key>
-					<string>Main</string>
+					<string>Onboarding</string>
 					<key>Base url</key>
 					<string>http://34.201.209.204:8009/admin/api/</string>
 				</dict>
