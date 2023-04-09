@@ -63,8 +63,6 @@ class ClientServiceDetailViewController: BaseViewController, CLLocationManagerDe
         setTimer()
         addBorder()
         interfaceSegmented.delegate = self
-        loadServiceDetail()
-        additionalInfoForVendorClient()
         tvReviews.delegate = self
         tvReviews.dataSource = self
         tvReviews.register(UINib(nibName: "ReviewTableViewCell", bundle: nil), forCellReuseIdentifier: "ReviewTableViewCell")
@@ -77,6 +75,8 @@ class ClientServiceDetailViewController: BaseViewController, CLLocationManagerDe
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        loadServiceDetail()
+        additionalInfoForVendorClient()
         mapView.isZoomEnabled = false
         locationMnager.delegate = self
         locationMnager.desiredAccuracy = kCLLocationAccuracyBest
@@ -85,7 +85,7 @@ class ClientServiceDetailViewController: BaseViewController, CLLocationManagerDe
         mapView.delegate = self
         loadMap()
         tvReviews.reloadData()
-        additionalInfoForVendorClient()
+
     }
     
     func loadServiceDetail(){
@@ -120,9 +120,11 @@ class ClientServiceDetailViewController: BaseViewController, CLLocationManagerDe
     }
     
     func loadMap(){
-        let latitude: CLLocationDegrees = selectedService?.address?.addressLatitude ?? 43.691221
-        let longitude: CLLocationDegrees = selectedService?.address?.addressLongitude ?? -79.3383039
-        displayLocation(latitude: latitude, longitude: longitude, title: selectedService?.serviceTitle ?? "N/A", subtitle: selectedService?.address?.address ?? "Not found address")
+        let latitude = selectedService?.address?.addressLatitude ?? 43.691221
+        let longitude = selectedService?.address?.addressLongitude ?? -79.3383039
+
+        let location = CLLocationCoordinate2DMake(latitude, longitude)
+        displayLocation(latitude: location.latitude, longitude: location.longitude, title: selectedService?.serviceTitle ?? "N/A", subtitle: selectedService?.address?.address ?? "Not found address")
     }
     
     func dipalyServiceReview(){
@@ -155,25 +157,27 @@ class ClientServiceDetailViewController: BaseViewController, CLLocationManagerDe
                          longitude: CLLocationDegrees,
                          title: String,
                          subtitle: String) {
-        // 2nd step - define span
+        removePin()
         let latDelta: CLLocationDegrees = 0.05
         let lngDelta: CLLocationDegrees = 0.05
         
         let span = MKCoordinateSpan(latitudeDelta: latDelta, longitudeDelta: lngDelta)
-        // 3rd step is to define the location
         let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        // 4th step is to define the region
         let region = MKCoordinateRegion(center: location, span: span)
-        
-        // 5th step is to set the region for the map
         mapView.setRegion(region, animated: true)
         
-        // 6th step is to define annotation
         let annotation = MKPointAnnotation()
         annotation.title = title
         annotation.subtitle = subtitle
         annotation.coordinate = location
         mapView.addAnnotation(annotation)
+    }
+    
+    //MARK: - remove pin from map
+    func removePin() {
+        for annotation in mapView.annotations {
+            mapView.removeAnnotation(annotation)
+        }
     }
     
     func getVendor(){

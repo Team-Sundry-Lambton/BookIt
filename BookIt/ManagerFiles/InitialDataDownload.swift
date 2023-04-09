@@ -947,7 +947,7 @@ extension InitialDataDownloadManager{
             }
             
             db.collection("address")
-                .whereField("parentService", isEqualTo: serviceId)
+//                .whereField("parentService", isEqualTo: serviceId)
                 .whereField("addressId", isEqualTo: addressObject.addressId)
                 .getDocuments() { (querySnapshot, err) in
                     if let err = err {
