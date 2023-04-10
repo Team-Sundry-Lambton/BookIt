@@ -27,7 +27,7 @@ class NetworkManager: NSObject {
                 print(error)
             }
         }
-        return "http://34.201.209.204:8009/admin/api/"
+        return "http://localhost:5002/admin/api/"
     }
     
     //User make the payment
