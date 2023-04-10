@@ -31,6 +31,7 @@ class ClientServiceDetailViewController: BaseViewController, CLLocationManagerDe
     @IBOutlet weak var viewDescription: UIView!
     @IBOutlet weak var viewLocation: UIView!
     @IBOutlet weak var viewReviews: UIView!
+    @IBOutlet weak var emptyReviewView: UIView!
     @IBOutlet weak var tvReviews: UITableView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var ivAvatar: UIImageView!
@@ -114,6 +115,13 @@ class ClientServiceDetailViewController: BaseViewController, CLLocationManagerDe
         tvDescription.text = selectedService?.serviceDescription
         getVendor()
         vendorReviewList = CoreDataManager.shared.getVendorReviewList(email: vendor?.email ?? "")
+        if vendorReviewList.count > 0 {
+            emptyReviewView.isHidden = true
+            tvReviews.isHidden = false
+        }else{
+            emptyReviewView.isHidden = false
+            tvReviews.isHidden = true
+        }
         dipalyServiceReview()
         dipalyVendorReview()
         

@@ -115,30 +115,35 @@ class VendorBookingDetailController: NavigationBaseViewController{
             declineBtn.isHidden = true
             serviceStatusBtn.isHidden = false
             serviceStatusBtn.isEnabled = false
+            serviceStatusBtn.tintColor = UIColor(named:"main_dark_grey")
             serviceStatusBtn.setTitle(ServiceStatus.PENDING.nextStep.forVendor, for: .normal)
             case ServiceStatus.IN_PROGRESS.title:
             acceptBtn.isHidden = true
             declineBtn.isHidden = true
             serviceStatusBtn.isHidden = false
             serviceStatusBtn.isEnabled = true
+            serviceStatusBtn.tintColor = UIColor(named:"main_green")
             serviceStatusBtn.setTitle(ServiceStatus.IN_PROGRESS.nextStep.forVendor, for: .normal)
             case ServiceStatus.COMPLETED.title:
             acceptBtn.isHidden = true
             declineBtn.isHidden = true
             serviceStatusBtn.isHidden = false
             serviceStatusBtn.isEnabled = false
+            serviceStatusBtn.tintColor = UIColor(named:"main_blue")
             serviceStatusBtn.setTitle(ServiceStatus.COMPLETED.nextStep.forVendor, for: .normal)
             case ServiceStatus.REJECTED.title:
             acceptBtn.isHidden = true
             declineBtn.isHidden = true
             serviceStatusBtn.isHidden = false
             serviceStatusBtn.isEnabled = false
+            serviceStatusBtn.tintColor = UIColor(named:"main_dark_grey")
             serviceStatusBtn.setTitle(ServiceStatus.REJECTED.nextStep.forVendor, for: .normal)
             case ServiceStatus.CANCELLED.title:
             acceptBtn.isHidden = true
             declineBtn.isHidden = true
             serviceStatusBtn.isHidden = false
             serviceStatusBtn.isEnabled = false
+            serviceStatusBtn.tintColor = UIColor(named:"main_dark_grey")
             serviceStatusBtn.setTitle(ServiceStatus.CANCELLED.nextStep.forVendor, for: .normal)
             default:
             acceptBtn.isHidden = true
