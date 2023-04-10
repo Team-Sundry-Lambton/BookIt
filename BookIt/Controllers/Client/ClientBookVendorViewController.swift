@@ -204,7 +204,7 @@ class ClientBookVendorViewController: NavigationBaseViewController, UITextViewDe
                             if let status = status {
                                 if status {
                                     strongSelf.saveAllContextCoreData()
-                                    strongSelf.gotoConfirmationScreen(title: "Service Rescheduled!", message: "The previously scheduled service appointment has been rescheduled to a new date or time")
+                                    strongSelf.gotoConfirmationScreen(title: "Service Rescheduled!", message: "The previously scheduled service appointment has been rescheduled to a new date or time. Please wait for the vendor to confirm the booking.")
                                 }else{
                                     UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: strongSelf)
                                 }
@@ -235,7 +235,7 @@ class ClientBookVendorViewController: NavigationBaseViewController, UITextViewDe
                         if let status = status {
                             if status {
                                 strongSelf.saveAllContextCoreData()
-                                strongSelf.gotoConfirmationScreen(title: "Service Booked!", message: "Your service appointment has been successfully booked")
+                                strongSelf.gotoConfirmationScreen(title: "Service Booked!", message: "Your service appointment has been successfully booked. Please wait for the vendor to confirm the booking.")
                             }else{
                                 UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: strongSelf)
                             }
