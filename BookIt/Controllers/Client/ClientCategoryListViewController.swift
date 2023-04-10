@@ -24,32 +24,6 @@ class ClientCategoryListViewController: BaseViewController {
 
         // Do any additional setup after loading the view.
     }
-    
-//    func loadCategories() {
-//        let fetchRequest: NSFetchRequest<Category> = Category.fetchRequest()
-//        let count = try! context.count(for: fetchRequest)
-//
-//        if count == 0 {
-//            for categoryData in categoriesList {
-//                let category = Category(context: context)
-//                category.name = categoryData["name"]!
-//                category.picture = UIImage(named: categoryData["imageName"]!)?.pngData()
-//                // If the image is not found, you can use a placeholder image or set the image to nil
-//            }
-//
-//            // Save the changes to Core Data
-//            try! context.save()
-//        }
-//
-//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-//
-//        do {
-//            categories = try context.fetch(fetchRequest)
-//        } catch {
-//            print("Error loading categories \(error.localizedDescription)")
-//        }
-//    }
-    
 }
 
 extension ClientCategoryListViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
@@ -75,7 +49,7 @@ extension ClientCategoryListViewController: UICollectionViewDelegate, UICollecti
         let row = indexPath.row / 2 // Divide by 2 to group cells into pairs for each row
         let isFirstCell = indexPath.row % 2 == 0 || indexPath.row == 0
         let isOddRow = row % 2 == 0
-        let cellWidth = isFirstCell ? (isOddRow ? collectionView.frame.width * 0.38 : collectionView.frame.width * 0.55) : (isOddRow ? collectionView.frame.width * 0.55 : collectionView.frame.width * 0.38)
+        let cellWidth = isFirstCell ? (isOddRow ? collectionView.frame.width * 0.37 : collectionView.frame.width * 0.55) : (isOddRow ? collectionView.frame.width * 0.55 : collectionView.frame.width * 0.37)
         
         return CGSize(width: cellWidth, height: cellHeight)
     }
