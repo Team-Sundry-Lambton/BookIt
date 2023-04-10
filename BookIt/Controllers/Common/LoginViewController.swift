@@ -91,6 +91,7 @@ class LoginViewController: NavigationBaseViewController {
                                     if userPW == enterdPassword{
                                         strongSelf.loadDashBoard(user: strongSelf.loginUser)
                                     }else{
+                                        LoadingHudManager.shared.dissmissHud()
                                         UIAlertViewExtention.shared.showBasicAlertView(title: "Error",message: "Password miss match.", okActionTitle: "OK", view: strongSelf)
                                         LoadingHudManager.shared.dissmissHud()
                                     }
@@ -99,6 +100,7 @@ class LoginViewController: NavigationBaseViewController {
                             }
                         }
                 }else{
+                    LoadingHudManager.shared.dissmissHud()
                     UIAlertViewExtention.shared.showBasicAlertView(title: "Error",message: "User not found please register first.", okActionTitle: "OK", view: self)
                 }
             }

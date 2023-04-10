@@ -40,8 +40,8 @@ class ClientBookingViewController: BaseViewController {
         
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadData()
         resetSegment()
+        loadData()
     }
     
 //    override func viewDidAppear(_ animated: Bool) {
@@ -93,6 +93,7 @@ class ClientBookingViewController: BaseViewController {
         
     private func resetSegment() {
         segmentSelectedIndex = 0
+        interfaceSegmented.setIndex(index: 0)
     }
 }
     
