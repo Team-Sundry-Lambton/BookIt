@@ -15,18 +15,23 @@ class InitialDataDownloadManager : NSObject{
     let db = Firestore.firestore()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    func downloadAllData(completion: @escaping () -> Void)  async{
-        await getAllCategoryData()
-        await getAllClientData()
-        await getAllVendorData()
-        await getAllAddressData()
-        await getAllServiceData()
-        await getAllMediaData()
-        await getAllBookingData()
-        await getAllPaymentData()
-        await getAllVendorReviewData()
-        
-        completion()
+    func downloadAllData(completion: @escaping () -> Void) {
+        DispatchQueue.main.async {
+            async { [weak self] in
+                guard let strongSelf = self else { return }
+                await strongSelf.getAllCategoryData()
+                await strongSelf.getAllClientData()
+                await strongSelf.getAllVendorData()
+                await strongSelf.getAllAddressData()
+                await strongSelf.getAllServiceData()
+                await strongSelf.getAllMediaData()
+                await strongSelf.getAllBookingData()
+                await strongSelf.getAllPaymentData()
+                await strongSelf.getAllVendorReviewData()
+                
+                completion()
+            }
+        }
     }
     
     func getAllCategoryData() async{
