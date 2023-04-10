@@ -39,8 +39,8 @@ class VendorHomeViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadData()
         resetSegment()
+        loadData()
     }
     
     private func loadData() {
@@ -103,6 +103,7 @@ class VendorHomeViewController: BaseViewController {
     
     private func resetSegment() {
         segmentSelectedIndex = 0
+        interfaceSegmented.setIndex(index: 0)
     }
 }
 
