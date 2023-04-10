@@ -2455,38 +2455,6 @@
             endingLineNumber = "341"
             landmarkName = "triggerPayPalCheckout(price:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "D9AFB660-0740-4850-AC1A-3F65C823BA54 - 87a68c71a2ad22a0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (PayPalCheckout.Approval) -&gt; () in BookIt.ClientBookingDetailController.triggerPayPalCheckout(price: Swift.String) -&gt; ()"
-                  moduleName = "BookIt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Controllers/Client/ClientBookingDetailController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "342"
-                  endingLineNumber = "342"
-                  offsetFromSymbolStart = "32">
-               </Location>
-               <Location
-                  uuid = "D9AFB660-0740-4850-AC1A-3F65C823BA54 - b2c21aaefee23695"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;PayPalCheckout.CaptureActionSuccess&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #2 (PayPalCheckout.Approval) -&gt; () in BookIt.ClientBookingDetailController.triggerPayPalCheckout(price: Swift.String) -&gt; ()"
-                  moduleName = "BookIt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Controllers/Client/ClientBookingDetailController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "343"
-                  endingLineNumber = "343"
-                  offsetFromSymbolStart = "80">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2505,11 +2473,11 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "A29EE237-F37C-4953-B2DE-A702CE9AB5F0 - fada44b542f7a89a"
+                  uuid = "A29EE237-F37C-4953-B2DE-A702CE9AB5F0 - 87a68c71a2ad2198"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #3 () -&gt; () in BookIt.ClientBookingDetailController.triggerPayPalCheckout(price: Swift.String) -&gt; ()"
+                  symbolName = "closure #2 (PayPalCheckout.Approval) -&gt; () in BookIt.ClientBookingDetailController.triggerPayPalCheckout(price: Swift.String) -&gt; ()"
                   moduleName = "BookIt"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Controllers/Client/ClientBookingDetailController.swift"
@@ -2517,14 +2485,14 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "350"
                   endingLineNumber = "350"
-                  offsetFromSymbolStart = "172">
+                  offsetFromSymbolStart = "32">
                </Location>
                <Location
-                  uuid = "A29EE237-F37C-4953-B2DE-A702CE9AB5F0 - e19b7cf49b5ea5a6"
+                  uuid = "A29EE237-F37C-4953-B2DE-A702CE9AB5F0 - b2c21aaefee235ed"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #4 (PayPalCheckout.ErrorInfo) -&gt; () in BookIt.ClientBookingDetailController.triggerPayPalCheckout(price: Swift.String) -&gt; ()"
+                  symbolName = "closure #1 (Swift.Optional&lt;PayPalCheckout.CaptureActionSuccess&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #2 (PayPalCheckout.Approval) -&gt; () in BookIt.ClientBookingDetailController.triggerPayPalCheckout(price: Swift.String) -&gt; ()"
                   moduleName = "BookIt"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Controllers/Client/ClientBookingDetailController.swift"
@@ -2532,7 +2500,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "351"
                   endingLineNumber = "351"
-                  offsetFromSymbolStart = "92">
+                  offsetFromSymbolStart = "80">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -2551,38 +2519,6 @@
             endingLineNumber = "345"
             landmarkName = "triggerPayPalCheckout(price:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "1E748192-53DC-4730-B19E-8F76BDCF7A0E - 87a68c71a2ad2124"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (PayPalCheckout.Approval) -&gt; () in BookIt.ClientBookingDetailController.triggerPayPalCheckout(price: Swift.String) -&gt; ()"
-                  moduleName = "BookIt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Controllers/Client/ClientBookingDetailController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "346"
-                  endingLineNumber = "346"
-                  offsetFromSymbolStart = "64">
-               </Location>
-               <Location
-                  uuid = "1E748192-53DC-4730-B19E-8F76BDCF7A0E - fada44b542f7a805"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #3 () -&gt; () in BookIt.ClientBookingDetailController.triggerPayPalCheckout(price: Swift.String) -&gt; ()"
-                  moduleName = "BookIt"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Controllers/Client/ClientBookingDetailController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "347"
-                  endingLineNumber = "347"
-                  offsetFromSymbolStart = "36">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2601,7 +2537,7 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "C7809CEC-75AE-4964-8763-A3990497EED2 - 3a9c7d8109831eb7"
+                  uuid = "C7809CEC-75AE-4964-8763-A3990497EED2 - 3a9c7d810983102b"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -2611,12 +2547,12 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/ManagerFiles/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1099"
-                  endingLineNumber = "1099"
+                  startingLineNumber = "1119"
+                  endingLineNumber = "1119"
                   offsetFromSymbolStart = "220">
                </Location>
                <Location
-                  uuid = "C7809CEC-75AE-4964-8763-A3990497EED2 - 3a9c7d8109831eb7"
+                  uuid = "C7809CEC-75AE-4964-8763-A3990497EED2 - 3a9c7d810983102b"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -2626,12 +2562,12 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/ManagerFiles/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1099"
-                  endingLineNumber = "1099"
+                  startingLineNumber = "1119"
+                  endingLineNumber = "1119"
                   offsetFromSymbolStart = "368">
                </Location>
                <Location
-                  uuid = "C7809CEC-75AE-4964-8763-A3990497EED2 - 570817cf1ffba2b5"
+                  uuid = "C7809CEC-75AE-4964-8763-A3990497EED2 - 570817cf1ffbac29"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -2641,8 +2577,8 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/ManagerFiles/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1099"
-                  endingLineNumber = "1099"
+                  startingLineNumber = "1119"
+                  endingLineNumber = "1119"
                   offsetFromSymbolStart = "580">
                </Location>
             </Locations>
@@ -2664,7 +2600,7 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "6FE0404F-6A99-468D-899B-25F059894FB4 - 3a9c7d81098313be"
+                  uuid = "6FE0404F-6A99-468D-899B-25F059894FB4 - 3a9c7d81098316d2"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -2674,12 +2610,12 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/ManagerFiles/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1138"
-                  endingLineNumber = "1138"
+                  startingLineNumber = "1158"
+                  endingLineNumber = "1158"
                   offsetFromSymbolStart = "2760">
                </Location>
                <Location
-                  uuid = "6FE0404F-6A99-468D-899B-25F059894FB4 - 570817cf1ffbafbc"
+                  uuid = "6FE0404F-6A99-468D-899B-25F059894FB4 - 570817cf1ffbaad0"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -2689,8 +2625,8 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/ManagerFiles/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1138"
-                  endingLineNumber = "1138"
+                  startingLineNumber = "1158"
+                  endingLineNumber = "1158"
                   offsetFromSymbolStart = "2688">
                </Location>
             </Locations>
@@ -2728,7 +2664,7 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "CA35F7BF-48E1-49C2-9CC7-A4D9DE7FF1B2 - 3a9c7d8109831f23"
+                  uuid = "CA35F7BF-48E1-49C2-9CC7-A4D9DE7FF1B2 - 3a9c7d8109831257"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -2738,12 +2674,12 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/ManagerFiles/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1111"
-                  endingLineNumber = "1111"
+                  startingLineNumber = "1131"
+                  endingLineNumber = "1131"
                   offsetFromSymbolStart = "728">
                </Location>
                <Location
-                  uuid = "CA35F7BF-48E1-49C2-9CC7-A4D9DE7FF1B2 - 3a9c7d8109831f23"
+                  uuid = "CA35F7BF-48E1-49C2-9CC7-A4D9DE7FF1B2 - 3a9c7d8109831257"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -2753,12 +2689,12 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/ManagerFiles/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1111"
-                  endingLineNumber = "1111"
+                  startingLineNumber = "1131"
+                  endingLineNumber = "1131"
                   offsetFromSymbolStart = "1144">
                </Location>
                <Location
-                  uuid = "CA35F7BF-48E1-49C2-9CC7-A4D9DE7FF1B2 - 570817cf1ffba321"
+                  uuid = "CA35F7BF-48E1-49C2-9CC7-A4D9DE7FF1B2 - 570817cf1ffbae55"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -2768,12 +2704,12 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/ManagerFiles/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1111"
-                  endingLineNumber = "1111"
+                  startingLineNumber = "1131"
+                  endingLineNumber = "1131"
                   offsetFromSymbolStart = "656">
                </Location>
                <Location
-                  uuid = "CA35F7BF-48E1-49C2-9CC7-A4D9DE7FF1B2 - 570817cf1ffba321"
+                  uuid = "CA35F7BF-48E1-49C2-9CC7-A4D9DE7FF1B2 - 570817cf1ffbae55"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -2783,8 +2719,8 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/ManagerFiles/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1111"
-                  endingLineNumber = "1111"
+                  startingLineNumber = "1131"
+                  endingLineNumber = "1131"
                   offsetFromSymbolStart = "1072">
                </Location>
             </Locations>
@@ -2945,8 +2881,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "890"
             endingLineNumber = "890"
-            landmarkName = "InitialDataDownloadManager"
-            landmarkType = "21">
+            landmarkName = "unknown"
+            landmarkType = "0">
             <Locations>
                <Location
                   uuid = "6894478E-6929-43BC-9489-B23116BA9FCE - 26b40193341c4c11"
@@ -2997,7 +2933,7 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "D11FAF5E-8F3E-4483-80A0-AF78EA0E1767 - 26b40193341c4d74"
+                  uuid = "D11FAF5E-8F3E-4483-80A0-AF78EA0E1767 - 26b40193341c48e8"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -3007,12 +2943,12 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/ManagerFiles/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "875"
-                  endingLineNumber = "875"
+                  startingLineNumber = "895"
+                  endingLineNumber = "895"
                   offsetFromSymbolStart = "140">
                </Location>
                <Location
-                  uuid = "D11FAF5E-8F3E-4483-80A0-AF78EA0E1767 - 26b40193341c4d74"
+                  uuid = "D11FAF5E-8F3E-4483-80A0-AF78EA0E1767 - 26b40193341c48e8"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -3022,8 +2958,8 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/ManagerFiles/InitialDataDownload.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "875"
-                  endingLineNumber = "875"
+                  startingLineNumber = "895"
+                  endingLineNumber = "895"
                   offsetFromSymbolStart = "188">
                </Location>
             </Locations>
@@ -3217,7 +3153,7 @@
             startingLineNumber = "303"
             endingLineNumber = "303"
             landmarkName = "getAllBookingData()"
-            landmarkType = "9">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3249,70 +3185,6 @@
             startingLineNumber = "115"
             endingLineNumber = "115"
             landmarkName = "updateButton(status:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "CA7AB05F-9A63-42A7-81C2-F8EDE7CD218F"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BookIt/Controllers/Client/ClientProfileViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "getClient()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3879168C-7E86-4EA7-B098-C13D915C6603"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BookIt/Controllers/Client/ClientProfileViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "setContent()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "F2AF9A81-DF24-425D-96E3-E6DC78AE8078"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BookIt/Controllers/Client/ClientProfileViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "setContent()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A93BFBA9-4E6B-4880-A34B-470E1133B4EF"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BookIt/Controllers/Client/ClientProfileViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "setContent()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3537,6 +3409,38 @@
             startingLineNumber = "178"
             endingLineNumber = "178"
             landmarkName = "getUserPassword(email:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EE448FE4-A26C-4A4D-885F-DFE77FD1594D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BookIt/ManagerFiles/MediaManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "init()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4A16AF5F-436A-4972-AE58-B9C7E784D71E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BookIt/ManagerFiles/MediaManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "init()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
