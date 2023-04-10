@@ -36,7 +36,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort by" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xks-10-GL3">
-                                <rect key="frame" x="49" y="114.33333333333333" width="57.666666666666657" height="20.333333333333329"/>
+                                <rect key="frame" x="49" y="114.33333333333333" width="57.666666666666657" height="19.333333333333329"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -205,17 +205,33 @@
                                     <constraint firstAttribute="height" constant="45" id="0l1-DA-r4i"/>
                                 </constraints>
                             </stackView>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sort_asc" translatesAutoresizingMaskIntoConstraints="NO" id="2Cr-7s-kVj">
+                                <rect key="frame" x="114" y="114" width="18" height="20"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="PyZ-LE-cdE"/>
+                                    <constraint firstAttribute="width" constant="18" id="bo7-Yg-J47"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="rwe-2U-kDm" appends="YES" id="Mqz-Mx-loZ"/>
+                                </connections>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="2Cr-7s-kVj" firstAttribute="leading" secondItem="xks-10-GL3" secondAttribute="trailing" constant="7.3333333333333428" id="19D-oN-ndH"/>
                             <constraint firstItem="cdb-p9-Uzt" firstAttribute="top" secondItem="kHA-L4-hDm" secondAttribute="top" constant="35" id="785-wm-MGG"/>
+                            <constraint firstItem="2Cr-7s-kVj" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="114" id="B31-0J-dWi"/>
                             <constraint firstItem="kHA-L4-hDm" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="FHu-YW-9Rb"/>
                             <constraint firstItem="xks-10-GL3" firstAttribute="top" secondItem="NyS-an-PNR" secondAttribute="bottom" constant="20" id="Jct-k1-kXu"/>
                             <constraint firstItem="kHA-L4-hDm" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="22" id="OEx-DD-iut"/>
                             <constraint firstItem="xks-10-GL3" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="49" id="PW6-58-uqw"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="EJi-oK-Vkm" secondAttribute="trailing" constant="65" id="PtE-81-d41"/>
                             <constraint firstItem="NyS-an-PNR" firstAttribute="top" secondItem="cdb-p9-Uzt" secondAttribute="bottom" constant="16" id="QDW-z8-ISZ"/>
+                            <constraint firstItem="2Cr-7s-kVj" firstAttribute="centerY" secondItem="xks-10-GL3" secondAttribute="centerY" id="Xta-GK-PXX"/>
+                            <constraint firstItem="2Cr-7s-kVj" firstAttribute="top" secondItem="EJi-oK-Vkm" secondAttribute="top" id="YOg-ai-6A6"/>
                             <constraint firstItem="cdb-p9-Uzt" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="dhV-oW-tPG"/>
                             <constraint firstItem="oKc-Gn-GLr" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="dwe-OP-41R"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="oKc-Gn-GLr" secondAttribute="bottom" constant="30" id="gE6-dj-BqI"/>
@@ -231,15 +247,22 @@
                         <outlet property="checkBoxDate" destination="GlR-SC-NOS" id="0X0-iU-V4K"/>
                         <outlet property="checkBoxPrice" destination="8PB-3G-AJP" id="fA3-dc-90d"/>
                         <outlet property="checkBoxTitle" destination="oMP-TU-E5h" id="03O-FZ-Ijq"/>
+                        <outlet property="sortByImg" destination="2Cr-7s-kVj" id="BpG-tY-4iq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="rwe-2U-kDm">
+                    <connections>
+                        <action selector="sortByImgTapped:" destination="Y6W-OH-hqX" id="TPu-zJ-ivm"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-57.251908396946561" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="-58.695652173913047" y="3.2608695652173916"/>
         </scene>
     </scenes>
     <resources>
         <image name="CheckBoxFill" width="24" height="24"/>
+        <image name="sort_asc" width="512" height="512"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

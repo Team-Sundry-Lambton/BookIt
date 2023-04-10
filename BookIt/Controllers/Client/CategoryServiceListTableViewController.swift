@@ -16,14 +16,11 @@ class CategoryServiceListTableViewController: BaseTableViewController {
     var selectedCategory: Category?
     var selectedVendor: Vendor?
     @IBOutlet weak var emptyView: UIView!
+    var sortAscending = true
+    var sortBy: SortType = .byTitle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Configure the search controller
-//        let customView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 44))
-//        customView.backgroundColor = .red
-//        self.navigationItem.titleView = customView
         self.search.delegate = self
         self.search.searchBar.delegate = self
         self.search.hidesNavigationBarDuringPresentation = false
@@ -89,6 +86,8 @@ class CategoryServiceListTableViewController: BaseTableViewController {
 
             }
             viewController.delegate = self
+            viewController.selectedSort = self.sortBy
+            viewController.isAsc = self.sortAscending
             present(viewController, animated: true)
         }
     }
@@ -96,7 +95,7 @@ class CategoryServiceListTableViewController: BaseTableViewController {
     func loadServices(){
         if let category = selectedCategory{
             if let categoryName = category.name{
-                serviceList =  CoreDataManager.shared.loadServicesForSelectedCategory(category: categoryName, searchText: searchText)
+                serviceList =  CoreDataManager.shared.loadServicesForSelectedCategory(category: categoryName, searchText: searchText, sortBy: sortBy, sortAscending: sortAscending)
             }
         }else if let vendor = selectedVendor{
             if let vendorName = vendor.email{
@@ -168,7 +167,10 @@ extension CategoryServiceListTableViewController: UISearchBarDelegate {
 }
 
 extension CategoryServiceListTableViewController: FilterCallBackProtocal {
-    func applySortBy(selectedSort: SortType) {
-        print("sort by" + "\(selectedSort)")
+    func applySortBy(selectedSort: SortType, isAsc: Bool) {
+        sortBy = selectedSort
+        sortAscending = isAsc
+        loadServices()
     }
+       
 }

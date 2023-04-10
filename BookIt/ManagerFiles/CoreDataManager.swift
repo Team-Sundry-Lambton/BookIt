@@ -249,7 +249,7 @@ class CoreDataManager : NSObject{
         return Int16(count)
     }
     
-    func loadBookingList(email : String, isClient:Bool = false, sortBy: SortType) -> [Booking]{
+    func loadBookingList(email : String, isClient:Bool = false, sortBy: SortType, sortAscending: Bool) -> [Booking]{
             var bookingList = [Booking]()
             let request: NSFetchRequest<Booking> = Booking.fetchRequest()
             var predictString: String = "vendor.email=%@"
@@ -262,13 +262,13 @@ class CoreDataManager : NSObject{
             request.predicate = folderPredicate
             switch sortBy {
             case .byTitle:
-                request.sortDescriptors = [NSSortDescriptor(key: "service.serviceTitle", ascending: true)]
+                request.sortDescriptors = [NSSortDescriptor(key: "service.serviceTitle", ascending: sortAscending)]
             case .byDate:
-                request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
+                request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: sortAscending)]
             case .byPrice:
-                request.sortDescriptors = [NSSortDescriptor(key: "service.price", ascending: true)]
+                request.sortDescriptors = [NSSortDescriptor(key: "service.price", ascending: sortAscending)]
             default:
-                request.sortDescriptors = [NSSortDescriptor(key: "service.serviceTitle", ascending: true)]
+                request.sortDescriptors = [NSSortDescriptor(key: "service.serviceTitle", ascending: sortAscending)]
             }
             
             do {
@@ -469,7 +469,7 @@ class CoreDataManager : NSObject{
         return serviceList
     }
     
-    func loadServicesForSelectedCategory(category : String, searchText : String) -> [Service]{
+    func loadServicesForSelectedCategory(category : String, searchText : String, sortBy: SortType, sortAscending: Bool) -> [Service]{
         var serviceList = [Service]()
         let request: NSFetchRequest<Service> = Service.fetchRequest()
                 var categoryPredicate = NSPredicate(format: "parent_Category.name == %@", category)
@@ -478,7 +478,16 @@ class CoreDataManager : NSObject{
                     categoryPredicate = NSPredicate(format: "parent_Category.name == %@ AND ( serviceTitle CONTAINS[cd] %@ OR serviceDescription CONTAINS[cd] %@ )", category, searchText, searchText)
                 }
                 request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate,statusPredicate])
-        request.sortDescriptors = [NSSortDescriptor(key: "serviceTitle", ascending: true)]
+        switch sortBy {
+        case .byTitle:
+            request.sortDescriptors = [NSSortDescriptor(key: "serviceTitle", ascending: sortAscending)]
+        case .byDate:
+            request.sortDescriptors = [NSSortDescriptor(key: "createdDate", ascending: sortAscending)]
+        case .byPrice:
+            request.sortDescriptors = [NSSortDescriptor(key: "price", ascending: sortAscending)]
+        default:
+            request.sortDescriptors = [NSSortDescriptor(key: "serviceTitle", ascending: sortAscending)]
+        }
         do {
             serviceList = try context.fetch(request)
             
