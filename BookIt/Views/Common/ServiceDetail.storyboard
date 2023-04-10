@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -173,11 +172,44 @@ Cleaning service</string>
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="300"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </tableView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bqd-Zp-WKr">
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="300"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No reviews yet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="etE-IH-juc">
+                                                        <rect key="frame" x="133.66666666666666" y="80" width="125.99999999999997" height="21.666666666666671"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                        <color key="textColor" red="0.49019607840000001" green="0.57254901960000004" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="At the moment there are no reviews for this vendor." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="WIz-K8-6LV">
+                                                        <rect key="frame" x="30" y="103.66666666666663" width="333" height="100"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="100" id="eOs-1q-dwG"/>
+                                                        </constraints>
+                                                        <color key="textColor" red="0.49019607840000001" green="0.57254901960000004" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    </textView>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="WIz-K8-6LV" firstAttribute="leading" secondItem="bqd-Zp-WKr" secondAttribute="leading" constant="30" id="9RN-3K-kgq"/>
+                                                    <constraint firstItem="etE-IH-juc" firstAttribute="top" secondItem="bqd-Zp-WKr" secondAttribute="top" constant="80" id="GfK-R9-TIh"/>
+                                                    <constraint firstItem="etE-IH-juc" firstAttribute="centerX" secondItem="bqd-Zp-WKr" secondAttribute="centerX" id="RlK-JQ-gug"/>
+                                                    <constraint firstItem="WIz-K8-6LV" firstAttribute="top" secondItem="etE-IH-juc" secondAttribute="bottom" constant="2" id="dUU-E5-UrC"/>
+                                                    <constraint firstAttribute="trailing" secondItem="WIz-K8-6LV" secondAttribute="trailing" constant="30" id="wZi-JS-rLE"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemMintColor"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="bqd-Zp-WKr" secondAttribute="trailing" id="C09-4R-bNw"/>
+                                            <constraint firstAttribute="bottom" secondItem="bqd-Zp-WKr" secondAttribute="bottom" id="UPA-Hd-kb0"/>
+                                            <constraint firstItem="bqd-Zp-WKr" firstAttribute="top" secondItem="oqA-b4-3SF" secondAttribute="top" id="VRB-zY-eA3"/>
                                             <constraint firstItem="hWB-hI-oHj" firstAttribute="top" secondItem="oqA-b4-3SF" secondAttribute="top" id="dai-aI-8Dj"/>
                                             <constraint firstAttribute="bottom" secondItem="hWB-hI-oHj" secondAttribute="bottom" id="fLR-6a-FNx"/>
+                                            <constraint firstItem="bqd-Zp-WKr" firstAttribute="leading" secondItem="oqA-b4-3SF" secondAttribute="leading" id="gaZ-v9-GWx"/>
                                             <constraint firstItem="hWB-hI-oHj" firstAttribute="leading" secondItem="oqA-b4-3SF" secondAttribute="leading" id="kMn-bJ-2uc"/>
                                             <constraint firstAttribute="trailing" secondItem="hWB-hI-oHj" secondAttribute="trailing" id="kgS-b2-VPK"/>
                                             <constraint firstAttribute="height" constant="300" id="z9A-E8-nmE"/>
@@ -258,6 +290,7 @@ Cleaning service</string>
                     <connections>
                         <outlet property="bannerTableView" destination="tcD-T8-Ag6" id="cQH-F6-nPl"/>
                         <outlet property="bookNowBtn" destination="X3B-l9-Hw5" id="kaU-JB-Rgr"/>
+                        <outlet property="emptyReviewView" destination="bqd-Zp-WKr" id="BWG-aH-NrP"/>
                         <outlet property="interfaceSegmented" destination="gAM-OC-qvl" id="oZS-ks-mbD"/>
                         <outlet property="ivAvatar" destination="i8b-cw-gZb" id="n8V-f5-DPo"/>
                         <outlet property="lblPrice" destination="ij8-yK-Yba" id="owL-sb-JaS"/>
