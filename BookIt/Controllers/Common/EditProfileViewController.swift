@@ -133,22 +133,11 @@ class EditProfileViewController: UIViewController {
                     CoreDataManager.shared.deleteUser(user: loginUser,isVendor: isVendor)
                     UserDefaultsManager.shared.saveUserData(user: loginUser)
                     setUserObject(isEdit: true)
-                    UIAlertViewExtention.shared.showBasicAlertView(title: "Success",message: "User updated successfully.", okActionTitle: "OK", view: self)
-                    if let navigator = self.navigationController {
-                        navigator.popViewController(animated: true)
-                    }else{
-                        self.dismiss(animated: true)
-                    }
 
                 }else{
                     UserDefaultsManager.shared.saveUserData(user: loginUser)
                         setUserObject(isEdit: false)
                     self.loginUser = loginUser
-                            if let navigator = self.navigationController {
-                                navigator.popViewController(animated: true)
-                            }else{
-                                self.dismiss(animated: true)
-                            }
                 }
         }
     }
@@ -175,7 +164,6 @@ class EditProfileViewController: UIViewController {
             vendor.picture = picData
             vendor.contactNumber = phoneNumberTxt.text
             vendor.bannerURL = nil
-            saveUser()
             if(isEdit){
                 LoadingHudManager.shared.showSimpleHUD(title: "Updating...", view: self.view)
                 InitialDataDownloadManager.shared.updateVendorData(vendor: vendor){ [weak self] status in
@@ -184,7 +172,7 @@ class EditProfileViewController: UIViewController {
                         guard let strongSelf = self else {
                             return
                         }
-                        strongSelf.displayErrorMessage(status: status)
+                        strongSelf.displayErrorMessage(status: status, isEdit: isEdit)
                     }
                 }
             }else{
@@ -195,7 +183,7 @@ class EditProfileViewController: UIViewController {
                         guard let strongSelf = self else {
                             return
                         }
-                        strongSelf.displayErrorMessage(status: status)
+                        strongSelf.displayErrorMessage(status: status, isEdit: isEdit)
                     }
                 }
             }
@@ -207,7 +195,7 @@ class EditProfileViewController: UIViewController {
             client.picture = picData
             client.contactNumber = phoneNumberTxt.text
             client.isPremium = false
-            saveUser()
+           
             if(isEdit){
                 LoadingHudManager.shared.showSimpleHUD(title: "Updating...", view: self.view)
                 InitialDataDownloadManager.shared.updateClientData(client: client){[weak self] status in
@@ -216,7 +204,7 @@ class EditProfileViewController: UIViewController {
                         guard let strongSelf = self else {
                             return
                         }
-                        strongSelf.displayErrorMessage(status: status)
+                        strongSelf.displayErrorMessage(status: status, isEdit: isEdit)
                     }
                 }
             }else{
@@ -227,17 +215,29 @@ class EditProfileViewController: UIViewController {
                         guard let strongSelf = self else {
                             return
                         }
-                        strongSelf.displayErrorMessage(status: status)
+                        strongSelf.displayErrorMessage(status: status, isEdit: isEdit)
                     }
                 }
             }
         }
     }
     
-    func displayErrorMessage(status : Bool?){
+    func displayErrorMessage(status : Bool?,isEdit : Bool){
         if let status = status {
             if status == false {
                 UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: self)
+            }else{
+                saveUser()
+                if(isEdit){
+                    UIAlertViewExtention.shared.showBasicAlertView(title: "Success",message: "User updated successfully.", okActionTitle: "OK", view: self)
+                }else{
+                    UIAlertViewExtention.shared.showBasicAlertView(title: "Success",message: "User inserted successfully.", okActionTitle: "OK", view: self)
+                }
+                if let navigator = self.navigationController {
+                    navigator.popViewController(animated: true)
+                }else{
+                    self.dismiss(animated: true)
+                }
             }
         }
     }

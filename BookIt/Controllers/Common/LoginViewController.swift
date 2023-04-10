@@ -71,42 +71,38 @@ class LoginViewController: NavigationBaseViewController {
     }
     
     func redirectUser(email : String){
-        checkUserAvailablility(email : email){ status in
+        checkUserAvailablility(email: email, completion: {
+            status in
             DispatchQueue.main.async {
                 if status == true {
-                    var password = ""
-                    if (self.isVendor){
-                        if let vendor = CoreDataManager.shared.getVendor(email: email){
-                            self.loginUser = LoginUser(firstName: vendor.firstName ?? "", lastName: vendor.lastName ?? "", email: vendor.email ?? "", contactNumber: vendor.contactNumber ?? "",isVendor: self.isVendor)
-                            if let pw = vendor.password {
-                                if pw.count > 0 {
-                                    password = dencryptString(encyrptedString:pw)
+                    self.getUserPassword(email: email) { [weak self]  password in
+                            DispatchQueue.main.async {
+                                guard let strongSelf = self else {
+                                    return
                                 }
+                                var userPW = ""
+                                if let pw = password {
+                                    if pw.count > 0 {
+                                        userPW = dencryptString(encyrptedString:pw)
+                                    }
+                                }
+                                
+                                if let enterdPassword = strongSelf.passwordTxt.text {
+                                    if userPW == enterdPassword{
+                                        strongSelf.loadDashBoard(user: strongSelf.loginUser)
+                                    }else{
+                                        UIAlertViewExtention.shared.showBasicAlertView(title: "Error",message: "Password miss match.", okActionTitle: "OK", view: strongSelf)
+                                        LoadingHudManager.shared.dissmissHud()
+                                    }
+                                }
+
                             }
                         }
-                    }else{
-                        if let client = CoreDataManager.shared.getClient(email: email){
-                            self.loginUser = LoginUser(firstName: client.firstName ?? "", lastName: client.lastName ?? "", email: client.email ?? "", contactNumber: client.contactNumber ?? "",isVendor: self.isVendor)
-                            if let pw = client.password {
-                                if pw.count > 0 {
-                                    password = dencryptString(encyrptedString:pw)
-                                }
-                            }
-                        }
-                    }
-                    if let enterdPassword = self.passwordTxt.text {
-                        if password == enterdPassword{
-                            self.loadDashBoard(user: self.loginUser)
-                        }else{
-                            UIAlertViewExtention.shared.showBasicAlertView(title: "Error",message: "Password miss match.", okActionTitle: "OK", view: self)
-                            LoadingHudManager.shared.dissmissHud()
-                        }
-                    }
                 }else{
                     UIAlertViewExtention.shared.showBasicAlertView(title: "Error",message: "User not found please register first.", okActionTitle: "OK", view: self)
                 }
             }
-        }
+        })
     }
     
     func checkUserAvailablility(email : String,completion: @escaping (_ status: Bool?) -> Void){
@@ -129,6 +125,47 @@ class LoginViewController: NavigationBaseViewController {
             }
         }else{
             completion(true)
+        }
+    }
+    
+    func getUserPassword(email : String,completion: @escaping (_ password: String?) -> Void){
+        if (self.isVendor){
+            if let vendor = CoreDataManager.shared.getVendor(email: email){
+                self.loginUser = LoginUser(firstName: vendor.firstName ?? "", lastName: vendor.lastName ?? "", email: vendor.email ?? "", contactNumber: vendor.contactNumber ?? "",isVendor: self.isVendor)
+                completion(vendor.password)
+            }else{
+                
+                InitialDataDownloadManager.shared.getVendorData(email: email){ [weak self] vendor in
+                    DispatchQueue.main.async {
+                        guard let strongSelf = self else {
+                            return
+                        }
+                        if let vendor = vendor {
+                            strongSelf.loginUser = LoginUser(firstName: vendor.firstName ?? "", lastName: vendor.lastName ?? "", email: vendor.email ?? "", contactNumber: vendor.contactNumber ?? "",isVendor: strongSelf.isVendor)
+                            completion(vendor.password)
+                        }
+                    }
+                }
+            }
+            }else{
+                if let client = CoreDataManager.shared.getClient(email: email){
+                   let loginUser = LoginUser(firstName: client.firstName ?? "", lastName: client.lastName ?? "", email: client.email ?? "", contactNumber: client.contactNumber ?? "",isVendor: self.isVendor)
+                    completion(client.password)
+    
+        }else{
+                
+                InitialDataDownloadManager.shared.getClientData(email: email){ [weak self] client in
+                    DispatchQueue.main.async {
+                        guard let strongSelf = self else {
+                            return
+                        }
+                        if let client = client {
+                            strongSelf.loginUser = LoginUser(firstName: client.firstName ?? "", lastName: client.lastName ?? "", email: client.email ?? "", contactNumber: client.contactNumber ?? "",isVendor: strongSelf.isVendor)
+                            completion(client.password)
+                        }
+                    }
+                }
+            }
         }
     }
     
