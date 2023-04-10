@@ -86,6 +86,8 @@ class CategoryServiceListTableViewController: BaseTableViewController {
 
             }
             viewController.delegate = self
+            viewController.selectedSort = self.sortBy
+            viewController.isAsc = self.sortAscending
             present(viewController, animated: true)
         }
     }
@@ -165,17 +167,10 @@ extension CategoryServiceListTableViewController: UISearchBarDelegate {
 }
 
 extension CategoryServiceListTableViewController: FilterCallBackProtocal {
-    func applySortBy(selectedSort: SortType, sortType: Bool) {
+    func applySortBy(selectedSort: SortType, isAsc: Bool) {
         sortBy = selectedSort
-        sortAscending = sortType
+        sortAscending = isAsc
         loadServices()
-        // Store the updated selected checkboxes array in UserDefaults
-        UserDefaults.standard.set(selectedSort.rawValue, forKey: "sortByValue")
-        if sortType{
-            UserDefaults.standard.set("ASC", forKey: "sortByType")
-        }else{
-            UserDefaults.standard.set("DESC", forKey: "sortByType")
-        }
     }
        
 }

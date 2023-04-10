@@ -95,6 +95,8 @@ class VendorHomeViewController: BaseViewController {
 
             }
             viewController.delegate = self
+            viewController.selectedSort = self.sortBy
+            viewController.isAsc = self.sortAscending
             present(viewController, animated: true)
         }
     }
@@ -169,15 +171,9 @@ extension VendorHomeViewController: UITableViewDelegate , UITableViewDataSource 
 }
 
 extension VendorHomeViewController: FilterCallBackProtocal {
-    func applySortBy(selectedSort: SortType, sortType: Bool) {
+    func applySortBy(selectedSort: SortType, isAsc: Bool) {
         sortBy = selectedSort
-        sortAscending = sortType
+        sortAscending = isAsc
         loadData()
-        UserDefaults.standard.set(selectedSort.rawValue, forKey: "sortByValue")
-        if sortType{
-            UserDefaults.standard.set("ASC", forKey: "sortByType")
-        }else{
-            UserDefaults.standard.set("DESC", forKey: "sortByType")
-        }
     }
 }

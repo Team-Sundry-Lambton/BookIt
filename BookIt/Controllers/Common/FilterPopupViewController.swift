@@ -15,7 +15,7 @@ enum SortType: Int {
 }
 
 protocol FilterCallBackProtocal {
-    func applySortBy(selectedSort: SortType, sortType: Bool)
+    func applySortBy(selectedSort: SortType, isAsc: Bool)
 }
 
 class FilterPopupViewController: UIViewController {
@@ -24,21 +24,17 @@ class FilterPopupViewController: UIViewController {
     @IBOutlet weak var checkBoxDate: UIImageView!
     @IBOutlet weak var checkBoxTitle: UIImageView!
     @IBOutlet weak var sortByImg: UIImageView!
-    private var selectedSort: SortType = .byTitle
-    private var sortType: Bool = true
+    var selectedSort: SortType?
+    var isAsc: Bool?
     var delegate: FilterCallBackProtocal?
-    let sortByDefault = UserDefaults.standard.integer(forKey: "sortByValue")
-    let sortByTypeDefault = UserDefaults.standard.string(forKey: "sortByType")
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         sortByAction(nil)
-        if sortByTypeDefault != nil{
-            if sortByTypeDefault == "ASC"{
-                sortType = true
+        if let isAsc = isAsc{
+            if isAsc{
                 sortByImg.image = UIImage(named: "sort_asc")
             }else{
-                sortType = false
                 sortByImg.image = UIImage(named: "sort_desc")
             }
         }
@@ -49,7 +45,9 @@ class FilterPopupViewController: UIViewController {
     }
     
     @IBAction func confirmAction(_ sender: Any) {
-        delegate?.applySortBy(selectedSort: selectedSort, sortType: sortType)
+        if let selectedSort = selectedSort, let isAsc = isAsc{
+            delegate?.applySortBy(selectedSort: selectedSort, isAsc: isAsc)
+        }
         dismiss(animated: true)
     }
     
@@ -69,24 +67,19 @@ class FilterPopupViewController: UIViewController {
             checkBoxTitle.image = UIImage(named: "CheckBoxFill")
             selectedSort = .byTitle
         default:
-            if let sortByDefault = SortType(rawValue: sortByDefault){
-                switch sortByDefault {
+            if let selectedSort = selectedSort{
+                switch selectedSort {
                 case .byDate: //Date
                     checkBoxDate.image = UIImage(named: "CheckBoxFill")
-                    selectedSort = .byDate
                 case .byPrice: //Price
                     checkBoxPrice.image = UIImage(named: "CheckBoxFill")
-                    selectedSort = .byPrice
                 case .byTitle: //Title
                     checkBoxTitle.image = UIImage(named: "CheckBoxFill")
-                    selectedSort = .byTitle
                 default:
                     checkBoxTitle.image = UIImage(named: "CheckBoxFill")
-                    selectedSort = .byTitle
                 }
             }else{
                 checkBoxTitle.image = UIImage(named: "CheckBoxFill")
-                selectedSort = .byTitle
             }
         }
     }
@@ -94,10 +87,10 @@ class FilterPopupViewController: UIViewController {
     
     @IBAction func sortByImgTapped(_ sender: UITapGestureRecognizer) {
         if sortByImg.image == UIImage(named: "sort_asc") {
-            sortType = false
+            isAsc = false
             sortByImg.image = UIImage(named: "sort_desc")
         } else {
-            sortType = true
+            isAsc = true
             sortByImg.image = UIImage(named: "sort_asc")
         }
     }
