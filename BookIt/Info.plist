@@ -13,7 +13,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Please allow to use</string>
 	<key>Base url</key>
-	<string>http://34.201.209.204:8009/admin/api/</string>
+	<string>http://localhost:5002/admin/api/</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
