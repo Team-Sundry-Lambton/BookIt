@@ -17,18 +17,18 @@ class OnboardingViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     var currentIndex = 0
-    var pageImage = ["onboarding_bg_1.png",
-                     "onboarding_bg_2.png",
-                     "onboarding_bg_3.png"]
+    var pageImage = ["explore_bg.jpeg",
+                     "easy_booking_steps.jpeg",
+                     "work_delivery_done.jpeg"]
     var pagePaging = ["onboarding_paging_1.png",
                       "onboarding_paging_2.png",
                       "onboarding_paging_3.png"]
     var bgButtonNext = ["onboarding_next.png",
                         "onboarding_next.png",
                         "onboarding_finish.png"]
-    var pageTitle = ["Step 1: \nExplore our services",
-                     "Step 2: \nBook with few taps",
-                     "Step 3: \nService delivered"]
+    var pageTitle = ["Step 1: Explore our services",
+                     "Step 2: Book with few taps",
+                     "Step 3: Service delivered"]
     var pageDescriptionText = ["Explore our wide varieties of services provided with carefully selected and approved list of vendors.", "Provide the time and date along with your location for the service to be provided and hit the confirm button.", "Our experts will arrive at your provided location and deliver the service to you."]
     
     override func viewDidLoad() {
