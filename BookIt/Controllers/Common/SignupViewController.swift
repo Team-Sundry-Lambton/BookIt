@@ -89,11 +89,23 @@ class SignupViewController: NavigationBaseViewController {
         
         if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
             if let navigator = navigationController {
+                
+                if let viewControllers = self.navigationController?.viewControllers {
+                    for vc in viewControllers {
+                        if vc.isKind(of: LoginViewController.self) {
+                            if let _vc = vc as? LoginViewController {
+                                _vc.isVendor = isVendor
+                                navigator.popToViewController(_vc, animated: true)
+                                return
+                            }
+                        }
+                    }
+                }
+                
                 viewController.isVendor = isVendor
                 navigator.pushViewController(viewController, animated: true)
             }
         }
-      
     }
     
     override func viewWillDisappear(_ animated: Bool) {
