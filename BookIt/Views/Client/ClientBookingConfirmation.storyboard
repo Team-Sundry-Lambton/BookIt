@@ -26,7 +26,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Track your booking" cornerStyle="capsule">
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="baseBackgroundColor" name="main_blue"/>
+                                    <color key="baseBackgroundColor" red="0.23921568627450979" green="0.38823529411764707" blue="0.61568627450980395" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="gotoHistoryBooking:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="25L-Hs-yBm"/>
@@ -77,9 +77,6 @@ Please wait for them to confirm the booking</string>
     </scenes>
     <resources>
         <image name="check_circle" width="160" height="160"/>
-        <namedColor name="main_blue">
-            <color red="0.0" green="0.51764705882352946" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
