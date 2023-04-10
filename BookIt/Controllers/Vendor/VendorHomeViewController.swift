@@ -12,10 +12,11 @@ class VendorHomeViewController: BaseViewController {
     var bookingList = [Booking]()
     var bookingListOngoing = [Booking]()
     var bookingListHistory = [Booking]()
+    var clientAddress: Address?
+    var sortAscending = true
+    var sortBy: SortType = .byTitle
     @IBOutlet weak var emptyView: UIView!   
     @IBOutlet weak var tableView: UITableView!
-    var clientAddress: Address?
-    
     @IBOutlet weak var interfaceSegmented: CustomSegmentedControl! {
         didSet{
             interfaceSegmented.setButtonTitles(buttonTitles: ["Ongoing","History"])
@@ -38,13 +39,13 @@ class VendorHomeViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadData(sortBy: .byTitle)
+        loadData()
         resetSegment()
     }
     
-    private func loadData(sortBy: SortType) {
+    private func loadData() {
         getVendor()
-        loadBookingList(sortBy: sortBy)
+        loadBookingList()
         tableView.isHidden = true
         emptyView.isHidden = true
         if segmentSelectedIndex == 0 {
@@ -63,8 +64,8 @@ class VendorHomeViewController: BaseViewController {
         tableView.reloadData()
     }
     
-    private func loadBookingList(sortBy: SortType){
-        bookingList = CoreDataManager.shared.loadBookingList(email: vendor?.email ?? "", sortBy: sortBy)
+    private func loadBookingList(){
+        bookingList = CoreDataManager.shared.loadBookingList(email: vendor?.email ?? "", sortBy: sortBy, sortAscending: sortAscending)
             bookingListOngoing = bookingList.filter({
                 $0.status == "New" || $0.status == "Pending" || $0.status == "Inprogress"
             })
@@ -168,7 +169,15 @@ extension VendorHomeViewController: UITableViewDelegate , UITableViewDataSource 
 }
 
 extension VendorHomeViewController: FilterCallBackProtocal {
-    func applySortBy(selectedSort: SortType) {
-        loadData(sortBy: selectedSort)
+    func applySortBy(selectedSort: SortType, sortType: Bool) {
+        sortBy = selectedSort
+        sortAscending = sortType
+        loadData()
+        UserDefaults.standard.set(selectedSort.rawValue, forKey: "sortByValue")
+        if sortType{
+            UserDefaults.standard.set("ASC", forKey: "sortByType")
+        }else{
+            UserDefaults.standard.set("DESC", forKey: "sortByType")
+        }
     }
 }

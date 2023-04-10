@@ -15,7 +15,7 @@ enum SortType: Int {
 }
 
 protocol FilterCallBackProtocal {
-    func applySortBy(selectedSort: SortType)
+    func applySortBy(selectedSort: SortType, sortType: Bool)
 }
 
 class FilterPopupViewController: UIViewController {
@@ -23,13 +23,25 @@ class FilterPopupViewController: UIViewController {
     @IBOutlet weak var checkBoxPrice: UIImageView!
     @IBOutlet weak var checkBoxDate: UIImageView!
     @IBOutlet weak var checkBoxTitle: UIImageView!
+    @IBOutlet weak var sortByImg: UIImageView!
     private var selectedSort: SortType = .byTitle
+    private var sortType: Bool = true
     var delegate: FilterCallBackProtocal?
     let sortByDefault = UserDefaults.standard.integer(forKey: "sortByValue")
+    let sortByTypeDefault = UserDefaults.standard.string(forKey: "sortByType")
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         sortByAction(nil)
+        if sortByTypeDefault != nil{
+            if sortByTypeDefault == "ASC"{
+                sortType = true
+                sortByImg.image = UIImage(named: "sort_asc")
+            }else{
+                sortType = false
+                sortByImg.image = UIImage(named: "sort_desc")
+            }
+        }
     }
 
     @IBAction func cancelAction(_ sender: Any) {
@@ -37,7 +49,7 @@ class FilterPopupViewController: UIViewController {
     }
     
     @IBAction func confirmAction(_ sender: Any) {
-        delegate?.applySortBy(selectedSort: selectedSort)
+        delegate?.applySortBy(selectedSort: selectedSort, sortType: sortType)
         dismiss(animated: true)
     }
     
@@ -78,5 +90,18 @@ class FilterPopupViewController: UIViewController {
             }
         }
     }
+    
+    
+    @IBAction func sortByImgTapped(_ sender: UITapGestureRecognizer) {
+        if sortByImg.image == UIImage(named: "sort_asc") {
+            sortType = false
+            sortByImg.image = UIImage(named: "sort_desc")
+        } else {
+            sortType = true
+            sortByImg.image = UIImage(named: "sort_asc")
+        }
+    }
+    
+    
     
 }
