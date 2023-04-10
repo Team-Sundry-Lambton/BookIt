@@ -48,6 +48,19 @@ class LoginViewController: NavigationBaseViewController {
     @IBAction func signUpButtonClicked(_ sender: Any) {
         if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SignupViewController") as? SignupViewController {
             if let navigator = navigationController {
+                
+                if let viewControllers = self.navigationController?.viewControllers {
+                    for vc in viewControllers {
+                        if vc.isKind(of: SignupViewController.self) {
+                            if let _vc = vc as? SignupViewController {
+                                _vc.isVendor = isVendor
+                                navigator.popToViewController(_vc, animated: true)
+                                return
+                            }
+                        }
+                    }
+                }
+                
                 viewController.isVendor = isVendor
                 navigator.pushViewController(viewController, animated: true)
             }
