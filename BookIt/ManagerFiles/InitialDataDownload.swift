@@ -68,6 +68,32 @@ class InitialDataDownloadManager : NSObject{
         }
     }
     
+    func getClientData(email : String,completion: @escaping (_ client: Client?) -> Void) {
+             db.collection("client").whereField("email", isEqualTo: email).getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    // Some error occured
+                    completion(nil)
+                } else if querySnapshot!.documents.count == 0 {
+                    // Perhaps this is an error for you?
+                    completion(nil)
+                } else {
+                    if let data = querySnapshot!.documents.first {
+                        let client = Client(context: self.context)
+                        client.firstName = data["firstName"] as? String ?? ""
+                        client.lastName =  data["lastName"] as? String ?? ""
+                        client.email =  data["email"] as? String ?? ""
+                        client.password =  data["password"] as? String ?? ""
+                        if let picture =  data["picture"] as? String{
+                            client.picture = self.urlToData(path: picture)
+                        }
+                        client.contactNumber =  data["contactNumber"] as? String ?? ""
+                        client.isPremium =  data["isPremium"] as? Bool ?? false
+                        completion(client)
+                    }
+                }
+            }
+    }
+    
     func getAllVendorData() async{
         do {
             CoreDataManager.shared.deleteVendors()
@@ -88,6 +114,34 @@ class InitialDataDownloadManager : NSObject{
         }catch{
             print("Error loading location data \(error.localizedDescription)")
         }
+    }
+    
+    func getVendorData(email : String,completion: @escaping (_ vendor: Vendor?) -> Void) {
+        self.db.collection("vendor")
+            .whereField("email", isEqualTo: email)
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    // Some error occured
+                    completion(nil)
+                } else if querySnapshot!.documents.count == 0 {
+                    // Perhaps this is an error for you?
+                    completion(nil)
+                } else {
+                    if let data = querySnapshot!.documents.first {
+                        let vendor = Vendor(context: self.context)
+                        vendor.firstName = data["firstName"] as? String ?? ""
+                        vendor.lastName =  data["lastName"] as? String ?? ""
+                        vendor.email =  data["email"] as? String ?? ""
+                        vendor.password =  data["password"] as? String ?? ""
+                        if let picture =  data["picture"] as? String{
+                            vendor.picture = self.urlToData(path: picture)
+                        }
+                        vendor.contactNumber =  data["contactNumber"] as? String ?? ""
+                        vendor.bannerURL =  data["bannerURL"]  as? String ?? ""
+                        completion(vendor)
+                    }
+                }
+            }
     }
     
     func getAllServiceData() async{
@@ -827,7 +881,8 @@ extension InitialDataDownloadManager{
                                 // Perhaps this is an error for you?
                                 completion(false)
                             } else {
-                                if let number = client.contactNumber,let lastName = client.lastName,let firstName = client.firstName,let password = client.password{
+                                if let number = client.contactNumber,let lastName = client.lastName,let firstName = client.firstName{
+                                    let password = client.password
                                     if let document = querySnapshot!.documents.first{
                                         document.reference.updateData([
                                             "contactNumber": number,
@@ -864,7 +919,8 @@ extension InitialDataDownloadManager{
                                 // Perhaps this is an error for you?
                                 completion(false)
                             } else {
-                                if let number = vendor.contactNumber,let lastName = vendor.lastName,let firstName = vendor.firstName,let password = vendor.password {
+                                if let number = vendor.contactNumber,let lastName = vendor.lastName,let firstName = vendor.firstName {
+                                    let password = vendor.password
                                     if let document = querySnapshot!.documents.first{
                                         document.reference.updateData([
                                             "contactNumber": number,

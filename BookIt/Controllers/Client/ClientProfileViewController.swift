@@ -20,8 +20,12 @@ class ClientProfileViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addBorder()
-        setContent()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setContent()
     }
     
     func setContent(){

@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Please allow to use face recognition</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>You must give permission in order to use the application</string>
 	<key>Privacy - Camera Usage Description </key>
