@@ -9,9 +9,17 @@ import UIKit
 
 class ClientBookingConfirmationViewController: UIViewController {
 
+    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var lblMessage: UILabel!
+    
+    var titleContent: String?
+    var messageContent: String?
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        lblTitle.text = titleContent
+        lblMessage.text = messageContent
+        
         // Do any additional setup after loading the view.
     }
     

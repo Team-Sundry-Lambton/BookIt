@@ -69,6 +69,10 @@ Please wait for them to confirm the booking</string>
                             <constraint firstItem="dQM-5V-nfV" firstAttribute="centerX" secondItem="AgV-p8-tff" secondAttribute="centerX" id="y9l-x0-nPe"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="lblMessage" destination="Uyc-3o-LTk" id="YD8-lX-gVS"/>
+                        <outlet property="lblTitle" destination="dQM-5V-nfV" id="ab5-uC-hkH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
