@@ -164,7 +164,7 @@ class LoginViewController: NavigationBaseViewController {
             }
             }else{
                 if let client = CoreDataManager.shared.getClient(email: email){
-                   let loginUser = LoginUser(firstName: client.firstName ?? "", lastName: client.lastName ?? "", email: client.email ?? "", contactNumber: client.contactNumber ?? "",isVendor: self.isVendor)
+                    self.loginUser = LoginUser(firstName: client.firstName ?? "", lastName: client.lastName ?? "", email: client.email ?? "", contactNumber: client.contactNumber ?? "",isVendor: self.isVendor)
                     completion(client.password)
     
         }else{
@@ -186,7 +186,6 @@ class LoginViewController: NavigationBaseViewController {
     
     func loadDashBoard(user : LoginUser?){
         
-        UserDefaultsManager.shared.setUserLogin(status: true)
         UserDefaultsManager.shared.setIsVendor(status: isVendor)
         if let loginUser = user {
             UserDefaultsManager.shared.setUserLogin(status: true)

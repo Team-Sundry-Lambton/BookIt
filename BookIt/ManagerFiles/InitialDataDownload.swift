@@ -13,6 +13,7 @@ import FirebaseStorage
 class InitialDataDownloadManager : NSObject{
     static let shared = InitialDataDownloadManager()
     let db = Firestore.firestore()
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     func downloadAllData(completion: @escaping () -> Void) {
@@ -38,13 +39,15 @@ class InitialDataDownloadManager : NSObject{
         do {
             CoreDataManager.shared.deleteCategory()
             let snapshot = try await db.collection("categories").getDocuments()
-            snapshot.documents.forEach { documentSnapshot in
-                let data = documentSnapshot.data()
-                let category = Category(context: self.context)
-                category.name = data["name"] as? String ?? ""
-                category.picture =  data["picture"] as? String ?? ""
+            DispatchQueue.main.async {
+                snapshot.documents.forEach { documentSnapshot in
+                    let data = documentSnapshot.data()
+                    let category = Category(context: self.context)
+                    category.name = data["name"] as? String ?? ""
+                    category.picture =  data["picture"] as? String ?? ""
+                }
+                self.saveData()
             }
-            self.saveData()
         }
         catch{
             print("Error loading location data \(error.localizedDescription)")
@@ -54,20 +57,23 @@ class InitialDataDownloadManager : NSObject{
     func getAllClientData() async{
         do {
             CoreDataManager.shared.deleteClients()
-            let snapshot = try await db.collection("client").getDocuments();  snapshot.documents.forEach { documentSnapshot in
-                let data = documentSnapshot.data()
-                        let client = Client(context: self.context)
-                        client.firstName = data["firstName"] as? String ?? ""
-                        client.lastName =  data["lastName"] as? String ?? ""
-                        client.email =  data["email"] as? String ?? ""
-                        client.password =  data["password"] as? String ?? ""
-                        if let picture =  data["picture"] as? String{
-                            client.picture = self.urlToData(path: picture)
-                        }
-                        client.contactNumber =  data["contactNumber"] as? String ?? ""
-                        client.isPremium =  data["isPremium"] as? Bool ?? false
+            let snapshot = try await db.collection("client").getDocuments();
+            DispatchQueue.main.async {
+                snapshot.documents.forEach { documentSnapshot in
+                    let data = documentSnapshot.data()
+                    let client = Client(context: self.context)
+                    client.firstName = data["firstName"] as? String ?? ""
+                    client.lastName =  data["lastName"] as? String ?? ""
+                    client.email =  data["email"] as? String ?? ""
+                    client.password =  data["password"] as? String ?? ""
+                    if let picture =  data["picture"] as? String{
+                        client.picture = self.urlToData(path: picture)
                     }
-            self.saveData()
+                    client.contactNumber =  data["contactNumber"] as? String ?? ""
+                    client.isPremium =  data["isPremium"] as? Bool ?? false
+                }
+                self.saveData()
+            }
         }catch{
             print("Error loading location data \(error.localizedDescription)")
         }
@@ -102,8 +108,10 @@ class InitialDataDownloadManager : NSObject{
     func getAllVendorData() async{
         do {
             CoreDataManager.shared.deleteVendors()
-            let snapshot = try await db.collection("vendor").getDocuments(); snapshot.documents.forEach { documentSnapshot in
-                let data = documentSnapshot.data()
+            let snapshot = try await db.collection("vendor").getDocuments();
+            DispatchQueue.main.async {
+                snapshot.documents.forEach { documentSnapshot in
+                    let data = documentSnapshot.data()
                     let vendor = Vendor(context: self.context)
                     vendor.firstName = data["firstName"] as? String ?? ""
                     vendor.lastName =  data["lastName"] as? String ?? ""
@@ -114,8 +122,9 @@ class InitialDataDownloadManager : NSObject{
                     }
                     vendor.contactNumber =  data["contactNumber"] as? String ?? ""
                     vendor.bannerURL =  data["bannerURL"]  as? String ?? ""
+                }
+                self.saveData()
             }
-            self.saveData()
         }catch{
             print("Error loading location data \(error.localizedDescription)")
         }
@@ -153,43 +162,45 @@ class InitialDataDownloadManager : NSObject{
         do {
             CoreDataManager.shared.deleteServices()
             let snapshot = try await  db.collection("service").getDocuments()
-            snapshot.documents.forEach { documentSnapshot in
-                let data = documentSnapshot.data()
-                let service = Service(context: self.context)
-                service.serviceTitle = data["serviceTitle"] as? String ?? ""
-                service.serviceDescription =  data["serviceDescription"] as? String ?? ""
-                service.cancelPolicy =  data["cancelPolicy"] as? String ?? ""
-                service.price =  data["price"] as? String ?? ""
-                service.priceType =  data["priceType"]  as? String ?? ""
-                service.equipment = data["equipment"]  as? Bool ?? false
-                service.serviceId = data["serviceId"]  as? Int16 ?? -1
-                service.createdDate = data["createdDate"] as? Date ?? Date()
-                service.status = data["status"]  as? String ?? ""
-                if let parentVendor = data["parentVendor"]  as? String {
-                    if parentVendor != "" {
-                        if  let vendor = CoreDataManager.shared.getVendor(email: parentVendor){
-                            service.parent_Vendor = vendor
+            DispatchQueue.main.async {
+                snapshot.documents.forEach { documentSnapshot in
+                    let data = documentSnapshot.data()
+                    let service = Service(context: self.context)
+                    service.serviceTitle = data["serviceTitle"] as? String ?? ""
+                    service.serviceDescription =  data["serviceDescription"] as? String ?? ""
+                    service.cancelPolicy =  data["cancelPolicy"] as? String ?? ""
+                    service.price =  data["price"] as? String ?? ""
+                    service.priceType =  data["priceType"]  as? String ?? ""
+                    service.equipment = data["equipment"]  as? Bool ?? false
+                    service.serviceId = data["serviceId"]  as? Int16 ?? -1
+                    service.createdDate = data["createdDate"] as? Date ?? Date()
+                    service.status = data["status"]  as? String ?? ""
+                    if let parentVendor = data["parentVendor"]  as? String {
+                        if parentVendor != "" {
+                            if  let vendor = CoreDataManager.shared.getVendor(email: parentVendor){
+                                service.parent_Vendor = vendor
+                            }
+                        }
+                    }
+                    
+                    if let parentCategory = data["parentCategory"]  as? String {
+                        if parentCategory != "" {
+                            if let category = CoreDataManager.shared.getCategory(name: parentCategory){
+                                service.parent_Category = category
+                            }
+                        }
+                    }
+                    
+                    if let addressId = data["parentAddress"]  as? Int {
+                        if addressId != -1 {
+                            if let address = CoreDataManager.shared.getLocationData(addressId: addressId){
+                                service.address = address
+                            }
                         }
                     }
                 }
-                
-                if let parentCategory = data["parentCategory"]  as? String {
-                    if parentCategory != "" {
-                        if let category = CoreDataManager.shared.getCategory(name: parentCategory){
-                            service.parent_Category = category
-                        }
-                    }
-                }
-                
-                if let addressId = data["parentAddress"]  as? Int {
-                    if addressId != -1 {
-                        if let address = CoreDataManager.shared.getLocationData(addressId: addressId){
-                            service.address = address
-                        }
-                    }
-                }
+                self.saveData()
             }
-            self.saveData()
         }catch{
             print("Error loading location data \(error.localizedDescription)")
         }
@@ -198,37 +209,40 @@ class InitialDataDownloadManager : NSObject{
     func getAllAddressData()async{
         do {
             CoreDataManager.shared.deleteAddresss()
-            let snapshot = try await db.collection("address").getDocuments() ; snapshot.documents.forEach { documentSnapshot in
-                let data = documentSnapshot.data()
-                let address = Address(context: self.context)
-                address.addressLongitude = data["longitude"] as? Double ?? 0
-                address.addressLatitude =  data["latitude"] as? Double ?? 0
-                address.addressId = data["addressId"] as? Int16 ?? -1
-                address.address =  data["address"] as? String ?? ""
-                
-//                if let parentService = data["parentService"]  as? Int {
-//                    if parentService != -1 {
-//                        if let service = CoreDataManager.shared.getService(serviceId: parentService){
-//                            address.parentService = service
-//                        }
-//                    }
-//                }
-                if let clientEmail = data["clientEmailAddress"]  as? String {
-                    if clientEmail != "" {
-                        if let client = CoreDataManager.shared.getClient(email: clientEmail){
-                            address.clientAddress = client
+            let snapshot = try await db.collection("address").getDocuments() ;
+            DispatchQueue.main.async {
+                snapshot.documents.forEach { documentSnapshot in
+                    let data = documentSnapshot.data()
+                    let address = Address(context: self.context)
+                    address.addressLongitude = data["longitude"] as? Double ?? 0
+                    address.addressLatitude =  data["latitude"] as? Double ?? 0
+                    address.addressId = data["addressId"] as? Int16 ?? -1
+                    address.address =  data["address"] as? String ?? ""
+                    
+                    //                if let parentService = data["parentService"]  as? Int {
+                    //                    if parentService != -1 {
+                    //                        if let service = CoreDataManager.shared.getService(serviceId: parentService){
+                    //                            address.parentService = service
+                    //                        }
+                    //                    }
+                    //                }
+                    if let clientEmail = data["clientEmailAddress"]  as? String {
+                        if clientEmail != "" {
+                            if let client = CoreDataManager.shared.getClient(email: clientEmail){
+                                address.clientAddress = client
+                            }
+                        }
+                    }
+                    if let vendorEmail = data["vendorEmailAddress"]  as? String {
+                        if vendorEmail != "" {
+                            if let vendor = CoreDataManager.shared.getVendor(email: vendorEmail){
+                                address.vendorAddress = vendor
+                            }
                         }
                     }
                 }
-                if let vendorEmail = data["vendorEmailAddress"]  as? String {
-                    if vendorEmail != "" {
-                        if let vendor = CoreDataManager.shared.getVendor(email: vendorEmail){
-                            address.vendorAddress = vendor
-                        }
-                    }
-                }
+                self.saveData()
             }
-            self.saveData()
             }catch{
                 print("Error loading location data \(error.localizedDescription)")
             }
@@ -238,25 +252,27 @@ class InitialDataDownloadManager : NSObject{
         do {
             CoreDataManager.shared.deleteMediaFiles()
             let snapshot = try await db.collection("media").getDocuments();
-            snapshot.documents.forEach { documentSnapshot in
-                let data = documentSnapshot.data()
-                let media = MediaFile(context: self.context)
-                media.mediaName =  data["mediaName"] as? String ?? ""
-                media.mediaPath =  data["mediaPath"] as? String ?? ""
-                if let picture =  data["mediaContent"] as? String{
-                    media.mediaContent = self.urlToData(path: picture)
-                }
-                
-                if let parentService = data["parentService"]  as? Int {
-                    if parentService != -1 {
-                        print("Service ID: ", parentService);
-                        if let service = CoreDataManager.shared.getService(serviceId: parentService){
-                            media.parent_Service = service
+            DispatchQueue.main.async {
+                snapshot.documents.forEach { documentSnapshot in
+                    let data = documentSnapshot.data()
+                    let media = MediaFile(context: self.context)
+                    media.mediaName =  data["mediaName"] as? String ?? ""
+                    media.mediaPath =  data["mediaPath"] as? String ?? ""
+                    if let picture =  data["mediaContent"] as? String{
+                        media.mediaContent = self.urlToData(path: picture)
+                    }
+                    
+                    if let parentService = data["parentService"]  as? Int {
+                        if parentService != -1 {
+                            print("Service ID: ", parentService);
+                            if let service = CoreDataManager.shared.getService(serviceId: parentService){
+                                media.parent_Service = service
+                            }
                         }
                     }
                 }
+                self.saveData()
             }
-            self.saveData()
         }catch{
             print("Error loading location data \(error.localizedDescription)")
         }
@@ -266,41 +282,43 @@ class InitialDataDownloadManager : NSObject{
         do {
             CoreDataManager.shared.deleteBookings()
             let snapshot = try await db.collection("booking").getDocuments();
-            snapshot.documents.forEach { documentSnapshot in
-                let data = documentSnapshot.data()
-                let booking = Booking(context: self.context)
-                if let postTimestamp = data["date"] as? Timestamp{
-                    booking.date =  postTimestamp.dateValue()
-                }
-                booking.bookingId = data["bookingId"]  as? Int16 ?? -1
-                
-                booking.status =  data["status"] as? String ?? ""
-                booking.problemDescription = data["problemDescription"] as? String ?? ""
-                
-                if let parentService = data["parentService"]  as? Int {
-                    if parentService != -1 {
-                        if let service = CoreDataManager.shared.getService(serviceId: parentService){
-                            booking.service = service
+            DispatchQueue.main.async {
+                snapshot.documents.forEach { documentSnapshot in
+                    let data = documentSnapshot.data()
+                    let booking = Booking(context: self.context)
+                    if let postTimestamp = data["date"] as? Timestamp{
+                        booking.date =  postTimestamp.dateValue()
+                    }
+                    booking.bookingId = data["bookingId"]  as? Int16 ?? -1
+                    
+                    booking.status =  data["status"] as? String ?? ""
+                    booking.problemDescription = data["problemDescription"] as? String ?? ""
+                    
+                    if let parentService = data["parentService"]  as? Int {
+                        if parentService != -1 {
+                            if let service = CoreDataManager.shared.getService(serviceId: parentService){
+                                booking.service = service
+                            }
+                        }
+                    }
+                    
+                    if let clientEmail = data["clientEmailAddress"]  as? String {
+                        if clientEmail != "" {
+                            if let client = CoreDataManager.shared.getClient(email: clientEmail){
+                                booking.client = client
+                            }
+                        }
+                    }
+                    if let vendorEmail = data["vendorEmailAddress"]  as? String {
+                        if vendorEmail != "" {
+                            if let vendor = CoreDataManager.shared.getVendor(email: vendorEmail){
+                                booking.vendor = vendor
+                            }
                         }
                     }
                 }
-                
-                if let clientEmail = data["clientEmailAddress"]  as? String {
-                    if clientEmail != "" {
-                        if let client = CoreDataManager.shared.getClient(email: clientEmail){
-                            booking.client = client
-                        }
-                    }
-                }
-                if let vendorEmail = data["vendorEmailAddress"]  as? String {
-                    if vendorEmail != "" {
-                        if let vendor = CoreDataManager.shared.getVendor(email: vendorEmail){
-                            booking.vendor = vendor
-                        }
-                    }
-                }
+                self.saveData()
             }
-            self.saveData()
         }catch{
             print("Error loading location data \(error.localizedDescription)")
         }
@@ -311,24 +329,26 @@ class InitialDataDownloadManager : NSObject{
         do {
             CoreDataManager.shared.deletePayments()
             let snapshot = try await db.collection("payment").getDocuments();
-            snapshot.documents.forEach { documentSnapshot in
-                let data = documentSnapshot.data()
-                let payment = Payment(context: self.context)
-                payment.amount =  data["amount"] as? Double ?? 0
-                if let postTimestamp = data["date"] as? Timestamp{
-                    payment.date =  postTimestamp.dateValue()
-                }
-                payment.status =  data["status"] as? String ?? ""
-                
-                if let bookingId = data["bookingId"] as? Int {
-                    if bookingId != -1 {
-                        if let booking = CoreDataManager.shared.getBooking(bookingId: bookingId){
-                            payment.booking = booking
+            DispatchQueue.main.async {
+                snapshot.documents.forEach { documentSnapshot in
+                    let data = documentSnapshot.data()
+                    let payment = Payment(context: self.context)
+                    payment.amount =  data["amount"] as? Double ?? 0
+                    if let postTimestamp = data["date"] as? Timestamp{
+                        payment.date =  postTimestamp.dateValue()
+                    }
+                    payment.status =  data["status"] as? String ?? ""
+                    
+                    if let bookingId = data["bookingId"] as? Int {
+                        if bookingId != -1 {
+                            if let booking = CoreDataManager.shared.getBooking(bookingId: bookingId){
+                                payment.booking = booking
+                            }
                         }
                     }
                 }
+                self.saveData()
             }
-            self.saveData()
         }catch{
             print("Error loading location data \(error.localizedDescription)")
         }
