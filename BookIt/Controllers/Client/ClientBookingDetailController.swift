@@ -281,13 +281,21 @@ extension ClientBookingDetailController {
             NetworkManager.shared.makePayment(urlStr: urlPath, postData: param.toJSON()) { (success, rsponse) in
                 if success == true
                 {DispatchQueue.main.async {
-                    print(rsponse?.message)
                     self.firestoreUpdate(title: "Processing....", status: ServiceStatus.IN_PROGRESS)
-                    //                if let booking = self.booking {
-                    //                    booking.status = ServiceStatus.IN_PROGRESS.title
-                    //                    self.saveAllContextCoreData()
-                    //                }
-                    //go to home.
+                        if let booking = self.booking {
+                            booking.status = ServiceStatus.IN_PROGRESS.title
+                            self.saveAllContextCoreData()
+                            
+                            // go to booking page
+                            if let navigator = self.navigationController {
+                                var targetVC : UITabBarController?
+                                targetVC = self.navigationController?.viewControllers.first(where: {$0 is UITabBarController}) as? UITabBarController
+                                if let targetVC = targetVC {
+                                    targetVC.selectedIndex = 2
+                                    self.navigationController?.popToViewController(targetVC, animated: true)
+                                }
+                            }
+                        }
                 }
                     
                 }else{
