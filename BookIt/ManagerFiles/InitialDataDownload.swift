@@ -77,7 +77,7 @@ class InitialDataDownloadManager : NSObject{
                     // Perhaps this is an error for you?
                     completion(nil)
                 } else {
-                    if let data = querySnapshot!.documents.first {
+                    if let data = querySnapshot?.documents.first {
                         let client = Client(context: self.context)
                         client.firstName = data["firstName"] as? String ?? ""
                         client.lastName =  data["lastName"] as? String ?? ""
@@ -127,7 +127,7 @@ class InitialDataDownloadManager : NSObject{
                     // Perhaps this is an error for you?
                     completion(nil)
                 } else {
-                    if let data = querySnapshot!.documents.first {
+                    if let data = querySnapshot?.documents.first {
                         let vendor = Vendor(context: self.context)
                         vendor.firstName = data["firstName"] as? String ?? ""
                         vendor.lastName =  data["lastName"] as? String ?? ""
@@ -883,7 +883,7 @@ extension InitialDataDownloadManager{
                             } else {
                                 if let number = client.contactNumber,let lastName = client.lastName,let firstName = client.firstName{
                                     let password = client.password
-                                    if let document = querySnapshot!.documents.first{
+                                    if let document = querySnapshot?.documents.first{
                                         document.reference.updateData([
                                             "contactNumber": number,
                                             "email": email,
@@ -921,7 +921,7 @@ extension InitialDataDownloadManager{
                             } else {
                                 if let number = vendor.contactNumber,let lastName = vendor.lastName,let firstName = vendor.firstName {
                                     let password = vendor.password
-                                    if let document = querySnapshot!.documents.first{
+                                    if let document = querySnapshot?.documents.first{
                                         document.reference.updateData([
                                             "contactNumber": number,
                                             "email": email,
@@ -972,7 +972,7 @@ extension InitialDataDownloadManager{
                         // Perhaps this is an error for you?
                         completion(false)
                     } else {
-                        if let document = querySnapshot!.documents.first{
+                        if let document = querySnapshot?.documents.first{
                             document.reference.updateData([
                                 "longitude": addressObject.addressLongitude,
                                 "latitude": addressObject.addressLatitude,
@@ -1014,7 +1014,7 @@ extension InitialDataDownloadManager{
                         // Perhaps this is an error for you?
                         completion(false)
                     } else {
-                        if let document = querySnapshot!.documents.first{
+                        if let document = querySnapshot?.documents.first{
                             document.reference.updateData([
                                 "longitude": addressLat,
                                 "latitude": addressLog,
@@ -1078,7 +1078,7 @@ extension InitialDataDownloadManager{
                     // Perhaps this is an error for you?
                     completion(false)
                 } else {
-                    if let document = querySnapshot!.documents.first{
+                    if let document = querySnapshot?.documents.first{
                         document.reference.updateData([
                             "status": booking.status ?? "",
                             "date": booking.date ?? Date(),
@@ -1140,7 +1140,7 @@ extension InitialDataDownloadManager{
                         // Perhaps this is an error for you?
                         completion(false)
                     } else {
-                        if let document = querySnapshot!.documents.first{
+                        if let document = querySnapshot?.documents.first{
                             document.reference.updateData([
                                 "cancelPolicy": service.cancelPolicy ?? "",
                                 "equipment": service.equipment,
@@ -1175,7 +1175,7 @@ extension InitialDataDownloadManager{
                                 // Perhaps this is an error for you?
                                 completion(false)
                             } else {
-                                if let document = querySnapshot!.documents.first{
+                                if let document = querySnapshot?.documents.first{
                                     document.reference.delete()
                                     completion(true)
                                 }else{
