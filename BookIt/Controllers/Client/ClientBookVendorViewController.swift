@@ -260,10 +260,11 @@ class ClientBookVendorViewController: NavigationBaseViewController, UITextViewDe
             let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default){
                 UIAlertAction in
+                let storyboard = UIStoryboard(name: "ClientBookingConfirmation", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "ClientBookingConfirmation") as! ClientBookingConfirmationViewController
+                vc.modalPresentationStyle = .fullScreen
                 if let navigator = self.navigationController {
-                    navigator.popViewController(animated: true)
-                }else{
-                    self.dismiss(animated: true)
+                    navigator.pushViewController(vc, animated: true)
                 }
             }
             controller.addAction(okAction)

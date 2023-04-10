@@ -140,6 +140,8 @@
 		BD3CE98129CBCE2700408AEE /* ServiceDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD3CE98029CBCE2700408AEE /* ServiceDetail.storyboard */; };
 		BD3CE98329CC9D1800408AEE /* ReviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD3CE98229CC9D1800408AEE /* ReviewTableViewCell.xib */; };
 		BD3CE98529CCA2B200408AEE /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3CE98429CCA2B200408AEE /* ReviewTableViewCell.swift */; };
+		BD6042A029E382DD001711E2 /* ClientBookingConfirmation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD60429F29E382DD001711E2 /* ClientBookingConfirmation.storyboard */; };
+		BD6042A229E38385001711E2 /* ClientBookingConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6042A129E38385001711E2 /* ClientBookingConfirmationViewController.swift */; };
 		BD89B73829CB73B000F26546 /* ClientServiceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD89B73729CB73B000F26546 /* ClientServiceDetailViewController.swift */; };
 		BDA8015829D0EC31009A1570 /* VendorBankAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDA8015729D0EC31009A1570 /* VendorBankAccount.storyboard */; };
 		BDA8015A29D0EC88009A1570 /* VendorBankAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA8015929D0EC88009A1570 /* VendorBankAccountViewController.swift */; };
@@ -244,6 +246,8 @@
 		BD3CE98029CBCE2700408AEE /* ServiceDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ServiceDetail.storyboard; sourceTree = "<group>"; };
 		BD3CE98229CC9D1800408AEE /* ReviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewTableViewCell.xib; sourceTree = "<group>"; };
 		BD3CE98429CCA2B200408AEE /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
+		BD60429F29E382DD001711E2 /* ClientBookingConfirmation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ClientBookingConfirmation.storyboard; sourceTree = "<group>"; };
+		BD6042A129E38385001711E2 /* ClientBookingConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientBookingConfirmationViewController.swift; sourceTree = "<group>"; };
 		BD89B73729CB73B000F26546 /* ClientServiceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientServiceDetailViewController.swift; sourceTree = "<group>"; };
 		BDA8015729D0EC31009A1570 /* VendorBankAccount.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VendorBankAccount.storyboard; sourceTree = "<group>"; };
 		BDA8015929D0EC88009A1570 /* VendorBankAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorBankAccountViewController.swift; sourceTree = "<group>"; };
@@ -456,6 +460,7 @@
 			children = (
 				BBA6356B29BA510500702A62 /* ClientDashBoard.storyboard */,
 				4186201029D66B3700C35346 /* ClientBookingDetail.storyboard */,
+				BD60429F29E382DD001711E2 /* ClientBookingConfirmation.storyboard */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -488,6 +493,7 @@
 				BD89B73729CB73B000F26546 /* ClientServiceDetailViewController.swift */,
 				B42235FA29CFFBE000B3C84D /* ClientBookVendorViewController.swift */,
 				4186201229D66EF700C35346 /* ClientBookingDetailController.swift */,
+				BD6042A129E38385001711E2 /* ClientBookingConfirmationViewController.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -658,6 +664,7 @@
 				41B85CFC29C3E0A3007CAF1C /* VendorBookingConfirmation.storyboard in Resources */,
 				BB0FF27A29BAAB5F00E26A71 /* PostService.storyboard in Resources */,
 				99AB0DDC29AD95B600B096BB /* LaunchScreen.storyboard in Resources */,
+				BD6042A029E382DD001711E2 /* ClientBookingConfirmation.storyboard in Resources */,
 				BBC9F83929BFC70900985AAA /* MapView.storyboard in Resources */,
 				41B85CFA29C3E082007CAF1C /* VendorBookingDetail.storyboard in Resources */,
 				B4D56B5C29C105B9005A2C63 /* CategoryCollectionViewCell.xib in Resources */,
@@ -719,6 +726,7 @@
 				996588C029C7BE6A00A7D796 /* GradientColorExtension.swift in Sources */,
 				BB12B6E129D7B40B00A42CA2 /* BaseTableViewController.swift in Sources */,
 				996588C829C7D03500A7D796 /* FilterPopupViewController.swift in Sources */,
+				BD6042A229E38385001711E2 /* ClientBookingConfirmationViewController.swift in Sources */,
 				BB0D6B6629D0AAAA000752BD /* SignupViewController.swift in Sources */,
 				BBEC1C4A29B55A6800B58D41 /* UIAlertViewExtention.swift in Sources */,
 				BD3CE98529CCA2B200408AEE /* ReviewTableViewCell.swift in Sources */,
