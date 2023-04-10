@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -64,6 +65,7 @@
                             <constraint firstItem="JkW-Qd-YtN" firstAttribute="top" secondItem="wSO-Bf-gGg" secondAttribute="top" constant="15" id="H34-Xi-XX5"/>
                             <constraint firstItem="JkW-Qd-YtN" firstAttribute="leading" secondItem="wSO-Bf-gGg" secondAttribute="leading" constant="20" symbolic="YES" id="HPg-4Z-o1B"/>
                             <constraint firstAttribute="trailing" secondItem="nJn-Ok-9Hi" secondAttribute="trailing" constant="14" id="I7a-W6-3aU"/>
+                            <constraint firstItem="QC5-49-pVL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="PMC-rZ-cQQ" secondAttribute="trailing" constant="20" id="Jvg-7c-16s"/>
                             <constraint firstItem="nJn-Ok-9Hi" firstAttribute="top" secondItem="wSO-Bf-gGg" secondAttribute="top" constant="15" id="LbN-2W-z90"/>
                             <constraint firstItem="LeK-YC-kKm" firstAttribute="top" secondItem="PMC-rZ-cQQ" secondAttribute="bottom" id="NXW-La-Ecd"/>
                             <constraint firstItem="LeK-YC-kKm" firstAttribute="leading" secondItem="wSO-Bf-gGg" secondAttribute="leading" constant="20" symbolic="YES" id="Puu-kv-Kjl"/>
@@ -92,7 +94,7 @@
                 <outlet property="clientNameLabel" destination="JkW-Qd-YtN" id="dm3-P3-d97"/>
                 <outlet property="dateTimeLabel" destination="QC5-49-pVL" id="snl-0J-rFX"/>
                 <outlet property="serviceNameLabel" destination="PMC-rZ-cQQ" id="vLA-oa-pqd"/>
-                <outlet property="totalIncomeLabel" destination="QC5-49-pVL" id="qa4-Ks-YM9"/>
+                <outlet property="totalIncomeLabel" destination="nJn-Ok-9Hi" id="Pj7-o0-PBC"/>
             </connections>
             <point key="canvasLocation" x="41.984732824427482" y="21.83098591549296"/>
         </tableViewCell>
