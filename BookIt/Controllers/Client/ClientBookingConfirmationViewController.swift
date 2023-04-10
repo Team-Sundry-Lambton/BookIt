@@ -8,6 +8,8 @@
 import UIKit
 
 class ClientBookingConfirmationViewController: UIViewController {
+    
+    var delegate: ClientBookVendorProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,11 +18,9 @@ class ClientBookingConfirmationViewController: UIViewController {
     }
     
     @IBAction func gotoHistoryBooking(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "ClientDashBoard", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "ClientBookingViewController") as! ClientBookingViewController
-        vc.modalPresentationStyle = .fullScreen
         if let navigator = self.navigationController {
-            navigator.pushViewController(vc, animated: true)
+            delegate?.backFromBookingComfirm()
+            navigator.popViewController(animated: true)
         }
     }
     

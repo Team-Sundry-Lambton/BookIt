@@ -8,6 +8,10 @@
 import UIKit
 import CoreData
 
+protocol ClientBookVendorProtocol {
+    func backFromBookingComfirm()
+}
+
 class ClientBookVendorViewController: NavigationBaseViewController, UITextViewDelegate {
     
     var selectedService: Service?
@@ -263,6 +267,7 @@ class ClientBookVendorViewController: NavigationBaseViewController, UITextViewDe
                 let storyboard = UIStoryboard(name: "ClientBookingConfirmation", bundle: nil)
                 let vc = storyboard.instantiateViewController(withIdentifier: "ClientBookingConfirmation") as! ClientBookingConfirmationViewController
                 vc.modalPresentationStyle = .fullScreen
+                vc.delegate = self
                 if let navigator = self.navigationController {
                     navigator.pushViewController(vc, animated: true)
                 }
@@ -298,5 +303,11 @@ class ClientBookVendorViewController: NavigationBaseViewController, UITextViewDe
             textView.textColor = UIColor.lightGray
             textView.selectedRange = NSMakeRange(0, 0) // Remove cursor
         }
+    }
+}
+
+extension ClientBookVendorViewController: ClientBookVendorProtocol {
+    func backFromBookingComfirm() {
+        self.tabBarController?.selectedIndex = 2
     }
 }
