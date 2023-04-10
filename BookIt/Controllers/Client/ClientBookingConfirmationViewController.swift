@@ -8,8 +8,6 @@
 import UIKit
 
 class ClientBookingConfirmationViewController: UIViewController {
-    
-    var delegate: ClientBookVendorProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,8 +17,12 @@ class ClientBookingConfirmationViewController: UIViewController {
     
     @IBAction func gotoHistoryBooking(_ sender: Any) {
         if let navigator = self.navigationController {
-            delegate?.backFromBookingComfirm()
-            navigator.popViewController(animated: true)
+            var targetVC : UITabBarController?
+            targetVC = navigationController?.viewControllers.first(where: {$0 is UITabBarController}) as? UITabBarController
+            if let targetVC = targetVC {
+                targetVC.selectedIndex = 2
+                navigationController?.popToViewController(targetVC, animated: true)
+            }
         }
     }
     
