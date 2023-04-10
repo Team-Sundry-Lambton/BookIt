@@ -14,9 +14,8 @@ class LoadingHudManager {
 
     func showSimpleHUD(title: String, view: UIView) {
         hud.backgroundColor = UIColor(white: 1, alpha: 0.5)
-        hud.contentView.backgroundColor = UIColor.appThemeColor
-        hud.textLabel.textColor = UIColor.white
-        
+        hud.contentView.backgroundColor = UIColor.white
+        hud.textLabel.tintColor = UIColor.black
         hud.vibrancyEnabled = true
         #if os(tvOS)
             hud.textLabel.text = title
