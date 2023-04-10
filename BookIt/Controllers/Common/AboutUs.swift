@@ -13,7 +13,7 @@ struct AboutUs: View {
       
     var version = "App Version : " + (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.0")
     var aboutUs = "About Us"
-    var aboutUsURL  = "hhttps://sonia364.github.io/bookit_web/about-us.html"
+    var aboutUsURL  = "https://sonia364.github.io/About-Us/"
     var contactUs = " Contact Us : \n teamsundry@gmail.com"
     var privacy = "Privacy Policy"
     var privacyURL =  "https://www.freeprivacypolicy.com/live/5edf96ed-0b84-4fc0-955e-bc578ff82da4"
