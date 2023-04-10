@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Client Booking Confirmation View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="ClientBookingConfirmation" id="Y6W-OH-hqX" customClass="ClientBookingConfirmationViewController" customModule="BookIt" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gv1-DC-riR">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jnK-Zp-UHl">
+                                <rect key="frame" x="20" y="787" width="353" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="8jw-Io-xfU"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Track your booking" cornerStyle="capsule">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="baseBackgroundColor" red="0.23921568627450979" green="0.38823529411764707" blue="0.61568627450980395" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="gotoHistoryBooking:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="25L-Hs-yBm"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request Sent!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dQM-5V-nfV">
+                                <rect key="frame" x="100.00000000000001" y="419" width="193.33333333333337" height="39"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uyc-3o-LTk">
+                                <rect key="frame" x="20" y="473" width="353" height="38.333333333333314"/>
+                                <string key="text">Your request was sent to the vendor.
+Please wait for them to confirm the booking</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check_circle" translatesAutoresizingMaskIntoConstraints="NO" id="l1O-4X-ZmC">
+                                <rect key="frame" x="121.66666666666669" y="249" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="JhY-cw-Gys"/>
+                                    <constraint firstAttribute="height" constant="150" id="tE4-PG-qZR"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="AgV-p8-tff"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="AgV-p8-tff" firstAttribute="trailing" secondItem="jnK-Zp-UHl" secondAttribute="trailing" constant="20" id="9SJ-6C-gtw"/>
+                            <constraint firstItem="l1O-4X-ZmC" firstAttribute="centerX" secondItem="AgV-p8-tff" secondAttribute="centerX" id="SL8-LG-TWL"/>
+                            <constraint firstAttribute="bottom" secondItem="jnK-Zp-UHl" secondAttribute="bottom" constant="20" id="Y8a-DL-Ymp"/>
+                            <constraint firstItem="Uyc-3o-LTk" firstAttribute="top" secondItem="dQM-5V-nfV" secondAttribute="bottom" constant="15" id="bzO-qM-t75"/>
+                            <constraint firstItem="AgV-p8-tff" firstAttribute="trailing" secondItem="Uyc-3o-LTk" secondAttribute="trailing" constant="20" id="dM6-Fp-Rgw"/>
+                            <constraint firstItem="dQM-5V-nfV" firstAttribute="centerY" secondItem="AgV-p8-tff" secondAttribute="centerY" id="kym-ll-P9q"/>
+                            <constraint firstItem="dQM-5V-nfV" firstAttribute="top" secondItem="l1O-4X-ZmC" secondAttribute="bottom" constant="20" id="pog-Q1-SZ9"/>
+                            <constraint firstItem="Uyc-3o-LTk" firstAttribute="leading" secondItem="AgV-p8-tff" secondAttribute="leading" constant="20" id="qlg-3j-Dvz"/>
+                            <constraint firstItem="jnK-Zp-UHl" firstAttribute="leading" secondItem="AgV-p8-tff" secondAttribute="leading" constant="20" id="xYl-hO-uug"/>
+                            <constraint firstItem="dQM-5V-nfV" firstAttribute="centerX" secondItem="AgV-p8-tff" secondAttribute="centerX" id="y9l-x0-nPe"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="lblMessage" destination="Uyc-3o-LTk" id="YD8-lX-gVS"/>
+                        <outlet property="lblTitle" destination="dQM-5V-nfV" id="ab5-uC-hkH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="114" y="5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="check_circle" width="160" height="160"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

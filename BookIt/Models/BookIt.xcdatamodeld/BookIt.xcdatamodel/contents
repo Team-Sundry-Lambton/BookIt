@@ -1,4 +1,99 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="21G72" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Account" representedClassName="Account" syncable="YES" codeGenerationType="class">
+        <attribute name="accountNumber" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="institutionNumber" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="recipiantBankName" optional="YES" attributeType="String"/>
+        <attribute name="recipiantName" optional="YES" attributeType="String"/>
+        <attribute name="transitNumber" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="parent_vendor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Vendor" inverseName="account" inverseEntity="Vendor"/>
+    </entity>
+    <entity name="Address" representedClassName="Address" syncable="YES" codeGenerationType="class">
+        <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="addressId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="addressLatitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="addressLongitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="clientAddress" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Client" inverseName="address" inverseEntity="Client"/>
+        <relationship name="parentService" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Service" inverseName="address" inverseEntity="Service"/>
+        <relationship name="vendorAddress" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Vendor" inverseName="address" inverseEntity="Vendor"/>
+    </entity>
+    <entity name="Booking" representedClassName="Booking" syncable="YES" codeGenerationType="class">
+        <attribute name="bookingId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="problemDescription" optional="YES" attributeType="String"/>
+        <attribute name="status" optional="YES" attributeType="String"/>
+        <relationship name="client" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Client" inverseName="booking" inverseEntity="Client"/>
+        <relationship name="payment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Payment" inverseName="booking" inverseEntity="Payment"/>
+        <relationship name="service" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Service" inverseName="booking" inverseEntity="Service"/>
+        <relationship name="vendor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Vendor" inverseName="booking" inverseEntity="Vendor"/>
+    </entity>
+    <entity name="Category" representedClassName="Category" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="picture" optional="YES" attributeType="String"/>
+        <relationship name="services" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Service" inverseName="parent_Category" inverseEntity="Service"/>
+    </entity>
+    <entity name="Client" representedClassName="Client" syncable="YES" codeGenerationType="class">
+        <attribute name="contactNumber" optional="YES" attributeType="String"/>
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="firstName" optional="YES" attributeType="String"/>
+        <attribute name="isPremium" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String"/>
+        <attribute name="password" optional="YES" attributeType="String"/>
+        <attribute name="picture" optional="YES" attributeType="Binary"/>
+        <relationship name="address" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Address" inverseName="clientAddress" inverseEntity="Address"/>
+        <relationship name="booking" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Booking" inverseName="client" inverseEntity="Booking"/>
+        <relationship name="vendor_Review" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VendorReview" inverseName="client" inverseEntity="VendorReview"/>
+    </entity>
+    <entity name="MediaFile" representedClassName="MediaFile" syncable="YES" codeGenerationType="class">
+        <attribute name="mediaContent" optional="YES" attributeType="Binary"/>
+        <attribute name="mediaName" optional="YES" attributeType="String"/>
+        <attribute name="mediaPath" optional="YES" attributeType="String"/>
+        <relationship name="parent_Service" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Service" inverseName="medias" inverseEntity="Service"/>
+    </entity>
+    <entity name="Payment" representedClassName="Payment" syncable="YES" codeGenerationType="class">
+        <attribute name="amount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="status" optional="YES" attributeType="String"/>
+        <relationship name="booking" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Booking" inverseName="payment" inverseEntity="Booking"/>
+    </entity>
+    <entity name="Service" representedClassName="Service" syncable="YES" codeGenerationType="class">
+        <attribute name="cancelPolicy" optional="YES" attributeType="String"/>
+        <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="equipment" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="price" optional="YES" attributeType="String"/>
+        <attribute name="priceType" optional="YES" attributeType="String"/>
+        <attribute name="serviceDescription" optional="YES" attributeType="String"/>
+        <attribute name="serviceId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="serviceTitle" optional="YES" attributeType="String"/>
+        <attribute name="status" optional="YES" attributeType="String"/>
+        <relationship name="address" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Address" inverseName="parentService" inverseEntity="Address"/>
+        <relationship name="booking" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Booking" inverseName="service" inverseEntity="Booking"/>
+        <relationship name="medias" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MediaFile" inverseName="parent_Service" inverseEntity="MediaFile"/>
+        <relationship name="parent_Category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="services" inverseEntity="Category"/>
+        <relationship name="parent_Vendor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Vendor" inverseName="services" inverseEntity="Vendor"/>
+        <relationship name="review" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VendorReview" inverseName="service" inverseEntity="VendorReview"/>
+    </entity>
+    <entity name="Vendor" representedClassName="Vendor" syncable="YES" codeGenerationType="class">
+        <attribute name="bannerURL" optional="YES" attributeType="String"/>
+        <attribute name="contactNumber" optional="YES" attributeType="String"/>
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="firstName" optional="YES" attributeType="String"/>
+        <attribute name="lastName" optional="YES" attributeType="String"/>
+        <attribute name="password" optional="YES" attributeType="String"/>
+        <attribute name="picture" optional="YES" attributeType="Binary"/>
+        <relationship name="account" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="parent_vendor" inverseEntity="Account"/>
+        <relationship name="address" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Address" inverseName="vendorAddress" inverseEntity="Address"/>
+        <relationship name="booking" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Booking" inverseName="vendor" inverseEntity="Booking"/>
+        <relationship name="services" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Service" inverseName="parent_Vendor" inverseEntity="Service"/>
+        <relationship name="vendor_Review" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VendorReview" inverseName="vendor" inverseEntity="VendorReview"/>
+    </entity>
+    <entity name="VendorReview" representedClassName="VendorReview" syncable="YES" codeGenerationType="class">
+        <attribute name="comment" optional="YES" attributeType="String"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="rating" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="vendorRating" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="client" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Client" inverseName="vendor_Review" inverseEntity="Client"/>
+        <relationship name="service" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Service" inverseName="review" inverseEntity="Service"/>
+        <relationship name="vendor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Vendor" inverseName="vendor_Review" inverseEntity="Vendor"/>
+    </entity>
 </model>

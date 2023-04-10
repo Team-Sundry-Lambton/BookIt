@@ -2,6 +2,46 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Please allow to use face recognition</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>You must give permission in order to use the application</string>
+	<key>Privacy - Camera Usage Description </key>
+	<string>Please allow to use</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Please allow to use</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Please allow to use</string>
+	<key>Base url</key>
+	<string>http://localhost:5002/admin/api/</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>326161084198-65b3809t6maeku2tu15p2q1eb6p620jv.apps.googleusercontent.com</string>
+				<string>fb738037607708125</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.326161084198-65b3809t6maeku2tu15p2q1eb6p620jv</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>738037607708125</string>
+	<key>FacebookClientToken</key>
+	<string>35731d026d74fc90c8881d42272774a3</string>
+	<key>FacebookDisplayName</key>
+	<string>BookIt</string>
+	<key>GIDClientID</key>
+	<string>326161084198-65b3809t6maeku2tu15p2q1eb6p620jv.apps.googleusercontent.com</string>
+	<key>GIDServerClientID</key>
+	<string>326161084198-0ia7at1vn4qoqpjc75uhu1kibcaqing7.apps.googleusercontent.com</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -16,7 +56,7 @@
 					<key>UISceneDelegateClassName</key>
 					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
 					<key>UISceneStoryboardFile</key>
-					<string>Main</string>
+					<string>Onboarding</string>
 				</dict>
 			</array>
 		</dict>
