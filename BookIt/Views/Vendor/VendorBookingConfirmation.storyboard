@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -25,20 +26,20 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Go to Dashboard" cornerStyle="capsule">
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="baseBackgroundColor" name="main_blue"/>
+                                    <color key="baseBackgroundColor" red="0.23921568627450979" green="0.38823529411764707" blue="0.61568627450980395" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="goToDashboard:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="FCn-Qd-pcb"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Booking Confirmed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tcn-fD-ylN">
-                                <rect key="frame" x="74" y="348.66666666666669" width="266" height="39"/>
+                                <rect key="frame" x="74" y="358.66666666666669" width="266" height="39"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tZ0-ug-xWo">
-                                <rect key="frame" x="20" y="402.66666666666669" width="374" height="38.333333333333314"/>
+                                <rect key="frame" x="20" y="412.66666666666669" width="374" height="38.333333333333314"/>
                                 <string key="text">You have already confirmed the booking!
 Please wait for the client payment</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -46,7 +47,7 @@ Please wait for the client payment</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check_circle" translatesAutoresizingMaskIntoConstraints="NO" id="X62-80-vKx">
-                                <rect key="frame" x="132" y="178.66666666666666" width="150" height="149.99999999999997"/>
+                                <rect key="frame" x="132" y="188.66666666666663" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="407-nn-YZM"/>
                                     <constraint firstAttribute="width" constant="150" id="QPE-Qg-Q6k"/>
@@ -76,9 +77,6 @@ Please wait for the client payment</string>
     </scenes>
     <resources>
         <image name="check_circle" width="160" height="160"/>
-        <namedColor name="main_blue">
-            <color red="0.0" green="0.51764705882352946" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

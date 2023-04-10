@@ -204,7 +204,7 @@ class ClientBookVendorViewController: NavigationBaseViewController, UITextViewDe
                             if let status = status {
                                 if status {
                                     strongSelf.saveAllContextCoreData()
-                                    strongSelf.showAlert(title: "Service Rescheduled!", message: "The previously scheduled service appointment has been rescheduled to a new date or time")
+                                    strongSelf.gotoConfirmationScreen(title: "Service Rescheduled!", message: "The previously scheduled service appointment has been rescheduled to a new date or time. Please wait for the vendor to confirm the booking.")
                                 }else{
                                     UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: strongSelf)
                                 }
@@ -235,7 +235,7 @@ class ClientBookVendorViewController: NavigationBaseViewController, UITextViewDe
                         if let status = status {
                             if status {
                                 strongSelf.saveAllContextCoreData()
-                                strongSelf.showAlert(title: "Service Booked!", message: "Your service appointment has been successfully booked")
+                                strongSelf.gotoConfirmationScreen(title: "Service Booked!", message: "Your service appointment has been successfully booked. Please wait for the vendor to confirm the booking.")
                             }else{
                                 UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: strongSelf)
                             }
@@ -254,22 +254,36 @@ class ClientBookVendorViewController: NavigationBaseViewController, UITextViewDe
             print("Error saving the data \(error.localizedDescription)")
         }
     }
-        
+     
+    /*
     private func showAlert(title: String, message: String){
         let alertController: UIAlertController = {
             let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default){
                 UIAlertAction in
+                let storyboard = UIStoryboard(name: "ClientBookingConfirmation", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "ClientBookingConfirmation") as! ClientBookingConfirmationViewController
+                vc.modalPresentationStyle = .fullScreen
                 if let navigator = self.navigationController {
-                    navigator.popViewController(animated: true)
-                }else{
-                    self.dismiss(animated: true)
+                    navigator.pushViewController(vc, animated: true)
                 }
             }
             controller.addAction(okAction)
             return controller
         }()
         self.present(alertController, animated: true)
+    }
+    */
+    
+    private func gotoConfirmationScreen(title: String, message: String){
+        let storyboard = UIStoryboard(name: "ClientBookingConfirmation", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "ClientBookingConfirmation") as! ClientBookingConfirmationViewController
+        vc.modalPresentationStyle = .fullScreen
+        vc.titleContent = title;
+        vc.messageContent = message;
+        if let navigator = self.navigationController {
+            navigator.pushViewController(vc, animated: true);
+        }
     }
     
     func showErrorMessage(_ message: String) {
