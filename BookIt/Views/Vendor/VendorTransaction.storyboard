@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -23,7 +24,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d5d-S3-5KV">
-                                <rect key="frame" x="111.33333333333333" y="66" width="191.33333333333337" height="40.666666666666657"/>
+                                <rect key="frame" x="111.33333333333333" y="86" width="191.33333333333337" height="40.666666666666657"/>
                                 <string key="text">Here is the list of all your 
 transactions</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -31,14 +32,14 @@ transactions</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bg_IncomeCard" highlightedImage="Bg_IncomeCard" translatesAutoresizingMaskIntoConstraints="NO" id="Ur7-R5-ZZR">
-                                <rect key="frame" x="12.666666666666657" y="136.66666666666666" width="389" height="139.99999999999997"/>
+                                <rect key="frame" x="12.666666666666657" y="156.66666666666666" width="389" height="139.99999999999997"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="389" id="EAD-6t-K3F"/>
                                     <constraint firstAttribute="height" constant="140" id="HOo-bp-MeE"/>
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="114" estimatedRowHeight="114" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="vsl-8u-qNB">
-                                <rect key="frame" x="0.0" y="276.66666666666674" width="414" height="459.33333333333326"/>
+                                <rect key="frame" x="0.0" y="296.66666666666674" width="414" height="439.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Y6W-OH-hqX" id="lCX-kg-Sph"/>
@@ -46,9 +47,9 @@ transactions</string>
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BFn-z8-yEz" userLabel="Context View">
-                                <rect key="frame" x="46.666666666666657" y="146.66666666666666" width="321" height="85"/>
+                                <rect key="frame" x="46.666666666666657" y="166.66666666666666" width="321" height="85"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$2,087.2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ps-E2-wqi">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$2,08700123123.2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="2Ps-E2-wqi">
                                         <rect key="frame" x="188" y="25.666666666666686" width="125" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="125" id="1Hp-7q-k3x"/>
@@ -117,7 +118,7 @@ transactions</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZGD-Jn-k1E" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Niw-b4-fgd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.98039215800000001" green="0.98039215800000001" blue="0.98039215800000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <textAttributes key="titleTextAttributes">

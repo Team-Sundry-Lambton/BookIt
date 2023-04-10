@@ -8,14 +8,12 @@
 import UIKit
 import CoreData
 
-class VendorTransactionViewController: UIViewController {
+class VendorTransactionViewController: NavigationBaseViewController {
 
     @IBOutlet weak var totalIncomeLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     var vendor : Vendor?
     var transactionList = [Payment]()
-    
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,22 +21,24 @@ class VendorTransactionViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.isHidden = false
-        navigationController?.isNavigationBarHidden = false
+        super.viewWillAppear(animated)
+        loadData()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        navigationController?.isNavigationBarHidden = true
+    func getVendor(){
+        let user =  UserDefaultsManager.shared.getUserData()
+        vendor = CoreDataManager.shared.getVendor(email: user.email)
     }
     
     private func loadData() {
+        getVendor()
         loadTransactionList()
         calculateTotalIncomePerMonth()
         tableView.reloadData()
     }
     
     private func calculateTotalIncomePerMonth() {
-        totalIncomeLabel.text = "\(transactionList.reduce(0,{ $0 + $1.amount}))"
+        totalIncomeLabel.text = "$ \(transactionList.reduce(0,{ $0 + $1.amount}))"
     }
     
     private func loadTransactionList(){
@@ -72,7 +72,7 @@ extension VendorTransactionViewController: UITableViewDelegate, UITableViewDataS
             cell?.clientNameLabel.text = transaction.booking?.client?.firstName
             cell?.serviceNameLabel.text = transaction.booking?.service?.serviceTitle
             cell?.bankAccountLabel.text = "\(transaction.booking?.vendor?.account?.accountNumber)".masked(reversed: true)
-            cell?.totalIncomeLabel.text = "\(transaction.amount)"
+            cell?.totalIncomeLabel.text = "$ \(transaction.amount)"
             cell?.dateTimeLabel.text = transaction.date?.dateAndTimetoString()
         }
         return cell ?? UITableViewCell()
