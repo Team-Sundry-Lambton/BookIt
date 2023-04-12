@@ -224,7 +224,7 @@ class SignupViewController: NavigationBaseViewController {
         }
         LoadingHudManager.shared.showSimpleHUD(title: "Loading...", view: self.view)
         Task {
-            await InitialDataDownloadManager.shared.downloadAllData{
+            InitialDataDownloadManager.shared.downloadAllData(email: loginUser?.email ?? ""){
                 DispatchQueue.main.async {
                     LoadingHudManager.shared.dissmissHud()
                     if (self.isVendor){

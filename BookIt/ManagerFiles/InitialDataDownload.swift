@@ -13,54 +13,150 @@ import FirebaseStorage
 class InitialDataDownloadManager : NSObject{
     static let shared = InitialDataDownloadManager()
     let db = Firestore.firestore()
-    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    func downloadAllData(completion: @escaping () -> Void) {
+    var categories : [Category]?
+    var clients : [Client]?
+    var vendors : [Vendor]?
+    var addresses : [Address]?
+    var medias :[MediaFile]?
+    var services : [Service]?
+    var bookings : [Booking]?
+    var reviews : [VendorReview]?
+    var payments : [Payment]?
+    
+    var userEmail : String?
+    func downloadAllData(email: String,completion: @escaping () -> Void) {
         DispatchQueue.main.async {
             async { [weak self] in
                 guard let strongSelf = self else { return }
-                await strongSelf.getAllCategoryData()
-                await strongSelf.getAllClientData()
-                await strongSelf.getAllVendorData()
-                await strongSelf.getAllAddressData()
-                await strongSelf.getAllServiceData()
-                await strongSelf.getAllMediaData()
-                await strongSelf.getAllBookingData()
-                await strongSelf.getAllPaymentData()
-                await strongSelf.getAllVendorReviewData()
+                strongSelf.categories = CoreDataManager.shared.loadCategories()
+                strongSelf.clients = CoreDataManager.shared.getAllClients()
+                strongSelf.vendors = CoreDataManager.shared.getAllVendors()
+                strongSelf.addresses = CoreDataManager.shared.getAllLocations()
+                strongSelf.medias = CoreDataManager.shared.getAllMedias()
+                strongSelf.services = CoreDataManager.shared.getAllServices()
+                strongSelf.bookings = CoreDataManager.shared.getAllBooking()
+                strongSelf.reviews = CoreDataManager.shared.getAllReviews()
+                strongSelf.payments = CoreDataManager.shared.getAllPayments()
+                
+                strongSelf.getAllCategoryData()
+                //                await strongSelf.getAllClientData()
+                //                await strongSelf.getAllVendorData()
+                //                await strongSelf.getAllAddressData()
+                //                await strongSelf.getAllServiceData()
+                //                await strongSelf.getAllMediaData()
+                //                await strongSelf.getAllBookingData()
+                //                await strongSelf.getAllPaymentData()
+                //                await strongSelf.getAllVendorReviewData()
+                strongSelf.userEmail = email
                 
                 completion()
             }
         }
     }
     
-    func getAllCategoryData() async{
-        do {
-            CoreDataManager.shared.deleteCategory()
-            let snapshot = try await db.collection("categories").getDocuments()
+    private func getAllCategoryData() {
+        db.collection("categories").addSnapshotListener(){snapshot, error in
             DispatchQueue.main.async {
-                snapshot.documents.forEach { documentSnapshot in
-                    let data = documentSnapshot.data()
-                    let category = Category(context: self.context)
-                    category.name = data["name"] as? String ?? ""
-                    category.picture =  data["picture"] as? String ?? ""
+                
+                snapshot?.documentChanges.forEach { documentSnapshot in
+                    self.setCategoryData(documentSnapshot: documentSnapshot)
                 }
                 self.saveData()
+                self.getAllClientData()
             }
-        }
-        catch{
-            print("Error loading location data \(error.localizedDescription)")
         }
     }
     
-    func getAllClientData() async{
-        do {
-            CoreDataManager.shared.deleteClients()
-            let snapshot = try await db.collection("client").getDocuments();
+    private func setCategoryData(documentSnapshot : DocumentChange){
+        let data = documentSnapshot.document.data()
+        
+        if let categoryName = data["name"]  as? String {
+            var category : Category?
+            if categoryName != "" {
+                category = getCategory(name: categoryName)
+                
+                if category == nil {
+                    category = Category(context: self.context)
+                }
+            }
+            
+            if (documentSnapshot.type == .removed){ //remove
+                if let selectedCat = category {
+                    context.delete(selectedCat)
+                }
+            }else{ //save
+                category?.name = data["name"] as? String ?? ""
+                category?.picture =  data["picture"] as? String ?? ""
+            }
+        }
+    }
+    
+    private func getCategory(name : String) -> Category? {
+        return  categories?.filter({ category in
+            category.name == name
+        }).first
+    }
+    
+    func getAllClientData() {
+        db.collection("client").addSnapshotListener(){snapshot, error in
             DispatchQueue.main.async {
-                snapshot.documents.forEach { documentSnapshot in
-                    let data = documentSnapshot.data()
+                snapshot?.documentChanges.forEach { documentSnapshot in
+                    self.setClientData(documentSnapshot: documentSnapshot)
+                }
+                self.saveData()
+                self.getAllVendorData()
+            }
+        }
+    }
+    
+    func setClientData( documentSnapshot : DocumentChange){
+        let data = documentSnapshot.document.data()
+        
+        if let clientEmail = data["email"]  as? String {
+            var client : Client?
+            if clientEmail != "" {
+                client = getClient(email: clientEmail)
+                if client == nil {
+                    client = Client(context: self.context)
+                }
+                if (documentSnapshot.type == .removed){ //remove
+                    if let selectedClient = client {
+                        context.delete(selectedClient)
+                    }
+                }else{
+                    client?.firstName = data["firstName"] as? String ?? ""
+                    client?.lastName =  data["lastName"] as? String ?? ""
+                    client?.email =  data["email"] as? String ?? ""
+                    client?.password =  data["password"] as? String ?? ""
+                    if let picture =  data["picture"] as? String{
+                        client?.picture = self.urlToData(path: picture)
+                    }
+                    client?.contactNumber =  data["contactNumber"] as? String ?? ""
+                    client?.isPremium =  data["isPremium"] as? Bool ?? false
+                }
+            }
+        }
+        
+    }
+    
+    private func getClient(email : String) -> Client? {
+        return  clients?.filter({ client in
+            client.email == email
+        }).first
+    }
+    
+    func getClientData(email : String,completion: @escaping (_ client: Client?) -> Void) {
+        db.collection("client").whereField("email", isEqualTo: email).getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                // Some error occured
+                completion(nil)
+            } else if querySnapshot!.documents.count == 0 {
+                // Perhaps this is an error for you?
+                completion(nil)
+            } else {
+                if let data = querySnapshot?.documents.first {
                     let client = Client(context: self.context)
                     client.firstName = data["firstName"] as? String ?? ""
                     client.lastName =  data["lastName"] as? String ?? ""
@@ -71,63 +167,58 @@ class InitialDataDownloadManager : NSObject{
                     }
                     client.contactNumber =  data["contactNumber"] as? String ?? ""
                     client.isPremium =  data["isPremium"] as? Bool ?? false
+                    completion(client)
                 }
-                self.saveData()
             }
-        }catch{
-            print("Error loading location data \(error.localizedDescription)")
         }
     }
     
-    func getClientData(email : String,completion: @escaping (_ client: Client?) -> Void) {
-             db.collection("client").whereField("email", isEqualTo: email).getDocuments() { (querySnapshot, err) in
-                if let err = err {
-                    // Some error occured
-                    completion(nil)
-                } else if querySnapshot!.documents.count == 0 {
-                    // Perhaps this is an error for you?
-                    completion(nil)
-                } else {
-                    if let data = querySnapshot?.documents.first {
-                        let client = Client(context: self.context)
-                        client.firstName = data["firstName"] as? String ?? ""
-                        client.lastName =  data["lastName"] as? String ?? ""
-                        client.email =  data["email"] as? String ?? ""
-                        client.password =  data["password"] as? String ?? ""
-                        if let picture =  data["picture"] as? String{
-                            client.picture = self.urlToData(path: picture)
-                        }
-                        client.contactNumber =  data["contactNumber"] as? String ?? ""
-                        client.isPremium =  data["isPremium"] as? Bool ?? false
-                        completion(client)
-                    }
-                }
-            }
-    }
-    
-    func getAllVendorData() async{
-        do {
-            CoreDataManager.shared.deleteVendors()
-            let snapshot = try await db.collection("vendor").getDocuments();
+    func getAllVendorData() {
+        db.collection("vendor").addSnapshotListener(){snapshot, error in
             DispatchQueue.main.async {
-                snapshot.documents.forEach { documentSnapshot in
-                    let data = documentSnapshot.data()
-                    let vendor = Vendor(context: self.context)
-                    vendor.firstName = data["firstName"] as? String ?? ""
-                    vendor.lastName =  data["lastName"] as? String ?? ""
-                    vendor.email =  data["email"] as? String ?? ""
-                    vendor.password =  data["password"] as? String ?? ""
-                    if let picture =  data["picture"] as? String{
-                        vendor.picture = self.urlToData(path: picture)
-                    }
-                    vendor.contactNumber =  data["contactNumber"] as? String ?? ""
-                    vendor.bannerURL =  data["bannerURL"]  as? String ?? ""
+                snapshot?.documentChanges.forEach { documentSnapshot in
+                    self.setVendorData(documentSnapshot: documentSnapshot)
                 }
                 self.saveData()
+                self.getAllAddressData()
             }
-        }catch{
-            print("Error loading location data \(error.localizedDescription)")
         }
+    }
+    
+    func setVendorData( documentSnapshot : DocumentChange){
+        let data = documentSnapshot.document.data()
+        
+        if let vendorEmail = data["email"]  as? String {
+            var vendor : Vendor?
+            if vendorEmail != "" {
+                vendor = getVendors(email: vendorEmail)
+                if vendor == nil {
+                    vendor = Vendor(context: self.context)
+                }
+                if (documentSnapshot.type == .removed){ //remove
+                    if let selectedVendor = vendor {
+                        context.delete(selectedVendor)
+                    }
+                }else{
+                    vendor?.firstName = data["firstName"] as? String ?? ""
+                    vendor?.lastName =  data["lastName"] as? String ?? ""
+                    vendor?.email =  data["email"] as? String ?? ""
+                    vendor?.password =  data["password"] as? String ?? ""
+                    if let picture =  data["picture"] as? String{
+                        vendor?.picture = self.urlToData(path: picture)
+                    }
+                    vendor?.contactNumber =  data["contactNumber"] as? String ?? ""
+                    vendor?.bannerURL =  data["bannerURL"]  as? String ?? ""
+                }
+            }
+        }
+        
+    }
+    
+    private func getVendors(email : String) -> Vendor? {
+        return  vendors?.filter({ vendor in
+            vendor.email == email
+        }).first
     }
     
     func getVendorData(email : String,completion: @escaping (_ vendor: Vendor?) -> Void) {
@@ -158,269 +249,403 @@ class InitialDataDownloadManager : NSObject{
             }
     }
     
-    func getAllServiceData() async{
-        do {
-            CoreDataManager.shared.deleteServices()
-            let snapshot = try await  db.collection("service").getDocuments()
+    func getAllServiceData() {
+        db.collection("service").addSnapshotListener(){snapshot, error in
             DispatchQueue.main.async {
-                snapshot.documents.forEach { documentSnapshot in
-                    let data = documentSnapshot.data()
-                    let service = Service(context: self.context)
-                    service.serviceTitle = data["serviceTitle"] as? String ?? ""
-                    service.serviceDescription =  data["serviceDescription"] as? String ?? ""
-                    service.cancelPolicy =  data["cancelPolicy"] as? String ?? ""
-                    service.price =  data["price"] as? String ?? ""
-                    service.priceType =  data["priceType"]  as? String ?? ""
-                    service.equipment = data["equipment"]  as? Bool ?? false
-                    service.serviceId = data["serviceId"]  as? Int16 ?? -1
-                    service.createdDate = data["createdDate"] as? Date ?? Date()
-                    service.status = data["status"]  as? String ?? ""
+                snapshot?.documentChanges.forEach { documentSnapshot in
+                    self.setServiceData(documentSnapshot: documentSnapshot)
+                }
+                self.saveData()
+                self.getAllMediaData()
+            }
+        }
+    }
+    
+    
+    func setServiceData( documentSnapshot : DocumentChange){
+        let data = documentSnapshot.document.data()
+        
+        if let serviceId = data["serviceId"]  as? Int {
+            var service : Service?
+            if serviceId != -1 {
+                service = getService(serviceId: serviceId)
+                if service == nil {
+                    service = Service(context: self.context)
+                }
+                if (documentSnapshot.type == .removed){ //remove
+                    if let selectedService = service {
+                        context.delete(selectedService)
+                    }
+                }else{
+                    service?.serviceTitle = data["serviceTitle"] as? String ?? ""
+                    service?.serviceDescription =  data["serviceDescription"] as? String ?? ""
+                    service?.cancelPolicy =  data["cancelPolicy"] as? String ?? ""
+                    service?.price =  data["price"] as? String ?? ""
+                    service?.priceType =  data["priceType"]  as? String ?? ""
+                    service?.equipment = data["equipment"]  as? Bool ?? false
+                    service?.serviceId = data["serviceId"]  as? Int16 ?? -1
+                    service?.createdDate = data["createdDate"] as? Date ?? Date()
+                    service?.status = data["status"]  as? String ?? ""
                     if let parentVendor = data["parentVendor"]  as? String {
                         if parentVendor != "" {
-                            if  let vendor = CoreDataManager.shared.getVendor(email: parentVendor){
-                                service.parent_Vendor = vendor
-                            }
+                            service?.parent_Vendor = getVendors(email: parentVendor)
                         }
                     }
                     
                     if let parentCategory = data["parentCategory"]  as? String {
                         if parentCategory != "" {
-                            if let category = CoreDataManager.shared.getCategory(name: parentCategory){
-                                service.parent_Category = category
-                            }
+                            service?.parent_Category = getCategory(name: parentCategory)
                         }
                     }
                     
                     if let addressId = data["parentAddress"]  as? Int {
                         if addressId != -1 {
-                            if let address = CoreDataManager.shared.getLocationData(addressId: addressId){
-                                service.address = address
-                            }
+                            service?.address = getAddress(addressId: addressId)
                         }
                     }
                 }
-                self.saveData()
             }
-        }catch{
-            print("Error loading location data \(error.localizedDescription)")
+        }
+        
+    }
+    
+    private func getService(serviceId : Int) -> Service? {
+        return  services?.filter({ service in
+            service.serviceId == serviceId
+        }).first
+    }
+    
+    func getAllAddressData() {
+        db.collection("address").addSnapshotListener(){snapshot, error in
+            DispatchQueue.main.async {
+                snapshot?.documentChanges.forEach { documentSnapshot in
+                    self.setAddressData(documentSnapshot: documentSnapshot)
+                }
+                self.saveData()
+                self.getAllServiceData()
+            }
         }
     }
     
-    func getAllAddressData()async{
-        do {
-            CoreDataManager.shared.deleteAddresss()
-            let snapshot = try await db.collection("address").getDocuments() ;
-            DispatchQueue.main.async {
-                snapshot.documents.forEach { documentSnapshot in
-                    let data = documentSnapshot.data()
-                    let address = Address(context: self.context)
-                    address.addressLongitude = data["longitude"] as? Double ?? 0
-                    address.addressLatitude =  data["latitude"] as? Double ?? 0
-                    address.addressId = data["addressId"] as? Int16 ?? -1
-                    address.address =  data["address"] as? String ?? ""
-                    
-                    //                if let parentService = data["parentService"]  as? Int {
-                    //                    if parentService != -1 {
-                    //                        if let service = CoreDataManager.shared.getService(serviceId: parentService){
-                    //                            address.parentService = service
-                    //                        }
-                    //                    }
-                    //                }
+    
+    func setAddressData( documentSnapshot : DocumentChange){
+        let data = documentSnapshot.document.data()
+        
+        if let addressId = data["addressId"]  as? Int {
+            var address : Address?
+            if addressId != -1 {
+                address = getAddress(addressId: addressId)
+                if address == nil {
+                    address = Address(context: self.context)
+                }
+                if (documentSnapshot.type == .removed){ //remove
+                    if let selectedAddress = address {
+                        context.delete(selectedAddress)
+                    }
+                }else{
+                    address?.addressLongitude = data["longitude"] as? Double ?? 0
+                    address?.addressLatitude =  data["latitude"] as? Double ?? 0
+                    address?.addressId = data["addressId"] as? Int16 ?? -1
+                    address?.address =  data["address"] as? String ?? ""
                     if let clientEmail = data["clientEmailAddress"]  as? String {
                         if clientEmail != "" {
-                            if let client = CoreDataManager.shared.getClient(email: clientEmail){
-                                address.clientAddress = client
-                            }
+                            address?.clientAddress = getClient(email: clientEmail)
                         }
                     }
                     if let vendorEmail = data["vendorEmailAddress"]  as? String {
                         if vendorEmail != "" {
-                            if let vendor = CoreDataManager.shared.getVendor(email: vendorEmail){
-                                address.vendorAddress = vendor
-                            }
+                            address?.vendorAddress = getVendors(email: vendorEmail)
                         }
                     }
                 }
-                self.saveData()
-            }
-            }catch{
-                print("Error loading location data \(error.localizedDescription)")
             }
         }
+        
+    }
     
-    func getAllMediaData()async{
-        do {
-            CoreDataManager.shared.deleteMediaFiles()
-            let snapshot = try await db.collection("media").getDocuments();
+    private func getAddress(addressId : Int) -> Address? {
+        return  addresses?.filter({ address in
+            address.addressId == addressId
+        }).first
+    }
+    
+    
+    func getAllMediaData() {
+        db.collection("service").addSnapshotListener(){snapshot, error in
             DispatchQueue.main.async {
-                snapshot.documents.forEach { documentSnapshot in
-                    let data = documentSnapshot.data()
-                    let media = MediaFile(context: self.context)
-                    media.mediaName =  data["mediaName"] as? String ?? ""
-                    media.mediaPath =  data["mediaPath"] as? String ?? ""
+                snapshot?.documentChanges.forEach { documentSnapshot in
+                    self.setMediaData(documentSnapshot: documentSnapshot)
+                }
+                self.saveData()
+                self.getAllBookingData()
+            }
+        }
+    }
+    
+    
+    func setMediaData( documentSnapshot : DocumentChange){
+        let data = documentSnapshot.document.data()
+        
+        if let mediaName = data["mediaName"]  as? String {
+            var media : MediaFile?
+            if mediaName != "" {
+                media = getMedia(mediaName: mediaName)
+                if media == nil {
+                    media = MediaFile(context: self.context)
+                }
+                if (documentSnapshot.type == .removed){ //remove
+                    if let selectedMedia = media {
+                        context.delete(selectedMedia)
+                    }
+                }else{
+                    media?.mediaName =  data["mediaName"] as? String ?? ""
+                    media?.mediaPath =  data["mediaPath"] as? String ?? ""
                     if let picture =  data["mediaContent"] as? String{
-                        media.mediaContent = self.urlToData(path: picture)
+                        media?.mediaContent = self.urlToData(path: picture)
                     }
                     
                     if let parentService = data["parentService"]  as? Int {
                         if parentService != -1 {
-                            print("Service ID: ", parentService);
-                            if let service = CoreDataManager.shared.getService(serviceId: parentService){
-                                media.parent_Service = service
-                            }
+                            media?.parent_Service = getService(serviceId: parentService)
                         }
                     }
                 }
-                self.saveData()
             }
-        }catch{
-            print("Error loading location data \(error.localizedDescription)")
+        }
+        
+    }
+    
+    private func getMedia(mediaName : String) -> MediaFile? {
+        return  medias?.filter({ media in
+            media.mediaName == mediaName
+        }).first
+    }
+    
+    
+    func getAllBookingData() {
+        db.collection("service").addSnapshotListener(){snapshot, error in
+            DispatchQueue.main.async {
+                snapshot?.documentChanges.forEach { documentSnapshot in
+                    self.setBookingData(documentSnapshot: documentSnapshot)
+                }
+                self.saveData()
+                self.getAllPaymentData()
+            }
         }
     }
     
-    func getAllBookingData()async{
-        do {
-            CoreDataManager.shared.deleteBookings()
-            let snapshot = try await db.collection("booking").getDocuments();
-            DispatchQueue.main.async {
-                snapshot.documents.forEach { documentSnapshot in
-                    let data = documentSnapshot.data()
-                    let booking = Booking(context: self.context)
-                    if let postTimestamp = data["date"] as? Timestamp{
-                        booking.date =  postTimestamp.dateValue()
+    
+    func setBookingData( documentSnapshot : DocumentChange){
+        let data = documentSnapshot.document.data()
+        
+        if let bookingId = data["bookingId"]  as? Int {
+            var booking : Booking?
+            if bookingId != -1 {
+                booking = getBooking(bookingId: bookingId)
+                if booking == nil {
+                    booking = Booking(context: self.context)
+                }
+                if (documentSnapshot.type == .removed){ //remove
+                    if let selectedBooking = booking {
+                        context.delete(selectedBooking)
                     }
-                    booking.bookingId = data["bookingId"]  as? Int16 ?? -1
+                }else{
+                    if let postTimestamp = data["date"] as? Timestamp{
+                        booking?.date =  postTimestamp.dateValue()
+                    }
+                    booking?.bookingId = data["bookingId"]  as? Int16 ?? -1
                     
-                    booking.status =  data["status"] as? String ?? ""
-                    booking.problemDescription = data["problemDescription"] as? String ?? ""
+                    booking?.status =  data["status"] as? String ?? ""
+                    booking?.problemDescription = data["problemDescription"] as? String ?? ""
                     
                     if let parentService = data["parentService"]  as? Int {
                         if parentService != -1 {
-                            if let service = CoreDataManager.shared.getService(serviceId: parentService){
-                                booking.service = service
-                            }
+                            booking?.service = getService(serviceId: parentService)
                         }
                     }
                     
                     if let clientEmail = data["clientEmailAddress"]  as? String {
                         if clientEmail != "" {
-                            if let client = CoreDataManager.shared.getClient(email: clientEmail){
-                                booking.client = client
-                            }
+                            booking?.client = getClient(email: clientEmail)
                         }
                     }
                     if let vendorEmail = data["vendorEmailAddress"]  as? String {
                         if vendorEmail != "" {
-                            if let vendor = CoreDataManager.shared.getVendor(email: vendorEmail){
-                                booking.vendor = vendor
-                            }
+                            booking?.vendor = getVendors(email: vendorEmail)
                         }
                     }
                 }
-                self.saveData()
             }
-        }catch{
-            print("Error loading location data \(error.localizedDescription)")
         }
-
+        
     }
     
-    func getAllPaymentData()async{
-        do {
-            CoreDataManager.shared.deletePayments()
-            let snapshot = try await db.collection("payment").getDocuments();
+    private func getBooking(bookingId : Int) -> Booking? {
+        return  bookings?.filter({ booking in
+            booking.bookingId == bookingId
+        }).first
+    }
+    
+    
+    func getAllPaymentData() {
+        db.collection("payment").addSnapshotListener(){snapshot, error in
             DispatchQueue.main.async {
-                snapshot.documents.forEach { documentSnapshot in
-                    let data = documentSnapshot.data()
-                    let payment = Payment(context: self.context)
-                    payment.amount =  data["amount"] as? Double ?? 0
-                    if let postTimestamp = data["date"] as? Timestamp{
-                        payment.date =  postTimestamp.dateValue()
+                snapshot?.documentChanges.forEach { documentSnapshot in
+                    self.setPaymentData(documentSnapshot: documentSnapshot)
+                }
+                self.saveData()
+                self.getAllVendorReviewData()
+            }
+        }
+    }
+    
+    
+    func setPaymentData( documentSnapshot : DocumentChange){
+        let data = documentSnapshot.document.data()
+        
+        if let paymentId = data["paymentId"]  as? Int {
+            var payment : Payment?
+            if paymentId != -1 {
+                payment = getPayment(paymentId: paymentId)
+                if payment == nil {
+                    payment = Payment(context: self.context)
+                }
+                if (documentSnapshot.type == .removed){ //remove
+                    if let selectedPayment = payment {
+                        context.delete(selectedPayment)
                     }
-                    payment.status =  data["status"] as? String ?? ""
+                }else{
+                    payment?.amount =  data["amount"] as? Double ?? 0
+                    if let postTimestamp = data["date"] as? Timestamp{
+                        payment?.date =  postTimestamp.dateValue()
+                    }
+                    payment?.status =  data["status"] as? String ?? ""
+                    payment?.paymentId = data["paymentId"]  as? Int16 ?? -1
                     
                     if let bookingId = data["bookingId"] as? Int {
                         if bookingId != -1 {
-                            if let booking = CoreDataManager.shared.getBooking(bookingId: bookingId){
-                                payment.booking = booking
-                            }
+                            payment?.booking = getBooking(bookingId: bookingId)
                         }
                     }
+                    
+                }
+            }
+        }
+        
+    }
+    
+    private func getPayment(paymentId : Int) -> Payment? {
+        return  payments?.filter({ payments in
+            payments.paymentId == paymentId
+        }).first
+    }
+    
+    func getAllVendorReviewData() {
+        db.collection("vendorReview").addSnapshotListener(){snapshot, error in
+            DispatchQueue.main.async {
+                snapshot?.documentChanges.forEach { documentSnapshot in
+                    self.setVendorReviewData(documentSnapshot: documentSnapshot)
+                }
+                self.saveData()
+                self.getAccountData()
+            }
+        }
+    }
+    
+    
+    func setVendorReviewData( documentSnapshot : DocumentChange){
+        let data = documentSnapshot.document.data()
+        
+        if let reviewId = data["reviewId"]  as? Int {
+            var review : VendorReview?
+            if reviewId != -1 {
+                review = getVendorReview(reviewId: reviewId)
+                if review == nil {
+                    review = VendorReview(context: self.context)
+                }
+                if (documentSnapshot.type == .removed){ //remove
+                    if let selectedReview = review {
+                        context.delete(selectedReview)
+                    }
+                }else{
+                    review?.comment =  data["comment"] as? String ?? ""
+                    if let postTimestamp = data["date"] as? Timestamp{
+                        review?.date =  postTimestamp.dateValue()
+                    }
+                    review?.reviewId = data["reviewId"]  as? Int16 ?? -1
+                    review?.rating = Int16(data["rating"] as? Int ?? 0)
+                    review?.vendorRating = data["vendorRating"] as? Bool ?? false
+                    if let clientEmail = data["clientEmailAddress"]  as? String {
+                        if clientEmail != "" {
+                            review?.client = getClient(email: clientEmail)
+                        }
+                    }
+                    if let vendorEmail = data["vendorEmailAddress"]  as? String {
+                        if vendorEmail != "" {
+                            review?.vendor = getVendors(email: vendorEmail)
+                        }
+                    }
+                    if let parentService = data["parentService"]  as? Int {
+                        if parentService != -1 {
+                            review?.service = getService(serviceId: parentService)
+                        }
+                    }
+                    
+                }
+            }
+        }
+        
+    }
+    
+    private func getVendorReview(reviewId : Int) -> VendorReview? {
+        return  reviews?.filter({ review in
+            review.reviewId == reviewId
+        }).first
+    }
+    
+    func getAccountData(){
+        db.collection("account").addSnapshotListener(){snapshot, error in
+            DispatchQueue.main.async {
+                snapshot?.documentChanges.forEach { documentSnapshot in
+                    self.setAccountData(documentSnapshot: documentSnapshot)
                 }
                 self.saveData()
             }
-        }catch{
-            print("Error loading location data \(error.localizedDescription)")
-        }
-
-    }
-    
-    func getAllVendorReviewData()async{
-        do {
-            CoreDataManager.shared.deleteVendorReviews()
-            let snapshot = try await db.collection("vendorReview").getDocuments();
-            snapshot.documents.forEach { documentSnapshot in
-                let data = documentSnapshot.data()
-                let review = VendorReview(context: self.context)
-                review.comment =  data["comment"] as? String ?? ""
-                if let postTimestamp = data["date"] as? Timestamp{
-                    review.date =  postTimestamp.dateValue()
-                }
-                review.rating = Int16(data["rating"] as? Int ?? 0)
-                review.vendorRating = data["vendorRating"] as? Bool ?? false
-                if let clientEmail = data["clientEmailAddress"]  as? String {
-                    if clientEmail != "" {
-                        if let client = CoreDataManager.shared.getClient(email: clientEmail){
-                            review.client = client
-                        }
-                    }
-                }
-                if let vendorEmail = data["vendorEmailAddress"]  as? String {
-                    if vendorEmail != "" {
-                        if let vendor = CoreDataManager.shared.getVendor(email: vendorEmail){
-                            review.vendor = vendor
-                        }
-                    }
-                }
-                if let parentService = data["parentService"]  as? Int {
-                    if parentService != -1 {
-                        if let service = CoreDataManager.shared.getService(serviceId: parentService){
-                            review.service = service
-                        }
-                    }
-                }
-            }
-            self.saveData()
-        }catch{
-            print("Error loading location data \(error.localizedDescription)")
         }
     }
     
-    func getAllAccountData() async{
-        do {
-            CoreDataManager.shared.deleteAccounts()
-            let snapshot = try await db.collection("account").getDocuments();
-            snapshot.documents.forEach { documentSnapshot in
-                let data = documentSnapshot.data()
-                let account = Account(context: self.context)
-                account.recipiantName =  data["recipiantName"] as? String ?? ""
-                account.recipiantBankName =  data["recipiantBankName"] as? String ?? ""
-                account.accountNumber = Int32(data["accountNumber"] as? Int ?? 0)
-                account.institutionNumber = Int32(data["institutionNumber"] as? Int ?? 0)
-                account.transitNumber = Int32(data["transitNumber"] as? Int ?? 0)
-
-                if let vendorEmail = data["vendorEmailAddress"]  as? String {
-                    if vendorEmail != "" {
-                        if let vendor = CoreDataManager.shared.getVendor(email: vendorEmail){
-                            account.parent_vendor = vendor
+    
+    func setAccountData( documentSnapshot : DocumentChange){
+        let data = documentSnapshot.document.data()
+        
+        if let accountNumber = data["accountNumber"]  as? Int {
+            var account : Account?
+            if accountNumber != -1 {
+                account = CoreDataManager.shared.getVendorBankAccount(email: userEmail ?? "")
+                if account == nil {
+                    account = Account(context: self.context)
+                }
+                if (documentSnapshot.type == .removed){ //remove
+                    if let selectedAccount = account {
+                        context.delete(selectedAccount)
+                    }
+                }else{
+                    account?.recipiantName =  data["recipiantName"] as? String ?? ""
+                    account?.recipiantBankName =  data["recipiantBankName"] as? String ?? ""
+                    account?.accountNumber = Int32(data["accountNumber"] as? Int ?? 0)
+                    account?.institutionNumber = Int32(data["institutionNumber"] as? Int ?? 0)
+                    account?.transitNumber = Int32(data["transitNumber"] as? Int ?? 0)
+                    
+                    if let vendorEmail = data["vendorEmailAddress"]  as? String {
+                        if vendorEmail != "" {
+                            account?.parent_vendor = getVendors(email: vendorEmail)
                         }
                     }
+                    
                 }
             }
-            self.saveData()
-        }catch{
-            print("Error loading location data \(error.localizedDescription)")
         }
+        
     }
 }
 
@@ -439,7 +664,7 @@ extension InitialDataDownloadManager {
                         }else{
                             self.uploadMedia(name:client.email ?? "", media: imageData) { url in
                                 picturePath = url
-                               
+                                
                                 ref = self.db.collection("client").addDocument(data: [
                                     "contactNumber": client.contactNumber ?? "",
                                     "email": client.email ?? "",
@@ -465,7 +690,7 @@ extension InitialDataDownloadManager {
                     }else{
                         self.uploadMedia(name:client.email ?? "", media: imageData) { url in
                             picturePath = url
-                           
+                            
                             ref = self.db.collection("client").addDocument(data: [
                                 "contactNumber": client.contactNumber ?? "",
                                 "email": client.email ?? "",
@@ -488,8 +713,8 @@ extension InitialDataDownloadManager {
                             }
                         }
                     }
-            }
-
+                }
+            
         }else{
             ref = self.db.collection("client").addDocument(data: [
                 "contactNumber": client.contactNumber ?? "",
@@ -598,26 +823,26 @@ extension InitialDataDownloadManager {
             }
         }
     }
-        
-        func chedkUserData(email : String, isVendor : Bool,completion: @escaping (_ status: Bool?) -> Void){
-            var dataCollection = "client"
-            if isVendor {
-                dataCollection = "vendor"
-            }
-                self.db.collection(dataCollection)
-                    .whereField("email", isEqualTo: email)
-                    .getDocuments(){ (document, error) in
-                        if let document = document {
-                            if document.count >= 1 {
-                                completion(true)
-                            }else{
-                                completion(false)
-                            }
-                        }else{
-                            completion(false)
-                        }
-            }
     
+    func chedkUserData(email : String, isVendor : Bool,completion: @escaping (_ status: Bool?) -> Void){
+        var dataCollection = "client"
+        if isVendor {
+            dataCollection = "vendor"
+        }
+        self.db.collection(dataCollection)
+            .whereField("email", isEqualTo: email)
+            .getDocuments(){ (document, error) in
+                if let document = document {
+                    if document.count >= 1 {
+                        completion(true)
+                    }else{
+                        completion(false)
+                    }
+                }else{
+                    completion(false)
+                }
+            }
+        
     }
     
     func addServiceData(service : Service,completion: @escaping (_ status: Bool?) -> Void) async {
@@ -679,47 +904,47 @@ extension InitialDataDownloadManager {
         if let vendor = address.vendorAddress {
             vendorEmail = vendor.email
         }
-            var ref: DocumentReference? = nil
-            ref = db.collection("address").addDocument(data: [
-                "longitude": address.addressLongitude,
-                "latitude": address.addressLatitude,
-                "address": address.address ?? "",
-                "addressId" : address.addressId ,
-//                "parentService": serviceId ?? -1,
-                "clientEmailAddress": clientEmail ?? "",
-                "vendorEmailAddress": vendorEmail ?? "",
-            ]) { err in
-                if let err = err {
-                    print("Error adding document: \(err)")
-                    completion(false)
-                } else {
-                    print("Document added with ID: \(ref?.documentID)")
-                    completion(true)
-                }
+        var ref: DocumentReference? = nil
+        ref = db.collection("address").addDocument(data: [
+            "longitude": address.addressLongitude,
+            "latitude": address.addressLatitude,
+            "address": address.address ?? "",
+            "addressId" : address.addressId ,
+            //                "parentService": serviceId ?? -1,
+            "clientEmailAddress": clientEmail ?? "",
+            "vendorEmailAddress": vendorEmail ?? "",
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+                completion(false)
+            } else {
+                print("Document added with ID: \(ref?.documentID)")
+                completion(true)
             }
+        }
     }
     
     func addAddressDataForService(address: Address, serviceId : Int ,completion: @escaping (_ status: Bool?) -> Void){
-            var ref: DocumentReference? = nil
-            ref = db.collection("address").addDocument(data: [
-                "longitude": address.addressLongitude,
-                "latitude": address.addressLatitude,
-                "address": address.address ?? "",
-                "addressId" : address.addressId ,
-                "parentService": serviceId ,
-            ]) { err in
-                if let err = err {
-                    print("Error adding document: \(err)")
-                    completion(false)
-                } else {
-                    print("Document added with ID: \(ref?.documentID)")
-                    completion(true)
-                }
+        var ref: DocumentReference? = nil
+        ref = db.collection("address").addDocument(data: [
+            "longitude": address.addressLongitude,
+            "latitude": address.addressLatitude,
+            "address": address.address ?? "",
+            "addressId" : address.addressId ,
+            "parentService": serviceId ,
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+                completion(false)
+            } else {
+                print("Document added with ID: \(ref?.documentID)")
+                completion(true)
             }
+        }
     }
     
     func addMediaData(media : MediaFile,completion: @escaping (_ url: String?) -> Void){
-
+        
         var serviceId = -1
         if let service = media.parent_Service{
             serviceId = Int(service.serviceId)
@@ -784,7 +1009,7 @@ extension InitialDataDownloadManager {
     }
     
     func addPaymentData(payment:Payment,completion: @escaping (_ status: Bool?) -> Void){
-
+        
         var bookingId = -1
         if let booking = payment.booking {
             bookingId = Int(booking.bookingId)
@@ -796,6 +1021,7 @@ extension InitialDataDownloadManager {
             "date": payment.date ?? Date(),
             "status": payment.status ?? "",
             "bookingId" :bookingId ,
+            "paymentId":  payment.paymentId ,
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
@@ -822,7 +1048,7 @@ extension InitialDataDownloadManager {
         if let service = vendorReview.service {
             serviceId = Int(service.serviceId)
         }
-
+        
         var ref: DocumentReference? = nil
         ref = db.collection("vendorReview").addDocument(data: [
             "rating": vendorReview.rating,
@@ -832,6 +1058,7 @@ extension InitialDataDownloadManager {
             "vendorEmailAddress": vendorEmail ?? "",
             "vendorRating" : vendorReview.vendorRating,
             "parentService": serviceId ?? -1,
+            "reviewId":  vendorReview.reviewId ,
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
@@ -971,7 +1198,7 @@ extension InitialDataDownloadManager{
         if let address = addressObject.address {
             var filterField = ""
             var filterText = ""
-
+            
             var clientEmail : String?
             if let client = addressObject.clientAddress {
                 clientEmail = client.email
@@ -1002,9 +1229,9 @@ extension InitialDataDownloadManager{
                                 "longitude": addressObject.addressLongitude,
                                 "latitude": addressObject.addressLatitude,
                                 "address": address,
-//                                "parentService": serviceId ?? -1,
-//                                "clientEmailAddress": clientEmail ?? "",
-//                                "vendorEmailAddress": vendorEmail ?? "",
+                                //                                "parentService": serviceId ?? -1,
+                                //                                "clientEmailAddress": clientEmail ?? "",
+                                //                                "vendorEmailAddress": vendorEmail ?? "",
                             ])
                             completion(true)
                         }
@@ -1020,78 +1247,78 @@ extension InitialDataDownloadManager{
         if let serviceAddress = addressObject.address {
             address = serviceAddress
         }
-            if let service = addressObject.parentService {
-                addressLat = addressObject.addressLatitude
-                addressLog = addressObject.addressLongitude
-//                addressLat = String(addressObject.addressLatitude)
-//                addressLog = String(addressObject.addressLongitude)
-            }
-            
-            db.collection("address")
-//                .whereField("parentService", isEqualTo: serviceId)
-                .whereField("addressId", isEqualTo: addressObject.addressId)
-                .getDocuments() { (querySnapshot, err) in
-                    if let err = err {
-                        // Some error occured
-                        
-                        completion(false)
-                    } else if querySnapshot!.documents.count == 0 {
-                        // Perhaps this is an error for you?
-                        completion(false)
-                    } else {
-                        if let document = querySnapshot?.documents.first{
-                            document.reference.updateData([
-                                "longitude": addressLat,
-                                "latitude": addressLog,
-                                "address": address
-                                //                                "parentService": serviceId ?? -1,
-                                //                                "clientEmailAddress": clientEmail ?? "",
-                                //                                "vendorEmailAddress": vendorEmail ?? "",
-                            ])
-                            completion(true)
-                        }
-                    }
+        if let service = addressObject.parentService {
+            addressLat = addressObject.addressLatitude
+            addressLog = addressObject.addressLongitude
+            //                addressLat = String(addressObject.addressLatitude)
+            //                addressLog = String(addressObject.addressLongitude)
         }
-    }
         
-    func updateMedia(media : MediaFile,completion: @escaping (_ status: Bool?) -> Void) async{
-            
-            do {
-                let snapshot = try await db.collection("media")
-                    .whereField("mediaName", isEqualTo: media.mediaName)
-                    .getDocuments()
-                if let document = snapshot.documents.first {
-                    try await document.reference.updateData([
-                        "parentService": media.parent_Service?.serviceId ?? -1,
-                    ])
-                    completion(true)
-                }else{
+        db.collection("address")
+        //                .whereField("parentService", isEqualTo: serviceId)
+            .whereField("addressId", isEqualTo: addressObject.addressId)
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    // Some error occured
+                    
                     completion(false)
+                } else if querySnapshot!.documents.count == 0 {
+                    // Perhaps this is an error for you?
+                    completion(false)
+                } else {
+                    if let document = querySnapshot?.documents.first{
+                        document.reference.updateData([
+                            "longitude": addressLat,
+                            "latitude": addressLog,
+                            "address": address
+                            //                                "parentService": serviceId ?? -1,
+                            //                                "clientEmailAddress": clientEmail ?? "",
+                            //                                "vendorEmailAddress": vendorEmail ?? "",
+                        ])
+                        completion(true)
+                    }
                 }
-            }catch{
+            }
+    }
+    
+    func updateMedia(media : MediaFile,completion: @escaping (_ status: Bool?) -> Void) async{
+        
+        do {
+            let snapshot = try await db.collection("media")
+                .whereField("mediaName", isEqualTo: media.mediaName)
+                .getDocuments()
+            if let document = snapshot.documents.first {
+                try await document.reference.updateData([
+                    "parentService": media.parent_Service?.serviceId ?? -1,
+                ])
+                completion(true)
+            }else{
                 completion(false)
             }
-            
-//           await db.collection("media")
-//                .whereField("mediaName", isEqualTo: media.mediaName)
-//                .getDocuments() { (querySnapshot, err) in
-//                    if let err = err {
-//                        // Some error occured
-//                    } else if querySnapshot!.documents.count != 1 {
-//                        // Perhaps this is an error for you?
-//                    } else {
-//                            if let document = querySnapshot!.documents.first{
-//                                document.reference.updateData([
-//                                    "parentService": media.parent_Service?.serviceId ?? "",
-//                                ])
-//                            }
-//                    }
-//                }
+        }catch{
+            completion(false)
         }
+        
+        //           await db.collection("media")
+        //                .whereField("mediaName", isEqualTo: media.mediaName)
+        //                .getDocuments() { (querySnapshot, err) in
+        //                    if let err = err {
+        //                        // Some error occured
+        //                    } else if querySnapshot!.documents.count != 1 {
+        //                        // Perhaps this is an error for you?
+        //                    } else {
+        //                            if let document = querySnapshot!.documents.first{
+        //                                document.reference.updateData([
+        //                                    "parentService": media.parent_Service?.serviceId ?? "",
+        //                                ])
+        //                            }
+        //                    }
+        //                }
+    }
     
     func updateBookingData(booking : Booking,completion: @escaping (_ status: Bool?) -> Void){
         var bookingId = Int(booking.bookingId)
-
+        
         db.collection("booking")
             .whereField("bookingId", isEqualTo: bookingId)
             .getDocuments() { (querySnapshot, err) in
@@ -1116,21 +1343,9 @@ extension InitialDataDownloadManager{
     }
     
     func updateServiceData(service : Service,completion: @escaping (_ status: Bool?) -> Void) async {
-            if let medias = service.medias {
-                for media in medias {
-                    await self.updateMedia(media: media as! MediaFile){ status in
-                        if let status = status {
-                            if status == false {
-                                completion(false)
-                            }
-                        }
-                    }
-                }
-            }
-        var addressID = -1
-            if let address = service.address {
-                addressID = Int(address.addressId)
-                self.updateAddressDataForService(addressObject: address, serviceId: Int(service.serviceId)){ status in
+        if let medias = service.medias {
+            for media in medias {
+                await self.updateMedia(media: media as! MediaFile){ status in
                     if let status = status {
                         if status == false {
                             completion(false)
@@ -1138,6 +1353,18 @@ extension InitialDataDownloadManager{
                     }
                 }
             }
+        }
+        var addressID = -1
+        if let address = service.address {
+            addressID = Int(address.addressId)
+            self.updateAddressDataForService(addressObject: address, serviceId: Int(service.serviceId)){ status in
+                if let status = status {
+                    if status == false {
+                        completion(false)
+                    }
+                }
+            }
+        }
         
         var category = ""
         if let vendor = service.parent_Category {
@@ -1153,36 +1380,36 @@ extension InitialDataDownloadManager{
         if let serviceStatus = service.status {
             status = serviceStatus
         }
-         
-            db.collection("service")
+        
+        db.collection("service")
             .whereField("serviceId", isEqualTo: service.serviceId)
-                .getDocuments() { (querySnapshot, err) in
-                    if let err = err {
-                        // Some error occured
-                        
-                        completion(false)
-                    } else if querySnapshot!.documents.count == 0 {
-                        // Perhaps this is an error for you?
-                        completion(false)
-                    } else {
-                        if let document = querySnapshot?.documents.first{
-                            document.reference.updateData([
-                                "cancelPolicy": service.cancelPolicy ?? "",
-                                "equipment": service.equipment,
-                                "price": service.price ?? "",
-                                "priceType": service.priceType ?? "",
-                                "serviceDescription": service.serviceDescription ?? "",
-                                "parentCategory":  category,
-                                "serviceTitle":  title,
-                                "status" : status,
-                                "parentAddress" : addressID,
-                                
-                                //"parentVendor":  service.parent_Vendor?.email ?? "",
-                            ])
-                            completion(true)
-                        }
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    // Some error occured
+                    
+                    completion(false)
+                } else if querySnapshot!.documents.count == 0 {
+                    // Perhaps this is an error for you?
+                    completion(false)
+                } else {
+                    if let document = querySnapshot?.documents.first{
+                        document.reference.updateData([
+                            "cancelPolicy": service.cancelPolicy ?? "",
+                            "equipment": service.equipment,
+                            "price": service.price ?? "",
+                            "priceType": service.priceType ?? "",
+                            "serviceDescription": service.serviceDescription ?? "",
+                            "parentCategory":  category,
+                            "serviceTitle":  title,
+                            "status" : status,
+                            "parentAddress" : addressID,
+                            
+                            //"parentVendor":  service.parent_Vendor?.email ?? "",
+                        ])
+                        completion(true)
                     }
-        }
+                }
+            }
     }
 }
 

@@ -144,7 +144,7 @@ extension ServiceSearchTableViewController: UISearchBarDelegate {
     }
     
     func searchChange(){
-        serviceList = CoreDataManager.shared.loadServicesWithSerch(searchText: searchText)
+        serviceList = CoreDataManager.shared.loadServicesWithSearch(searchText: searchText)
         self.tableView.reloadData()
     }
 }
