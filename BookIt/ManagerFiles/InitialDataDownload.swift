@@ -24,36 +24,17 @@ class InitialDataDownloadManager : NSObject{
     var bookings : [Booking]?
     var reviews : [VendorReview]?
     var payments : [Payment]?
-    
+    var status = false
     var userEmail : String?
-    func downloadAllData(email: String,completion: @escaping () -> Void) {
+    func downloadAllData(email: String,completion: @escaping (_ status: Bool?) -> Void) {
         DispatchQueue.main.async {
             async { [weak self] in
                 guard let strongSelf = self else { return }
-                strongSelf.categories = CoreDataManager.shared.loadCategories()
-                strongSelf.clients = CoreDataManager.shared.getAllClients()
-                strongSelf.vendors = CoreDataManager.shared.getAllVendors()
-                strongSelf.addresses = CoreDataManager.shared.getAllLocations()
-                strongSelf.medias = CoreDataManager.shared.getAllMedias()
-                strongSelf.services = CoreDataManager.shared.getAllServices()
-                strongSelf.bookings = CoreDataManager.shared.getAllBooking()
-                strongSelf.reviews = CoreDataManager.shared.getAllReviews()
-                strongSelf.payments = CoreDataManager.shared.getAllPayments()
                 strongSelf.userEmail = email
                 
                 strongSelf.getAllCategoryData(completion: {
-                    completion()
+                    completion(strongSelf.status)
                 })
-                //                await strongSelf.getAllClientData()
-                //                await strongSelf.getAllVendorData()
-                //                await strongSelf.getAllAddressData()
-                //                await strongSelf.getAllServiceData()
-                //                await strongSelf.getAllMediaData()
-                //                await strongSelf.getAllBookingData()
-                //                await strongSelf.getAllPaymentData()
-                //                await strongSelf.getAllVendorReviewData()
-            
-                
             }
         }
     }
@@ -66,7 +47,6 @@ class InitialDataDownloadManager : NSObject{
                         strongSelf.setCategoryData(documentSnapshot: documentSnapshot)
                     }
                     strongSelf.saveData()
-                    strongSelf.categories = CoreDataManager.shared.loadCategories()
                     strongSelf.getAllClientData(completion: {
                         completion()
                     })
@@ -76,7 +56,7 @@ class InitialDataDownloadManager : NSObject{
     
     private func setCategoryData(documentSnapshot : DocumentChange){
         let data = documentSnapshot.document.data()
-        
+        self.categories = CoreDataManager.shared.loadCategories()
         if let categoryName = data["name"]  as? String {
             var category : Category?
             if categoryName != "" {
@@ -112,7 +92,7 @@ class InitialDataDownloadManager : NSObject{
                     strongSelf.setClientData(documentSnapshot: documentSnapshot)
                 }
                 strongSelf.saveData()
-                strongSelf.clients = CoreDataManager.shared.getAllClients()
+                
                 strongSelf.getAllVendorData(completion: {
                     completion()
                 })
@@ -122,7 +102,7 @@ class InitialDataDownloadManager : NSObject{
     
     func setClientData( documentSnapshot : DocumentChange){
         let data = documentSnapshot.document.data()
-        
+        self.clients = CoreDataManager.shared.getAllClients()
         if let clientEmail = data["email"]  as? String {
             var client : Client?
             if clientEmail != "" {
@@ -200,7 +180,7 @@ class InitialDataDownloadManager : NSObject{
     
     func setVendorData( documentSnapshot : DocumentChange){
         let data = documentSnapshot.document.data()
-        
+        self.vendors = CoreDataManager.shared.getAllVendors()
         if let vendorEmail = data["email"]  as? String {
             var vendor : Vendor?
             if vendorEmail != "" {
@@ -270,7 +250,7 @@ class InitialDataDownloadManager : NSObject{
                     strongSelf.setServiceData(documentSnapshot: documentSnapshot)
                 }
                 strongSelf.saveData()
-                strongSelf.services = CoreDataManager.shared.getAllServices()
+
                 strongSelf.getAllMediaData(completion: {
                     completion()
                 })
@@ -281,7 +261,7 @@ class InitialDataDownloadManager : NSObject{
     
     func setServiceData( documentSnapshot : DocumentChange){
         let data = documentSnapshot.document.data()
-        
+        self.services = CoreDataManager.shared.getAllServices()
         if let serviceId = data["serviceId"]  as? Int {
             var service : Service?
             if serviceId != -1 {
@@ -340,7 +320,7 @@ class InitialDataDownloadManager : NSObject{
                     strongSelf.setAddressData(documentSnapshot: documentSnapshot)
                 }
                 strongSelf.saveData()
-                strongSelf.addresses = CoreDataManager.shared.getAllLocations()
+                
                 strongSelf.getAllServiceData(completion: {
                     completion()
                 })
@@ -351,7 +331,7 @@ class InitialDataDownloadManager : NSObject{
     
     func setAddressData( documentSnapshot : DocumentChange){
         let data = documentSnapshot.document.data()
-        
+        self.addresses = CoreDataManager.shared.getAllLocations()
         if let addressId = data["addressId"]  as? Int {
             var address : Address?
             if addressId != -1 {
@@ -399,7 +379,7 @@ class InitialDataDownloadManager : NSObject{
                     strongSelf.setMediaData(documentSnapshot: documentSnapshot)
                 }
                 strongSelf.saveData()
-                strongSelf.medias = CoreDataManager.shared.getAllMedias()
+                
                 strongSelf.getAllBookingData(completion: {
                     completion()
                 })
@@ -410,7 +390,7 @@ class InitialDataDownloadManager : NSObject{
     
     func setMediaData( documentSnapshot : DocumentChange){
         let data = documentSnapshot.document.data()
-        
+        self.medias = CoreDataManager.shared.getAllMedias()
         if let mediaName = data["mediaName"]  as? String {
             var media : MediaFile?
             if mediaName != "" {
@@ -454,8 +434,6 @@ class InitialDataDownloadManager : NSObject{
                 snapshot?.documentChanges.forEach { documentSnapshot in
                     strongSelf.setBookingData(documentSnapshot: documentSnapshot)
                 }
-                strongSelf.saveData()
-                strongSelf.bookings = CoreDataManager.shared.getAllBooking()
                 strongSelf.getAllPaymentData(completion: {
                     completion()
                 })
@@ -466,7 +444,7 @@ class InitialDataDownloadManager : NSObject{
     
     func setBookingData( documentSnapshot : DocumentChange){
         let data = documentSnapshot.document.data()
-        
+        self.bookings = CoreDataManager.shared.getAllBooking()
         if let bookingId = data["bookingId"]  as? Int {
             var booking : Booking?
             if bookingId != -1 {
@@ -505,6 +483,7 @@ class InitialDataDownloadManager : NSObject{
                     }
                 }
             }
+            self.saveData()
         }
         
     }
@@ -524,7 +503,7 @@ class InitialDataDownloadManager : NSObject{
                     strongSelf.setPaymentData(documentSnapshot: documentSnapshot)
                 }
                 strongSelf.saveData()
-                strongSelf.payments = CoreDataManager.shared.getAllPayments()
+                
                 strongSelf.getAllVendorReviewData(completion: {
                     completion()
                 })
@@ -535,7 +514,7 @@ class InitialDataDownloadManager : NSObject{
     
     func setPaymentData( documentSnapshot : DocumentChange){
         let data = documentSnapshot.document.data()
-        
+        self.payments = CoreDataManager.shared.getAllPayments()
         if let paymentId = data["paymentId"]  as? Int {
             var payment : Payment?
             if paymentId != -1 {
@@ -581,7 +560,7 @@ class InitialDataDownloadManager : NSObject{
                     strongSelf.setVendorReviewData(documentSnapshot: documentSnapshot)
                 }
                 strongSelf.saveData()
-                strongSelf.reviews = CoreDataManager.shared.getAllReviews()
+                
                 strongSelf.getAccountData(completion: {
                     completion()
                 })
@@ -592,7 +571,7 @@ class InitialDataDownloadManager : NSObject{
     
     func setVendorReviewData( documentSnapshot : DocumentChange){
         let data = documentSnapshot.document.data()
-        
+        self.reviews = CoreDataManager.shared.getAllReviews()
         if let reviewId = data["reviewId"]  as? Int {
             var review : VendorReview?
             if reviewId != -1 {
