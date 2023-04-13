@@ -578,6 +578,11 @@ class CoreDataManager : NSObject{
                         serviceList.append(service)
                     }
                 }
+                if serviceList.count < 10 {
+                    for vendor in loadTopServices(){
+                        serviceList.append(vendor)
+                    }
+                }
             }else{
                 serviceList = loadTopServices()
             }
