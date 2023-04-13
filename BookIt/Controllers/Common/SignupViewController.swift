@@ -223,25 +223,29 @@ class SignupViewController: NavigationBaseViewController {
             UserDefaultsManager.shared.removeUserData()
         }
         LoadingHudManager.shared.showSimpleHUD(title: "Loading...", view: self.view)
-        Task {
-            await InitialDataDownloadManager.shared.downloadAllData{
-                DispatchQueue.main.async {
-                    LoadingHudManager.shared.dissmissHud()
-                    if (self.isVendor){
-                        let storyboard = UIStoryboard(name: "VendorDashBoard", bundle: nil)
-                        let mainTabBarController = storyboard.instantiateViewController(identifier: "VendorTabBarController")
-                        mainTabBarController.modalPresentationStyle = .fullScreen
-                        if let navigator = self.navigationController {
-                            navigator.pushViewController(mainTabBarController, animated: true)
+        InitialDataDownloadManager.shared.status = true
+        InitialDataDownloadManager.shared.downloadAllData(email: loginUser?.email ?? ""){status in
+            DispatchQueue.main.async {
+                LoadingHudManager.shared.dissmissHud()
+                if let status = status {
+                    if status {
+                        InitialDataDownloadManager.shared.status = false
+                        if (self.isVendor){
+                            let storyboard = UIStoryboard(name: "VendorDashBoard", bundle: nil)
+                            let mainTabBarController = storyboard.instantiateViewController(identifier: "VendorTabBarController")
+                            mainTabBarController.modalPresentationStyle = .fullScreen
+                            if let navigator = self.navigationController {
+                                navigator.pushViewController(mainTabBarController, animated: true)
+                            }
                         }
-                    }
-                    else{
-                        let storyboard = UIStoryboard(name: "ClientDashBoard", bundle: nil)
-                        let mainTabBarController = storyboard.instantiateViewController(identifier: "ClientTabBarController")
-                        mainTabBarController.modalPresentationStyle = .fullScreen
-                        if let navigator = self.navigationController {
-                            //            viewController.loginUser = user
-                            navigator.pushViewController(mainTabBarController, animated: true)
+                        else{
+                            let storyboard = UIStoryboard(name: "ClientDashBoard", bundle: nil)
+                            let mainTabBarController = storyboard.instantiateViewController(identifier: "ClientTabBarController")
+                            mainTabBarController.modalPresentationStyle = .fullScreen
+                            if let navigator = self.navigationController {
+                                //            viewController.loginUser = user
+                                navigator.pushViewController(mainTabBarController, animated: true)
+                            }
                         }
                     }
                 }

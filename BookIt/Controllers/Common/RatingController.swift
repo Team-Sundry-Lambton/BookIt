@@ -26,6 +26,7 @@ class RatingController : UIViewController{
         let review = reviewTextArea.text ?? ""
         
         let vendorReview = VendorReview(context: context)
+        vendorReview.reviewId = CoreDataManager.shared.getReviewID()
         vendorReview.rating = Int16(rating)
         vendorReview.comment = review
         vendorReview.client = client
@@ -34,8 +35,7 @@ class RatingController : UIViewController{
         vendorReview.vendorRating = vendorRating
         
         LoadingHudManager.shared.showSimpleHUD(title: "Uploading your rating...", view: self.view)
-            Task {
-                await InitialDataDownloadManager.shared.addVendorReviewData(vendorReview:vendorReview){[weak self] status in
+                 InitialDataDownloadManager.shared.addVendorReviewData(vendorReview:vendorReview){[weak self] status in
                     DispatchQueue.main.async {
                         LoadingHudManager.shared.dissmissHud()
                         guard let strongSelf = self else {
@@ -50,7 +50,6 @@ class RatingController : UIViewController{
                         }
                     }
                 }
-            }
     }
     
     private func saveAllContextCoreData() {

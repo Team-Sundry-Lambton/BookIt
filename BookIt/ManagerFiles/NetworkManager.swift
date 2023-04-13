@@ -27,7 +27,7 @@ class NetworkManager: NSObject {
                 print(error)
             }
         }
-        return "http://localhost:5002/admin/api/"
+        return "https://fir-dd2bd.web.app/admin/api/"
     }
     
     //User make the payment

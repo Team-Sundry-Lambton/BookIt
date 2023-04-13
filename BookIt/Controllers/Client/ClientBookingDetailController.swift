@@ -246,17 +246,20 @@ class ClientBookingDetailController : NavigationBaseViewController{
         let actionSheet = UIAlertController(title: "Payment Options", message: "Select the payment option you want tp proceed.", preferredStyle: .actionSheet)
 
         let actionCredit = UIAlertAction(title: "Credit/Debit", style: .default) { _ in
+            self.paymentFirebaseCall(type: "Credit/Debit")
             self.paymentAPICall()
         }
         actionSheet.addAction(actionCredit)
         
         let actionApplePay = UIAlertAction(title: "Apple Pay", style: .default) { _ in
+            self.paymentFirebaseCall(type: "Apple Pay")
             self.paymentAPICall()
         }
         actionSheet.addAction(actionApplePay)
 
         let actionPayPal = UIAlertAction(title: "PayPal", style: .default) { _ in
             self.triggerPayPalCheckout(price:self.priceLbl.text ?? "0")
+            self.paymentFirebaseCall(type: "PayPal")
             self.paymentAPICall()
         }
         actionSheet.addAction(actionPayPal)
@@ -300,6 +303,32 @@ extension ClientBookingDetailController {
                     
                 }else{
                     UIAlertViewExtention.shared.showBasicAlertView(title: "Payment Failed", message: "Sonmething went wrong please try again.", okActionTitle: "OK", view: self)
+                }
+            }
+        }
+    }
+    
+    func paymentFirebaseCall(type : String)
+    {
+        let payment = Payment(context: context)
+        payment.booking = self.booking
+        payment.paymentId = CoreDataManager.shared.getPaymentID()
+        payment.status = type
+        payment.date = Date()
+        LoadingHudManager.shared.showSimpleHUD(title: "Add Payment", view: self.view)
+        InitialDataDownloadManager.shared.addPaymentData(payment: payment){[weak self] status in
+            DispatchQueue.main.async {
+                LoadingHudManager.shared.dissmissHud()
+                guard let strongSelf = self else {
+                    return
+                }
+                if let status = status {
+                    if status {
+                        strongSelf.saveAllContextCoreData()
+                    }else{
+                       
+                        UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: strongSelf)
+                    }
                 }
             }
         }
