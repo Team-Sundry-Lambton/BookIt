@@ -59,15 +59,15 @@ class InitialDataDownloadManager : NSObject{
     }
     
     private func getAllCategoryData(completion: @escaping () -> Void) {
-       db.collection("categories").addSnapshotListener(){snapshot, error in
+       db.collection("categories").addSnapshotListener(){ [weak self] snapshot, error in
                 DispatchQueue.main.async {
-                    
+                    guard let strongSelf = self else { return }
                     snapshot?.documentChanges.forEach { documentSnapshot in
-                        self.setCategoryData(documentSnapshot: documentSnapshot)
+                        strongSelf.setCategoryData(documentSnapshot: documentSnapshot)
                     }
-                    self.saveData()
-                    self.categories = CoreDataManager.shared.loadCategories()
-                    self.getAllClientData(completion: {
+                    strongSelf.saveData()
+                    strongSelf.categories = CoreDataManager.shared.loadCategories()
+                    strongSelf.getAllClientData(completion: {
                         completion()
                     })
                 }
@@ -105,14 +105,15 @@ class InitialDataDownloadManager : NSObject{
     }
     
     func getAllClientData(completion: @escaping () -> Void) {
-        db.collection("client").addSnapshotListener(){snapshot, error in
+        db.collection("client").addSnapshotListener(){ [weak self] snapshot, error in
             DispatchQueue.main.async {
+                guard let strongSelf = self else { return }
                 snapshot?.documentChanges.forEach { documentSnapshot in
-                    self.setClientData(documentSnapshot: documentSnapshot)
+                    strongSelf.setClientData(documentSnapshot: documentSnapshot)
                 }
-                self.saveData()
-                self.clients = CoreDataManager.shared.getAllClients()
-                self.getAllVendorData(completion: {
+                strongSelf.saveData()
+                strongSelf.clients = CoreDataManager.shared.getAllClients()
+                strongSelf.getAllVendorData(completion: {
                     completion()
                 })
             }
@@ -160,7 +161,7 @@ class InitialDataDownloadManager : NSObject{
             if let err = err {
                 // Some error occured
                 completion(nil)
-            } else if querySnapshot!.documents.count == 0 {
+            } else if querySnapshot?.documents.count == 0 {
                 // Perhaps this is an error for you?
                 completion(nil)
             } else {
@@ -182,14 +183,15 @@ class InitialDataDownloadManager : NSObject{
     }
     
     func getAllVendorData(completion: @escaping () -> Void) {
-        db.collection("vendor").addSnapshotListener(){snapshot, error in
+        db.collection("vendor").addSnapshotListener(){ [weak self] snapshot, error in
             DispatchQueue.main.async {
+                guard let strongSelf = self else { return }
                 snapshot?.documentChanges.forEach { documentSnapshot in
-                    self.setVendorData(documentSnapshot: documentSnapshot)
+                    strongSelf.setVendorData(documentSnapshot: documentSnapshot)
                 }
-                self.saveData()
-                self.vendors = CoreDataManager.shared.getAllVendors()
-                self.getAllAddressData(completion: {
+                strongSelf.saveData()
+                strongSelf.vendors = CoreDataManager.shared.getAllVendors()
+                strongSelf.getAllAddressData(completion: {
                     completion()
                 })
             }
@@ -261,14 +263,15 @@ class InitialDataDownloadManager : NSObject{
     }
     
     func getAllServiceData(completion: @escaping () -> Void) {
-        db.collection("service").addSnapshotListener(){snapshot, error in
+        db.collection("service").addSnapshotListener(){[weak self]snapshot, error in
             DispatchQueue.main.async {
+                guard let strongSelf = self else { return }
                 snapshot?.documentChanges.forEach { documentSnapshot in
-                    self.setServiceData(documentSnapshot: documentSnapshot)
+                    strongSelf.setServiceData(documentSnapshot: documentSnapshot)
                 }
-                self.saveData()
-                self.services = CoreDataManager.shared.getAllServices()
-                self.getAllMediaData(completion: {
+                strongSelf.saveData()
+                strongSelf.services = CoreDataManager.shared.getAllServices()
+                strongSelf.getAllMediaData(completion: {
                     completion()
                 })
             }
@@ -330,14 +333,15 @@ class InitialDataDownloadManager : NSObject{
     }
     
     func getAllAddressData(completion: @escaping () -> Void) {
-        db.collection("address").addSnapshotListener(){snapshot, error in
+        db.collection("address").addSnapshotListener(){[weak self]snapshot, error in
             DispatchQueue.main.async {
+                guard let strongSelf = self else { return }
                 snapshot?.documentChanges.forEach { documentSnapshot in
-                    self.setAddressData(documentSnapshot: documentSnapshot)
+                    strongSelf.setAddressData(documentSnapshot: documentSnapshot)
                 }
-                self.saveData()
-                self.addresses = CoreDataManager.shared.getAllLocations()
-                self.getAllServiceData(completion: {
+                strongSelf.saveData()
+                strongSelf.addresses = CoreDataManager.shared.getAllLocations()
+                strongSelf.getAllServiceData(completion: {
                     completion()
                 })
             }
@@ -388,14 +392,15 @@ class InitialDataDownloadManager : NSObject{
     
     
     func getAllMediaData(completion: @escaping () -> Void) {
-        db.collection("media").addSnapshotListener(){snapshot, error in
+        db.collection("media").addSnapshotListener(){[weak self]snapshot, error in
             DispatchQueue.main.async {
+                guard let strongSelf = self else { return }
                 snapshot?.documentChanges.forEach { documentSnapshot in
-                    self.setMediaData(documentSnapshot: documentSnapshot)
+                    strongSelf.setMediaData(documentSnapshot: documentSnapshot)
                 }
-                self.saveData()
-                self.medias = CoreDataManager.shared.getAllMedias()
-                self.getAllBookingData(completion: {
+                strongSelf.saveData()
+                strongSelf.medias = CoreDataManager.shared.getAllMedias()
+                strongSelf.getAllBookingData(completion: {
                     completion()
                 })
             }
@@ -443,14 +448,15 @@ class InitialDataDownloadManager : NSObject{
     
     
     func getAllBookingData(completion: @escaping () -> Void) {
-        db.collection("booking").addSnapshotListener(){snapshot, error in
+        db.collection("booking").addSnapshotListener(){[weak self]snapshot, error in
             DispatchQueue.main.async {
+                guard let strongSelf = self else { return }
                 snapshot?.documentChanges.forEach { documentSnapshot in
-                    self.setBookingData(documentSnapshot: documentSnapshot)
+                    strongSelf.setBookingData(documentSnapshot: documentSnapshot)
                 }
-                self.saveData()
-                self.bookings = CoreDataManager.shared.getAllBooking()
-                self.getAllPaymentData(completion: {
+                strongSelf.saveData()
+                strongSelf.bookings = CoreDataManager.shared.getAllBooking()
+                strongSelf.getAllPaymentData(completion: {
                     completion()
                 })
             }
@@ -511,14 +517,15 @@ class InitialDataDownloadManager : NSObject{
     
     
     func getAllPaymentData(completion: @escaping () -> Void) {
-        db.collection("payment").addSnapshotListener(){snapshot, error in
+        db.collection("payment").addSnapshotListener(){[weak self]snapshot, error in
             DispatchQueue.main.async {
+                guard let strongSelf = self else { return }
                 snapshot?.documentChanges.forEach { documentSnapshot in
-                    self.setPaymentData(documentSnapshot: documentSnapshot)
+                    strongSelf.setPaymentData(documentSnapshot: documentSnapshot)
                 }
-                self.saveData()
-                self.payments = CoreDataManager.shared.getAllPayments()
-                self.getAllVendorReviewData(completion: {
+                strongSelf.saveData()
+                strongSelf.payments = CoreDataManager.shared.getAllPayments()
+                strongSelf.getAllVendorReviewData(completion: {
                     completion()
                 })
             }
@@ -567,14 +574,15 @@ class InitialDataDownloadManager : NSObject{
     }
     
     func getAllVendorReviewData(completion: @escaping () -> Void) {
-        db.collection("vendorReview").addSnapshotListener(){snapshot, error in
+        db.collection("vendorReview").addSnapshotListener(){[weak self]snapshot, error in
             DispatchQueue.main.async {
+                guard let strongSelf = self else { return }
                 snapshot?.documentChanges.forEach { documentSnapshot in
-                    self.setVendorReviewData(documentSnapshot: documentSnapshot)
+                    strongSelf.setVendorReviewData(documentSnapshot: documentSnapshot)
                 }
-                self.saveData()
-                self.reviews = CoreDataManager.shared.getAllReviews()
-                self.getAccountData(completion: {
+                strongSelf.saveData()
+                strongSelf.reviews = CoreDataManager.shared.getAllReviews()
+                strongSelf.getAccountData(completion: {
                     completion()
                 })
             }
@@ -633,12 +641,13 @@ class InitialDataDownloadManager : NSObject{
     }
     
     func getAccountData(completion: @escaping () -> Void) {
-        db.collection("account").addSnapshotListener(){snapshot, error in
+        db.collection("account").addSnapshotListener(){[weak self]snapshot, error in
             DispatchQueue.main.async {
+                guard let strongSelf = self else { return }
                 snapshot?.documentChanges.forEach { documentSnapshot in
-                    self.setAccountData(documentSnapshot: documentSnapshot)
+                    strongSelf.setAccountData(documentSnapshot: documentSnapshot)
                 }
-                self.saveData()
+                strongSelf.saveData()
                 completion()
             }
         }
@@ -879,7 +888,7 @@ extension InitialDataDownloadManager {
         
         if let medias = service.medias {
             for media in medias {
-                await self.updateMedia(media: media as! MediaFile){ status in
+                await self.updateMedia(media: media as? MediaFile ?? MediaFile()){ status in
                     if let status = status {
                         if status == false {
                             completion(false)
@@ -1159,7 +1168,7 @@ extension InitialDataDownloadManager{
                             if let err = err {
                                 // Some error occured
                                 completion(false)
-                            } else if querySnapshot!.documents.count == 0 {
+                            } else if querySnapshot?.documents.count == 0 {
                                 // Perhaps this is an error for you?
                                 completion(false)
                             } else {
@@ -1197,7 +1206,7 @@ extension InitialDataDownloadManager{
                         .getDocuments() { (querySnapshot, err) in
                             if let err = err {
                                 completion(false)
-                            } else if querySnapshot!.documents.count == 0 {
+                            } else if querySnapshot?.documents.count == 0 {
                                 // Perhaps this is an error for you?
                                 completion(false)
                             } else {
@@ -1250,7 +1259,7 @@ extension InitialDataDownloadManager{
                         // Some error occured
                         
                         completion(false)
-                    } else if querySnapshot!.documents.count == 0 {
+                    } else if querySnapshot?.documents.count == 0 {
                         // Perhaps this is an error for you?
                         completion(false)
                     } else {
@@ -1292,7 +1301,7 @@ extension InitialDataDownloadManager{
                     // Some error occured
                     
                     completion(false)
-                } else if querySnapshot!.documents.count == 0 {
+                } else if querySnapshot?.documents.count == 0 {
                     // Perhaps this is an error for you?
                     completion(false)
                 } else {
@@ -1356,7 +1365,7 @@ extension InitialDataDownloadManager{
                     // Some error occured
                     
                     completion(false)
-                } else if querySnapshot!.documents.count == 0 {
+                } else if querySnapshot?.documents.count == 0 {
                     // Perhaps this is an error for you?
                     completion(false)
                 } else {
@@ -1375,7 +1384,7 @@ extension InitialDataDownloadManager{
     func updateServiceData(service : Service,completion: @escaping (_ status: Bool?) -> Void) async {
         if let medias = service.medias {
             for media in medias {
-                await self.updateMedia(media: media as! MediaFile){ status in
+                await self.updateMedia(media: media as? MediaFile ?? MediaFile()){ status in
                     if let status = status {
                         if status == false {
                             completion(false)
@@ -1418,7 +1427,7 @@ extension InitialDataDownloadManager{
                     // Some error occured
                     
                     completion(false)
-                } else if querySnapshot!.documents.count == 0 {
+                } else if querySnapshot?.documents.count == 0 {
                     // Perhaps this is an error for you?
                     completion(false)
                 } else {
@@ -1453,7 +1462,7 @@ extension InitialDataDownloadManager{
                             if let err = err {
                                 // Some error occured
                                 completion(false)
-                            } else if querySnapshot!.documents.count == 0 {
+                            } else if querySnapshot?.documents.count == 0 {
                                 // Perhaps this is an error for you?
                                 completion(false)
                             } else {

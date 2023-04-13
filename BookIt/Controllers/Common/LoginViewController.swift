@@ -195,7 +195,6 @@ class LoginViewController: NavigationBaseViewController {
             UserDefaultsManager.shared.removeUserData()
         }
         LoadingHudManager.shared.showSimpleHUD(title: "Loading...", view: self.view)
-        Task {
             InitialDataDownloadManager.shared.downloadAllData(email: loginUser?.email ?? ""){
                 DispatchQueue.main.async {
                     LoadingHudManager.shared.dissmissHud()
@@ -218,8 +217,6 @@ class LoginViewController: NavigationBaseViewController {
                     }
                 }
             }
-        }
-        
     }
     
     func setUser(user : LoginUser){

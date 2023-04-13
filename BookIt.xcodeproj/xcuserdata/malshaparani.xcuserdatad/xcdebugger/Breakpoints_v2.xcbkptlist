@@ -2243,8 +2243,8 @@
             filePath = "BookIt/Controllers/Common/LoginViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "228"
-            endingLineNumber = "228"
+            startingLineNumber = "225"
+            endingLineNumber = "225"
             landmarkName = "setUser(user:)"
             landmarkType = "7">
             <Locations>
@@ -2531,8 +2531,8 @@
             filePath = "BookIt/ManagerFiles/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1376"
-            endingLineNumber = "1376"
+            startingLineNumber = "1385"
+            endingLineNumber = "1385"
             landmarkName = "updateServiceData(service:completion:)"
             landmarkType = "7">
             <Locations>
@@ -2594,8 +2594,8 @@
             filePath = "BookIt/ManagerFiles/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1415"
-            endingLineNumber = "1415"
+            startingLineNumber = "1424"
+            endingLineNumber = "1424"
             landmarkName = "updateServiceData(service:completion:)"
             landmarkType = "7">
             <Locations>
@@ -2642,8 +2642,8 @@
             filePath = "BookIt/ManagerFiles/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1418"
-            endingLineNumber = "1418"
+            startingLineNumber = "1427"
+            endingLineNumber = "1427"
             landmarkName = "updateServiceData(service:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2658,8 +2658,8 @@
             filePath = "BookIt/ManagerFiles/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1388"
-            endingLineNumber = "1388"
+            startingLineNumber = "1397"
+            endingLineNumber = "1397"
             landmarkName = "updateServiceData(service:completion:)"
             landmarkType = "7">
             <Locations>
@@ -2736,8 +2736,8 @@
             filePath = "BookIt/ManagerFiles/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1287"
-            endingLineNumber = "1287"
+            startingLineNumber = "1296"
+            endingLineNumber = "1296"
             landmarkName = "updateAddressDataForService(addressObject:serviceId:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2752,8 +2752,8 @@
             filePath = "BookIt/ManagerFiles/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1292"
-            endingLineNumber = "1292"
+            startingLineNumber = "1301"
+            endingLineNumber = "1301"
             landmarkName = "updateAddressDataForService(addressObject:serviceId:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2879,10 +2879,10 @@
             filePath = "BookIt/ManagerFiles/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1147"
-            endingLineNumber = "1147"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "1156"
+            endingLineNumber = "1156"
+            landmarkName = "InitialDataDownloadManager"
+            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2895,8 +2895,8 @@
             filePath = "BookIt/ManagerFiles/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1152"
-            endingLineNumber = "1152"
+            startingLineNumber = "1161"
+            endingLineNumber = "1161"
             landmarkName = "updateClientData(client:completion:)"
             landmarkType = "7">
             <Locations>
@@ -2943,8 +2943,8 @@
             filePath = "BookIt/ManagerFiles/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1157"
-            endingLineNumber = "1157"
+            startingLineNumber = "1166"
+            endingLineNumber = "1166"
             landmarkName = "updateClientData(client:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2959,8 +2959,8 @@
             filePath = "BookIt/ManagerFiles/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1161"
-            endingLineNumber = "1161"
+            startingLineNumber = "1170"
+            endingLineNumber = "1170"
             landmarkName = "updateClientData(client:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2975,8 +2975,8 @@
             filePath = "BookIt/ManagerFiles/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1173"
-            endingLineNumber = "1173"
+            startingLineNumber = "1182"
+            endingLineNumber = "1182"
             landmarkName = "updateClientData(client:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3054,8 +3054,8 @@
             filePath = "BookIt/ManagerFiles/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1135"
-            endingLineNumber = "1135"
+            startingLineNumber = "1144"
+            endingLineNumber = "1144"
             landmarkName = "uploadMedia(name:media:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3070,8 +3070,8 @@
             filePath = "BookIt/ManagerFiles/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1137"
-            endingLineNumber = "1137"
+            startingLineNumber = "1146"
+            endingLineNumber = "1146"
             landmarkName = "uploadMedia(name:media:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3086,8 +3086,8 @@
             filePath = "BookIt/ManagerFiles/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1131"
-            endingLineNumber = "1131"
+            startingLineNumber = "1140"
+            endingLineNumber = "1140"
             landmarkName = "uploadMedia(name:media:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3102,8 +3102,8 @@
             filePath = "BookIt/ManagerFiles/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1125"
-            endingLineNumber = "1125"
+            startingLineNumber = "1134"
+            endingLineNumber = "1134"
             landmarkName = "addBankAccountData(account:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3118,8 +3118,8 @@
             filePath = "BookIt/ManagerFiles/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1163"
-            endingLineNumber = "1163"
+            startingLineNumber = "1172"
+            endingLineNumber = "1172"
             landmarkName = "updateClientData(client:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3150,8 +3150,8 @@
             filePath = "BookIt/Controllers/Common/LoginViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "382"
-            endingLineNumber = "382"
+            startingLineNumber = "379"
+            endingLineNumber = "379"
             landmarkName = "bioMetricVerification()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3166,8 +3166,8 @@
             filePath = "BookIt/Controllers/Common/LoginViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "391"
-            endingLineNumber = "391"
+            startingLineNumber = "388"
+            endingLineNumber = "388"
             landmarkName = "openDashBoard(user:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3438,8 +3438,8 @@
             filePath = "BookIt/ManagerFiles/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
             landmarkName = "setClientData(documentSnapshot:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3454,8 +3454,8 @@
             filePath = "BookIt/ManagerFiles/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "215"
-            endingLineNumber = "215"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
             landmarkName = "setVendorData(documentSnapshot:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3470,8 +3470,8 @@
             filePath = "BookIt/ManagerFiles/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "251"
-            endingLineNumber = "251"
+            startingLineNumber = "253"
+            endingLineNumber = "253"
             landmarkName = "getVendorData(email:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3486,8 +3486,8 @@
             filePath = "BookIt/ManagerFiles/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "299"
-            endingLineNumber = "299"
+            startingLineNumber = "302"
+            endingLineNumber = "302"
             landmarkName = "setServiceData(documentSnapshot:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3502,8 +3502,8 @@
             filePath = "BookIt/ManagerFiles/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "366"
-            endingLineNumber = "366"
+            startingLineNumber = "370"
+            endingLineNumber = "370"
             landmarkName = "setAddressData(documentSnapshot:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3518,8 +3518,8 @@
             filePath = "BookIt/ManagerFiles/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "421"
-            endingLineNumber = "421"
+            startingLineNumber = "426"
+            endingLineNumber = "426"
             landmarkName = "setMediaData(documentSnapshot:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3534,8 +3534,8 @@
             filePath = "BookIt/ManagerFiles/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "481"
-            endingLineNumber = "481"
+            startingLineNumber = "487"
+            endingLineNumber = "487"
             landmarkName = "setBookingData(documentSnapshot:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3550,8 +3550,8 @@
             filePath = "BookIt/ManagerFiles/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "548"
-            endingLineNumber = "548"
+            startingLineNumber = "555"
+            endingLineNumber = "555"
             landmarkName = "setPaymentData(documentSnapshot:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3566,8 +3566,8 @@
             filePath = "BookIt/ManagerFiles/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "605"
-            endingLineNumber = "605"
+            startingLineNumber = "613"
+            endingLineNumber = "613"
             landmarkName = "setVendorReviewData(documentSnapshot:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3614,8 +3614,8 @@
             filePath = "BookIt/Controllers/Common/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
             landmarkName = "loadDashBoard(user:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3630,8 +3630,8 @@
             filePath = "BookIt/ManagerFiles/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
             landmarkName = "getAllClientData(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3646,8 +3646,8 @@
             filePath = "BookIt/ManagerFiles/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
             landmarkName = "getAllVendorData(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3662,8 +3662,8 @@
             filePath = "BookIt/ManagerFiles/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "272"
-            endingLineNumber = "272"
+            startingLineNumber = "275"
+            endingLineNumber = "275"
             landmarkName = "getAllServiceData(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3678,8 +3678,8 @@
             filePath = "BookIt/ManagerFiles/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "399"
-            endingLineNumber = "399"
+            startingLineNumber = "404"
+            endingLineNumber = "404"
             landmarkName = "getAllMediaData(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3694,8 +3694,8 @@
             filePath = "BookIt/ManagerFiles/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "454"
-            endingLineNumber = "454"
+            startingLineNumber = "460"
+            endingLineNumber = "460"
             landmarkName = "getAllBookingData(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3710,8 +3710,8 @@
             filePath = "BookIt/ManagerFiles/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "522"
-            endingLineNumber = "522"
+            startingLineNumber = "529"
+            endingLineNumber = "529"
             landmarkName = "getAllPaymentData(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3742,8 +3742,8 @@
             filePath = "BookIt/ManagerFiles/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
             landmarkName = "setVendorData(documentSnapshot:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3758,8 +3758,8 @@
             filePath = "BookIt/ManagerFiles/InitialDataDownload.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "205"
-            endingLineNumber = "205"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
             landmarkName = "setVendorData(documentSnapshot:)"
             landmarkType = "7">
          </BreakpointContent>
