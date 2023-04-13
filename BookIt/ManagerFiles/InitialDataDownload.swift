@@ -39,8 +39,11 @@ class InitialDataDownloadManager : NSObject{
                 strongSelf.bookings = CoreDataManager.shared.getAllBooking()
                 strongSelf.reviews = CoreDataManager.shared.getAllReviews()
                 strongSelf.payments = CoreDataManager.shared.getAllPayments()
+                strongSelf.userEmail = email
                 
-                strongSelf.getAllCategoryData()
+                strongSelf.getAllCategoryData(completion: {
+                    completion()
+                })
                 //                await strongSelf.getAllClientData()
                 //                await strongSelf.getAllVendorData()
                 //                await strongSelf.getAllAddressData()
@@ -49,24 +52,26 @@ class InitialDataDownloadManager : NSObject{
                 //                await strongSelf.getAllBookingData()
                 //                await strongSelf.getAllPaymentData()
                 //                await strongSelf.getAllVendorReviewData()
-                strongSelf.userEmail = email
+            
                 
-                completion()
             }
         }
     }
     
-    private func getAllCategoryData() {
-        db.collection("categories").addSnapshotListener(){snapshot, error in
-            DispatchQueue.main.async {
-                
-                snapshot?.documentChanges.forEach { documentSnapshot in
-                    self.setCategoryData(documentSnapshot: documentSnapshot)
+    private func getAllCategoryData(completion: @escaping () -> Void) {
+       db.collection("categories").addSnapshotListener(){snapshot, error in
+                DispatchQueue.main.async {
+                    
+                    snapshot?.documentChanges.forEach { documentSnapshot in
+                        self.setCategoryData(documentSnapshot: documentSnapshot)
+                    }
+                    self.saveData()
+                    self.categories = CoreDataManager.shared.loadCategories()
+                    self.getAllClientData(completion: {
+                        completion()
+                    })
                 }
-                self.saveData()
-                self.getAllClientData()
             }
-        }
     }
     
     private func setCategoryData(documentSnapshot : DocumentChange){
@@ -99,14 +104,17 @@ class InitialDataDownloadManager : NSObject{
         }).first
     }
     
-    func getAllClientData() {
+    func getAllClientData(completion: @escaping () -> Void) {
         db.collection("client").addSnapshotListener(){snapshot, error in
             DispatchQueue.main.async {
                 snapshot?.documentChanges.forEach { documentSnapshot in
                     self.setClientData(documentSnapshot: documentSnapshot)
                 }
                 self.saveData()
-                self.getAllVendorData()
+                self.clients = CoreDataManager.shared.getAllClients()
+                self.getAllVendorData(completion: {
+                    completion()
+                })
             }
         }
     }
@@ -173,14 +181,17 @@ class InitialDataDownloadManager : NSObject{
         }
     }
     
-    func getAllVendorData() {
+    func getAllVendorData(completion: @escaping () -> Void) {
         db.collection("vendor").addSnapshotListener(){snapshot, error in
             DispatchQueue.main.async {
                 snapshot?.documentChanges.forEach { documentSnapshot in
                     self.setVendorData(documentSnapshot: documentSnapshot)
                 }
                 self.saveData()
-                self.getAllAddressData()
+                self.vendors = CoreDataManager.shared.getAllVendors()
+                self.getAllAddressData(completion: {
+                    completion()
+                })
             }
         }
     }
@@ -249,14 +260,17 @@ class InitialDataDownloadManager : NSObject{
             }
     }
     
-    func getAllServiceData() {
+    func getAllServiceData(completion: @escaping () -> Void) {
         db.collection("service").addSnapshotListener(){snapshot, error in
             DispatchQueue.main.async {
                 snapshot?.documentChanges.forEach { documentSnapshot in
                     self.setServiceData(documentSnapshot: documentSnapshot)
                 }
                 self.saveData()
-                self.getAllMediaData()
+                self.services = CoreDataManager.shared.getAllServices()
+                self.getAllMediaData(completion: {
+                    completion()
+                })
             }
         }
     }
@@ -315,14 +329,17 @@ class InitialDataDownloadManager : NSObject{
         }).first
     }
     
-    func getAllAddressData() {
+    func getAllAddressData(completion: @escaping () -> Void) {
         db.collection("address").addSnapshotListener(){snapshot, error in
             DispatchQueue.main.async {
                 snapshot?.documentChanges.forEach { documentSnapshot in
                     self.setAddressData(documentSnapshot: documentSnapshot)
                 }
                 self.saveData()
-                self.getAllServiceData()
+                self.addresses = CoreDataManager.shared.getAllLocations()
+                self.getAllServiceData(completion: {
+                    completion()
+                })
             }
         }
     }
@@ -370,14 +387,17 @@ class InitialDataDownloadManager : NSObject{
     }
     
     
-    func getAllMediaData() {
-        db.collection("service").addSnapshotListener(){snapshot, error in
+    func getAllMediaData(completion: @escaping () -> Void) {
+        db.collection("media").addSnapshotListener(){snapshot, error in
             DispatchQueue.main.async {
                 snapshot?.documentChanges.forEach { documentSnapshot in
                     self.setMediaData(documentSnapshot: documentSnapshot)
                 }
                 self.saveData()
-                self.getAllBookingData()
+                self.medias = CoreDataManager.shared.getAllMedias()
+                self.getAllBookingData(completion: {
+                    completion()
+                })
             }
         }
     }
@@ -422,14 +442,17 @@ class InitialDataDownloadManager : NSObject{
     }
     
     
-    func getAllBookingData() {
-        db.collection("service").addSnapshotListener(){snapshot, error in
+    func getAllBookingData(completion: @escaping () -> Void) {
+        db.collection("booking").addSnapshotListener(){snapshot, error in
             DispatchQueue.main.async {
                 snapshot?.documentChanges.forEach { documentSnapshot in
                     self.setBookingData(documentSnapshot: documentSnapshot)
                 }
                 self.saveData()
-                self.getAllPaymentData()
+                self.bookings = CoreDataManager.shared.getAllBooking()
+                self.getAllPaymentData(completion: {
+                    completion()
+                })
             }
         }
     }
@@ -487,14 +510,17 @@ class InitialDataDownloadManager : NSObject{
     }
     
     
-    func getAllPaymentData() {
+    func getAllPaymentData(completion: @escaping () -> Void) {
         db.collection("payment").addSnapshotListener(){snapshot, error in
             DispatchQueue.main.async {
                 snapshot?.documentChanges.forEach { documentSnapshot in
                     self.setPaymentData(documentSnapshot: documentSnapshot)
                 }
                 self.saveData()
-                self.getAllVendorReviewData()
+                self.payments = CoreDataManager.shared.getAllPayments()
+                self.getAllVendorReviewData(completion: {
+                    completion()
+                })
             }
         }
     }
@@ -540,14 +566,17 @@ class InitialDataDownloadManager : NSObject{
         }).first
     }
     
-    func getAllVendorReviewData() {
+    func getAllVendorReviewData(completion: @escaping () -> Void) {
         db.collection("vendorReview").addSnapshotListener(){snapshot, error in
             DispatchQueue.main.async {
                 snapshot?.documentChanges.forEach { documentSnapshot in
                     self.setVendorReviewData(documentSnapshot: documentSnapshot)
                 }
                 self.saveData()
-                self.getAccountData()
+                self.reviews = CoreDataManager.shared.getAllReviews()
+                self.getAccountData(completion: {
+                    completion()
+                })
             }
         }
     }
@@ -603,13 +632,14 @@ class InitialDataDownloadManager : NSObject{
         }).first
     }
     
-    func getAccountData(){
+    func getAccountData(completion: @escaping () -> Void) {
         db.collection("account").addSnapshotListener(){snapshot, error in
             DispatchQueue.main.async {
                 snapshot?.documentChanges.forEach { documentSnapshot in
                     self.setAccountData(documentSnapshot: documentSnapshot)
                 }
                 self.saveData()
+                completion()
             }
         }
     }
@@ -680,8 +710,8 @@ extension InitialDataDownloadManager {
                                         completion(false)
                                     } else {
                                         print("Document added with ID: \(ref?.documentID)")
-                                        CoreDataManager.shared.deleteClients()
-                                        Task { await self.getAllClientData() }
+//                                        CoreDataManager.shared.deleteClients()
+//                                        Task { await self.getAllClientData() }
                                         completion(true)
                                     }
                                 }
@@ -706,8 +736,8 @@ extension InitialDataDownloadManager {
                                     completion(false)
                                 } else {
                                     print("Document added with ID: \(ref?.documentID)")
-                                    CoreDataManager.shared.deleteClients()
-                                    Task { await self.getAllClientData() }
+//                                    CoreDataManager.shared.deleteClients()
+//                                    Task { await self.getAllClientData() }
                                     completion(true)
                                 }
                             }
@@ -731,8 +761,8 @@ extension InitialDataDownloadManager {
                     completion(false)
                 } else {
                     print("Document added with ID: \(ref?.documentID ?? "")")
-                    CoreDataManager.shared.deleteClients()
-                    Task { await self.getAllClientData() }
+//                    CoreDataManager.shared.deleteClients()
+//                    Task { await self.getAllClientData() }
                     completion(true)
                 }
             }
@@ -767,8 +797,8 @@ extension InitialDataDownloadManager {
                                         completion(false)
                                     } else {
                                         print("Document added with ID: \(ref?.documentID)")
-                                        CoreDataManager.shared.deleteVendors()
-                                        Task { await  self.getAllVendorData() }
+//                                        CoreDataManager.shared.deleteVendors()
+//                                        Task { await  self.getAllVendorData() }
                                         completion(true)
                                     }
                                 }
@@ -792,8 +822,8 @@ extension InitialDataDownloadManager {
                                     completion(false)
                                 } else {
                                     print("Document added with ID: \(ref?.documentID)")
-                                    CoreDataManager.shared.deleteVendors()
-                                    Task { await  self.getAllVendorData() }
+//                                    CoreDataManager.shared.deleteVendors()
+//                                    Task { await  self.getAllVendorData() }
                                     completion(true)
                                 }
                             }
@@ -816,8 +846,8 @@ extension InitialDataDownloadManager {
                     completion(false)
                 } else {
                     print("Document added with ID: \(ref?.documentID)")
-                    CoreDataManager.shared.deleteVendors()
-                    Task { await  self.getAllVendorData() }
+//                    CoreDataManager.shared.deleteVendors()
+//                    Task { await  self.getAllVendorData() }
                     completion(true)
                 }
             }

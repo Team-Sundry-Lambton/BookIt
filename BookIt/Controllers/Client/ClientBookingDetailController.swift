@@ -318,6 +318,7 @@ extension ClientBookingDetailController {
         LoadingHudManager.shared.showSimpleHUD(title: "Add Payment", view: self.view)
         InitialDataDownloadManager.shared.addPaymentData(payment: payment){[weak self] status in
             DispatchQueue.main.async {
+                LoadingHudManager.shared.dissmissHud()
                 guard let strongSelf = self else {
                     return
                 }
@@ -325,6 +326,7 @@ extension ClientBookingDetailController {
                     if status {
                         strongSelf.saveAllContextCoreData()
                     }else{
+                       
                         UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: strongSelf)
                     }
                 }
