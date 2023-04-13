@@ -27,7 +27,7 @@ class InitialDataDownloadManager : NSObject{
     var status = false
     var userEmail : String?
     func downloadAllData(email: String,completion: @escaping (_ status: Bool?) -> Void) {
-        DispatchQueue.main.async {
+//        DispatchQueue.main.async {
             async { [weak self] in
                 guard let strongSelf = self else { return }
                 strongSelf.userEmail = email
@@ -35,13 +35,13 @@ class InitialDataDownloadManager : NSObject{
                 strongSelf.getAllCategoryData(completion: {
                     completion(strongSelf.status)
                 })
-            }
+//            }
         }
     }
     
     private func getAllCategoryData(completion: @escaping () -> Void) {
        db.collection("categories").addSnapshotListener(){ [weak self] snapshot, error in
-                DispatchQueue.main.async {
+//                DispatchQueue.main.async {
                     guard let strongSelf = self else { return }
                     snapshot?.documentChanges.forEach { documentSnapshot in
                         strongSelf.setCategoryData(documentSnapshot: documentSnapshot)
@@ -50,7 +50,7 @@ class InitialDataDownloadManager : NSObject{
                     strongSelf.getAllClientData(completion: {
                         completion()
                     })
-                }
+//                }
             }
     }
     
@@ -86,7 +86,7 @@ class InitialDataDownloadManager : NSObject{
     
     func getAllClientData(completion: @escaping () -> Void) {
         db.collection("client").addSnapshotListener(){ [weak self] snapshot, error in
-            DispatchQueue.main.async {
+//            DispatchQueue.main.async {
                 guard let strongSelf = self else { return }
                 snapshot?.documentChanges.forEach { documentSnapshot in
                     strongSelf.setClientData(documentSnapshot: documentSnapshot)
@@ -96,7 +96,7 @@ class InitialDataDownloadManager : NSObject{
                 strongSelf.getAllVendorData(completion: {
                     completion()
                 })
-            }
+//            }
         }
     }
     
@@ -164,7 +164,7 @@ class InitialDataDownloadManager : NSObject{
     
     func getAllVendorData(completion: @escaping () -> Void) {
         db.collection("vendor").addSnapshotListener(){ [weak self] snapshot, error in
-            DispatchQueue.main.async {
+//            DispatchQueue.main.async {
                 guard let strongSelf = self else { return }
                 snapshot?.documentChanges.forEach { documentSnapshot in
                     strongSelf.setVendorData(documentSnapshot: documentSnapshot)
@@ -174,7 +174,7 @@ class InitialDataDownloadManager : NSObject{
                 strongSelf.getAllAddressData(completion: {
                     completion()
                 })
-            }
+//            }
         }
     }
     
@@ -244,7 +244,7 @@ class InitialDataDownloadManager : NSObject{
     
     func getAllServiceData(completion: @escaping () -> Void) {
         db.collection("service").addSnapshotListener(){[weak self]snapshot, error in
-            DispatchQueue.main.async {
+//            DispatchQueue.main.async {
                 guard let strongSelf = self else { return }
                 snapshot?.documentChanges.forEach { documentSnapshot in
                     strongSelf.setServiceData(documentSnapshot: documentSnapshot)
@@ -254,7 +254,7 @@ class InitialDataDownloadManager : NSObject{
                 strongSelf.getAllMediaData(completion: {
                     completion()
                 })
-            }
+//            }
         }
     }
     
@@ -314,7 +314,7 @@ class InitialDataDownloadManager : NSObject{
     
     func getAllAddressData(completion: @escaping () -> Void) {
         db.collection("address").addSnapshotListener(){[weak self]snapshot, error in
-            DispatchQueue.main.async {
+//            DispatchQueue.main.async {
                 guard let strongSelf = self else { return }
                 snapshot?.documentChanges.forEach { documentSnapshot in
                     strongSelf.setAddressData(documentSnapshot: documentSnapshot)
@@ -324,7 +324,7 @@ class InitialDataDownloadManager : NSObject{
                 strongSelf.getAllServiceData(completion: {
                     completion()
                 })
-            }
+//            }
         }
     }
     
@@ -373,7 +373,7 @@ class InitialDataDownloadManager : NSObject{
     
     func getAllMediaData(completion: @escaping () -> Void) {
         db.collection("media").addSnapshotListener(){[weak self]snapshot, error in
-            DispatchQueue.main.async {
+//            DispatchQueue.main.async {
                 guard let strongSelf = self else { return }
                 snapshot?.documentChanges.forEach { documentSnapshot in
                     strongSelf.setMediaData(documentSnapshot: documentSnapshot)
@@ -383,7 +383,7 @@ class InitialDataDownloadManager : NSObject{
                 strongSelf.getAllBookingData(completion: {
                     completion()
                 })
-            }
+//            }
         }
     }
     
@@ -429,7 +429,7 @@ class InitialDataDownloadManager : NSObject{
     
     func getAllBookingData(completion: @escaping () -> Void) {
         db.collection("booking").addSnapshotListener(){[weak self]snapshot, error in
-            DispatchQueue.main.async {
+//            DispatchQueue.main.async {
                 guard let strongSelf = self else { return }
                 snapshot?.documentChanges.forEach { documentSnapshot in
                     strongSelf.setBookingData(documentSnapshot: documentSnapshot)
@@ -437,7 +437,7 @@ class InitialDataDownloadManager : NSObject{
                 strongSelf.getAllPaymentData(completion: {
                     completion()
                 })
-            }
+//            }
         }
     }
     
@@ -497,7 +497,7 @@ class InitialDataDownloadManager : NSObject{
     
     func getAllPaymentData(completion: @escaping () -> Void) {
         db.collection("payment").addSnapshotListener(){[weak self]snapshot, error in
-            DispatchQueue.main.async {
+//            DispatchQueue.main.async {
                 guard let strongSelf = self else { return }
                 snapshot?.documentChanges.forEach { documentSnapshot in
                     strongSelf.setPaymentData(documentSnapshot: documentSnapshot)
@@ -507,7 +507,7 @@ class InitialDataDownloadManager : NSObject{
                 strongSelf.getAllVendorReviewData(completion: {
                     completion()
                 })
-            }
+//            }
         }
     }
     
@@ -554,7 +554,7 @@ class InitialDataDownloadManager : NSObject{
     
     func getAllVendorReviewData(completion: @escaping () -> Void) {
         db.collection("vendorReview").addSnapshotListener(){[weak self]snapshot, error in
-            DispatchQueue.main.async {
+//            DispatchQueue.main.async {
                 guard let strongSelf = self else { return }
                 snapshot?.documentChanges.forEach { documentSnapshot in
                     strongSelf.setVendorReviewData(documentSnapshot: documentSnapshot)
@@ -564,7 +564,7 @@ class InitialDataDownloadManager : NSObject{
                 strongSelf.getAccountData(completion: {
                     completion()
                 })
-            }
+//            }
         }
     }
     
@@ -621,14 +621,14 @@ class InitialDataDownloadManager : NSObject{
     
     func getAccountData(completion: @escaping () -> Void) {
         db.collection("account").addSnapshotListener(){[weak self]snapshot, error in
-            DispatchQueue.main.async {
+//            DispatchQueue.main.async {
                 guard let strongSelf = self else { return }
                 snapshot?.documentChanges.forEach { documentSnapshot in
                     strongSelf.setAccountData(documentSnapshot: documentSnapshot)
                 }
                 strongSelf.saveData()
                 completion()
-            }
+//            }
         }
     }
     

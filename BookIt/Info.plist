@@ -13,7 +13,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Please allow to use</string>
 	<key>Base url</key>
-	<string>http://localhost:5002/admin/api/</string>
+	<string>https://fir-dd2bd.web.app/admin/api/</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>

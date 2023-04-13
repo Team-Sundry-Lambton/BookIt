@@ -492,7 +492,7 @@ class CoreDataManager : NSObject{
         var vendorList = [Vendor]()
         let request: NSFetchRequest<Vendor> = Vendor.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "firstName", ascending: true)]
-        request.fetchLimit = 5
+        request.fetchLimit = 10
         do {
             vendorList = try context.fetch(request)
         } catch {
@@ -505,7 +505,7 @@ class CoreDataManager : NSObject{
         var vendorList = [Vendor]()
         let request: NSFetchRequest<Vendor> = Vendor.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "firstName", ascending: true)]
-        request.fetchLimit = 5
+        request.fetchLimit = 10
         do {
             vendorList = try context.fetch(request)
         } catch {
@@ -520,7 +520,7 @@ class CoreDataManager : NSObject{
         let predicate = NSPredicate(format: "vendorRating=true")
         fetchRequest.predicate = predicate
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "rating", ascending: false)]
-        fetchRequest.fetchLimit = 5
+        fetchRequest.fetchLimit = 10
         do {
             // Execute the fetch request and get the vendors
             let vendorReview = try context.fetch(fetchRequest)
@@ -531,6 +531,12 @@ class CoreDataManager : NSObject{
                         vendorList.append(vendor)
                     }
                 }
+                if vendorList.count < 10 {
+                    for vendor in loadTopVendors(){
+                        vendorList.append(vendor)
+                    }
+                }
+                
             }else{
                 vendorList = loadTopVendors()
             }
@@ -545,7 +551,7 @@ class CoreDataManager : NSObject{
         let request: NSFetchRequest<Service> = Service.fetchRequest()
         let predicate = NSPredicate(format: "status=%@ " ,"Accepted")
         request.predicate = predicate
-        request.fetchLimit = 5
+        request.fetchLimit = 10
         request.sortDescriptors = [NSSortDescriptor(key: "serviceTitle", ascending: true)]
         do {
             serviceList = try context.fetch(request)
@@ -561,7 +567,7 @@ class CoreDataManager : NSObject{
         let predicate = NSPredicate(format: "vendorRating=true")
         fetchRequest.predicate = predicate
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "rating", ascending: false)]
-        fetchRequest.fetchLimit = 5
+        fetchRequest.fetchLimit = 10
         do {
             // Execute the fetch request and get the vendors
             let vendorReview = try context.fetch(fetchRequest)
