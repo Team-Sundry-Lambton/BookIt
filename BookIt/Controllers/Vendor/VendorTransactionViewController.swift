@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class VendorTransactionViewController: NavigationBaseViewController {
+class VendorTransactionViewController: WhiteNavigationBaseViewController {
 
     @IBOutlet weak var totalIncomeLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!

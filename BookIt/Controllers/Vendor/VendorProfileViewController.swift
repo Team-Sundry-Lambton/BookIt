@@ -44,7 +44,8 @@ class VendorProfileViewController: BaseViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        self.navigationController?.navigationBar.tintColor = UIColor.black
+        super.viewDidDisappear(animated)
+//        self.navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationController?.navigationBar.isHidden = false
     }
     

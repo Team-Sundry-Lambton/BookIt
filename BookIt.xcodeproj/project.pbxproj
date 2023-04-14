@@ -63,6 +63,7 @@
 		BB12B6DD29D7A78D00A42CA2 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB12B6DC29D7A78D00A42CA2 /* BaseViewController.swift */; };
 		BB12B6DF29D7B2A000A42CA2 /* NavigationBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB12B6DE29D7B2A000A42CA2 /* NavigationBaseViewController.swift */; };
 		BB12B6E129D7B40B00A42CA2 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB12B6E029D7B40B00A42CA2 /* BaseTableViewController.swift */; };
+		BB3D8FBA29E9D36C0025033D /* WhiteNavigationBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3D8FB929E9D36C0025033D /* WhiteNavigationBaseViewController.swift */; };
 		BB5146FF29D1E679001F4DB0 /* Image+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5146FE29D1E679001F4DB0 /* Image+Extension.swift */; };
 		BB51470129D1EE0C001F4DB0 /* AboutUs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB51470029D1EE0C001F4DB0 /* AboutUs.storyboard */; };
 		BB7524F029C8E929004C4837 /* CategoryListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7524EE29C8E929004C4837 /* CategoryListCollectionViewCell.xib */; };
@@ -203,6 +204,7 @@
 		BB12B6DC29D7A78D00A42CA2 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		BB12B6DE29D7B2A000A42CA2 /* NavigationBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBaseViewController.swift; sourceTree = "<group>"; };
 		BB12B6E029D7B40B00A42CA2 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
+		BB3D8FB929E9D36C0025033D /* WhiteNavigationBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteNavigationBaseViewController.swift; sourceTree = "<group>"; };
 		BB5146FE29D1E679001F4DB0 /* Image+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Extension.swift"; sourceTree = "<group>"; };
 		BB51470029D1EE0C001F4DB0 /* AboutUs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AboutUs.storyboard; sourceTree = "<group>"; };
 		BB7524EE29C8E929004C4837 /* CategoryListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryListCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -543,6 +545,7 @@
 				BB12B6E029D7B40B00A42CA2 /* BaseTableViewController.swift */,
 				BB12B6DE29D7B2A000A42CA2 /* NavigationBaseViewController.swift */,
 				BB12B6DC29D7A78D00A42CA2 /* BaseViewController.swift */,
+				BB3D8FB929E9D36C0025033D /* WhiteNavigationBaseViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -700,6 +703,7 @@
 				BB084DE329DCD8A8006169F8 /* ServiceRequestObjects.swift in Sources */,
 				BDA8015A29D0EC88009A1570 /* VendorBankAccountViewController.swift in Sources */,
 				413CF83E29C51B6200A174D3 /* VendorServiceListTableViewCell.swift in Sources */,
+				BB3D8FBA29E9D36C0025033D /* WhiteNavigationBaseViewController.swift in Sources */,
 				BBA6356F29BA62D700702A62 /* ClientHomeViewController.swift in Sources */,
 				BB7A1DD129C0C87E003CB894 /* VendorProfileViewController.swift in Sources */,
 				BB95083429BD950300C02D9E /* ServiceSearchTableViewController.swift in Sources */,

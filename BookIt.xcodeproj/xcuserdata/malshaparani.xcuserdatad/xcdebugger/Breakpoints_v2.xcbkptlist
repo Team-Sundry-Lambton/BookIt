@@ -350,10 +350,10 @@
             filePath = "BookIt/Controllers/Client/ClientProfileViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
             landmarkName = "notificationStatus(sender:)"
-            landmarkType = "7">
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -366,10 +366,10 @@
             filePath = "BookIt/Controllers/Client/ClientProfileViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "notificationStatus(sender:)"
-            landmarkType = "7">
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2736,13 +2736,13 @@
             filePath = "BookIt/Controllers/Common/EditProfileViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "200"
-            endingLineNumber = "200"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
             landmarkName = "setUserObject(isEdit:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "C0CB7BB5-E502-4F5A-AB09-FFB7E702C34A - c7a5439453c167e9"
+                  uuid = "C0CB7BB5-E502-4F5A-AB09-FFB7E702C34A - c7a5439453c166d0"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -2752,12 +2752,12 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Controllers/Common/EditProfileViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "200"
-                  endingLineNumber = "200"
+                  startingLineNumber = "191"
+                  endingLineNumber = "191"
                   offsetFromSymbolStart = "5744">
                </Location>
                <Location
-                  uuid = "C0CB7BB5-E502-4F5A-AB09-FFB7E702C34A - 7d6a77d53cb5cb2e"
+                  uuid = "C0CB7BB5-E502-4F5A-AB09-FFB7E702C34A - 7d6a77d53cb5ca17"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -2767,12 +2767,12 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Controllers/Common/EditProfileViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "200"
-                  endingLineNumber = "200"
+                  startingLineNumber = "191"
+                  endingLineNumber = "191"
                   offsetFromSymbolStart = "176">
                </Location>
                <Location
-                  uuid = "C0CB7BB5-E502-4F5A-AB09-FFB7E702C34A - f71ff7819b5daa8d"
+                  uuid = "C0CB7BB5-E502-4F5A-AB09-FFB7E702C34A - f71ff7819b5dabb4"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -2782,8 +2782,8 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Controllers/Common/EditProfileViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "200"
-                  endingLineNumber = "200"
+                  startingLineNumber = "191"
+                  endingLineNumber = "191"
                   offsetFromSymbolStart = "40">
                </Location>
             </Locations>
@@ -2799,8 +2799,8 @@
             filePath = "BookIt/Controllers/Common/EditProfileViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "202"
-            endingLineNumber = "202"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
             landmarkName = "setUserObject(isEdit:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2815,8 +2815,8 @@
             filePath = "BookIt/Controllers/Common/EditProfileViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "213"
-            endingLineNumber = "213"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
             landmarkName = "setUserObject(isEdit:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2831,8 +2831,8 @@
             filePath = "BookIt/Controllers/Common/EditProfileViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "217"
-            endingLineNumber = "217"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
             landmarkName = "setUserObject(isEdit:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2959,13 +2959,13 @@
             filePath = "BookIt/Controllers/Common/EditProfileViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
             landmarkName = "setUserObject(isEdit:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "C03F9FCD-CC7A-434C-B9F5-D2BD08CE3374 - c7a5439453c163c9"
+                  uuid = "C03F9FCD-CC7A-434C-B9F5-D2BD08CE3374 - c7a5439453c16130"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -2975,12 +2975,12 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Controllers/Common/EditProfileViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "168"
-                  endingLineNumber = "168"
+                  startingLineNumber = "159"
+                  endingLineNumber = "159"
                   offsetFromSymbolStart = "2840">
                </Location>
                <Location
-                  uuid = "C03F9FCD-CC7A-434C-B9F5-D2BD08CE3374 - 70977d415343630c"
+                  uuid = "C03F9FCD-CC7A-434C-B9F5-D2BD08CE3374 - 70977d41534361f5"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -2990,12 +2990,12 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Controllers/Common/EditProfileViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "168"
-                  endingLineNumber = "168"
+                  startingLineNumber = "159"
+                  endingLineNumber = "159"
                   offsetFromSymbolStart = "176">
                </Location>
                <Location
-                  uuid = "C03F9FCD-CC7A-434C-B9F5-D2BD08CE3374 - f71ff7819b5daead"
+                  uuid = "C03F9FCD-CC7A-434C-B9F5-D2BD08CE3374 - f71ff7819b5dac54"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -3005,8 +3005,8 @@
                   urlString = "file:///Users/malshaparani/Documents/GitHub/BookIt/BookIt/Controllers/Common/EditProfileViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "168"
-                  endingLineNumber = "168"
+                  startingLineNumber = "159"
+                  endingLineNumber = "159"
                   offsetFromSymbolStart = "40">
                </Location>
             </Locations>
