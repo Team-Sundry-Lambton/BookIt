@@ -212,7 +212,6 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="my0-qd-mUZ" firstAttribute="top" secondItem="zkl-TY-UYO" secondAttribute="top" id="A2k-UH-6Wh"/>
                             <constraint firstItem="my0-qd-mUZ" firstAttribute="leading" secondItem="zkl-TY-UYO" secondAttribute="leading" id="HIZ-EL-6rl"/>

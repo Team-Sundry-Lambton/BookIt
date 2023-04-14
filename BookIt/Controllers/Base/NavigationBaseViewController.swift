@@ -27,7 +27,11 @@ class NavigationBaseViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.tintColor = UIColor.black
+        if self.traitCollection.userInterfaceStyle == .dark {
+            navigationController?.navigationBar.tintColor = UIColor.white
+               } else {
+                   navigationController?.navigationBar.tintColor = UIColor.black
+               }
         self.navigationController?.navigationBar.isHidden = false
     }
     

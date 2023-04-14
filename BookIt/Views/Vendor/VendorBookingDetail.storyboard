@@ -337,7 +337,6 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="mhQ-Ju-sGM" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="0EG-tp-AS4"/>
                             <constraint firstItem="Nw3-ad-mm8" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="BXB-WK-3dJ"/>

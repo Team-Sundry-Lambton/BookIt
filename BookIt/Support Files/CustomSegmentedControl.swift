@@ -28,12 +28,13 @@ class CustomSegmentedControl: UIView {
     
     convenience init(frame:CGRect,buttonTitle:[String]) {
         self.init(frame: frame)
+        setDarkMode()
         self.buttonTitles = buttonTitle
     }
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        self.backgroundColor = UIColor.white
+        setDarkMode()
         updateView()
     }
     
@@ -75,6 +76,15 @@ extension CustomSegmentedControl {
         createButton()
         configSelectorView()
         configStackView()
+        setDarkMode()
+    }
+    
+    private func setDarkMode(){
+        if self.traitCollection.userInterfaceStyle == .dark {
+            self.backgroundColor = UIColor.white
+               } else {
+                   self.backgroundColor = UIColor.black
+               }
     }
     
     private func configStackView() {

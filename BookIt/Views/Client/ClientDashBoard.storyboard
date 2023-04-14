@@ -165,7 +165,6 @@
                                                         </connections>
                                                     </searchBar>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="dfC-OF-tuA" secondAttribute="trailing" constant="15" id="2xJ-th-qvk"/>
                                                     <constraint firstItem="dfC-OF-tuA" firstAttribute="centerY" secondItem="ok5-fb-qHy" secondAttribute="centerY" id="EsG-pe-MVx"/>
@@ -1197,6 +1196,9 @@
         <image name="TextFieldOuterLine" width="325" height="50"/>
         <image name="TimeIcon" width="18" height="18"/>
         <image name="filterIcon" width="24" height="24"/>
+        <namedColor name="CategoryBtn">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
