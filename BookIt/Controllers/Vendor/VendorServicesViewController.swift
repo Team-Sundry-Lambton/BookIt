@@ -12,19 +12,20 @@ class VendorServicesViewController: BaseViewController {
     var services = [Service]()
     var vendor : Vendor?
     
+    @IBOutlet weak var noServiceImage: UIImageView!
     @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        getVendor()
         tableView.delegate = self
         tableView.dataSource = self
         registerCell()
-        loadMyServices()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        getVendor()
+        loadMyServices()
         tableView.reloadData()
     }
     
@@ -39,6 +40,14 @@ class VendorServicesViewController: BaseViewController {
     
     func loadMyServices(){
         services = CoreDataManager.shared.loadServicesByVendor(email: vendor?.email ?? "")
+        
+        if services.count > 0 {
+            tableView.isHidden = false
+            noServiceImage.isHidden = true
+        } else {
+            tableView.isHidden = true
+            noServiceImage.isHidden = false
+        }
     }
     
     func deleteService(service:Service){
