@@ -27,6 +27,7 @@ class ClientBookingDetailController : NavigationBaseViewController{
     @IBOutlet weak var serviceStatusBtn: UIButton!
     @IBOutlet weak var statusLbl: UILabel!
     
+    var amount = 0.0
     override func viewDidLoad() {
         loadDetails()
     }
@@ -86,6 +87,7 @@ class ClientBookingDetailController : NavigationBaseViewController{
         
         if let price = service.price, let type = service.priceType {
             servicePriceLbl.text = "$ " + price + " / " + type
+            amount = Double(price) ?? 0.0
         }
         
         locationDescLbl.text =  client.address?.address ?? "N/A"
@@ -315,6 +317,7 @@ extension ClientBookingDetailController {
         payment.paymentId = CoreDataManager.shared.getPaymentID()
         payment.status = type
         payment.date = Date()
+        payment.amount =  amount
         LoadingHudManager.shared.showSimpleHUD(title: "Add Payment", view: self.view)
         InitialDataDownloadManager.shared.addPaymentData(payment: payment){[weak self] status in
             DispatchQueue.main.async {
