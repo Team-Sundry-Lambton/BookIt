@@ -916,13 +916,15 @@
 				DEVELOPMENT_TEAM = ZAPPPDF7PK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BookIt/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow to use";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Please allow to use face recognition";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Allow Location";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow Location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "You must give permission in order to use the application";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow to use";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -948,13 +950,15 @@
 				DEVELOPMENT_TEAM = ZAPPPDF7PK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BookIt/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow to use";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Please allow to use face recognition";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Allow Location";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow Location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "You must give permission in order to use the application";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow to use";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
