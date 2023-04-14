@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8kd-ZG-igO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8kd-ZG-igO">
     <device id="ipad12_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -361,7 +362,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="105" height="56"/>
                                                             </imageView>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Yb-oB-thu">
-                                                                <rect key="frame" x="0.0" y="0.0" width="24" height="56"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="105" height="56"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="56" id="xxY-od-t9G"/>
                                                                 </constraints>
@@ -376,9 +377,9 @@
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="0di-ZE-UJY" secondAttribute="trailing" id="7Yh-3O-vFR"/>
                                                             <constraint firstItem="0Yb-oB-thu" firstAttribute="leading" secondItem="6Cb-y4-aJV" secondAttribute="leading" id="At3-L8-N4y"/>
-                                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0Yb-oB-thu" secondAttribute="trailing" constant="20" symbolic="YES" id="cgc-0b-jAx"/>
                                                             <constraint firstAttribute="bottom" secondItem="0di-ZE-UJY" secondAttribute="bottom" id="dqK-la-5eM"/>
                                                             <constraint firstAttribute="bottom" secondItem="0Yb-oB-thu" secondAttribute="bottom" id="ffa-97-Jbj"/>
+                                                            <constraint firstAttribute="trailing" secondItem="0Yb-oB-thu" secondAttribute="trailing" id="gjb-Qe-qDW"/>
                                                             <constraint firstItem="0Yb-oB-thu" firstAttribute="top" secondItem="6Cb-y4-aJV" secondAttribute="top" id="kF3-o7-U3k"/>
                                                             <constraint firstItem="0di-ZE-UJY" firstAttribute="top" secondItem="6Cb-y4-aJV" secondAttribute="top" id="p3h-ZP-5zJ"/>
                                                             <constraint firstItem="0di-ZE-UJY" firstAttribute="leading" secondItem="6Cb-y4-aJV" secondAttribute="leading" id="voe-aQ-M9u"/>
@@ -395,7 +396,7 @@
                                                                 </constraints>
                                                             </imageView>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ft4-dm-vLE">
-                                                                <rect key="frame" x="81" y="0.0" width="4" height="56"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="105" height="56"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="56" id="XbN-ET-mxv"/>
                                                                 </constraints>
@@ -414,8 +415,8 @@
                                                             <constraint firstAttribute="trailing" secondItem="ifh-Jb-WmJ" secondAttribute="trailing" id="Vok-j5-mBi"/>
                                                             <constraint firstItem="ifh-Jb-WmJ" firstAttribute="leading" secondItem="BBR-6F-mDd" secondAttribute="leading" id="ZVT-ZQ-5M9"/>
                                                             <constraint firstAttribute="bottom" secondItem="ifh-Jb-WmJ" secondAttribute="bottom" id="mff-ZP-VkQ"/>
-                                                            <constraint firstItem="ft4-dm-vLE" firstAttribute="leading" secondItem="BBR-6F-mDd" secondAttribute="leading" constant="81" id="n9E-DA-hSE"/>
-                                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ft4-dm-vLE" secondAttribute="trailing" constant="20" symbolic="YES" id="oKi-qV-Whq"/>
+                                                            <constraint firstAttribute="trailing" secondItem="ft4-dm-vLE" secondAttribute="trailing" id="pPb-b2-KG7"/>
+                                                            <constraint firstItem="ft4-dm-vLE" firstAttribute="leading" secondItem="BBR-6F-mDd" secondAttribute="leading" id="rIP-9o-jB9"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -975,7 +976,7 @@
         <image name="GoogleIcon" width="105" height="56"/>
         <image name="LoginBG" width="375" height="812"/>
         <namedColor name="TextColor">
-            <color red="0.0019339767156862746" green="0.001953125" blue="0.001953125" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.0020000000949949026" green="0.0020000000949949026" blue="0.0020000000949949026" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
