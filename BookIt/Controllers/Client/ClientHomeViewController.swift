@@ -74,7 +74,7 @@ class ClientHomeViewController: BaseViewController {
         
         let tabbarAppearance = UITabBarAppearance()
         tabbarAppearance.configureWithOpaqueBackground()
-        tabbarAppearance.backgroundColor = UIColor.white
+//        tabbarAppearance.backgroundColor = UIColor.white
        
         self.tabBarController?.tabBar.scrollEdgeAppearance = tabbarAppearance
         self.tabBarController?.tabBar.standardAppearance = tabbarAppearance
