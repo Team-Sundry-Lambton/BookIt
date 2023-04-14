@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <device id="ipad12_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
@@ -14,11 +14,11 @@
             <objects>
                 <viewController storyboardIdentifier="VendorBookingConfirmation" id="Y6W-OH-hqX" customClass="VendorBookingConfirmationController" customModule="BookIt" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n68-iG-jxF">
-                                <rect key="frame" x="20" y="671" width="374" height="45"/>
+                                <rect key="frame" x="20" y="1301" width="984" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="IdP-vl-f6l"/>
                                 </constraints>
@@ -33,13 +33,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Booking Confirmed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tcn-fD-ylN">
-                                <rect key="frame" x="74" y="358.66666666666669" width="266" height="39"/>
+                                <rect key="frame" x="379" y="665.5" width="266" height="39"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tZ0-ug-xWo">
-                                <rect key="frame" x="20" y="412.66666666666669" width="374" height="38.333333333333314"/>
+                                <rect key="frame" x="20" y="719.5" width="984" height="38.5"/>
                                 <string key="text">You have already confirmed the booking!
 Please wait for the client payment</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -47,7 +47,7 @@ Please wait for the client payment</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check_circle" translatesAutoresizingMaskIntoConstraints="NO" id="X62-80-vKx">
-                                <rect key="frame" x="132" y="188.66666666666663" width="150" height="150"/>
+                                <rect key="frame" x="437" y="495.5" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="407-nn-YZM"/>
                                     <constraint firstAttribute="width" constant="150" id="QPE-Qg-Q6k"/>

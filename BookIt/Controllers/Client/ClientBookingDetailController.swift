@@ -245,7 +245,13 @@ class ClientBookingDetailController : NavigationBaseViewController{
     }
     
     private func makePayment(){
-        let actionSheet = UIAlertController(title: "Payment Options", message: "Select the payment option you want tp proceed.", preferredStyle: .actionSheet)
+        var alertStyle = UIAlertController.Style.actionSheet
+        
+        if (UIDevice.current.userInterfaceIdiom == .pad) {
+          alertStyle = UIAlertController.Style.alert
+        }
+
+        let actionSheet = UIAlertController(title: "Payment Options", message: "Select the payment option you want tp proceed.", preferredStyle: alertStyle)
 
         let actionCredit = UIAlertAction(title: "Credit/Debit", style: .default) { _ in
             self.paymentFirebaseCall(type: "Credit/Debit")
@@ -268,7 +274,7 @@ class ClientBookingDetailController : NavigationBaseViewController{
 
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         actionSheet.addAction(cancelAction)
-
+        
         present(actionSheet, animated: true)
     }
 }

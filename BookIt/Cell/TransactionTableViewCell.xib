@@ -72,6 +72,8 @@
                             <constraint firstItem="QC5-49-pVL" firstAttribute="top" secondItem="nJn-Ok-9Hi" secondAttribute="bottom" constant="17" id="TQC-Md-mwd"/>
                             <constraint firstAttribute="bottom" secondItem="QC5-49-pVL" secondAttribute="bottom" constant="15" id="XIi-eN-nbR"/>
                             <constraint firstItem="PMC-rZ-cQQ" firstAttribute="leading" secondItem="wSO-Bf-gGg" secondAttribute="leading" constant="20" symbolic="YES" id="XnV-Bw-qQc"/>
+                            <constraint firstAttribute="width" constant="381" id="b1w-Gy-gsJ"/>
+                            <constraint firstAttribute="height" constant="85" id="bG3-5h-xUE"/>
                             <constraint firstItem="PMC-rZ-cQQ" firstAttribute="top" secondItem="JkW-Qd-YtN" secondAttribute="bottom" constant="8" symbolic="YES" id="fnL-JP-s3R"/>
                         </constraints>
                     </view>
@@ -81,11 +83,12 @@
                     <constraint firstItem="Hjy-9y-5mf" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="4qz-vM-t1R"/>
                     <constraint firstItem="wSO-Bf-gGg" firstAttribute="top" secondItem="Hjy-9y-5mf" secondAttribute="top" constant="25" id="DAj-jp-781"/>
                     <constraint firstItem="Hjy-9y-5mf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="-10" id="VYt-xE-mPh"/>
-                    <constraint firstItem="Hjy-9y-5mf" firstAttribute="trailing" secondItem="wSO-Bf-gGg" secondAttribute="trailing" constant="40" id="ct6-nM-FWC"/>
+                    <constraint firstItem="Hjy-9y-5mf" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="wSO-Bf-gGg" secondAttribute="trailing" constant="40" id="ct6-nM-FWC"/>
+                    <constraint firstItem="wSO-Bf-gGg" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="en4-Wb-7jZ"/>
                     <constraint firstItem="Hjy-9y-5mf" firstAttribute="bottom" secondItem="wSO-Bf-gGg" secondAttribute="bottom" constant="74" id="gaF-nZ-pwZ"/>
                     <constraint firstAttribute="trailing" secondItem="Hjy-9y-5mf" secondAttribute="trailing" constant="-10" id="hfP-UL-wd2"/>
                     <constraint firstAttribute="bottom" secondItem="Hjy-9y-5mf" secondAttribute="bottom" constant="-50" id="lQ0-Y2-Hp3"/>
-                    <constraint firstItem="wSO-Bf-gGg" firstAttribute="leading" secondItem="Hjy-9y-5mf" secondAttribute="leading" constant="40" id="tBM-1K-JoL"/>
+                    <constraint firstItem="wSO-Bf-gGg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Hjy-9y-5mf" secondAttribute="leading" constant="40" id="tBM-1K-JoL"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
