@@ -81,9 +81,10 @@ extension CustomSegmentedControl {
     
     private func setDarkMode(){
         if self.traitCollection.userInterfaceStyle == .dark {
-            self.backgroundColor = UIColor.white
+            self.backgroundColor = UIColor.black
                } else {
-                   self.backgroundColor = UIColor.black
+
+                   self.backgroundColor = UIColor.white
                }
     }
     
