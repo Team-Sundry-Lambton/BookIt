@@ -143,9 +143,14 @@ extension VendorHomeViewController: UITableViewDelegate , UITableViewDataSource 
                 clientAddress =  CoreDataManager.shared.getUserLocationData(email:email)
                 cell?.locationLabel.text = clientAddress?.address
             }
-            cell?.priceLabel.text = booking.service?.price
+            if let price = booking.service?.price{
+                cell?.priceLabel.text = "$ \(price)"
+            }
             cell?.statusLabel.text = booking.status
         }
+        if let clientPhoto = booking?.client?.picture{
+                    cell?.vendorImageView.image = UIImage(data: clientPhoto)
+                }
         
         return cell ?? UITableViewCell()
     }

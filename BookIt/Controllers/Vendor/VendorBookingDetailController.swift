@@ -59,7 +59,7 @@ class VendorBookingDetailController: NavigationBaseViewController{
         else{
             bookingId = "N/A"
         }
-        bookingIdLbl.text = "Booking number is \(bookingId)"
+        bookingIdLbl.text = "Booking number is #\(bookingId)"
         
         serviceNameLbl.text = service.serviceTitle
         if let media = CoreDataManager.shared.getServiceFirstMedia(serviceId: Int(service.serviceId)) {

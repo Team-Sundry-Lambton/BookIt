@@ -22,7 +22,7 @@ class ReviewTableViewCell: UITableViewCell {
     
     func configureCell(vendorReview: VendorReview) {
 
-        if let user = vendorReview.vendor {
+        if let user = vendorReview.client {
             if let imageData = user.picture {
                 self.ivAvatar.image = UIImage(data: imageData)
             }
