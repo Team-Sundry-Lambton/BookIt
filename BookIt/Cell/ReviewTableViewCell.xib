@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -20,8 +21,20 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i0g-m6-X3E">
                         <rect key="frame" x="16" y="0.0" width="288" height="125"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_review" translatesAutoresizingMaskIntoConstraints="NO" id="6z0-cg-YfX">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6z0-cg-YfX">
                                 <rect key="frame" x="5" y="3" width="278" height="117"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                        <color key="value" name="BackBtn"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="J5c-jt-lHM">
                                 <rect key="frame" x="15" y="10" width="38" height="40"/>
@@ -106,6 +119,7 @@
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" name="CategoryCell"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="i0g-m6-X3E" secondAttribute="trailing" constant="16" id="EA4-KI-yCk"/>
                     <constraint firstItem="i0g-m6-X3E" firstAttribute="leading" secondItem="Vl9-XQ-BgM" secondAttribute="leading" constant="16" id="Pxb-8P-Z2q"/>
@@ -126,8 +140,13 @@
     </objects>
     <resources>
         <image name="0" width="375" height="240"/>
-        <image name="bg_review" width="343" height="60"/>
         <image name="star12px" width="12" height="12"/>
+        <namedColor name="BackBtn">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
+        <namedColor name="CategoryCell">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
