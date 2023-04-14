@@ -28,6 +28,10 @@ class WhiteNavigationBaseViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        if var textAttributes = navigationController?.navigationBar.titleTextAttributes {
+            textAttributes[NSAttributedString.Key.foregroundColor] = UIColor.white
+            navigationController?.navigationBar.titleTextAttributes = textAttributes
+        }
         self.navigationController?.navigationBar.isHidden = false
     }
     
