@@ -528,12 +528,16 @@ class CoreDataManager : NSObject{
             if vendorReview.count > 0 {
                 for review in vendorReview {
                     if let vendor = review.vendor {
-                        vendorList.append(vendor)
+                        if !vendorList.contains(vendor){
+                            vendorList.append(vendor)
+                        }
                     }
                 }
                 if vendorList.count < 10 {
                     for vendor in loadTopVendors(){
-                        vendorList.append(vendor)
+                        if !vendorList.contains(vendor){
+                            vendorList.append(vendor)
+                        }
                     }
                 }
                 

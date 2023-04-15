@@ -287,7 +287,7 @@ extension ClientBookingDetailController {
     {
         if let bookingData = booking {
             let param = UserPaymentParam(bookingId: String(bookingData.bookingId))
-            let urlPath: String = "email/send/"
+            let urlPath: String = "onlyemail/send/"
             
             NetworkManager.shared.makePayment(urlStr: urlPath, postData: param.toJSON()) { (success, rsponse) in
                 if success == true

@@ -143,7 +143,7 @@ extension VendorHomeViewController: UITableViewDelegate , UITableViewDataSource 
                 clientAddress =  CoreDataManager.shared.getUserLocationData(email:email)
                 cell?.locationLabel.text = clientAddress?.address
             }
-            cell?.priceLabel.text = booking.service?.price
+            cell?.priceLabel.text = "$ " + (booking.service?.price ?? "0")
             cell?.statusLabel.text = booking.status
         }
         
