@@ -66,12 +66,12 @@ class VendorHomeViewController: BaseViewController {
     
     private func loadBookingList(){
         bookingList = CoreDataManager.shared.loadBookingList(email: vendor?.email ?? "", sortBy: sortBy, sortAscending: sortAscending)
-            bookingListOngoing = bookingList.filter({
-                $0.status == "New" || $0.status == "Pending" || $0.status == "Inprogress"
-            })
-            bookingListHistory = bookingList.filter({
-                $0.status == "Rejected" || $0.status == "Completed" || $0.status == "Cancelled"
-            })
+        bookingListOngoing = bookingList.filter({
+            $0.status == "New" || $0.status == "Pending" || $0.status == "Inprogress"
+        })
+        bookingListHistory = bookingList.filter({
+            $0.status == "Rejected" || $0.status == "Completed" || $0.status == "Cancelled"
+        })
     }
     
     func getVendor(){
@@ -110,7 +110,7 @@ class VendorHomeViewController: BaseViewController {
 extension VendorHomeViewController: CustomSegmentedControlDelegate {
     func change(to index: Int) {
         segmentSelectedIndex = index
-        tableView.reloadData()
+        loadData()
     }
 }
 
@@ -143,7 +143,7 @@ extension VendorHomeViewController: UITableViewDelegate , UITableViewDataSource 
                 clientAddress =  CoreDataManager.shared.getUserLocationData(email:email)
                 cell?.locationLabel.text = clientAddress?.address
             }
-            cell?.priceLabel.text = booking.service?.price
+            cell?.priceLabel.text = "$ " + (booking.service?.price ?? "0")
             cell?.statusLabel.text = booking.status
         }
         

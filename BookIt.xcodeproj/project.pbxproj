@@ -63,6 +63,7 @@
 		BB12B6DD29D7A78D00A42CA2 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB12B6DC29D7A78D00A42CA2 /* BaseViewController.swift */; };
 		BB12B6DF29D7B2A000A42CA2 /* NavigationBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB12B6DE29D7B2A000A42CA2 /* NavigationBaseViewController.swift */; };
 		BB12B6E129D7B40B00A42CA2 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB12B6E029D7B40B00A42CA2 /* BaseTableViewController.swift */; };
+		BB3D8FBA29E9D36C0025033D /* WhiteNavigationBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3D8FB929E9D36C0025033D /* WhiteNavigationBaseViewController.swift */; };
 		BB5146FF29D1E679001F4DB0 /* Image+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5146FE29D1E679001F4DB0 /* Image+Extension.swift */; };
 		BB51470129D1EE0C001F4DB0 /* AboutUs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB51470029D1EE0C001F4DB0 /* AboutUs.storyboard */; };
 		BB7524F029C8E929004C4837 /* CategoryListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7524EE29C8E929004C4837 /* CategoryListCollectionViewCell.xib */; };
@@ -203,6 +204,7 @@
 		BB12B6DC29D7A78D00A42CA2 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		BB12B6DE29D7B2A000A42CA2 /* NavigationBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBaseViewController.swift; sourceTree = "<group>"; };
 		BB12B6E029D7B40B00A42CA2 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
+		BB3D8FB929E9D36C0025033D /* WhiteNavigationBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteNavigationBaseViewController.swift; sourceTree = "<group>"; };
 		BB5146FE29D1E679001F4DB0 /* Image+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Extension.swift"; sourceTree = "<group>"; };
 		BB51470029D1EE0C001F4DB0 /* AboutUs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AboutUs.storyboard; sourceTree = "<group>"; };
 		BB7524EE29C8E929004C4837 /* CategoryListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryListCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -543,6 +545,7 @@
 				BB12B6E029D7B40B00A42CA2 /* BaseTableViewController.swift */,
 				BB12B6DE29D7B2A000A42CA2 /* NavigationBaseViewController.swift */,
 				BB12B6DC29D7A78D00A42CA2 /* BaseViewController.swift */,
+				BB3D8FB929E9D36C0025033D /* WhiteNavigationBaseViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -700,6 +703,7 @@
 				BB084DE329DCD8A8006169F8 /* ServiceRequestObjects.swift in Sources */,
 				BDA8015A29D0EC88009A1570 /* VendorBankAccountViewController.swift in Sources */,
 				413CF83E29C51B6200A174D3 /* VendorServiceListTableViewCell.swift in Sources */,
+				BB3D8FBA29E9D36C0025033D /* WhiteNavigationBaseViewController.swift in Sources */,
 				BBA6356F29BA62D700702A62 /* ClientHomeViewController.swift in Sources */,
 				BB7A1DD129C0C87E003CB894 /* VendorProfileViewController.swift in Sources */,
 				BB95083429BD950300C02D9E /* ServiceSearchTableViewController.swift in Sources */,
@@ -911,18 +915,22 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BookIt/BookIt.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZAPPPDF7PK;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BookIt/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow to use";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Please allow to use face recognition";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Allow Location";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow Location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "You must give permission in order to use the application";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow to use";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -931,6 +939,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = TeamSundry.BookIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -943,26 +952,30 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BookIt/BookIt.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZAPPPDF7PK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BookIt/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow to use";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Please allow to use face recognition";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Allow Location";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow Location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "You must give permission in order to use the application";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow to use";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = TeamSundry.BookIt;
+				PRODUCT_BUNDLE_IDENTIFIER = TeamSundry.BookIt.App;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

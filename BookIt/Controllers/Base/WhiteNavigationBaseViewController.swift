@@ -1,20 +1,21 @@
 //
-//  NavigationBaseViewController.swift
+//  WhiteNavigationBaseViewController.swift
 //  BookIt
 //
-//  Created by Malsha Parani on 2023-03-31.
+//  Created by Malsha Parani on 2023-04-14.
 //
 
 import UIKit
 import CoreData
 import JGProgressHUD
 
-class NavigationBaseViewController: UIViewController {
+class WhiteNavigationBaseViewController: UIViewController {
     var loginUser : LoginUser?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var managedObjectContext: NSManagedObjectContext!
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         // Do any additional setup after loading the view.
         //MARK: dismiss keyboard
@@ -27,15 +28,15 @@ class NavigationBaseViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if self.traitCollection.userInterfaceStyle == .dark {
-            navigationController?.navigationBar.tintColor = UIColor.white
-               } else {
-                   navigationController?.navigationBar.tintColor = UIColor.black
-               }
+        if var textAttributes = navigationController?.navigationBar.titleTextAttributes {
+            textAttributes[NSAttributedString.Key.foregroundColor] = UIColor.white
+            navigationController?.navigationBar.titleTextAttributes = textAttributes
+        }
         self.navigationController?.navigationBar.isHidden = false
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationController?.navigationBar.isHidden = true
     }
     

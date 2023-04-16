@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class VendorTransactionViewController: NavigationBaseViewController {
+class VendorTransactionViewController: WhiteNavigationBaseViewController {
 
     @IBOutlet weak var totalIncomeLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -32,7 +32,7 @@ class VendorTransactionViewController: NavigationBaseViewController {
     
     private func loadData() {
         getVendor()
-        loadTransactionList()
+        transactionList = CoreDataManager.shared.loadTransactionList(email : vendor?.email ?? "")
         calculateTotalIncomePerMonth()
         tableView.reloadData()
     }
@@ -41,18 +41,6 @@ class VendorTransactionViewController: NavigationBaseViewController {
         totalIncomeLabel.text = "$ \(transactionList.reduce(0,{ $0 + $1.amount}))"
     }
     
-    private func loadTransactionList(){
-        let request: NSFetchRequest<Payment> = Payment.fetchRequest()
-        let folderPredicate = NSPredicate(format: "booking.vendor.email=%@", vendor?.email ?? "")
-        request.predicate = folderPredicate
-        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
-//        request.fetchLimit = 10
-        do {
-            transactionList = try context.fetch(request)
-        } catch {
-            print("Error loading Service \(error.localizedDescription)")
-        }
-    }
 }
 
 extension VendorTransactionViewController: UITableViewDelegate, UITableViewDataSource {

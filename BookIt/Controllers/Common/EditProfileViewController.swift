@@ -8,9 +8,8 @@
 import UIKit
 import CoreData
 
-class EditProfileViewController: UIViewController {
+class EditProfileViewController: WhiteNavigationBaseViewController {
 
-    var loginUser : LoginUser?
     weak var delegate: ViewController!
     
     @IBOutlet weak var imageView: UIImageView!
@@ -19,9 +18,6 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var lastNameTxt: UITextField!
     @IBOutlet weak var firstNameTxt: UITextField!
     
-//    var imagePath : URL?
-    
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var isVendor = false
     var newUser = false
     override func viewDidLoad() {
@@ -45,17 +41,11 @@ class EditProfileViewController: UIViewController {
             emailTxt.isUserInteractionEnabled = true
             emailTxt.isEnabled = true
         }else{
-//            navigationController?.navigationBar.tintColor = UIColor.white
-//            
-//            if var textAttributes = navigationController?.navigationBar.titleTextAttributes {
-//                textAttributes[NSAttributedString.Key.foregroundColor] = UIColor.white
-//                navigationController?.navigationBar.titleTextAttributes = textAttributes
-//            }
+
             self.title = "Edit Profile"
             emailTxt.isUserInteractionEnabled = false
             emailTxt.isEnabled = false
             self.navigationController?.navigationBar.isHidden = false
-            navigationController?.navigationBar.tintColor = UIColor.white
             newUser = false
             let user =  UserDefaultsManager.shared.getUserData()
             if(user.isVendor){

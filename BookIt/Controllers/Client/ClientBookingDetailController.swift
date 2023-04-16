@@ -27,6 +27,7 @@ class ClientBookingDetailController : NavigationBaseViewController{
     @IBOutlet weak var serviceStatusBtn: UIButton!
     @IBOutlet weak var statusLbl: UILabel!
     
+    var amount = 0.0
     override func viewDidLoad() {
         loadDetails()
     }
@@ -86,6 +87,7 @@ class ClientBookingDetailController : NavigationBaseViewController{
         
         if let price = service.price, let type = service.priceType {
             servicePriceLbl.text = "$ " + price + " / " + type
+            amount = Double(price) ?? 0.0
         }
         
         locationDescLbl.text =  client.address?.address ?? "N/A"
@@ -243,27 +245,36 @@ class ClientBookingDetailController : NavigationBaseViewController{
     }
     
     private func makePayment(){
-        let actionSheet = UIAlertController(title: "Payment Options", message: "Select the payment option you want tp proceed.", preferredStyle: .actionSheet)
+        var alertStyle = UIAlertController.Style.actionSheet
+        
+        if (UIDevice.current.userInterfaceIdiom == .pad) {
+          alertStyle = UIAlertController.Style.alert
+        }
+
+        let actionSheet = UIAlertController(title: "Payment Options", message: "Select the payment option you want tp proceed.", preferredStyle: alertStyle)
 
         let actionCredit = UIAlertAction(title: "Credit/Debit", style: .default) { _ in
+            self.paymentFirebaseCall(type: "Credit/Debit")
             self.paymentAPICall()
         }
         actionSheet.addAction(actionCredit)
         
         let actionApplePay = UIAlertAction(title: "Apple Pay", style: .default) { _ in
+            self.paymentFirebaseCall(type: "Apple Pay")
             self.paymentAPICall()
         }
         actionSheet.addAction(actionApplePay)
 
         let actionPayPal = UIAlertAction(title: "PayPal", style: .default) { _ in
             self.triggerPayPalCheckout(price:self.priceLbl.text ?? "0")
+            self.paymentFirebaseCall(type: "PayPal")
             self.paymentAPICall()
         }
         actionSheet.addAction(actionPayPal)
 
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         actionSheet.addAction(cancelAction)
-
+        
         present(actionSheet, animated: true)
     }
 }
@@ -276,7 +287,7 @@ extension ClientBookingDetailController {
     {
         if let bookingData = booking {
             let param = UserPaymentParam(bookingId: String(bookingData.bookingId))
-            let urlPath: String = "email/send/"
+            let urlPath: String = "onlyemail/send/"
             
             NetworkManager.shared.makePayment(urlStr: urlPath, postData: param.toJSON()) { (success, rsponse) in
                 if success == true
@@ -300,6 +311,33 @@ extension ClientBookingDetailController {
                     
                 }else{
                     UIAlertViewExtention.shared.showBasicAlertView(title: "Payment Failed", message: "Sonmething went wrong please try again.", okActionTitle: "OK", view: self)
+                }
+            }
+        }
+    }
+    
+    func paymentFirebaseCall(type : String)
+    {
+        let payment = Payment(context: context)
+        payment.booking = self.booking
+        payment.paymentId = CoreDataManager.shared.getPaymentID()
+        payment.status = type
+        payment.date = Date()
+        payment.amount =  amount
+        LoadingHudManager.shared.showSimpleHUD(title: "Add Payment", view: self.view)
+        InitialDataDownloadManager.shared.addPaymentData(payment: payment){[weak self] status in
+            DispatchQueue.main.async {
+                LoadingHudManager.shared.dissmissHud()
+                guard let strongSelf = self else {
+                    return
+                }
+                if let status = status {
+                    if status {
+                        strongSelf.saveAllContextCoreData()
+                    }else{
+                       
+                        UIAlertViewExtention.shared.showBasicAlertView(title: "Error", message:"Something went wrong please try again", okActionTitle: "OK", view: strongSelf)
+                    }
                 }
             }
         }

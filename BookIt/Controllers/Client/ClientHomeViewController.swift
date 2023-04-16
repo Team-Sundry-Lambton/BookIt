@@ -74,7 +74,7 @@ class ClientHomeViewController: BaseViewController {
         
         let tabbarAppearance = UITabBarAppearance()
         tabbarAppearance.configureWithOpaqueBackground()
-        tabbarAppearance.backgroundColor = UIColor.white
+//        tabbarAppearance.backgroundColor = UIColor.white
        
         self.tabBarController?.tabBar.scrollEdgeAppearance = tabbarAppearance
         self.tabBarController?.tabBar.standardAppearance = tabbarAppearance
@@ -199,7 +199,7 @@ extension ClientHomeViewController: UITableViewDelegate, UITableViewDataSource {
             }
         }else
         {
-            return serviceList.count > 5 ? 5 : serviceList.count
+            return serviceList.count > 10 ? 10 : serviceList.count
         }
     }
     
@@ -427,7 +427,7 @@ extension ClientHomeViewController :UICollectionViewDataSource, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if (collectionView == self.categoryCollectioView){
-            return 4
+            return 10
         }
         else{
             return vendorList.count > 10 ? 10 : vendorList.count

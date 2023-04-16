@@ -14,6 +14,17 @@ class CoreDataManager : NSObject{
 
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    func getAllClients() -> [Client]{
+        var clients = [Client]()
+        let request: NSFetchRequest<Client> = Client.fetchRequest()
+        do {
+            clients = try context.fetch(request)
+        } catch {
+            print("Error loading categories \(error.localizedDescription)")
+        }
+        return clients
+    }
+    
     func getClient(email : String) -> Client?{
         var client : Client?
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Client")
@@ -25,6 +36,17 @@ class CoreDataManager : NSObject{
             print(error)
         }
         return client
+    }
+    
+    func getAllVendors() -> [Vendor]{
+        var vendors = [Vendor]()
+        let request: NSFetchRequest<Vendor> = Vendor.fetchRequest()
+        do {
+            vendors = try context.fetch(request)
+        } catch {
+            print("Error loading categories \(error.localizedDescription)")
+        }
+        return vendors
     }
     
     func getVendor(email : String) -> Vendor?{
@@ -53,6 +75,18 @@ class CoreDataManager : NSObject{
         return category
     }
     
+    func getAllServices() -> [Service]{
+        var services = [Service]()
+        let request: NSFetchRequest<Service> = Service.fetchRequest()
+        do {
+            services = try context.fetch(request)
+
+        } catch {
+            print(error)
+        }
+        return services
+    }
+    
     func getService(serviceId : Int) -> Service?{
         var service : Service?
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Service")
@@ -64,6 +98,17 @@ class CoreDataManager : NSObject{
             print(error)
         }
         return service
+    }
+    
+    func getAllMedias() -> [MediaFile]{
+        var medias = [MediaFile]()
+        let fetchRequest: NSFetchRequest<MediaFile> = MediaFile.fetchRequest()
+        do {
+            medias = try context.fetch(fetchRequest)
+        } catch {
+            print("Error loading medias \(error.localizedDescription)")
+        }
+        return medias
     }
     
     func getMedia(name : String, serviceId : Int) -> MediaFile?{
@@ -80,6 +125,17 @@ class CoreDataManager : NSObject{
         return media
     }
     
+    func getAllBooking() -> [Booking]{
+        var bookings = [Booking]()
+        let fetchRequest: NSFetchRequest<Booking> = Booking.fetchRequest()
+        do {
+            bookings = try context.fetch(fetchRequest)
+        } catch {
+            print("Error loading medias \(error.localizedDescription)")
+        }
+        return bookings
+    }
+    
     func getBooking( bookingId : Int) -> Booking?{
         var booking : Booking?
         let fetchRequest: NSFetchRequest<Booking> = Booking.fetchRequest()
@@ -92,6 +148,17 @@ class CoreDataManager : NSObject{
             print("Error loading medias \(error.localizedDescription)")
         }
         return booking
+    }
+    
+    func getAllPayments() -> [Payment]?{
+        var payments = [Payment]()
+        let fetchRequest: NSFetchRequest<Payment> = Payment.fetchRequest()
+        do {
+            payments = try context.fetch(fetchRequest)
+        } catch {
+            print("Error loading medias \(error.localizedDescription)")
+        }
+        return payments
     }
     
     func getPayment(bookingId : Int) -> Payment?{
@@ -133,6 +200,17 @@ class CoreDataManager : NSObject{
             print("Error loading medias \(error.localizedDescription)")
         }
        return mediaList
+    }
+    
+    func getAllVendorReviews(email : String) -> [VendorReview]{
+        var vendorReview = [VendorReview]()
+        let request: NSFetchRequest<VendorReview> = VendorReview.fetchRequest()
+        do {
+            vendorReview = try context.fetch(request)
+        } catch {
+            print("Error loading VendorReview \(error.localizedDescription)")
+        }
+       return vendorReview
     }
     
     func getVendorReviewList(email : String) -> [VendorReview]{
@@ -249,6 +327,36 @@ class CoreDataManager : NSObject{
         return Int16(count)
     }
     
+    func getPaymentID() -> Int16 {
+        var count = 0
+        let request: NSFetchRequest<Payment> = Payment.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "paymentId", ascending: true)]
+        do {
+             let paymentList = try context.fetch(request)
+            if paymentList.count > 0 {
+                count = Int((paymentList.last?.paymentId ?? 0) + 1)
+            }
+        } catch {
+            print("Error loading Service \(error.localizedDescription)")
+        }
+        return Int16(count)
+    }
+    
+    func getReviewID() -> Int16 {
+        var count = 0
+        let request: NSFetchRequest<VendorReview> = VendorReview.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "reviewId", ascending: true)]
+        do {
+             let reviewList = try context.fetch(request)
+            if reviewList.count > 0 {
+                count = Int((reviewList.last?.reviewId ?? 0) + 1)
+            }
+        } catch {
+            print("Error loading Service \(error.localizedDescription)")
+        }
+        return Int16(count)
+    }
+    
     func loadBookingList(email : String, isClient:Bool = false, sortBy: SortType, sortAscending: Bool) -> [Booking]{
             var bookingList = [Booking]()
             let request: NSFetchRequest<Booking> = Booking.fetchRequest()
@@ -279,6 +387,18 @@ class CoreDataManager : NSObject{
             }
             return bookingList
         }
+    
+    func loadAllServices() -> [Service]{
+        var serviceList = [Service]()
+        let request: NSFetchRequest<Service> = Service.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "serviceTitle", ascending: true)]
+        do {
+            serviceList = try context.fetch(request)
+        } catch {
+            print("Error loading Service \(error.localizedDescription)")
+        }
+        return serviceList
+    }
     
     func loadServices() -> [Service]{
         var serviceList = [Service]()
@@ -344,6 +464,17 @@ class CoreDataManager : NSObject{
         }
     }
     
+    func getAllReviews() -> [VendorReview]{
+        var vendorReview = [VendorReview]()
+        let request: NSFetchRequest<VendorReview> = VendorReview.fetchRequest()
+        do {
+            vendorReview = try context.fetch(request)
+        } catch {
+            print("Error loading VendorReview \(error.localizedDescription)")
+        }
+       return vendorReview
+    }
+    
     func getServiceReviewList(serviceId : Int) -> [VendorReview]{
         var vendorReview = [VendorReview]()
         let request: NSFetchRequest<VendorReview> = VendorReview.fetchRequest()
@@ -361,7 +492,7 @@ class CoreDataManager : NSObject{
         var vendorList = [Vendor]()
         let request: NSFetchRequest<Vendor> = Vendor.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "firstName", ascending: true)]
-        request.fetchLimit = 5
+        request.fetchLimit = 10
         do {
             vendorList = try context.fetch(request)
         } catch {
@@ -374,7 +505,7 @@ class CoreDataManager : NSObject{
         var vendorList = [Vendor]()
         let request: NSFetchRequest<Vendor> = Vendor.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "firstName", ascending: true)]
-        request.fetchLimit = 5
+        request.fetchLimit = 10
         do {
             vendorList = try context.fetch(request)
         } catch {
@@ -389,7 +520,7 @@ class CoreDataManager : NSObject{
         let predicate = NSPredicate(format: "vendorRating=true")
         fetchRequest.predicate = predicate
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "rating", ascending: false)]
-        fetchRequest.fetchLimit = 5
+        fetchRequest.fetchLimit = 10
         do {
             // Execute the fetch request and get the vendors
             let vendorReview = try context.fetch(fetchRequest)
@@ -397,9 +528,19 @@ class CoreDataManager : NSObject{
             if vendorReview.count > 0 {
                 for review in vendorReview {
                     if let vendor = review.vendor {
-                        vendorList.append(vendor)
+                        if !vendorList.contains(vendor){
+                            vendorList.append(vendor)
+                        }
                     }
                 }
+                if vendorList.count < 10 {
+                    for vendor in loadTopVendors(){
+                        if !vendorList.contains(vendor){
+                            vendorList.append(vendor)
+                        }
+                    }
+                }
+                
             }else{
                 vendorList = loadTopVendors()
             }
@@ -414,7 +555,7 @@ class CoreDataManager : NSObject{
         let request: NSFetchRequest<Service> = Service.fetchRequest()
         let predicate = NSPredicate(format: "status=%@ " ,"Accepted")
         request.predicate = predicate
-        request.fetchLimit = 5
+        request.fetchLimit = 10
         request.sortDescriptors = [NSSortDescriptor(key: "serviceTitle", ascending: true)]
         do {
             serviceList = try context.fetch(request)
@@ -430,7 +571,7 @@ class CoreDataManager : NSObject{
         let predicate = NSPredicate(format: "vendorRating=true")
         fetchRequest.predicate = predicate
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "rating", ascending: false)]
-        fetchRequest.fetchLimit = 5
+        fetchRequest.fetchLimit = 10
         do {
             // Execute the fetch request and get the vendors
             let vendorReview = try context.fetch(fetchRequest)
@@ -438,7 +579,16 @@ class CoreDataManager : NSObject{
             if vendorReview.count > 0 {
                 for review in vendorReview {
                     if let service = review.service {
-                        serviceList.append(service)
+                        if !serviceList.contains(service){
+                            serviceList.append(service)
+                        }
+                    }
+                }
+                if serviceList.count < 10 {
+                    for service in loadTopServices(){
+                        if !serviceList.contains(service){
+                            serviceList.append(service)
+                        }
                     }
                 }
             }else{
@@ -450,7 +600,7 @@ class CoreDataManager : NSObject{
         return serviceList
     }
     
-    func loadServicesWithSerch(searchText : String) -> [Service]{
+    func loadServicesWithSearch(searchText : String) -> [Service]{
         var serviceList = [Service]()
         let request: NSFetchRequest<Service> = Service.fetchRequest()
         let statusPredicate = NSPredicate(format: "status=%@ " ,"Accepted")
@@ -527,6 +677,18 @@ class CoreDataManager : NSObject{
         }
     }
     
+    func getAllLocations()-> [Address]? {
+        var locations = [Address]()
+        let request: NSFetchRequest<Address> = Address.fetchRequest()
+        do {
+            locations = try context.fetch(request)
+        } catch {
+            print("Error loading location data \(error.localizedDescription)")
+        }
+        
+        return locations
+    }
+    
     func getLocationData(addressId: Int)-> Address? {
         var selectedLocation : Address?
         let request: NSFetchRequest<Address> = Address.fetchRequest()
@@ -540,6 +702,21 @@ class CoreDataManager : NSObject{
         }
         
         return selectedLocation
+    }
+    
+    func loadTransactionList(email : String) -> [Payment]{
+        var transactionList = [Payment]()
+        let request: NSFetchRequest<Payment> = Payment.fetchRequest()
+        let folderPredicate = NSPredicate(format: "booking.vendor.email=%@", email)
+        request.predicate = folderPredicate
+        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
+//        request.fetchLimit = 10
+        do {
+            transactionList = try context.fetch(request)
+        } catch {
+            print("Error loading Service \(error.localizedDescription)")
+        }
+        return transactionList
     }
     
     func deleteClients() {

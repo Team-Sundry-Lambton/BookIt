@@ -20,6 +20,15 @@ class MediaManager: NSObject, UIImagePickerControllerDelegate, UINavigationContr
     //MARK: Image Selection
     override init(){
         super.init()
+        
+        var alertStyle = UIAlertController.Style.actionSheet
+        
+        if (UIDevice.current.userInterfaceIdiom == .pad) {
+          alertStyle = UIAlertController.Style.alert
+        }
+
+        alert = UIAlertController(title: "Choose Profile Picture", message: nil, preferredStyle: alertStyle)
+        
         let cameraAction = UIAlertAction(title: "Camera", style: .default){
             UIAlertAction in
             self.openCamera()
